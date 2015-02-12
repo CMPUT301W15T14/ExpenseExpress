@@ -9,20 +9,18 @@ import team14.expenseexpress.ExpenseModel;
 import android.test.ActivityInstrumentationTestCase2;
 
 
-public class AddInializeRemoveMultipleExpensesTest extends
-		ActivityInstrumentationTestCase2<AddExpenseActivity> {
-
+public class AddInializeRemoveMultipleExpensesTest extends ActivityInstrumentationTestCase2<AddExpenseActivity> {
     private Controller controller;
-	final GregorianCalendar date1 = new GregorianCalendar(1980,8,8);
-	final GregorianCalendar date2 = new GregorianCalendar(2012,12,12);
-	final int amount1 = 5;
-	final int amount2 = 10;
-	final int currency1 = 1;
-	final int currency2 = 2;
-	final int category1 = 3;
-	final int category2 = 4;
-	final String description1 = "Desc1";
-	final String description2 = "Desc2";
+    final GregorianCalendar date1 = new GregorianCalendar(1980,8,8);
+    final GregorianCalendar date2 = new GregorianCalendar(2012,12,12);
+    final int amount1 = 5;
+    final int amount2 = 10;
+    final int currency1 = 1;
+    final int currency2 = 2;
+    final int category1 = 3;
+    final int category2 = 4;
+    final String description1 = "Desc1";
+    final String description2 = "Desc2";
 	
 	public AddIniializeRemoveMultipleExpensesTest(){
 		super(AddExpenseActivity.class);
@@ -31,24 +29,25 @@ public class AddInializeRemoveMultipleExpensesTest extends
 	protected void setUp() throws Exception {
 		super.setUp();
 		// Preconditions: a claim has been inialized with no associated expenses.
-	        claim = new ClaimModel();
-	        expenses = claim.getExpenses();
-	        
-	        // Mock controller initialized with a reference to the claim
-	        controller = new Controller(claim);
+		claim = new ClaimModel();
+		expenses = claim.getExpenses();
+		
+		// Mock controller initialized with a reference to the claim
+		controller = new Controller(claim);
+	}
 	
 	public void testAddAndRemoveMultipleExpenses(){
 	    Expense expense1 = controller.newExpense();
 	    Expense expense2 = controller.newExpense();
-		assertTrue("List of expenses should be empty", expenses.size() == 0);
-		controller.addExpense(expense1);
-		assertTrue("List should have 1", expenses.size() == 1);
-		controller.addExpense(expense2);
-		assertTrue("List should have 2", expenses.size() == 2);
-		controller.removeExpense(expense2);
-		assertTrue("List should have 1", expenses.size() == 1);
-		controller.removeExpense(expense1);
-		assertTrue("List should be empty", expenses.size() == 0);
+	    assertTrue("List of expenses should be empty", expenses.size() == 0);
+	    controller.addExpense(expense1);
+	    assertTrue("List should have 1", expenses.size() == 1);
+	    controller.addExpense(expense2);
+	    assertTrue("List should have 2", expenses.size() == 2);
+	    controller.removeExpense(expense2);
+	    assertTrue("List should have 1", expenses.size() == 1);
+	    controller.removeExpense(expense1);
+	    assertTrue("List should be empty", expenses.size() == 0);
 	}
 	
 	public void testInitializeExpenses(){
