@@ -32,12 +32,12 @@ public class ViewEditExpenseTest extends ActivityInstrumentationTestCase2<Expens
 		claim = new ClaimModel();
 		expenses = claim.getExpenses();
 		expense = controller.newExpense();
-	    controller.setExpenseDate(expense, date1);
-	    controller.setExpenseAmount(expense, amount1);
-	    controller.setExpenseCategory(expense, category1);
-	    controller.setExpenseCurrency(expense, currency1);
-	    controller.setExpenceDesciption(expense, description1);
-	    expenses.add(expense);
+		controller.setExpenseDate(expense, date1);
+		controller.setExpenseAmount(expense, amount1);
+		controller.setExpenseCategory(expense, category1);
+		controller.setExpenseCurrency(expense, currency1);
+		controller.setExpenceDesciption(expense, description1);
+		expenses.add(expense);
 	}
 	    
 	
