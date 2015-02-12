@@ -22,11 +22,11 @@ public class ExpenseCategoryTest extends
 		super.setUp();
 		// Mock controller initialized with a reference to the claim
 		claim = new ClaimModel();
-	    controller = new Controller(claim);
+		controller = new Controller(claim);
 		// Preconditions: an expense item is initialized aleady
 		expense = controller.newExpense();
-	    ArrayList<ExpenseModel> expenses = claim.getExpenses();
-	    expenses.add(expense);
+		ArrayList<ExpenseModel> expenses = claim.getExpenses();
+		expenses.add(expense);
 	}
 	        
 	
