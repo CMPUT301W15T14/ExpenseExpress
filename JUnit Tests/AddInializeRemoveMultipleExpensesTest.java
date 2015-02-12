@@ -7,26 +7,21 @@ import team14.teamproject.ExpenseModel;
 import android.test.ActivityInstrumentationTestCase2;
 
 
-public class UserStory4Test extends
+public class AddInializeRemoveMultipleExpensesTest extends
 		ActivityInstrumentationTestCase2<AddExpenseActivity> {
 
-	ArrayList<ClaimModel> claims;
-	ArrayList<ExpenseModel> expenses;
-	ClaimantController controller;
-	ClaimModel claim;
-	ExpenseModel expense1;
-	ExpenseModel expense2;
-	GregorianCalendar date1;
-	GregorianCalendar date2;
-	int amount1;
-	int amount2;
-	int currency1;
-	int currency2;
-	int category1;
-	int category2;
-	String description1;
-	String description2;
-	String description3;
+    private Controller controller;
+	final GregorianCalendar date1 = new GregorianCalendar(1980,8,8);
+	final GregorianCalendar date2 = new GregorianCalendar(2012,12,12);
+	final int amount1 = 5;
+	final int amount2 = 10;
+	final int currency1 = 1;
+	final int currency2 = 2;
+	final int category1 = 3;
+	final int category2 = 4;
+	final String description1 = "Desc1";
+	final String description2 = "Desc2";
+	final String description3 = "Desc3, which replaced description2";
 	
 	public US4_1_1Test(){
 		super(AddExpenseActivity.class);
@@ -34,166 +29,59 @@ public class UserStory4Test extends
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		claims = new ArrayList<ClaimModel>();
-		claim = new ClaimModel();
-		controller = new ClaimantController("Bob");	
-		controller.addClaim(claim);
-		controller.setClaim(0);
-		controller.setExpense(0);
-		date1 = new GregorianCalendar(1999,9,1);
-		date2 = new GregorianCalendar(2005,5,5);
-		amount1 = 599;
-		amount2 = 9000;
-		currency1 = 1;
-		currency2 = 3;
-		category1 = 2;
-		category2 = 4;
-		description1 = "This is Expense #1";
-		description2 = "This is Expense #2";
-		description3 = "This is Expense #2, modified description";
-		}
-	
-	/* US4.01.01
-	 * As a claimant, I want to make one or more expense items for an expense claim,
-	 * each of which has a date the expense was incurred, a category, a textual description,
-	 * amount spent, and unit of currency.
-	 */
-	
-	/*
-	 * US04.07.01
-	 * As a claimant, I want to delete an expense item while changes are allowed.
-	 */
+		// Preconditions: a claim has been inialized with no associated expenses.
+	        claim = new ClaimModel();
+	        expenses = claim.getExpenses();
+	        
+	        // Mock controller initialized with a reference to the claim
+	        controller = new Controller(claim);
 	
 	public void testAddAndRemoveMultipleExpenses(){
-		expenses = claim.getExpenses();
-		assertTrue("List of expenses should be empty", claim.getExpenses().size() == 0);
+	    Expense expense1 = controller.newExpense();
+	    Expense expense2 = controller.newExpense();
+		assertTrue("List of expenses should be empty", expenses.size() == 0);
 		controller.addExpense(expense1);
-		assertTrue("List should have 1", claim.getExpenses().size() == 1);
+		assertTrue("List should have 1", expenses.size() == 1);
 		controller.addExpense(expense2);
-		assertTrue("List should have 2", claim.getExpenses().size() == 2);
+		assertTrue("List should have 2", expenses.size() == 2);
 		controller.removeExpense(expense2);
-		assertTrue("List should have 1", claim.getExpenses().size() == 1);
+		assertTrue("List should have 1", expenses.size() == 1);
 		controller.removeExpense(expense1);
-		assertTrue("List should be empty", claim.getExpenses().size() == 0);
+		assertTrue("List should be empty", expenses.size() == 0);
 	}
 	
-	/*
-	 * US04.06.01
-	 * As a claimant, I want to edit an expense item while changes are allowed.
-	 */
-	
-	public testEditExpense(){
-		expenses = claim.getExpenses();
-		expenses.clear();
-		expenses.add(expense1);
-		expenses.add(expense2);
-		controller.setExpense(0);
-		controller.setDate(date1);
-		controller.setAmount(amount1);
-		controller.setCurrency(currency1);
-		controller.setCategory(category1);
-		controller.setDescription(description1);
-		controller.setExpense(1);
-		controller.setDate(date2);
-		controller.setAmount(amount2);
-		controller.setCurrency(currency2);
-		controller.setCategory(category2);
-		controller.setDescription(description2);
-		controller.setExpense(0);
-		assertEquals("First expense's date should be 1999/9/1 now", controller.getDate()
-				,date1);
-		controller.setExpense(1);
-		assertEquals("Second expense's amount should be 9000 now", controller.getAmount(),
-				amount2);
-		assertEquals("Second expense's description is 'this is expense #2'", controller.
-				getDescription(), description2);
-		controller.setDescription(description3);
-		assertEquals("Second expense's description is modified'", controller.
-				getDescription(), description3);
+	public void testInitializeExpenses(){
+	    expenses.clear();
+	    // inialize expense fields with actual values for more than one expense
+	    Expense expense1 = controller.newExpense();
+	    controller.setExpenseDate(expense1, date1);
+	    controller.setExpenseAmount(expense1, amount1);
+	    controller.setExpenseCategory(expense1, category1);
+	    controller.setExpenseCurrency(expense1, currency1);
+	    controller.setExpenceDesciption(expense1, description1);
+	    expenses.add(expense1);
+	    
+	    Expense expense2 = controller.newExpense();
+	    controller.setExpenseDate(expense2, date2);
+	    controller.setExpenseAmount(expense2, amount2);
+	    controller.setExpenseCategory(expense2, category2);
+	    controller.setExpenseCurrency(expense2, currency2);
+	    controller.setExpenceDesciption(expense2, description2);
+	    expenses.add(expense2);
+	    
+	    // Now test if the values have really been both set
+	    AssertEquals("Date has been set properly for expense1", date1, controller.getExpenseDate(expense1));
+	    AssertEquals("Date has been set properly for expense2", date2, controller.getExpenseDate(expense2));
+	    AssertEquals("Amount has been set properly for expense1", amount1, controller.getExpenseAmount(expense1));
+	    AssertEquals("Amount has been set properly for expense2", amount2, controller.getExpenseAmount(expense2));
+	    AssertEquals("Category has been set properly for expense1", category1, controller.getExpenseCategory(expense1));
+	    AssertEquals("Category has been set properly for expense2", category2, controller.getExpenseCategory(expense2));
+	    AssertEquals("Currency has been set properly for expense1", currency1, controller.getExpenseCurrency(expense1));
+	    AssertEquals("Currency has been set properly for expense2", currency2, controller.getExpenseCurrency(expense2));
+	    AssertEquals("Description has been set properly for expense1", 
+	            description1, controller.getExpenseDescription(expense1));
+	    AssertEquals("Description has been set properly for expense2",
+	            description2, controller.getExpenseDescription(expense2));
 	}
 
-	/*
-	 * US04.02.01
-	 * As a claimant, I want the category for an expense item to be one of air fare,
-	 * ground transport, vehicle rental, private automobile, fuel, parking, registration,
-	 * accommodation, meal, or supplies.
-	 */
-	
-	public void testCategoryList(){
-		ExpenseModel expense = new ExpenseModel();
-		ArrayList<String> list = expense.getCategories();
-		assertTrue("Air fare should be in the list", list.contains("Air fare"));
-		assertTrue("Ground transport should be in the list", list.contains("Ground transport"));
-		// etc.
-	}
-	
-	public void testCategoryEdit(){
-		ExpenseModel expense = new ExpenseModel();
-		controller.setExpense(0);
-		expenses = controller.getExpenses();
-		expenses.clear();
-		expenses.add(expense);
-		controller.setCategory(3);
-		assertEquals("Category should be set to 'Private automobile'", "Private automobile",
-				controller.getCategory());
-		controller.setCategory(4);
-		assertEquals("Category should now be set to 'Fuel'", "Fuel", controller.getCategory());
-	}
-	
-	/*
-	 * US04.03.01
-	 * As a claimant, I want the currency for an expense amount to be one of CAD, USD,
-	 * EUR, GBP, CHF, JPY, or CNY.
-	 */
-	
-	public void testCurrencyList(){
-		ExpenseModel expense = new ExpenseModel();
-		ArrayList<String> list = expense.getCurrencies();
-		assertTrue("CAD be in the list", list.contains("CAD"));
-		assertTrue("USD should be in the list", list.contains("USD"));
-		// etc.
-	}
-	
-	public void testCategoryEdit(){
-		ExpenseModel expense = new ExpenseModel();
-		controller.setExpense(0);
-		expenses = controller.getExpenses();
-		expenses.clear();
-		expenses.add(expense);
-		controller.setCurrency(3);
-		assertEquals("Category should be set to GBP", "GBP",
-				controller.getCurrency());
-		controller.setCurrency(4);
-		assertEquals("Category should now be set to 'CHF'", "CHF", controller.getCurrency());
-	}
-	
-	/*
-	 * US04.04.01
-	 * As a claimant, I want to manually flag an expense item with an incompleteness
-	 * indicator, even if all item fields have values, so that I am reminded that the
-	 * item needs further editing.
-	 */
-	
-	public void testFlag(){
-		ExpenseModel expense = new ExpenseModel();
-		controller.setExpense(0);
-		assertFalse("Flag should be false initially", controller.getFlag());
-		controller.raiseFlag();
-		assertTrue("Flag should be true now", controller.getFlag());
-		controller.lowerFlag();
-		assertFalse("Flag shoudl be false again", controller.getFlag());
-	}
-	
-	// These are difficult to write JUnit tests for:
-	
-	/*
-	 * US04.05.01
-	 * As a claimant, I want to view an expense item and its details.
-	 */
-	
-	/*
-	 * US04.08.01
-	 * As a claimant, I want the entry of an expense item to have minimal required 
-	 * navigation in the user interface.
-	 */
 }
