@@ -21,9 +21,8 @@ public class AddInializeRemoveMultipleExpensesTest extends
 	final int category2 = 4;
 	final String description1 = "Desc1";
 	final String description2 = "Desc2";
-	final String description3 = "Desc3, which replaced description2";
 	
-	public US4_1_1Test(){
+	public AddIniializeRemoveMultipleExpensesTest(){
 		super(AddExpenseActivity.class);
 	}
 	
