@@ -3,9 +3,9 @@
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-import team14.teamproject.ClaimModel;
-import team14.teamproject.ClaimantController;
-import team14.teamproject.ExpenseModel;
+import team14.expenseexpress.ClaimModel;
+import team14.expenseexpress.Controller;
+import team14.expenseexpress.ExpenseModel;
 import android.test.ActivityInstrumentationTestCase2;
 
 
