@@ -1,5 +1,3 @@
-// Note: this is for Use Case 4.2
-
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import team14.expenseexpress.ClaimModel;
@@ -8,7 +6,7 @@ import team14.expenseexpress.ExpenseModel;
 import android.test.ActivityInstrumentationTestCase2;
 
 
-public class ExpenseCategorTest extends
+public class ExpenseCategoryTest extends
 		ActivityInstrumentationTestCase2<ExpenseActivity> {
 
     private Controller controller;
@@ -16,7 +14,7 @@ public class ExpenseCategorTest extends
     private ClaimModel claim;
     private final int category = 1;
 	
-	public AddIniializeRemoveMultipleExpensesTest(){
+	public ExpenseCategoryTest(){
 		super(AddExpenseActivity.class);
 	}
 	
