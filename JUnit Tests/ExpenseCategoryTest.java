@@ -45,4 +45,3 @@ public class ExpenseCategoryTest extends
 	    assertTrue("The category is one from a preset list", ExpenseModel.sCategories.contains(Integer(category)));
 	}
 }
-
