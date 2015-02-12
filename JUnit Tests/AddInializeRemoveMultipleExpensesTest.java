@@ -1,5 +1,3 @@
-// Note: this is for Use Case 4.1
-
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
