@@ -1,5 +1,13 @@
-An example of a JUnit test for proj part 2:
+Note to team: (written 9:43PM Feb 11)
 
-https://github.com/CMPUT301W15T14/ExpenseExpress/blob/master/JUnit%20Tests/AddInializeRemoveMultipleExpensesTest.java
+Let's meet tomorrow Thursday Feb 12.
 
+We still need to finish:
+- Storyboard (Zach)
+- All the Use Cases
+- All the JUnit Tests
+- Release Plan - Someone should take responsibility for this like Zach did for storyboard so that it gets done DIBS OUT
 
+I'm done my Use Cases (UC4-6) and their JUnit Tests so you can use them to help you make yours
+
+-John
