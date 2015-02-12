@@ -15,7 +15,7 @@ public class ExpenseCurrencyTest extends
     private final int currency = 1;
 	
 	public ExpenseCurrencyTest(){
-		super(AddExpenseActivity.class);
+		super(ExpenseActivity.class);
 	}
 	
 	protected void setUp() throws Exception {
