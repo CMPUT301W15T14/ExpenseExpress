@@ -7,7 +7,8 @@ We still need to finish:
 - All the Use Cases
 - All the JUnit Tests
 - Release Plan - Someone should take responsibility for this like Zach did for storyboard so that it gets done DIBS OUT
+- Clean up the wiki side bar
 
-I'm done my Use Cases (UC4-6) and their JUnit Tests so you can use them to help you make yours
+I'm done my Use Cases (UC4-6) and their JUnit Tests so you can use them to help you make yours.
 
 -John
