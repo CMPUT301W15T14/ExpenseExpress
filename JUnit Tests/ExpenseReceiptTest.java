@@ -11,7 +11,10 @@ import junit.framework.TestCase;
 
 
 public class ExpenseReceiptTest extends ActivityInstrumentationTestCase2<ExpenseReceiptActivity> {
-	ImageView view = (ImageView) findViewById(R.id.receiptView);
+	
+	public ImageView view = (ImageView) findViewById(R.id.receiptView);
+	public Expense expense;
+	
 	public ExpenseReceiptTest() {
 		super(ExpenseReceiptActivity.class);
 	}
@@ -20,6 +23,9 @@ public class ExpenseReceiptTest extends ActivityInstrumentationTestCase2<Expense
 	}
 	
 	public void AddExpenseReceiptTest(){
+		
+		//Test to check if the receipt is under 65536 bytes
+		expense = new Expense();	
 		takePhoto(); // or choosePhoto();
 		Drawable photo = view.getDrawable();
 		Bitmap bitmap = ((BitmapDrawable)photo).getBitmap();
@@ -27,25 +33,10 @@ public class ExpenseReceiptTest extends ActivityInstrumentationTestCase2<Expense
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, picture);
 		byte[] picturedata = picture.toByteArray();
 		assertTrue("the size of the imagine is oversized", picturedata.length<65536);
-	}
-	public void ZoomIn(){
 		
+		//Test to check if the receipt was added to the expense properly
+		expense = new Expense();	
+		expense.addReceipt(picture);
+		assertNotNull("no picture", expense.getReceipt());
 	}
-	public void ZoomOut(){
-		
-	}
-	public void ChangeExpenseReceiptTest(){
-	
-		Drawable oldphoto = view.getDrawable();
-		takePhoto(); //or choosePhoto();
-		Drawable newphoto = view.getDrawable();
-		assertNotSame("photo did not change", newphoto, oldphoto);
-	}
-
-	public void DeleteExpenseReceiptTest(){
-	
-		deletePhoto();
-		assertEquals("Testing Delete", null, view.getDrawable());
-	}
-	
 }
