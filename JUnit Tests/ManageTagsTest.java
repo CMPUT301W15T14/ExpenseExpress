@@ -8,8 +8,6 @@ import android.test.ActivityInstrumentationTestCase2;
 public class ManageTagsTest extends 
 		ActivityInstrumentationTestCase2<ManageTagActivity> {
 
-	public ClaimModel claim;
-	public ClaimantController controller;
 	public TagModel Tags;
 	
 	public ManageTagsTest(){
