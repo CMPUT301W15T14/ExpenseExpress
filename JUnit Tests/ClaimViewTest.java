@@ -19,7 +19,7 @@ public class ClaimViewTest extends
 		super.setUp();
 		instrumentation = getInstrumentation();
 		activity = getActivity();
-		textInput = ((EditText) activity.findViewById(ca.ualberta.cs.lonelytwitter.R.id.body));
+		textInput = ((EditText) activity.findViewById(team14.teamproject.test.R.id.body));
 	}
 		public void testClaimView(){
 		Claim claim = new Claim();
