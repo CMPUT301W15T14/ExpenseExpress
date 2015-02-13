@@ -33,8 +33,8 @@ public class ClaimSummaryTest extends ActivityInstrumentationTestCase2<ClaimSumm
 	
 	public void testSummaryActivity() 
 	{
-		Claim compareClaim = new Claim(claimant, startDate, endDate, destinations, claimStatus, amounts);
-		ClaimSummaryActivity activity = returnClaimSummaryActivity(claim);
+	Claim compareClaim = new Claim(claimant, startDate, endDate, destinations, claimStatus, amounts);
+	ClaimSummaryActivity activity = returnClaimSummaryActivity(claim);
     	Controller claimController = activity.getController();
     	Claim getClaim = claimController.getClaim();
     	
