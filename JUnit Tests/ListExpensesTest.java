@@ -36,7 +36,7 @@ public class ListExpensesTest extends ActivityInstrumentationTestCase2<ExpenseLi
 	private ExpenseListActivity activity;
 	
 	public ListExpensesTest() {
-        super(ClaimListActivity.class);
+        super(ExpenseListActivity.class);
     }
     
     protected void setUp() throws Exception {
