@@ -8,10 +8,10 @@ import android.test.ActivityInstrumentationTestCase2;
 public class FilterByTagsTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
 	
-	public ClaimModel claim;
-	public ClaimModel claim2;
-	public ClaimModel claim3;
-	public ClaimantController controller;
+	public Claim claim;
+	public Claim claim2;
+	public Claim claim3;
+	public Controller controller;
 	
 	public FilterByTagsTest(){
 		super(MainActivity.class);
@@ -19,28 +19,25 @@ public class FilterByTagsTest extends
 	
 	public void FilerClaimsByTags() {
 		
-		claim = new ClaimModel();
-		claim2 = new ClaimModel();
-		claim3 = new ClaimModel();
+		claim = new Claim();
+		claim2 = new Claim();
+		claim3 = new Claim();
 		
 		claim.setClaimantName("Canada");
 		claim.setClaimantName("USA");
 		claim.setClaimantName("Australia");
 		
-		controller = new ClaimantController("Bob");
+		controller = new Controller("Bob");
 		controller.addClaim(claim);
 		controller.addClaim(claim2);
 		controller.addClaim(claim3);
 		
-		controller.setClaim(0);
-		controller.addTag("Hello");
-		controller.setClaim(1);
-		controller.addTag("Hello");
-		controller.setClaim(2);
-		controller.addTag("GoodBye");
+		controller.addTag(claim, "Hello");
+		controller.addTag(claim2, "Hello");
+		controller.addTag(claim3, "GoodBye");
 		
 		controller.filterTag("Hello");
-		ArrayList<ClaimModel> filteredClaims = controller.getFilteredClaims();
+		ArrayList<Claim> filteredClaims = controller.getFilteredClaims();
 		for (int i = 0; i < filteredClaims.size(); i++) {
 			ArrayList<String> ClaimTags = filteredClaims.get(i).getTags();
 			assertEquals("Tag not equals Hello", ClaimTags.get(0), "Hello");

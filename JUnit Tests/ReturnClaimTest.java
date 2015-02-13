@@ -10,9 +10,9 @@ import android.test.ActivityInstrumentationTestCase2;
 public class ReturnClaimTest extends 
 		ActivityInstrumentationTestCase2<MainActivity> {
 	
-	public ClaimModel claim;
-	public ClaimantController controller;
-	public ApproverController approver;
+	public Claim claim;
+	public Controller controller;
+	public Approver approver;
 	
 	public ReturnClaimTest(){
 		super(MainActivity.class);
@@ -20,13 +20,12 @@ public class ReturnClaimTest extends
 	
 	public returnedClaimTest() {
 		
-		claim = new ClaimModel();
-		controller = new ClaimantController("Bob");
-		approver = new ApproverController("Joe");
+		claim = new Claim();
+		controller = new Controller("Bob");
+		approver = new Approver("Joe");
 		controller.addClaim(claim);
-		controller.setClaim(0);
-		approver.setStatus("Returned")
-		controller.setApproverComment("Returned Claim");
+		approver.setStatus(claim, "Returned")
+		approver.setApproverComment("Returned Claim");
 		assertEquals("Status not equal Returned",controller.getStatus(), "Returned");
 		assertEquals("No approver name", controller.getApproverName(), "Joe");
 		asserEquals("No approver comment", controller.getComment(), "Returned Claim");

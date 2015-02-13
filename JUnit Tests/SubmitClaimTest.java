@@ -10,25 +10,23 @@ import android.test.ActivityInstrumentationTestCase2;
 public class SubmitClaimTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
 	
-	public ClaimModel claim;
-	public ClaimantController controller;
-	public ApproverController approver;
-	public ExpenseModel expense1;
-	ArrayList<ExpenseModel> expenses;
+	public Claim claim;
+	public Controller controller;
+	public Approver approver;
+	public Expense expense1;
+	ArrayList<Expense> expenses;
 
 	public SubmitClaimTest(){
 		super(MainActivity.class);
 	}
 	
 	public void submittedClaimTest() {
-		expense1 = new ExpenseModel();
-		claim = new ClaimModel();
-		controller = new ClaimantController("Bob");
+		expense1 = new Expense();
+		claim = new Claim();
+		controller = new Controller("Bob");
 		
 		//test to check if the program recognize an incomplete claim
 		controller.addClaim(claim);
-		controller.setClaim(0);
-		controller.setExpense(0);
 		controller.setStatus("submitted");
 		assertFalse("incomplete", controller.completed());
 		
@@ -37,11 +35,10 @@ public class SubmitClaimTest extends
 		controller.setReason("Canada", "I love Snow");
 		controller.setStartDate(1, 1, 2000);
 		controller.setEndDate(1, 2, 2000);
-		expenses = claim.getExpenses();
-		expenses.clear();
+		ArrayList<expense> expenses = claim.getExpenses();
 		expenses.add(expense1);
 		controller.setStatus("submitted");
-		assertEquals("Status not equal Approved",controller.getStatus(), "submitted");
+		assertEquals("Status not equal submitted",controller.getStatus(), "submitted");
 	}
 	
 }
