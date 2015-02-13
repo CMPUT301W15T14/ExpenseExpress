@@ -25,6 +25,11 @@ public class ListExpenseClaimsTest extends ActivityInstrumentationTestCase2<Clai
 	private String currency2 = "JPN"; //Apparently Toronto consists of Japanese seperatists...
 	private String currency3 = "EUR";
 	
+	private Claim claim1;
+	private Claim claim2;
+	private Claim claim3;
+	private ClaimListActivity activity;
+	
 	
 	public ListExpenseClaimsTest() {
         super(ClaimListActivity.class);
@@ -32,15 +37,15 @@ public class ListExpenseClaimsTest extends ActivityInstrumentationTestCase2<Clai
     
     protected void setUp() throws Exception {
     	super.setUp();	
-    }
-	
-    public void testClaimList() 
-    {
     	Claim claim1 = new Claim(startDate1, destinations1, claimStatus, tags, amount1, currency1);
     	Claim claim2 = new Claim(startDate2, destinations2, claimStatus, tags, amount2, currency2);
     	Claim claim3 = new Claim(startDate3, destinations3, claimStatus, tags, amount3, currency3);
     	
     	ClaimListActivity activity = returnClaimListActivity(claim1, claim2, claim3);
+    }
+	
+    public void testClaimList() 
+    {
     	Controller claimController = ArrayList<Claim>(activity.getController());
     	ArrayList<Claim> claimList = claimController.getClaimList();
     	
@@ -50,14 +55,16 @@ public class ListExpenseClaimsTest extends ActivityInstrumentationTestCase2<Clai
     	assertEquals("position = 2, claim should be claim3", claimList.get(2), claim3);
     }
     
+    public void testEmptyList() 
+    {
+    	Controller claimController = ArrayList<Claim>(activity.getController());
+    	ArrayList<Claim> claimList = claimController.getClaimList();
+    	
+    	assertTrue(claimList.isEmpty());
+    }
+    
     public void testClaimListView() 
     {
-    	Claim claim1 = new Claim(startDate1, destinations1, claimStatus, tags, amount1, currency1);
-    	Claim claim2 = new Claim(startDate2, destinations2, claimStatus, tags, amount2, currency2);
-    	Claim claim3 = new Claim(startDate3, destinations3, claimStatus, tags, amount3, currency3);
-    	
-    	ClaimListActivity activity = returnClaimListActivity(claim1, claim2, claim3);
-    	
     	//onItemClickListener required for ListView inside ClaimListActivity.
     	assertEquals("position = 0, claim should be claim2", activity.onItemClick(0), claim2);
     	assertEquals("position = 1, claim should be claim1", activity.onItemClick(1), claim1);
