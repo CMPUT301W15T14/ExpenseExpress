@@ -86,7 +86,7 @@ public class ListExpenseClaimsTest extends ActivityInstrumentationTestCase2<Clai
     	return (ClaimListActivity) getActivity();
     } 
     
-    private ClaimListActivity returnEmptyClaimListActivity(Claim claim1, Claim claim2, Claim claim3)
+    private ClaimListActivity returnEmptyClaimListActivity()
     {
     	Intent intent = new Intent();
     	setActivityIntent(intent);
