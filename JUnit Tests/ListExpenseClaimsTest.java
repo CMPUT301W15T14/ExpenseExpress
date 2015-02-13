@@ -40,12 +40,11 @@ public class ListExpenseClaimsTest extends ActivityInstrumentationTestCase2<Clai
     	Claim claim1 = new Claim(startDate1, destinations1, claimStatus, tags, amount1, currency1);
     	Claim claim2 = new Claim(startDate2, destinations2, claimStatus, tags, amount2, currency2);
     	Claim claim3 = new Claim(startDate3, destinations3, claimStatus, tags, amount3, currency3);
-    	
-    	ClaimListActivity activity = returnClaimListActivity(claim1, claim2, claim3);
     }
 	
     public void testClaimList() 
     {
+    	ClaimListActivity activity = returnClaimListActivity(claim1, claim2, claim3);
     	Controller claimController = ArrayList<Claim>(activity.getController());
     	ArrayList<Claim> claimList = claimController.getClaimList();
     	
@@ -57,6 +56,7 @@ public class ListExpenseClaimsTest extends ActivityInstrumentationTestCase2<Clai
     
     public void testEmptyList() 
     {
+    	ClaimListActivity activity = returnEmptyClaimListActivity();
     	Controller claimController = ArrayList<Claim>(activity.getController());
     	ArrayList<Claim> claimList = claimController.getClaimList();
     	
@@ -65,6 +65,7 @@ public class ListExpenseClaimsTest extends ActivityInstrumentationTestCase2<Clai
     
     public void testClaimListView() 
     {
+    	ClaimListActivity activity = returnClaimListActivity(claim1, claim2, claim3);
     	//onItemClickListener required for ListView inside ClaimListActivity.
     	assertEquals("position = 0, claim should be claim2", activity.onItemClick(0), claim2);
     	assertEquals("position = 1, claim should be claim1", activity.onItemClick(1), claim1);
@@ -81,6 +82,13 @@ public class ListExpenseClaimsTest extends ActivityInstrumentationTestCase2<Clai
     	intent.putExtra(ClaimListActivity.CLAIM_1, claim1);
     	intent.putExtra(ClaimListActivity.CLAIM_2, claim2);
     	intent.putExtra(ClaimListActivity.CLAIM_3, claim3);
+    	setActivityIntent(intent);
+    	return (ClaimListActivity) getActivity();
+    } 
+    
+    private ClaimListActivity returnEmptyClaimListActivity(Claim claim1, Claim claim2, Claim claim3)
+    {
+    	Intent intent = new Intent();
     	setActivityIntent(intent);
     	return (ClaimListActivity) getActivity();
     } 
