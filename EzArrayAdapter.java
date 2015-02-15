@@ -54,7 +54,6 @@ public class EzArrayAdapter<T> extends BaseAdapter{
         ArrayList<Method> getters = new ArrayList<>();
         getters.addAll(ReflectionUtils.getAllMethods(c,
                 ReflectionUtils.withModifier(Modifier.PUBLIC), ReflectionUtils.withPrefix("get")));
-        Log.d("GETTERS ARRAY SIZE", Integer.valueOf(getters.size()).toString());
         return getters;
     }
 
@@ -109,8 +108,6 @@ public class EzArrayAdapter<T> extends BaseAdapter{
 
             // Programmatically generate these -- try to pull these out of the loop later!
             for (int i = 0; i<getters.size(); i++) {
-                Log.d("Find Match Iteration", Integer.valueOf(i).toString());
-                Log.d("Getter name", getters.get(i).getName());
                 if (getters.get(i).getReturnType().equals(String.class) ||
                         getters.get(i).getReturnType().equals(int.class)) {
                     String getterName = getters.get(i).getName();
@@ -122,7 +119,6 @@ public class EzArrayAdapter<T> extends BaseAdapter{
                             matchedGetters.add(getters.get(i));
                         }
                     }
-                    Log.d("MATCHEDGETTERS", Integer.valueOf(matchedGetters.size()).toString());
                 }
             }
             view.setTag(vh);
