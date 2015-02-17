@@ -37,6 +37,7 @@ Log.d(tag, "Number of claims: "+Integer.valueOf(claims.size()).toString());
 you can type:
 
 log("Number of claims: "+str(claims.size()));
+
 --
 
 EzArrayListAdapter: it's a class. Purpose: Can use it to quickly test ListView UI visually.
