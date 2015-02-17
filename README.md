@@ -36,6 +36,7 @@ Instantiate this with 3 parameters:
 3. the ListView ROW LAYOUT R.id (R.layout.listview_row) -- NOT the ListView's R.id inside the parent XML
 
 Example:
+
 EzArrayListAdapter adapter = new EzArrayListAdapter(this, claims, R.layout.claimslist_row);
 
 After that you would just go listview.set(adapter); like normal.
