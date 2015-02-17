@@ -2,18 +2,7 @@ Hey everyone if anyone wants to get started with the coding, I wrote some code f
 
 --
 
-EzToast: implement this interface and override toast(String message) so that instead of typing:
-
-Toast.MakeText(this, message, Toast.LENGTH_SHORT).show();
-
-you can type:
-toast(message);
-
-(open the javadoc for it to copy paste)
-
---
-
-EzLog: see the javadoc, basically saves a lot of typing if especially if you want to show numbers such as ArrayList size
+EzToast and EzLog, interfaces, pretty self explanatory in the java doc
 
 --
 
