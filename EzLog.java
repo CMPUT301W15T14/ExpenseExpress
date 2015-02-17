@@ -12,5 +12,5 @@ public interface EzLog {
      * @param i
      * @return
      */
-    public String log(int i);
+    public String str(int i);
 }
