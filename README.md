@@ -46,3 +46,5 @@ If you name your getter methods in the model class match TextViews inside the ro
 I don't think we can use it in the final product since on principle, it's slower than writing a custom adapter (since it uses reflection to write the adapter for you), and in practice, it uses some methods from a WTFPL repository (in the import statement) so I don't know if we'd be allowed to use it.
 
 --
+
+-John
