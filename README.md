@@ -41,7 +41,9 @@ EzArrayListAdapter adapter = new EzArrayListAdapter(this, claims, R.layout.claim
 
 After that you would just go listview.set(adapter); like normal.
 
-If you name your getter methods in the model class match TextViews inside the row layout, it will set those TextViews according to the getter methods in the model class. For example, if getName() returns a String, the TextView with id R.id.name will have that String set to it. If there is no TextView with a matching name then it's ok, and if there is no getter that matches a certain TextView's R.id then it's ignored too.
+If the model class's getter method names match TextViews inside the row layout, it will set those TextViews according to the getter methods in the model class. For example, if getName() returns a String, the TextView with id R.id.name will have that String set to it. (note lower case n in the R.id, so it matches the object field).
+
+If there is no TextView with a matching name then it's ok, and if there is no getter that matches a certain TextView's R.id then it's ignored too.
 
 I don't think we can use it in the final product since on principle, it's slower than writing a custom adapter (since it uses reflection to write the adapter for you), and in practice, it uses some methods from a WTFPL repository (in the import statement) so I don't know if we'd be allowed to use it.
 
