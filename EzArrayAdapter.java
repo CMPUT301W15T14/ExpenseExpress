@@ -57,9 +57,6 @@ public class EzArrayListAdapter<T> extends BaseAdapter{
         return getters;
     }
 
-    /**
-     * You can use this constructor if the ListView's ID is exactly R.layout.listView
-     */
     public EzArrayListAdapter(Context context, ArrayList<T> data, String listView){
         this(context, data);
         try {
