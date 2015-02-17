@@ -13,30 +13,7 @@ toast(message);
 
 --
 
-EzLog: implement this interface and override log(String message) and log() so that instead of typing:
-
-Log.d(tag, message);
-
-you can type:
-log(message);
-
-and instead of:
-
-Log.d(tag,""); for a line break for readability when debugging
-
-you can type:
-log();
-(override the function log() with Log.d("TAG","");)
-
-also if you call str(int) it will return the int in String form (copy paste method from javadoc when you're overriding)
-
-so instead of:
-
-Log.d(tag, "Number of claims: "+Integer.valueOf(claims.size()).toString());
-
-you can type:
-
-log("Number of claims: "+str(claims.size()));
+EzLog: see the javadoc, basically saves a lot of typing if especially if you want to show numbers such as ArrayList size
 
 --
 
