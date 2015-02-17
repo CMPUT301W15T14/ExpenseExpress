@@ -1,13 +1,18 @@
 public interface EzToast {
 
+package jz.ironjungle.helper;
+
+public interface EzToast {
+
 /**
- * see EzLog (this is basically copy paste but makes Toast easier)
- * 
- * 
+ *
+ * tldr, it's like the normal way to make Toast but less typing, adds spaces for you, and lets you
+ * use a lone number instead of concatenating it to an empty String first
+ *
  * Copy paste this:
-   
+
     @Override
-    
+
     public void toast(Object ... varargs){
         if (varargs.length == 0){
             return;
@@ -29,11 +34,11 @@ public interface EzToast {
         // Use this instead if not in Fragment:
         // Toast.makeText(getActivity(), sb.toString(), Toast.LENGTH_SHORT).show();
     }
- 
+
  *
  *
- *  
- * 
+ *
+ *
  */
 
      public void toast(Object ... varargs);
