@@ -1,6 +1,7 @@
 public interface EzToast {
 
 /**
+ * see EzLog (this is basically copy paste but makes Toast easier)
  * 
  * 
  * Copy paste this:
