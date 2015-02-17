@@ -2,7 +2,19 @@ Hey everyone if anyone wants to get started with the coding, I wrote some code f
 
 --
 
-EzToast and EzLog, interfaces, pretty self explanatory in the java doc
+EzToast and EzLog, interfaces, implement them and copy paste code from the java doc, to save typing when you
+try to Toast or Log.d.
+
+In addition, these all work:
+
+- toast(String);
+- toast(int); (or any Number)
+- toast(String,int,String,int, etc...); will automatically add spaces between comma-separated things
+
+- log(String);
+- log(); produces a "." on its own line.
+- log(int); (or any Number)
+- log(String,int,String,int, etc ...); will automatically add spaces between commma-separated things
 
 --
 
