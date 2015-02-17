@@ -2,24 +2,22 @@ Hey everyone if anyone wants to get started with the coding, I wrote some code f
 
 --
 
-EzToast and EzLog, interfaces, implement them and copy paste code from the java doc, to save typing when you
-try to Toast or Log.d.
+Toas.java and Lo.java classes, if they're imported then you can save some typing when doing debugging.
+Toas.t makes a toast, and Lo.g makes a log.
 
-In addition, these all work:
+-Toas.t(String);
 
--toast(String);
+-Toas.t(int); (or any Number)
 
--toast(int); (or any Number)
+-Toas.t(String,int,String,int, etc...); will automatically add spaces between comma-separated things
 
--toast(String,int,String,int, etc...); will automatically add spaces between comma-separated things
+-Lo.g(String);
 
--log(String);
+-Lo.g(); produces a "." on its own line.
 
--log(); produces a "." on its own line.
+-Lo.g(int); (or any Number)
 
--log(int); (or any Number)
-
--log(String,int,String,int, etc ...); will automatically add spaces between commma-separated things
+-Lo.g(String,int,String,int, etc ...); will automatically add spaces between commma-separated things
 
 --
 
