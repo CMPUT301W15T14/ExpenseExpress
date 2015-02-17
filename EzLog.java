@@ -2,24 +2,11 @@ public interface EzLog {
 
     /**
      *
-     * Example:
-     *
-     * Log.d("YourTag", "Number inside claims list: " + Integer.valueOf(claimsList.size()).toString());
-     *
-     * becomes:
-     *
-     * log("Number inside claims list:", claimsList.size());
-     * 
-     * You can do log(); and it will give you a '.' and line break, for readability, i.e.:
-     *
-     * log(); replaces
-     * Log.d("YourTag", ".");
-     * (for some reason the log cat in my Android Studio messes up if you give it just a whitespace
-     * 
-     * Notes:
-     * - automatically adds spaces between arguments and detects non-Number/String
-     * - separate different things by comma, not + (can't concatenate a Number to a String)
-     *   (you can still + two Strings but it won't add a space for you if you do that)
+     * tldr:
+     * you can use comma instead of + (optional)
+     * it's easier to type
+     * if you use comma then it will add spaces for you automatically
+     * you can use a lone Number without having to concatenate it to a String and it will log it appropriately
      * 
      *
      * copy-paste:
