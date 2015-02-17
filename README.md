@@ -43,9 +43,9 @@ After that you would just go listview.set(adapter); like normal.
 
 If the model class's getter method names match TextViews inside the row layout, it will set those TextViews according to the getter methods in the model class. For example, if getName() returns a String, the TextView with id R.id.name will have that String set to it. (note lower case n in the R.id, so it matches the object field).
 
-If there is no TextView with a matching name then it's ok, and if there is no getter that matches a certain TextView's R.id then it's ignored too.
+If there is no TextView with a matching name then the getter is skipped, and if there is no getter that matches a certain TextView's R.id then the TextView is skipped.
 
-I don't think we can use it in the final product since on principle, it's slower than writing a custom adapter (since it uses reflection to write the adapter for you), and in practice, it uses some methods from a WTFPL repository (in the import statement) so I don't know if we'd be allowed to use it.
+Theoretically it has slower performance than coding a separate, custom ArrayAdapter/BaseAdapter for each ListView since it uses reflection. No practical difference. Only thing is I don't know if we can use the WTFPL methods (https://github.com/ronmamo/reflections) in our project.
 
 --
 
