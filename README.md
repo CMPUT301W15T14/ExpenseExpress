@@ -23,7 +23,10 @@ In addition, these all work:
 
 --
 
-EzArrayListAdapter: it's a class. Purpose: Can use it to quickly test ListView UI visually.
+EzArrayListAdapter class.
+
+Purpose: Easily, quickly test ListView UI visually.
+
 Instantiate this with 3 parameters:
 
 1. context
