@@ -28,6 +28,15 @@ you can type:
 log();
 (override the function log() with Log.d("TAG","");)
 
+also if you call str(int) it will return the int in String form (copy paste method from javadoc when you're overriding)
+
+so instead of:
+
+Log.d(tag, "Number of claims: "+Integer.valueOf(claims.size()).toString());
+
+you can type:
+
+log("Number of claims: "+str(claims.size()));
 --
 
 EzArrayListAdapter: it's a class. Purpose: Can use it to quickly test ListView UI visually.
