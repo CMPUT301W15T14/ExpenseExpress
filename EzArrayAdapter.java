@@ -54,19 +54,16 @@ public class EzArrayListAdapter<T> extends BaseAdapter{
         ArrayList<Method> getters = new ArrayList<>();
         getters.addAll(ReflectionUtils.getAllMethods(c,
                 ReflectionUtils.withModifier(Modifier.PUBLIC), ReflectionUtils.withPrefix("get")));
-        Log.d("GETTERS ARRAY SIZE", Integer.valueOf(getters.size()).toString());
         return getters;
     }
 
     /**
-     * Use this constructor if the ListView has R.layout.listView -- this would be for simple
-     *
-     * @param context use "this" in Activity; "getActivity()" in Fragment
-     * @param data the ArrayList to deliver to the View
+     * You can use this constructor if the ListView's ID is exactly R.layout.listView
      */
     public EzArrayListAdapter(Context context, ArrayList<T> data, String listView){
         this(context, data);
         try {
+            //TODO: CHANGE THE PACKAGE NAME
             lv = context.getResources().getIdentifier(listView, "layout", "jz.ironjungle");
         } catch (NullPointerException npe){
             lv = 0;
@@ -78,8 +75,12 @@ public class EzArrayListAdapter<T> extends BaseAdapter{
         lv = listView;
     }
 
+    /**
+     * You can use this constructor if the ListView's ID is exactly R.layout.listView
+     */
     private EzArrayListAdapter(Context context, ArrayList<T> data){
         inflater = LayoutInflater.from(context);
+        // TODO: CHANGE THE PACKLAGE NAME
         lv = context.getResources().getIdentifier("listView", "layout", "jz.ironjungle");
         this.data = data;
         this.context = context;
@@ -114,8 +115,6 @@ public class EzArrayListAdapter<T> extends BaseAdapter{
 
             // Programmatically generate these -- try to pull these out of the loop later!
             for (int i = 0; i<getters.size(); i++) {
-                Log.d("Find Match Iteration", Integer.valueOf(i).toString());
-                Log.d("Getter name", getters.get(i).getName());
                 if (getters.get(i).getReturnType().equals(String.class) ||
                         getters.get(i).getReturnType().equals(int.class)) {
                     String getterName = getters.get(i).getName();
@@ -127,7 +126,6 @@ public class EzArrayListAdapter<T> extends BaseAdapter{
                             matchedGetters.add(getters.get(i));
                         }
                     }
-                    Log.d("MATCHEDGETTERS", Integer.valueOf(matchedGetters.size()).toString());
                 }
             }
             view.setTag(vh);
@@ -139,7 +137,7 @@ public class EzArrayListAdapter<T> extends BaseAdapter{
         T datum = data.get(position);
         // Sets the TextViews
         for (int i = 0; i<matchedGetters.size(); i++){
-            // if it's a number to convert to int first
+            // if it's a number then convert to String first
             if (matchedGetters.get(i).getReturnType().equals(int.class)){
                 String numString;
                 try {
@@ -167,7 +165,6 @@ public class EzArrayListAdapter<T> extends BaseAdapter{
 
     private String getFieldNameFromGetterName(String getterName) {
         // cut off "get"
-
         String fieldName = getterName.substring(3);
         // lowercase the first letter so it matches the field in the model class
         String firstLetter = fieldName.substring(0,1);
