@@ -26,14 +26,17 @@ Log.d(tag,""); for a line break for readability when debugging
 
 you can type:
 log();
-for this^ override the function log() with Log.d("TAG","");
+(override the function log() with Log.d("TAG","");)
 
 --
 
 EzArrayListAdapter: it's a class. Purpose: Can use it to quickly test ListView UI visually.
 Instantiate this with 3 parameters:
+
 1. context
+
 2. ArrayList holding the data model class elements you want to display in a listview (e.g. ArrayList<ClaimModel>)
+
 3. the ListView ROW LAYOUT R.id (R.layout.listview_row) -- NOT the ListView's R.id inside the parent XML
 
 Example:
