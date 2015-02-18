@@ -53,3 +53,10 @@ Response to above:
 
 Ill try to push the UI by thursday; Its all using relative because I was just taking images of them so im going to switch it all to linear then push them.
 Zach
+
+--
+
+Hey Zach, just to be clear, EzArrayListAdapter works for both linear and relative, so don't do extra work unless you feel it's best.
+
+Cheers,
+John
