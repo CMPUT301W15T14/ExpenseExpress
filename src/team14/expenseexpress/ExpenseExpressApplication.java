@@ -5,6 +5,7 @@ import android.app.Application;
 import java.util.ArrayList;
 
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.User;
 import team14.expenseexpress.model.Username;
 import team14.expenseexpress.util.GsonHelper;
 import team14.expenseexpress.util.ElasticSearchHelper;
@@ -15,26 +16,26 @@ import team14.expenseexpress.util.ElasticSearchHelper;
  * @since   2015-02-19
  */
 public class ExpenseExpressApplication extends Application {
-	private long userId;
+	private User user;
     private ArrayList<Claim> claims;
 
     public static final String KEY = "( ͡° ͜ʖ ͡°)"; // for Intent putExtra/getExtra
 
     
     /**
-     * Getter for userId (set at the end of the login step).
+     * Getter for User (set at the end of the login step).
      * 
-     * @return	the userId as a long.
+     * @return	the User.
      */
-    public long getUserId() {
-		return userId;
+    public User getUser() {
+		return user;
 	}
 
 
     /**
-     * Setter for the userId (intended to be set at the end of the login step).
+     * Setter for the User.
      * 
-     * @param userId	The userId to use for working with relevant Claims.
+     * @param user	The User, either pulled from the server or .
      */
 	public void setUserId(long userId) {
 		this.userId = userId;

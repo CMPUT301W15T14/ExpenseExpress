@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.User;
 import team14.expenseexpress.model.Username;
 /**
  * @author  Team 14
@@ -13,8 +14,7 @@ import team14.expenseexpress.model.Username;
  */
 public class GsonHelper {
     private Context context;
-    public static final String FILENAME_USERNAMES = "usernames.sav";
-    public static final String FILENAME_CLAIMS_SUFFIX = "_claims.sav";
+    public static final String SUFFIX = ".sav";
 
     /**
      * Empty private constructor
@@ -32,15 +32,6 @@ public class GsonHelper {
         this.context = context;
     }
 
-    /**
-     * Deserializes usernames.sav into an ArrayList of Usernames and returns it.
-     *
-     * @return  The Username objects in local memory in an ArrayList.
-     */
-    public ArrayList<Username> loadUsernames() {
-        // TODO
-        return null;
-    }
 
     /**
      * Serializes an object using Gson and stores it in the specified filename locally.
@@ -51,7 +42,8 @@ public class GsonHelper {
         // TODO
     }
 
-    public ArrayList<Claim> loadClaims(String filename) {
+    public User loadUser(long id) {
+    	String filename = id + SUFFIX;
         // TODO
         return null;
     }

@@ -1,6 +1,7 @@
 package team14.expenseexpress.model;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * @author  Team 14
@@ -8,17 +9,15 @@ import java.util.ArrayList;
  * @since   2015-02-19
  */
 public class User {
-    private Username username;
+    private long id;
+    public static final String LOCAL_FILE = -1;
+    private String name;
     private ArrayList<Claim> claims;
+    private GregorianCalendar timestamp;
 
-    /**
-     * Constructor that initializes a Username object with a name. Used by LoginActivity
-     * in offline mode.
-     *
-     * @param name
-     */
     public User(String name){
-        username = new Username(name);
+        this.name = name;
+        this.id = ;
     }
 
     /**

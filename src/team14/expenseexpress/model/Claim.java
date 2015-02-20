@@ -128,9 +128,9 @@ public class Claim implements Comparable<Claim>{
      * @return  The Amount for each Currency.LIST currency in an ArrayList.
      */
     public ArrayList<Amount> getAmounts() {
-        amounts = new ArrayList<>();
-        for (int i = 0; i < Currency.LIST.length; i++){
-            amounts.add(new Amount(this,Currency.LIST[i]));
+        amounts = new ArrayList<Amount>();
+        for (Currency currency: Currency.values()){
+            amounts.add(new Amount(this, currency));
         }
         return amounts;
     }

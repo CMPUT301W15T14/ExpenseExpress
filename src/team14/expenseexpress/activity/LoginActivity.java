@@ -1,5 +1,6 @@
 package team14.expenseexpress.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,64 +16,53 @@ import team14.expenseexpress.activity.claimant.ClaimListActivity;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.User;
 import team14.expenseexpress.model.Username;
+import team14.expenseexpress.util.GsonHelper;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends Activity {
 
-    private ArrayList<Username> usernames;
     private EditText editText_name;
     private ExpenseExpressApplication application;
-    private UserController usernameListController;
+    private GsonHelper gh;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         application = (ExpenseExpressApplication) getApplication();
-        usernameListController = new UserController(application);
-        loadUserIDs();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+
+    public void onClick_signIn(View view){
+    	editText_name = (EditText)findViewById(R.id.signIn);
+    	String name = editText_name.getText().toString();
+    	synchronizeUser(name);
+    	
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void synchronizeUser(String name) {
+    	User localUser = gh.loadUser(User.LOCALID);
+    	
+		// TODO Auto-generated method stub
+		
+	}
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
+	private void getUser(String name) {
+    	    	
+	}
 
-    private void loadUserIDs() {
-        usernames = application.getUsernames();
-    }
 
-    private void onClick_signIn(View view){
-        editText_name = (EditText)findViewById(R.id.name);
-        String name = editText_name.getText().toString();
-        long id = usernameListController.getId(name);
-        if (id == Username.NOT_IN_LIST) {
-            id = createUser(name);
-        } else setClaims(id); // This important step sets up the list of Claims for the rest of the Application to use!
-        startClaimsListActivity(id);
-    }
+	private User loadUser(String name) {
+		
 
-    private void startClaimsListActivity(long id) {
+		return null;
+	}
+
+
+	private void startClaimsListActivity(long id) {
         Intent intent = new Intent(this, ClaimListActivity.class);
         intent.putExtra(application.KEY, id);
         startActivity(intent);

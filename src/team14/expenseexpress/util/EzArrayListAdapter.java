@@ -52,7 +52,7 @@ public class EzArrayListAdapter<T> extends BaseAdapter{
         // Generates an ArrayList containing all the getters of the model class
         T instance = data.get(0);
         Class c = instance.getClass();
-        ArrayList<Method> getters = new ArrayList<>();
+        ArrayList<Method> getters = new ArrayList<Method>();
         getters.addAll(ReflectionUtils.getAllMethods(c,
                 ReflectionUtils.withModifier(Modifier.PUBLIC), ReflectionUtils.withPrefix("get")));
         return getters;
