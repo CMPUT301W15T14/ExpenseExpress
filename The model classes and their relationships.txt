@@ -1,0 +1,48 @@
+Kept local only:
+- list of Users (specifically, private Tag list)
+
+Synchronized with server:
+- list of UserNAMES (an object belonging to User)
+- list of Claims and their expenses (so everything except for Tags - but the Claims will have Tag information on them)
+
+-------------------
+
+User:
+       has: a Username, sortable by date
+                which has: a name (String), a timestamp (for synching), a long (unique ID to allow renaming)
+       has: an ArrayList of Claims (many-to-many relationship -- a user has multiple claims, and a claim has 1 Claimant and 1+ Approvers)
+       
+
+Claimant: subclass of User
+        has: a list of tags (ClaimTags) (one-to-many relationship)
+                ClaimTag: has a name
+                
+
+Approver: subclass of User
+        has nothing extra
+        
+
+Claim (sortable by date):
+        has: an ArrayList of Tags
+        has: an ArrayList of Expenses
+        has: an ArrayList of Destinations
+                Destination: has two Strings (one for location, one for reason)
+        has: a date
+        has: an ArrayList of Amounts
+                Amount: has a numerical amount and a String (currency)
+        has: a status (a String)
+        has: a long claimantId (for synchronization)
+        
+        for Approver:
+        has: a long lastApproverId (most recent Approver to modify this)
+        has: an ArrayList of ApproverComments
+                ApproverComment (sortable by date) : has a timestamp, long approverId, String comment
+
+Expense (sortable by date, and cloneable):
+        has: a String category
+        has: a date
+        has: an Amount
+                Amount: has a numerical amount and a String (currency)
+        has: a String description
+        has: an attached Receipt
+        has: a String status (incompleteness flag)
