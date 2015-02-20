@@ -8,6 +8,10 @@ They are organized in the folder like this:
 
 Models -- all 100% done including Javadocs, except for Receipt (0% done).
     There is a folder inside there called "constants" where I put classes holding constants that are convenient.
+    They have javadocs, hopefully I did a good job so that they are easily understandable.
+    Probably the most confusing thing is the Username-User-Claimant-Approver thing so if you have ideas that'd be cool.
+    
+    See https://github.com/CMPUT301W15T14/ExpenseExpress/blob/master/The%20model%20classes%20and%20their%20relationships.txt
 
 
 Controllers -- 1% done.
