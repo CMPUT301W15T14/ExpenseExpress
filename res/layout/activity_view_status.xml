@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/mainGreen"
+    tools:context=".ViewStatusActivity" >
+
+    <RadioButton
+        android:id="@+id/approvedRadio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/submittedApproved"
+        android:layout_below="@+id/submittedApproved"
+        android:text="Approved"
+        android:textColor="@color/mainYellow" />
+
+    <RadioButton
+        android:id="@+id/inProgressRadio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="132dp"
+        android:text="In Progress"
+        android:textColor="@color/mainYellow" />
+
+    <RadioButton
+        android:id="@+id/returnedRadio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/inProgressRadio"
+        android:layout_below="@+id/inProgressRadio"
+        android:text="Returned"
+        android:textColor="@color/mainYellow" />
+
+    <RadioButton
+        android:id="@+id/submittedApproved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/returnedRadio"
+        android:layout_below="@+id/returnedRadio"
+        android:text="Submitted"
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/statusTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="Claim Status"
+        android:textColor="@color/mainYellow"
+        android:textSize="6mm" />
+
+    <Button
+        android:id="@+id/statusSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="20mm"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/mainYellow"
+        android:text="Submit Status Change"
+        android:textColor="@color/mainGreen" />
+
+</RelativeLayout>

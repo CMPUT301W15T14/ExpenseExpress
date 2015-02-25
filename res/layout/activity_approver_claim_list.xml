@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainGreen"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ApproverClaimLIstActivity" >
+
+    <ListView
+        android:id="@+id/currentTagsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/approverClaimTitle" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/approverClaimTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/currentTagsList"
+        android:layout_alignParentTop="true"
+        android:text="Claims Pending Approval"
+        android:textColor="@color/mainYellow"
+        android:textSize="4.0mm" />
+
+</RelativeLayout>

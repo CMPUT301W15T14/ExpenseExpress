@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainGreen"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".AddClaimActivity" >
+
+    <EditText
+        android:id="@+id/newClaimNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="51dp"
+        android:ems="10"
+        android:hint="Name of New Claim" />
+
+    <TextView
+        android:id="@+id/destinationsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/newClaimNameText"
+        android:layout_below="@+id/newClaimNameText"
+        android:text="Destinations"
+        android:textColor="@color/mainYellow"
+        android:textSize="4mm" />
+
+    <TextView
+        android:id="@+id/newClaimTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/newClaimNameText"
+        android:layout_alignParentTop="true"
+        android:text="New Claim"
+        android:textColor="@color/mainYellow"
+        android:textSize="7mm" />
+
+    <ListView
+        android:id="@+id/DestinationListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/addInDestinationButton"
+        android:layout_alignRight="@+id/addInDestinationButton"
+        android:layout_below="@+id/destinationsTitle" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/claimAddTagsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/addInDestinationButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/tagListView"
+        android:layout_marginBottom="58dp"
+        android:text="Add Tag" />
+
+    <ListView
+        android:id="@+id/tagListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/claimAddTagsButton"
+        android:layout_below="@+id/tagsTitle" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/addInDestinationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/tagListView"
+        android:layout_centerVertical="true"
+        android:text="Add Destination" />
+
+    <EditText
+        android:id="@+id/tempStartDateTextfield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/claimAddTagsButton"
+        android:layout_alignBottom="@+id/claimAddTagsButton"
+        android:layout_alignLeft="@+id/tagListView"
+        android:layout_toLeftOf="@+id/claimAddTagsButton"
+        android:ems="10"
+        android:hint="Enter Start Date here"
+        android:inputType="date" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/tempEndDateTextField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tempStartDateTextfield"
+        android:layout_alignRight="@+id/tempStartDateTextfield"
+        android:layout_below="@+id/tempStartDateTextfield"
+        android:ems="10"
+        android:hint="Enter End Date Here"
+        android:inputType="date" />
+
+    <Button
+        android:id="@+id/submitNewClaimHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/claimAddTagsButton"
+        android:layout_alignRight="@+id/claimAddTagsButton"
+        android:layout_below="@+id/tempStartDateTextfield"
+        android:text="Add Claim" />
+
+    <TextView
+        android:id="@+id/tagsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/addInDestinationButton"
+        android:layout_alignLeft="@+id/DestinationListView"
+        android:text="Tags"
+        android:textColor="@color/mainYellow"
+        android:textSize="4mm" />
+
+</RelativeLayout>

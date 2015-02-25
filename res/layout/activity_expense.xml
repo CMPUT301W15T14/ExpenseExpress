@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainGreen"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ExpenseActivity" >
+
+    <TextView
+        android:id="@+id/addExpenseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Add Expense"
+        android:textColor="@color/mainYellow"
+        android:textSize="3mm" />
+
+    <EditText
+        android:id="@+id/expenseDateField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/expenseNameField"
+        android:ems="10"
+        android:hint="Date of Expense Here" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/expenseNameField"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="62dp" />
+
+    <EditText
+        android:id="@+id/expenseNameField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/addExpenseTitle"
+        android:ems="10"
+        android:hint="Expense Name Here" />
+
+    <EditText
+        android:id="@+id/amountSpentField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/expenseDateField"
+        android:layout_alignRight="@+id/addExpenseTitle"
+        android:layout_below="@+id/addExpenseTitle"
+        android:layout_toRightOf="@+id/expenseDateField"
+        android:ems="10"
+        android:hint="Amount Here"
+        android:textSize="2mm" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/toReceiptbutton"
+        android:layout_toRightOf="@+id/toReceiptbutton" />
+
+    <EditText
+        android:id="@+id/descriptionField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/toReceiptbutton"
+        android:layout_alignRight="@+id/spinner2"
+        android:layout_below="@+id/spinner2"
+        android:hint="Description Here" >
+    </EditText>
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/descriptionField"
+        android:layout_below="@+id/descriptionField" />
+
+    <CheckBox
+        android:id="@+id/incompleteBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinner1"
+        android:text="Incomplete?"
+        android:textColor="@color/mainYellow" />
+
+    <Button
+        android:id="@+id/expenseSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/incompleteBox"
+        android:layout_alignRight="@+id/spinner1"
+        android:layout_below="@+id/spinner1"
+        android:layout_toRightOf="@+id/incompleteBox"
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/toReceiptbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/space1"
+        android:layout_alignLeft="@+id/expenseDateField"
+        android:layout_below="@+id/expenseDateField"
+        android:text="Receipt"
+        android:textColor="@color/mainGreen" />
+
+</RelativeLayout>

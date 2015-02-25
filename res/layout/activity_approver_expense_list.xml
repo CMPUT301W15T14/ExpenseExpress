@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainGreen"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ApproverExpenseListActivity" >
+
+    <TextView
+        android:id="@+id/approveExpenseListTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Claim Name"
+        android:textSize="6mm"
+        android:textColor="@color/mainYellow" />
+
+    <Button
+        android:id="@+id/expenseListApproveReturnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="8mm"
+        android:layout_alignLeft="@+id/approveExpenseListTitle"
+        android:layout_alignParentBottom="true"
+        android:background="@color/mainYellow"
+        android:text="Approve/Return"
+        android:textColor="@color/mainGreen" />
+
+    <ListView
+        android:id="@+id/currentTagsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/expenseListApproveReturnButton"
+        android:layout_below="@+id/approveExpenseListTitle"
+        android:layout_centerHorizontal="true" >
+
+    </ListView>
+
+</RelativeLayout>

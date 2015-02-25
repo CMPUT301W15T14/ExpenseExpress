@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ExpenseExpress</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="app_name">UI</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+
+    <color name="mainGreen">#08722a</color>
+    <color name="mainYellow">#d3df15</color>
+
+    <string name="username">Username</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_choice">ChoiceActivity</string>
+    <string name="title_activity_claim_list">ClaimListActivity</string>
+    <string name="title_activity_add_claim">AddClaimActivity</string>
+    <string name="title_activity_add_destinations">AddDestinationsActivity</string>
+    <string name="title_activity_add_tag_to_claim">AddTagToClaim</string>
+    <string name="title_activity_edit_claim">EditClaimActivity</string>
+    <string name="title_activity_tags">TagsActivity</string>
+    <string name="title_activity_add_tag">AddTagActivity</string>
+    <string name="title_activity_claims_expense_list">ClaimsExpenseListActivity</string>
+    <string name="title_activity_expense">ExpenseActivity</string>
+    <string name="title_activity_expense_receipt">ExpenseReceiptActivity</string>
+    <string name="title_activity_view_status">ViewStatusActivity</string>
+    <string name="title_activity_claim_details">ClaimDetailsActivity</string>
+    <string name="title_activity_expense_details">ExpenseDetailsActivity</string>
+    <string name="title_activity_approver_claim_list">ApproverClaimLIstActivity</string>
+    <string name="title_activity_approver_expense_list">ApproverExpenseListActivity</string>
+    <string name="title_activity_approve_return">ApproveReturnActivity</string>
 
 </resources>
