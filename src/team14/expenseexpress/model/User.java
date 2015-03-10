@@ -1,53 +1,37 @@
 package team14.expenseexpress.model;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-
 /**
  * @author  Team 14
- * @version 0.1
- * @since   2015-02-19
+ * @version 0.2
+ * @since   2015-03-10
  */
 public class User {
-    private long id;
-    public static final String LOCAL_FILE = -1;
-    private String name;
-    private ArrayList<Claim> claims;
-    private GregorianCalendar timestamp;
+	/*
+	 *  Only 1 field (String) required for ID since we aren't implementing User rename feature.
+	 *  
+	 *  However, holding this String in a User class instead of simply passing Strings makes it
+	 *  easier in the future to implement something like a rename feature - just add field(s) and
+	 *  update equals() and hashcode() 
+	 *  
+	 */
+    public final String name;
 
     public User(String name){
         this.name = name;
-        this.id = ;
     }
 
-    /**
-     * Getter for the Username object associated with this User.
-     *
-     * @return  The Username object which holds ID information.
-     */
-    public Username getUsername() {
-        return username;
-    }
-
-    public void setUsername(Username username) {
-        this.username = username;
-    }
-
-    /**
-     * Getter for the Claims associated with this User (whether Claimant or Approver).
-     *
-     * @return  The Claims in an ArrayList.
-     */
-    public ArrayList<Claim> getClaims() {
-        return claims;
-    }
-
-    /**
-     * Setter for the Claims associated with this User (whether Claimant or Approver).
-     *
-     * @param claims    The Claims in an ArrayList.
-     */
-    public void setClaims(ArrayList<Claim> claims){
-        this.claims = claims;
-    }
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		return o instanceof User && name.equals(((User) o).getName());
+	}
+	
+	@Override
+	public int hashCode(){
+		return name.hashCode();
+	}
 }

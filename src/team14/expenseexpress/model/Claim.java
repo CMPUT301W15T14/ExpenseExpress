@@ -19,8 +19,8 @@ public class Claim implements Comparable<Claim>{
     private GregorianCalendar date;     // use getDateString for String
     private ArrayList<Amount> amounts;
     private String status;
-    private long lastApproverId; // the approver responsible for the most recent change in status
-    private long claimantId;
+    private User approver; // the approver responsible for the most recent change in status
+    private User claimant;
     private ArrayList<ApproverComment> approverComments;
 
     /**
@@ -186,15 +186,6 @@ public class Claim implements Comparable<Claim>{
         this.approverComments = approverComments;
     }
 
-    /**
-     * Getter for the unique Claimant ID associated with this Claim.
-     *
-     * @return  The claimant ID as a long.
-     */
-    public long getClaimantId() {
-        return claimantId;
-    }
-
 
     /**
      * Compares two Claims so they are sortable by date.
@@ -206,4 +197,9 @@ public class Claim implements Comparable<Claim>{
     public int compareTo(Claim another) {
         return date.compareTo(another.getDate());
     }
+
+	public User getClaimant() {
+		// TODO Auto-generated method stub
+		return claimant;
+	}
 }
