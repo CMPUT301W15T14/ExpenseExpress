@@ -35,10 +35,10 @@ public class ExpenseExpressApplication extends Application {
     /**
      * Setter for the User.
      * 
-     * @param user	The User, either pulled from the server or .
+     * @param user	The User, either pulled from the server or the local one.
      */
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 

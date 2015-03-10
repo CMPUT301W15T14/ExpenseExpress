@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import team14.expenseexpress.ExpenseExpressApplication;
 import team14.expenseexpress.R;
-import team14.expenseexpress.activity.claimant.ClaimListActivity;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.User;
 import team14.expenseexpress.model.Username;

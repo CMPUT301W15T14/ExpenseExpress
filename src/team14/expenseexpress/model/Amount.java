@@ -3,7 +3,6 @@ package team14.expenseexpress.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import team14.expenseexpress.model.constants.Currency;
 
 /**
  * @author  Team 14
@@ -37,13 +36,11 @@ public class Amount {
      * as the default empty String.
      *
      * @param number    Numerical amount.
-     * @param currency  Currency as a String.
+     * @param currency  Currency (enum).
      */
-    public Amount(int number, String currency){
+    public Amount(int number, Currency currency){
         this.number = number;
-        if (Arrays.asList(Currency.LIST).contains(currency)){
-            this.currency = currency;
-        }
+        this.currency = currency;
     }
 
     /**

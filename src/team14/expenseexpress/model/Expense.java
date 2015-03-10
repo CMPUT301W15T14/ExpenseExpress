@@ -3,7 +3,6 @@ package team14.expenseexpress.model;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 
-import team14.expenseexpress.model.constants.Category;
 
 /**
  * @author  Team 14
@@ -31,7 +30,7 @@ public class Expense implements Cloneable, Comparable<Expense>{
      */
     public Expense(){
         date = new GregorianCalendar();
-        amount = new Amount(0, "");
+        amount = new Amount(0, null);
     }
 
     /**

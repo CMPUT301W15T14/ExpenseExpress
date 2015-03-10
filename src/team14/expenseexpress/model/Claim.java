@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 
-import team14.expenseexpress.model.constants.Currency;
-import team14.expenseexpress.model.constants.Status;
 
 /**
  * @author  Team 14
