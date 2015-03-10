@@ -10,39 +10,30 @@ import team14.expenseexpress.model.Username;
 
 public class ElasticSearchHelper {
     private Context context;
-    private GsonHelper gsonHelper;
-    private ArrayList<Username> localUsernames;
-    private ArrayList<Claim> localClaims;
+    private FileHelper fh;
     
-    public ElasticSearchHelper(ExpenseExpressApplication expenseExpressApplication, GsonHelper gsonHelper) {
-        this.context = expenseExpressApplication;
-        this.gsonHelper = gsonHelper;
+    private static ElasticSearchHelper instance;
+    
+    private ElasticSearchHelper(Context context){
+    	this.context = context;
+    	this.fh = FileHelper.getInstance(context);
+    }
+    
+    public static ElasticSearchHelper getInstance(Context context){
+    	if (instance == null){
+    		instance = new ElasticSearchHelper(context);
+    	}
+    	return instance;
+    }
+    
+    public ArrayList<Claim> getClaimsAsApprover(long approverId){
+    	// TODO: for Approver mode, from server, get a list of all the claims that don't have the user's ID
+    	return null;
+    }
+    
+    public boolean uploadClaims(ArrayList<Claim> claims){
+    	// TODO: push a list of claims to the server (maybe return whether it succeeded)
+    	return false;
     }
 
-    public void synchronizeUsernames() {
-        localUsernames = gsonHelper.loadUsernames();
-        ArrayList<Username> serverUsernames = getServerUsernames();
-        synchronizeUsernames(localUsernames, serverUsernames);
-    }
-
-    private void synchronizeUsernames(ArrayList<Username> localUsernames, ArrayList<Username> serverUsernames) {
-        // TODO (including assigning new ID numbers to new User(s) who don't have IDs by the server which holds an autoincrement value)
-        ArrayList<Username> ultimateUsernames = null;
-        gsonHelper.save(ultimateUsernames, GsonHelper.FILENAME_USERNAMES);
-        uploadToServer(ultimateUsernames);
-    }
-
-    private void uploadToServer(ArrayList<Username> ultimateUsernames) {
-        // TODO
-    }
-
-    public ArrayList<Username> getServerUsernames() {
-        // TODO
-        return null;
-    }
-
-    public void synchronizeClaims(long id) {
-        localClaims = gsonHelper.loadClaims(Long.valueOf(id).toString() + GsonHelper.FILENAME_CLAIMS_SUFFIX);
-
-    }
 }
