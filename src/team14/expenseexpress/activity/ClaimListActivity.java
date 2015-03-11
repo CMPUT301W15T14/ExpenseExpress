@@ -1,6 +1,8 @@
 package team14.expenseexpress.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
@@ -38,6 +41,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     private ArrayList<ClaimTag> claimTags;
     private ArrayList<ClaimTag> chosenTags;
     private ArrayList<Claim> claims;
+    private TagListDialogFragment.TagsListAdapter tagsListAdapter;
  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +51,36 @@ public class ClaimListActivity extends ExpenseExpressActivity {
         chosenTags = new ArrayList<ClaimTag>();
     }
     
-    private class TagListDialogFragment extends DialogFragment{
-    	// private since this is made to be used only in this activity
-    	// not static since it directly references claimTags and chosenTags
+    @SuppressLint("ValidFragment")
+	private class TagListDialogFragment extends DialogFragment{
+    	
+    	@Override
+    	public Dialog onCreateDialog(Bundle savedInstanceState) {
+    	  Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+    	  // request a window without the title
+    	  dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+    	  return dialog;
+    	}
     	
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
+			
 			View v = inflater.inflate(R.layout.activity_tags, container, false);
-			((ListView) findViewById(R.id.currentTagsList)).setAdapter(new TagsListAdapter());
+			tagsListAdapter = new TagsListAdapter();
+			(v.findViewById(R.id.addNewTagButton)).setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View view) {
+					showNewTagDialog();
+				}
+			});
+			((ListView) v.findViewById(R.id.currentTagsList)).setAdapter(tagsListAdapter);
 			return v;
 		}
 		
+
+
 		private class TagsListAdapter extends BaseAdapter{
 
 			@Override
@@ -115,8 +137,50 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     	
     }
     
+    @SuppressLint("ValidFragment")
+	private class NewTagDialogFragment extends DialogFragment{
+    	
+    	@Override
+    	public Dialog onCreateDialog(Bundle savedInstanceState) {
+    	  Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+    	  // request a window without the title
+    	  dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+    	  return dialog;
+    	}
+    	
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			final View view = inflater.inflate(R.layout.activity_add_tag, container, false);
+			view.findViewById(R.id.newTagButton).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					String text = ((EditText) view.findViewById(R.id.newTagNameField)).getText().toString();
+					if (text.length()==0){
+						toast("Tag name can't be empty");
+					} else {
+						ClaimTag tag = new ClaimTag(text);
+						// check if it's already in list
+						if (claimTags.contains(tag)){
+								toast("Already in list");
+								return;
+						}
+						// if all good, add to list and dismiss dialog
+						claimTags.add(tag);
+						toast("Added to list");
+						updateTagsListAdapter();
+						dismiss();
+					}
+				}
+			});
+			return view;
+		}
+    }
+    
     @Override
-	 public boolean onContextItemSelected(MenuItem item) {
+	public boolean onContextItemSelected(MenuItem item) {
 		 
 		 final ListView lv1 = (ListView) findViewById(R.id.claimListView);
 		 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
@@ -139,6 +203,15 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		 }
 		 return true;
     }
+    
+    private void updateTagsListAdapter(){
+    	tagsListAdapter.notifyDataSetChanged();
+    }
+        
+	private void showNewTagDialog(){
+		FragmentManager fm = getFragmentManager();
+        new NewTagDialogFragment().show(fm, "newTagDialogFragment");
+	}
     
     public void onClick_seeTags(View v) {
     	FragmentManager fm = getFragmentManager();

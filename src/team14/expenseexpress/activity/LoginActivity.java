@@ -2,6 +2,7 @@ package team14.expenseexpress.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -73,7 +74,12 @@ public class LoginActivity extends ExpenseExpressActivity {
 
 	// The listener is defined in the XML (onClick attribute)
 	public void onClick_signIn(View view){
-    	User user = new User(editText_name.getText().toString());
+		String name = editText_name.getText().toString();
+		if (name.length()==0){
+			toast("Can't be empty");
+			return;
+		}
+    	User user = new User(name);
     	app.setUser(user);
     	confirmNameDialog.setTitle(editText_name.getText().toString());
     	confirmNameDialog.show();
@@ -81,6 +87,6 @@ public class LoginActivity extends ExpenseExpressActivity {
 
 
 	private void startClaimsListActivity() {
-        // startActivity(new Intent(this, ClaimListActivity.class););
+        startActivity(new Intent(this, ClaimListActivity.class));
     }
 }

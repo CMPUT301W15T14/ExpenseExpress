@@ -96,8 +96,8 @@ public final class R {
         public static final int loginEditText=0x7f0a0051;
         public static final int newClaimNameText=0x7f0a0000;
         public static final int newClaimTitle=0x7f0a0002;
-        public static final int newTagButton=0x7f0a0010;
-        public static final int newTagNameField=0x7f0a000f;
+        public static final int newTagButton=0x7f0a000f;
+        public static final int newTagNameField=0x7f0a0010;
         public static final int newTagTitle=0x7f0a000e;
         public static final int possibleTagsTitle=0x7f0a0012;
         public static final int receiptTitle=0x7f0a004d;
