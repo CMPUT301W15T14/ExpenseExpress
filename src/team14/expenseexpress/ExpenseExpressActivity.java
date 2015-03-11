@@ -1,8 +1,6 @@
 package team14.expenseexpress;
 
 import team14.expenseexpress.model.User;
-import team14.expenseexpress.util.ElasticSearchHelper;
-import team14.expenseexpress.util.FileHelper;
 import android.app.Activity;
 import android.os.Bundle;
 
