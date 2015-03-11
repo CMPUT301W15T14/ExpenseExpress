@@ -17,9 +17,14 @@
             android:name="team14.expenseexpress.activity.LoginActivity"
             android:label="LoginActivity" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                </intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.ClaimListActivity"
+            android:label="@string/title_activity_claim_list" >
         </activity>
     </application>
 

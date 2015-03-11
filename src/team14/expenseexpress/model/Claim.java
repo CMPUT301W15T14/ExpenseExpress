@@ -164,23 +164,7 @@ public class Claim implements Comparable<Claim>{
     }
 
 
-    /**
-     * Getter for the unique ID of the most recent Approver.
-     *
-     * @return  Unique ID of the Approver, as a long.
-     */
-    public long getLastApproverId() {
-        return lastApproverId;
-    }
 
-    /**
-     * Setter for the unique ID of the most recent Approver.
-     *
-     * @param lastApproverId    Unique ID of the Approver, as a long.
-     */
-    public void setLastApproverId(long lastApproverId) {
-        this.lastApproverId = lastApproverId;
-    }
 
     public void setApproverComments(ArrayList<ApproverComment> approverComments) {
         this.approverComments = approverComments;

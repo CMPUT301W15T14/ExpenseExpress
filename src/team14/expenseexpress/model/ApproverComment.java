@@ -23,39 +23,7 @@ public class ApproverComment implements Comparable<ApproverComment> {
         timestamp = new GregorianCalendar();
     }
 
-    /**
-     * Alternative constructor.
-     *
-     * @param approver  The Approver making the comment.
-     */
-    public ApproverComment(Approver approver){
-        this.id = approver.getId();
-        timestamp = new GregorianCalendar();
-    }
 
-    /**
-     * Alternative constructor that sets the String comment.
-     *
-     * @param id        The Approver's unique ID, managed by the web server.
-     * @param comment   The comment in String form.
-     */
-    public ApproverComment(long id, String comment){
-        this.id = id;
-        this.comment = comment;
-        timestamp = new GregorianCalendar();
-    }
-
-    /**
-     * Alternative constructor that sets the String comment.
-     *
-     * @param approver  The Approver making the comment.
-     * @param comment   The comment in String form.
-     */
-    public ApproverComment(Approver approver, String comment){
-        this.id = approver.getId();
-        this.comment = comment;
-        timestamp = new GregorianCalendar();
-    }
 
     /**
      * Getter for the ID of the Approver who wrote the comment.

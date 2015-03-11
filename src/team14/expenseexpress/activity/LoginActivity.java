@@ -59,7 +59,7 @@ public class LoginActivity extends ExpenseExpressActivity {
 
 
 	private void startClaimsListActivity() {
-        Intent intent = new Intent(this, ClaimListActivity.class);
-        startActivity(intent);
+        // Intent intent = new Intent(this, ClaimListActivity.class);
+        // startActivity(intent);
     }
 }
