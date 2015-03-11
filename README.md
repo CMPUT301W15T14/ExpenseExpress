@@ -1,6 +1,8 @@
 Mar 10:
 
-Guys, I don't think we will be making specific TODO's since it's a lot of effort. Instead, please look at the Use Cases and implement whatever we haven't done. Part 4 is due on Monday
+Guys, I don't think we will be making specific TODO's since it's a lot of effort. Instead, please look at the Use Cases and implement whatever we haven't done. Part 4 is due on Monday.
+
+** Delete project from Eclipse and reimport after pulling, to get rid of build path error if you have it
 
 
 Progress:
