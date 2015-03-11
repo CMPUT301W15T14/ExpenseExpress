@@ -11,8 +11,6 @@ public abstract class ExpenseExpressActivity extends Activity {
 	protected App app;
 	protected User user;
 	protected int mode;
-	protected FileHelper fileHelper;
-	protected ElasticSearchHelper elasticSearchHelper;
 	
 	
 	@Override
@@ -21,7 +19,5 @@ public abstract class ExpenseExpressActivity extends Activity {
 		app = (App) getApplication();
 		user = app.getUser();
 		mode = app.getMode();
-		fileHelper = app.getFileHelper();
-		elasticSearchHelper = app.getElasticSearchHelper();
 	}
 }

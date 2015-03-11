@@ -32,7 +32,7 @@ public class LoginActivity extends ExpenseExpressActivity {
 
     private void buildConfirmNameDialog() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setMessage("Confirm your name. It's case-sensitive.")
+    	builder.setMessage("Confirm your name.\n\nIt's case-sensitive.")
     	.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

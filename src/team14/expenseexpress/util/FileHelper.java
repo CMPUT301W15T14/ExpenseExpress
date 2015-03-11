@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.User;
 
 import com.google.gson.Gson;
@@ -47,6 +48,7 @@ public class FileHelper {
 
 	
 	private static final String CLAIMS_FILENAME = "claims.ee";
+	private static final String TAGS_FILENAME = "tags.ee";
 
 	private void save(Object data, String filename) {
 		Gson gson = new Gson();
@@ -65,7 +67,7 @@ public class FileHelper {
 		}
 	}
 
-	public void save(ArrayList<Claim> claims){
+	private void saveClaims(ArrayList<Claim> claims){
 		save(claims, CLAIMS_FILENAME);
 	}
 
@@ -113,4 +115,31 @@ public class FileHelper {
 		}
 		return claimsForApprover;
 	}
+
+	public ArrayList<ClaimTag> getTags() {
+		Gson gson = new Gson();
+		ArrayList<ClaimTag> tags = new ArrayList<ClaimTag>();
+		try {
+			FileInputStream fis = context.openFileInput(TAGS_FILENAME);
+			InputStreamReader isr = new InputStreamReader(fis);
+			Type dataType = new TypeToken<ArrayList<ClaimTag>>() {	}.getType();
+			tags = gson.fromJson(isr, dataType);
+			fis.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (tags == null) {
+			tags = new ArrayList<ClaimTag>();
+		}
+		return tags; 
+	}
+
+	public void saveTags(ArrayList<ClaimTag> tags) {
+		save(tags, TAGS_FILENAME);
+	}
+
 }
