@@ -23,13 +23,14 @@
     <Button
         android:id="@+id/searchButton"
         style="?android:attr/buttonStyleSmall"
-        android:layout_height="wrap_content"
         android:layout_width="15mm"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/claimListView"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/tagTextField"
         android:background="@color/mainYellow"
+        android:onClick="onClick_searchByTag"
         android:text="Search"
         android:textColor="@color/mainGreen" />
 
@@ -51,6 +52,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:background="@color/mainYellow"
+        android:onClick="onClick_newClaim"
         android:text="Add New Claim"
         android:textColor="@color/mainGreen" />
 
@@ -61,6 +63,7 @@
         android:layout_alignRight="@+id/claimListView"
         android:layout_alignTop="@+id/addNewClaimListViewButton"
         android:background="@color/mainYellow"
+        android:onClick="onClick_seeTags"
         android:text="Look At Tags"
         android:textColor="@color/mainGreen" />
 

@@ -1,15 +1,24 @@
 package team14.expenseexpress.activity;
 
+import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,7 +43,76 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_list);
-        app.getMode();
+        claimTags = app.getTags();
+        chosenTags = new ArrayList<ClaimTag>();
+    }
+    
+    private class TagListDialogFragment extends DialogFragment{
+    	// private since this is made to be used only in this activity
+    	// not static since it directly references claimTags and chosenTags
+    	
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View v = inflater.inflate(R.layout.activity_tags, container, false);
+			((ListView) findViewById(R.id.currentTagsList)).setAdapter(new TagsListAdapter());
+			return v;
+		}
+		
+		private class TagsListAdapter extends BaseAdapter{
+
+			@Override
+			public int getCount() {
+				// TODO Auto-generated method stub
+				return claimTags.size();
+			}
+
+			@Override
+			public Object getItem(int arg0) {
+				/* not needed */
+				return null;
+			}
+
+			@Override
+			public long getItemId(int arg0) {
+				/* not needed */
+				return 0;
+			}
+
+			@Override
+			public View getView(final int position, final View convertView, ViewGroup parent) {
+				// Recycles convertView
+				final ClaimTag tag = claimTags.get(position);
+				
+				CheckBox v = (CheckBox) convertView;
+				if (v==null){
+					v = new CheckBox(ClaimListActivity.this);
+				}
+				
+				if (chosenTags.contains(tag)){
+					v.setChecked(true);
+				}
+				
+				v.setText(tag.getName());
+				
+				v.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// Is the view now checked?
+					    boolean checked = ((CheckBox) v).isChecked();
+			            if (checked){
+			            	chosenTags.add(tag);
+			            } else {
+			            	chosenTags.remove(tag);
+			            }
+					}
+				});
+				
+				return v;
+			}
+		}
+    	
     }
     
     @Override
@@ -62,13 +140,18 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		 return true;
     }
     
-    public void addClaim(View v) {
-    	// startActivity(new Intent(ClaimListActivity.this, addClaimActivity.class);
+    public void onClick_seeTags(View v) {
+    	FragmentManager fm = getFragmentManager();
+        new TagListDialogFragment().show(fm, "tagsListDialogFragment");
+
     }
     
-    public void showTags(View v) {
-
-    	// startActivity(new Intent(ClaimListActivity.this, TagListActivity.class);
+    public void onClick_newClaim(View v) {
+    	// TODO
+    }
+    
+    public void onClick_searchByTag(View v) {
+    	// TODO
     }
 
 }
