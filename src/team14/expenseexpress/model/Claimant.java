@@ -8,7 +8,12 @@ import java.util.ArrayList;
  * @since   2015-02-19
  */
 public class Claimant extends User {
-    private ArrayList<ClaimTag> tags;
+    public Claimant(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
+	private ArrayList<ClaimTag> tags;
 
     /**
      * Getter for the list of ClaimTags used by the Claimant.

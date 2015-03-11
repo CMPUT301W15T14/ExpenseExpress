@@ -1,78 +1,65 @@
 package team14.expenseexpress.activity;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
 
-import team14.expenseexpress.ExpenseExpressApplication;
+import team14.expenseexpress.App;
+import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
-import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.User;
-import team14.expenseexpress.model.Username;
-import team14.expenseexpress.util.GsonHelper;
 
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends ExpenseExpressActivity {
 
     private EditText editText_name;
-    private ExpenseExpressApplication application;
-    private GsonHelper gh;
-
-
+    private AlertDialog modeDialog;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        application = (ExpenseExpressApplication) getApplication();
+        setContentView(R.layout.activity_login);
+        editText_name = (EditText) findViewById(R.id.loginEditText);
+        buildModeDialog();
     }
 
 
-    public void onClick_signIn(View view){
-    	editText_name = (EditText)findViewById(R.id.signIn);
-    	String name = editText_name.getText().toString();
-    	synchronizeUser(name);
-    	
+    private void buildModeDialog() {
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Log in as approver or claimant?")
+        .setNegativeButton("Approver", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				app.setMode(App.APPROVER_MODE);
+			    startClaimsListActivity();
+			}
+		})
+		.setPositiveButton("Claimant", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				app.setMode(App.CLAIMANT_MODE);
+				startClaimsListActivity();
+			}
+		});
+        
+        modeDialog = builder.create();                		
+	}
+
+
+	public void onClick_signIn(View view){
+    	User user = new User(editText_name.getText().toString());
+    	app.setUser(user);
+    	modeDialog.show();
     }
 
-    private void synchronizeUser(String name) {
-    	User localUser = gh.loadUser(User.LOCALID);
-    	
-		// TODO Auto-generated method stub
-		
-	}
 
-
-	private void getUser(String name) {
-    	    	
-	}
-
-
-	private User loadUser(String name) {
-		
-
-		return null;
-	}
-
-
-	private void startClaimsListActivity(long id) {
+	private void startClaimsListActivity() {
         Intent intent = new Intent(this, ClaimListActivity.class);
-        intent.putExtra(application.KEY, id);
         startActivity(intent);
-    }
-
-    private long createUser(String name) {
-        User user = new User(name);
-        return user.getUsername().getId();
-    }
-
-    private void setClaims(long id) {
-        application.synchronizeClaims(id);
     }
 }

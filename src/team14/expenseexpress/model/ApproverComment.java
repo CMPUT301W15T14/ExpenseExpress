@@ -29,7 +29,7 @@ public class ApproverComment implements Comparable<ApproverComment> {
      * @param approver  The Approver making the comment.
      */
     public ApproverComment(Approver approver){
-        this.id = approver.getId();
+        this.id = 0;
         timestamp = new GregorianCalendar();
     }
 
@@ -52,7 +52,7 @@ public class ApproverComment implements Comparable<ApproverComment> {
      * @param comment   The comment in String form.
      */
     public ApproverComment(Approver approver, String comment){
-        this.id = approver.getId();
+        this.id = 0;
         this.comment = comment;
         timestamp = new GregorianCalendar();
     }
