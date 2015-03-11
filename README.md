@@ -3,7 +3,7 @@ Mar 11:
 How to easily code a list adapter:
 
 BaseAdapter is an abstract class, so you have to extend it.
-The easiest way is to do it anonymously (anonymous just means subclassing/implementing it on-the-fly without assigning it a class name):
+The easiest way is to do it anonymously (anonymous just means subclassing/implementing it on-the-fly without assigning it a class name).
 
 ListView listView = findViewById(R.id.listView);
 listView.setAdapter(new BaseAdapter(){
@@ -33,7 +33,7 @@ Ultimately, you're returning a View that contains everything you want inside a r
 3. return the view
 
 to save memory you can use viewHolder and convertView pattern.
-
+(you can see an example in ClaimListActivity.TagListDialogFragment.TagListAdapter where I used convertView)
 
 
 
