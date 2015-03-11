@@ -12,14 +12,14 @@ public class ExpenseListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense_list);
+        setContentView(R.layout.activity_claims_expense_list);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_expense_list, menu);
+        getMenuInflater().inflate(R.menu.claims_expense_list, menu);
         return true;
     }
 

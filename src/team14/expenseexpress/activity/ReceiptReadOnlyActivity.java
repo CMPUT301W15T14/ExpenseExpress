@@ -12,14 +12,14 @@ public class ReceiptReadOnlyActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receipt_activity_read_only);
+        setContentView(R.layout.activity_expense_receipt));
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_receipt_activity_read_only, menu);
+        getMenuInflater().inflate(R.menu.expense_receipt, menu);
         return true;
     }
 

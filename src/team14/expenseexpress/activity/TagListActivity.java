@@ -17,14 +17,14 @@ public class TagListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tag_list);
+        setContentView(R.layout.activity_tags);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tag_list, menu);
+        getMenuInflater().inflate(R.menu.tags, menu);
         return true;
     }
 

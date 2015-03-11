@@ -15,7 +15,7 @@ import team14.expenseexpress.ExpenseExpressApplication;
 import team14.expenseexpress.R;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
-import team14.expenseexpress.model.Username;
+import team14.expenseexpress.model.User;
 
 /**
  * 2) Claim List Screen
@@ -48,7 +48,7 @@ public class ClaimListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_list);
         application = (ExpenseExpressApplication) getApplication();
-        id = getIntent().getLongExtra(application.KEY, Username.LOCAL_ONLY);
+        //id = getIntent().getLongExtra(application.KEY, Username.LOCAL_ONLY);
         expenseExpressApplication = (ExpenseExpressApplication) getApplication();
     }
 
@@ -105,7 +105,7 @@ public class ClaimListActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_claim_list, menu);
+        getMenuInflater().inflate(R.menu.claim_list, menu);
         return true;
     }
 

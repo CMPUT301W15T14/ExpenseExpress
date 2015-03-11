@@ -12,14 +12,14 @@ public class ReceiptActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receipt);
+        setContentView(R.layout.activity_expense_receipt);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_receipt, menu);
+        getMenuInflater().inflate(R.menu.expense_receipt, menu);
         return true;
     }
 
