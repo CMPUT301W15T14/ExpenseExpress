@@ -1,33 +1,29 @@
-Feb 19 --
+Mar 10:
 
-Uploaded some code for version 0.1 (this would be for Part 4). They are all based on Zach's detailed Storyboard Walkthrough which was awesome. I've been doing them in AndroidStudio at home so I only pushed the java file. When I get to school tomorrow I'll set up an Eclipse project.
-
-
-They are organized in the folder like this:
-
-
-Models -- all 100% done including Javadocs, except for Receipt (0% done).
-    There is a folder inside there called "constants" where I put classes holding constants that are convenient.
-    They have javadocs, hopefully I did a good job so that they are easily understandable.
-    Probably the most confusing thing is the Username-User-Claimant-Approver thing so if you have ideas that'd be cool.
-    
-    See https://github.com/CMPUT301W15T14/ExpenseExpress/blob/master/The%20model%20classes%20and%20their%20relationships.txt
+                                                           Models
+The flow of information in this app:                         ^ 
+                                                             |
+                                                             V
+Files/Server <----> Application subclass (App) <------> Controllers <--------> Activities
+                              |                                                   ^
+                               -------abstract class ExpenseExpressActivity--------
 
 
-Controllers -- 1% done.
-    By nature of how Android is designed, Activity does most of the "controller" stuff, but we can still use controllers that echo Model class functions to give the project a MVC smell or whatever. Basically our controllers will be middle-men.
+Have every activity extend ExpenseExpressActivity.
 
 
-Activities -- 5% done.
+Progress:
 
-Application (convenience class) 100% done.
+- App class is done other than anything related to Receipt
+ 
+- LoginActivity/layout are 100% done (but no javadoc or unit test)
+ 
+- ClaimController is 25% done
+ 
+- FileHelper (gson read/write for local storage of claims, and tags) 100% done
 
-LoginActivity 90%? done.
+- ElasticSearchHelper skeleton code done, overall 10% done
 
-ClaimsListActivity 30% done.
+- ClaimListActivity (x% done) 
 
-Utility classes -- 0% done.
-    These will hold code for server communication, data storage, and things that make coding easier.
-    
-
--John
+     - Brandon/John
