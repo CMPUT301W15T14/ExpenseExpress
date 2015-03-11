@@ -50,6 +50,10 @@ public class App extends Application {
 		return tags;
 	}
 	
+	public void saveClaimsLocal(){
+		fh.saveClaims(claims);
+	}
+	
 	public void saveTags(){
 		fh.saveTags(tags);	
 	}

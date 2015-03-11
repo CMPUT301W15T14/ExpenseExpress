@@ -67,11 +67,12 @@ public class FileHelper {
 		}
 	}
 
-	private void saveClaims(ArrayList<Claim> claims){
+	
+	public void saveClaims(ArrayList<Claim> claims){
 		save(claims, CLAIMS_FILENAME);
 	}
 
-	public ArrayList<Claim> getAllLocalClaims(){
+	private ArrayList<Claim> getAllLocalClaims(){
 		Gson gson = new Gson();
 		ArrayList<Claim> claims = new ArrayList<Claim>();
 		try {
