@@ -17,8 +17,9 @@
         android:layout_alignRight="@+id/loginEditText"
         android:layout_below="@+id/loginEditText"
         android:background="@color/mainYellow"
-        android:textColor="@color/mainGreen"
-        android:text="Sign In" />
+        android:onClick="onClick_signIn"
+        android:text="Sign In"
+        android:textColor="@color/mainGreen" />
 
     <EditText
         android:id="@+id/loginEditText"
@@ -28,8 +29,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:background="#FFFFFF"
-        android:textColor="@color/mainGreen"
         android:ems="10"
-        android:hint="Username" />
+        android:hint="Username"
+        android:textColor="@color/mainGreen" />
 
 </RelativeLayout>

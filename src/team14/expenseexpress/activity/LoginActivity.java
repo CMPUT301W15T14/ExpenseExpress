@@ -19,6 +19,7 @@ public class LoginActivity extends ExpenseExpressActivity {
 
     private EditText editText_name;
     private AlertDialog modeDialog;
+    private AlertDialog confirmNameDialog;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +27,30 @@ public class LoginActivity extends ExpenseExpressActivity {
         setContentView(R.layout.activity_login);
         editText_name = (EditText) findViewById(R.id.loginEditText);
         buildModeDialog();
-
+        buildConfirmNameDialog();
     }
 
-    private void buildModeDialog() {
+    private void buildConfirmNameDialog() {
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	builder.setMessage("Confirm your name. It's case-sensitive.")
+    	.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				modeDialog.show();
+				dialog.dismiss();
+			}
+		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+    	
+    	confirmNameDialog = builder.create();		
+	}
+
+	private void buildModeDialog() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Log in as approver or claimant?")
         .setNegativeButton("Approver", new DialogInterface.OnClickListener() {
@@ -45,7 +66,7 @@ public class LoginActivity extends ExpenseExpressActivity {
 				app.setMode(App.CLAIMANT_MODE);
 				startClaimsListActivity();
 			}
-		});
+		}).setTitle(editText_name.getText().toString());
         
         modeDialog = builder.create();                		
 	}
@@ -54,7 +75,8 @@ public class LoginActivity extends ExpenseExpressActivity {
 	public void onClick_signIn(View view){
     	User user = new User(editText_name.getText().toString());
     	app.setUser(user);
-    	modeDialog.show();
+    	confirmNameDialog.setTitle(editText_name.getText().toString());
+    	confirmNameDialog.show();
     }
 
 
