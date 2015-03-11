@@ -42,17 +42,23 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     private ArrayList<ClaimTag> chosenTags;
     private ArrayList<Claim> claims;
     private TagListDialogFragment.TagsListAdapter tagsListAdapter;
+    private LayoutInflater inflater;
  
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_list);
         claimTags = app.getTags();
         chosenTags = new ArrayList<ClaimTag>();
+        inflater = LayoutInflater.from(this);
+        
+        // TODO 
     }
     
     @SuppressLint("ValidFragment")
 	private class TagListDialogFragment extends DialogFragment{
+    	
     	
     	@Override
     	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -104,20 +110,21 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			@Override
 			public View getView(final int position, final View convertView, ViewGroup parent) {
 				// Recycles convertView
+				// TODO: put controller in between View and Model
 				final ClaimTag tag = claimTags.get(position);
 				
-				CheckBox v = (CheckBox) convertView;
-				if (v==null){
-					v = new CheckBox(ClaimListActivity.this);
+				CheckBox checkBox = (CheckBox) convertView;
+				if (checkBox==null){
+					checkBox = new CheckBox(ClaimListActivity.this);
 				}
 				
 				if (chosenTags.contains(tag)){
-					v.setChecked(true);
+					checkBox.setChecked(true);
 				}
 				
-				v.setText(tag.getName());
+				checkBox.setText(tag.getName());
 				
-				v.setOnClickListener(new OnClickListener() {
+				checkBox.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
@@ -131,7 +138,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 					}
 				});
 				
-				return v;
+				return checkBox;
 			}
 		}
     	

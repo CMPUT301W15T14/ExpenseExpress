@@ -50,6 +50,14 @@ public class LoginActivity extends ExpenseExpressActivity {
     	
     	confirmNameDialog = builder.create();		
 	}
+    
+    /*
+     
+    protected void onStop(){
+    	finish();
+    }
+    
+    */
 
 	private void buildModeDialog() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);

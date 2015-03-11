@@ -42,8 +42,7 @@ public class App extends Application {
     public static final int CLAIMANT_MODE = 1;
     public static final int APPROVER_MODE = 2;
     
-    
-	@Override
+    @Override
     public void onCreate() {
         super.onCreate();
         fileHelper = FileHelper.getInstance(this);
