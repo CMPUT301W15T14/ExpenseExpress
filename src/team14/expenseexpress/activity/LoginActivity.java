@@ -2,7 +2,6 @@ package team14.expenseexpress.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
