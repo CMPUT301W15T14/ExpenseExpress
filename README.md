@@ -1,5 +1,9 @@
 Mar 11:
 
+See Issues at right side, divided remaining work into 11 parts.
+
+-------
+
 How to easily code a list adapter:
 
 BaseAdapter is an abstract class, so you have to extend it.
