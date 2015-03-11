@@ -1,3 +1,45 @@
+Mar 11:
+
+How to easily code a list adapter:
+
+BaseAdapter is an abstract class, so you have to extend it.
+The easiest way is to do it anonymously (anonymous just means subclassing/implementing it on-the-fly without assigning it a class name):
+
+ListView listView = findViewById(R.id.listView);
+listView.setAdapter(new BaseAdapter(){
+
+});
+
+--------------
+
+After quickfix --> add unimplemented methods in Eclipse, you get 4 methods:
+
+getCount(): put the size of the list here (return myList.size();)
+
+getItem(int position): this is used if you add a onItemClickListener/onItemSelectListener/onItemLongClickListener, otherwise not needed
+
+getItemId(int id): this is used for Cursors (for example for an SQLite database - so this doesn't concern us
+
+getView(int position, View convertView, ViewGroup container): this is the one you have to implement.
+
+------------------
+
+How to implement getView:
+
+Ultimately, you're returning a View that contains everything you want inside a row for the listView you want to display. So the general pattern is:
+
+1. inflate row layout XML
+2. setText on its TextViews based on the position parameter (which is the position inside myList)
+3. return the view
+
+to save memory you can use viewHolder and convertView pattern.
+
+
+
+
+
+
+
 Mar 10:
 
 Guys, I don't think we will be making specific TODO's since it's a lot of effort. Instead, please look at the Use Cases and implement whatever we haven't done. Part 4 is due on Monday.
