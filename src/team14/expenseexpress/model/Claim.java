@@ -22,21 +22,22 @@ public class Claim implements Comparable<Claim>{
     private User approver; // the approver responsible for the most recent change in status
     private User claimant;
     private ArrayList<ApproverComment> approverComments;
+    
+    private long id;
+    // TODO: assign a unique ID
+    public void setId(long id){
+    	this.id = id;
+    }
+    
+    public long getId(){
+    	return id;
+    }
 
-    /**
-     * Getter for the Expenses, as an ArrayList.
-     *
-     * @return  The Expenses associated with this Claim, in an ArrayList.
-     */
     public ArrayList<Expense> getExpenses() {
         return expenses;
     }
 
-    /**
-     * Getter for the ClaimTags, a s an ArrayList.
-     *
-     * @return  The ClaimTags associated with this Claim, in an ArrayList.
-     */
+   
     public ArrayList<ClaimTag> getTags() {
         return tags;
     }

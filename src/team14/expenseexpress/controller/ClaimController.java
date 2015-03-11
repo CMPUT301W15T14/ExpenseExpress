@@ -8,7 +8,8 @@ import team14.expenseexpress.model.Claim;
 
 public class ClaimController {
 	private App app;
-	private ArrayList<Claim> claims;
+	private ArrayList<Claim> localClaims;
+	private ArrayList<Claim> remoteClaims;
 	
 	//Singleton
 	private ExpenseExpressActivity activity;	
@@ -18,9 +19,15 @@ public class ClaimController {
 	private ClaimController(ExpenseExpressActivity activity){
 		this.activity = activity;
 		app = (App) activity.getApplication();
-		claims = app.getClaims();
+		localClaims = app.getLocalClaims();
+		remoteClaims = app.getRemoteClaims();
+		mergeClaims();
 	}
 	
+	private void mergeClaims() {
+		// TODO
+	}
+
 	public ClaimController getInstance(ExpenseExpressActivity activity){
 		if (instance == null){
 			instance = new ClaimController(activity);
@@ -29,7 +36,7 @@ public class ClaimController {
 	}
 	
 	
-	public void sortClaimsByDate(){
-		
+	private void sortClaimsByDate(){
+		// TODO, should be called locally before displaying information
 	}
 }

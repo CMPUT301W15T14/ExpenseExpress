@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import team14.expenseexpress.App;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.User;
 
 public class ElasticSearchHelper {
     private Context context;
@@ -25,14 +26,30 @@ public class ElasticSearchHelper {
     	return instance;
     }
     
-    public ArrayList<Claim> getClaimsAsApprover(long approverId){
-    	// TODO: for Approver mode, from server, get a list of all the claims that don't have the user's ID
-    	return null;
-    }
     
-    public boolean uploadClaims(ArrayList<Claim> claims){
-    	// TODO: push a list of claims to the server (maybe return whether it succeeded)
-    	return false;
-    }
+/*
+ * 	TODO:
+ * 
+ *  Idea:
+ *  
+ *  On a background thread, download literally every claim that matters
+ *  (=user for claimant, !=user for approver). Add a button in the ClaimsList to "refresh"
+ *  
+ *  
+ */
+	public ArrayList<Claim> getRemoteClaimsForClaimant(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Claim> getRemoteClaimsForApprover(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean uploadClaim(Claim claim) {
+		// TODO Auto-generated method stub
+		return false; // return whether succeeded
+	}
 
 }

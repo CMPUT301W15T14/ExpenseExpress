@@ -19,9 +19,8 @@ import com.google.gson.reflect.TypeToken;
 import android.content.Context;
 
 /**
- * Singleton with this public interface:
+ * Singleton with these public methods:
  * - Overwrite local claims list with any claims list
- * - Load all local claims
  * - Load only local claims made by the user (for claiming)
  * - Load only local claims not made by the user (for approving) 
  * 
