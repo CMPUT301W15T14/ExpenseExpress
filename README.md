@@ -1,5 +1,9 @@
 Mar 11:
 
+See Issues at right side, divided remaining work into 12 parts. As we start them we will be breaking them into smaller parts.
+
+-------
+
 How to easily code a list adapter:
 
 BaseAdapter is an abstract class, so you have to extend it.
@@ -9,8 +13,8 @@ ListView listView = findViewById(R.id.listView);
 listView.setAdapter(new BaseAdapter(){
 
 });
+-------------
 
---------------
 
 After quickfix --> add unimplemented methods in Eclipse, you get 4 methods:
 
