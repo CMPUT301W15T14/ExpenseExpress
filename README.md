@@ -36,8 +36,8 @@ to save memory you can use viewHolder and convertView pattern.
 (you can see an example in ClaimListActivity.TagListDialogFragment.TagListAdapter where I used convertView)
 
 
-
-
+------------------
+-------------------
 
 
 Mar 10:
