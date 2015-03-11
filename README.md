@@ -1,6 +1,6 @@
 Mar 10:
 
-Guys, I don't think we will be making specific TODO's since it's a lot of effort. Instead, please look at the Use Cases and implement whatever we haven't done. Part 4 is due 
+Guys, I don't think we will be making specific TODO's since it's a lot of effort. Instead, please look at the Use Cases and implement whatever we haven't done. Part 4 is due on Monday
 
 
 Progress:
