@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 
-import team14.expenseexpress.ExpenseExpressApplication;
+import team14.expenseexpress.App;
 import team14.expenseexpress.R;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
@@ -39,17 +39,17 @@ public class ClaimListActivity extends ActionBarActivity {
     private ArrayList<ClaimTag> claimTags;
     private ArrayList<ClaimTag> chosenTags;
     private ArrayList<Claim> claims;
-    private ExpenseExpressApplication expenseExpressApplication;
+    private App expenseExpressApplication;
     private long id;
-    private ExpenseExpressApplication application;
+    private App application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_list);
-        application = (ExpenseExpressApplication) getApplication();
+        application = (App) getApplication();
         //id = getIntent().getLongExtra(application.KEY, Username.LOCAL_ONLY);
-        expenseExpressApplication = (ExpenseExpressApplication) getApplication();
+        expenseExpressApplication = (App) getApplication();
     }
 
     protected void onResume(){
