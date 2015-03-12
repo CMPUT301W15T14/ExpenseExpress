@@ -18,9 +18,9 @@ public class ClaimController {
 	
 	private ClaimController(ExpenseExpressActivity activity){
 		this.activity = activity;
-		app = (App) activity.getApplication();
-		localClaims = app.getLocalClaims();
-		remoteClaims = app.getRemoteClaims();
+		//app = (App) activity.getApplication();
+		//localClaims = app.getLocalClaims();
+		//remoteClaims = app.getRemoteClaims();
 		mergeClaims();
 	}
 	
@@ -34,7 +34,11 @@ public class ClaimController {
 		}
 		return instance;
 	}
-	
+	/*
+	private void getClaim(Claim claim){
+		return 
+	}
+	*/
 	
 	private void sortClaimsByDate(){
 		// TODO, should be called locally before displaying information
