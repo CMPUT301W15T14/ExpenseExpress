@@ -36,19 +36,26 @@ public class FileHelper {
 	private Context context;
 	
 	// Singleton
-	private static FileHelper instance;
+	private static FileHelper fileHelper;
 	
 	private FileHelper(Context context){
 		this.context = context;
 	}
 	
 	public static FileHelper getInstance(Context context){
-		if (instance == null){
-			instance = new FileHelper(context);
+		if (fileHelper == null){
+			fileHelper = new FileHelper(context);
 		}
-		return instance;
+		return fileHelper;
 	}
-
+	
+	public static FileHelper getHelper() {
+		if(fileHelper == null) {
+			throw new RuntimeException("Missing instance of FileHelper");
+		}
+		return fileHelper;
+	}
+	
 	private void save(Object data, String filename) {
 		Gson gson = new Gson();
 		try {
