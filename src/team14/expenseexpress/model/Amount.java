@@ -82,7 +82,7 @@ public class Amount {
      * @param currency  The currency this tally is for.
      */
     public Amount(Claim claim, Currency currency){
-        ArrayList<Expense> expenses = claim.getExpenses();
+        ArrayList<Expense> expenses = claim.getExpenseList().getExpenses();
         for (int i = 0; i<expenses.size(); i++){
             if (expenses.get(i).getAmount().getCurrency().equals(currency)){
                 number += expenses.get(i).getAmount().getNumber();

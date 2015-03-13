@@ -29,6 +29,10 @@ import android.content.Context;
  * @version 0.2
  */
 public class FileHelper {
+	
+	private static final String CLAIMS_FILENAME = "claims.ee";
+	private static final String TAGS_FILENAME = "tags.ee";
+	
 	private Context context;
 	
 	// Singleton
@@ -44,10 +48,6 @@ public class FileHelper {
 		}
 		return instance;
 	}
-
-	
-	private static final String CLAIMS_FILENAME = "claims.ee";
-	private static final String TAGS_FILENAME = "tags.ee";
 
 	private void save(Object data, String filename) {
 		Gson gson = new Gson();

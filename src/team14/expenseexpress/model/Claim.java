@@ -4,37 +4,52 @@ package team14.expenseexpress.model;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
-
 
 /**
  * @author  Team 14
  * @version 0.1
  * @since   2015-02-19
  */
-public class Claim implements Comparable<Claim>{
+public class Claim {
     private ArrayList<ClaimTag> tags;
-    private ArrayList<Expense> expenses;
+    //private ArrayList<Expense> expenses;
+    private ExpenseList expenseList;
     private ArrayList<Destination> destinations;
-    private GregorianCalendar date;     // use getDateString for String
+    private GregorianCalendar startDate;     // use getDateString for String
+    private GregorianCalendar endDate;
     private ArrayList<Amount> amounts;
     private String status;
     private User approver; // the approver responsible for the most recent change in status
     private User claimant;
     private ArrayList<ApproverComment> approverComments;
     
-    private long id;
-    // TODO: assign a unique ID
-    public void setId(long id){
-    	this.id = id;
+    private long claimId;
+    
+    public Claim() {
+    	GregorianCalendar calendar = (GregorianCalendar) Calendar.getInstance();
+    	this.setStartDate(calendar);
+	    this.setEndDate(calendar);
+	    this.claimId = generateClaimId();
+    }
+
+    /**
+     * Obtains a unique expense id based off of real time in milliseconds.
+     * 
+     * @return The claim id as a long.
+     */
+    private long generateClaimId(){
+    	return System.currentTimeMillis();
     }
     
     public long getId(){
-    	return id;
+    	return this.claimId;
     }
 
-    public ArrayList<Expense> getExpenses() {
-        return expenses;
+    public ExpenseList getExpenseList() {
+        return this.expenseList;
     }
 
    
@@ -59,7 +74,7 @@ public class Claim implements Comparable<Claim>{
      * @param expense
      */
     public void addExpense(Expense expense) {
-        expenses.add(expense);
+        this.expenseList.addExpense(expense);
     }
 
     /**
@@ -81,21 +96,31 @@ public class Claim implements Comparable<Claim>{
     }
 
     /**
-     * Getter for the date associated with this Claim, i.e. the starting date.
+     * Getter for the starting date associated with this Claim.
      *
      * @return  The starting date, as a GregorianCalendar object.
      */
-    public GregorianCalendar getDate() {
-        return date;
+    public GregorianCalendar getStartDate() {
+        return this.startDate;
     }
+    
+    /**
+     * Getter for the end date associated with this Claim.
+     *
+     * @return  The starting date, as a GregorianCalendar object.
+     */
+    public GregorianCalendar getEndDate() {
+        return this.endDate;
+    }
+    
 
     /**
      * Returns the starting date formatted to a String, in "short" form (e.g. 12/5/1)
      *
      * @return  The starting date, as a String in the short date format.
      */
-    public String getDateString(){
-        return DateFormat.getDateInstance(DateFormat.SHORT).format(date.getTime());
+    public String getStartDateString(){
+        return DateFormat.getDateInstance(DateFormat.SHORT).format(startDate.getTime());
     }
 
     /**
@@ -104,17 +129,47 @@ public class Claim implements Comparable<Claim>{
      * @param format    One of DateFormat.DEFAULT,FULL,LONG,MEDIUM,SHORT.
      * @return          The starting date, as a String, in the requested format.
      */
-    public String getDateString(int format){
-        return DateFormat.getDateInstance(format).format(date.getTime());
+    public String getStartDateString(int format){
+        return DateFormat.getDateInstance(format).format(startDate.getTime());
     }
+    
+    
+    /**
+     * Returns the end date formatted to a String, in "short" form (e.g. 12/5/1)
+     *
+     * @return  The starting date, as a String in the short date format.
+     */
+    public String getEndDateString(){
+        return DateFormat.getDateInstance(DateFormat.SHORT).format(endDate.getTime());
+    }
+
+    /**
+     * Returns the end date formatted to a String of the specified format.
+     *
+     * @param format    One of DateFormat.DEFAULT,FULL,LONG,MEDIUM,SHORT.
+     * @return          The starting date, as a String, in the requested format.
+     */
+    public String getEndDateString(int format){
+        return DateFormat.getDateInstance(format).format(endDate.getTime());
+    }
+    
 
     /**
      * Setter for the starting date.
      *
      * @param date  The starting date as a GregorianCalendar object.
      */
-    public void setDate(GregorianCalendar date) {
-        this.date = date;
+    public void setStartDate(GregorianCalendar date) {
+        this.startDate = date;
+    }
+    
+    /**
+     * Setter for the end date.
+     *
+     * @param date  The starting date as a GregorianCalendar object.
+     */
+    public void setEndDate(GregorianCalendar date) {
+        this.endDate = date;
     }
 
     /**
@@ -172,19 +227,30 @@ public class Claim implements Comparable<Claim>{
     }
 
 
-    /**
-     * Compares two Claims so they are sortable by date.
-     *
-     * @param another   The Claim to compare to.
-     * @return          An int used by Collections to sort multiple Claims by date.
-     */
-    @Override
-    public int compareTo(Claim another) {
-        return date.compareTo(another.getDate());
-    }
-
 	public User getClaimant() {
 		// TODO Auto-generated method stub
 		return claimant;
 	}
+	
+	
+	/**
+	 * Comparator used to sort Claims.
+	 * 
+	 * @author pkuczera
+	 *
+	 */
+	@SuppressWarnings("rawtypes")
+	static class ClaimComparator implements Comparator {
+		@Override
+		public int compare(Object lhs, Object rhs) {
+			if(!(lhs instanceof Claim) || !(rhs instanceof Claim)) 
+				throw new ClassCastException();
+			Claim c1 = (Claim)lhs;
+			Claim c2 = (Claim)rhs;
+			if(c1.getStartDate().equals(c2.getStartDate())) {
+				return (c1.getId() > c2.getId()) ? 1 : -1;
+			}
+			return c1.getStartDate().compareTo(c2.getStartDate());
+				}
+		}
 }

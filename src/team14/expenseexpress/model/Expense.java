@@ -1,6 +1,7 @@
 package team14.expenseexpress.model;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 
 
@@ -9,13 +10,19 @@ import java.util.GregorianCalendar;
  * @version 0.1
  * @since   2015-02-19
  */
-public class Expense implements Cloneable, Comparable<Expense>{
+public class Expense implements Cloneable {
     private String category;
-    private GregorianCalendar date;
+    private GregorianCalendar expenseDate;
     private Amount amount;
     private String description;
     private Receipt receipt;
 
+    private long expenseId;
+    
+    public long getId(){
+    	return this.expenseId;
+    }
+    
     /**
      * Getter for the Amount object associated with this Expense.
      *
@@ -26,11 +33,31 @@ public class Expense implements Cloneable, Comparable<Expense>{
     }
 
     /**
+     * Getter for the Expense Date object associated with this Expense.
+     * 
+     * @return This expense date as a GregorianCalendar object.
+     */
+    public GregorianCalendar getExpenseDate() {
+    	return this.expenseDate;
+    }
+    
+    /**
      * Default constructor, initializes GregorianCalendar and Amount objects.
      */
     public Expense(){
-        date = new GregorianCalendar();
+        this.expenseDate = new GregorianCalendar();
         amount = new Amount(0, null);
+        this.expenseId = getExpenseId();
+    }
+    
+    
+    /**
+     * Obtains a unique expense id based off of real time in milliseconds.
+     * 
+     * @return The expense id as a long.
+     */
+    private long getExpenseId() {
+    	return System.currentTimeMillis();
     }
 
     /**
@@ -98,7 +125,7 @@ public class Expense implements Cloneable, Comparable<Expense>{
      */
     private Expense(String category, GregorianCalendar date, Amount amount, String description){
         this.category = category;
-        this.date = date;
+        this.expenseDate = date;
         this.amount = amount;
         this.description = description;
     }
@@ -110,18 +137,28 @@ public class Expense implements Cloneable, Comparable<Expense>{
      */
     @Override
     public Expense clone(){
-        return new Expense(category, (GregorianCalendar) date.clone(),
+        return new Expense(category, (GregorianCalendar) expenseDate.clone(),
                 new Amount(amount.getNumber(), amount.getCurrency()), description);
     }
-
+    
+    
     /**
-     * Compares two Expenses so they are sortable by date.
+     * Comparator used to sort Expenses.
+     * 
+     * @author pkuczera
      *
-     * @param another   The Expense to compare to.
-     * @return          An int used by Collections to sort multiple Expenses by date.
      */
-    @Override
-    public int compareTo(Expense another) {
-        return date.compareTo(another.date);
-    }
+    @SuppressWarnings("rawtypes")
+	static class ExpenseComparator implements Comparator {
+		@Override
+		public int compare(Object lhs, Object rhs) {
+			if(!(lhs instanceof Expense) || !(rhs instanceof Expense)) 
+				throw new ClassCastException();
+			Expense e1 = (Expense)lhs;
+			Expense e2 = (Expense)rhs;
+			
+			return (e1.getId() > e2.getId()) ? 1 : -1;
+				}
+		}
+    
 }
