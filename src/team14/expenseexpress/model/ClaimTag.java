@@ -9,6 +9,15 @@ public class ClaimTag{
     private String name;
     private static final String DEFAULT_NAME = "derp";
 
+    
+    public boolean equals(Object o){
+    	return o instanceof ClaimTag && name.equals(((ClaimTag) o).getName());
+    }
+    
+    public int hashCode(){
+    	return name.hashCode();
+    }
+    
     /**
      * Empty private constructor.
      */
