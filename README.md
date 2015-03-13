@@ -1,12 +1,18 @@
 Mar 13:
- Note in order to properly modify the .classpath in your local repo, do this:\
+ Note in order to properly modify the .classpath in your local repo, do this:
  
- git pull   (shold get a message telling you to commit or stash .classpath)\
- git stash --patch    (this is an interactive mode)\
-     In Interactive Mode: You want to add only .classpath to the stash...\
-                          Y : will add current chunk\
-                          n : will skip current chunk\
-                          q : will quit, skipping rest of chunks.\
+ git pull   (shold get a message telling you to commit or stash .classpath)
+ 
+ git stash --patch    (this is an interactive mode
+ 
+     In Interactive Mode: You want to add only .classpath to the stash...
+     
+                          Y : will add current chunk
+                          
+                          n : will skip current chunk
+                          
+                          q : will quit, skipping rest of chunks.
+                          
  git pull   (your .classpath should be properly set, gson files will now be accessed locally thru the plugins               folder)
  
 
