@@ -24,9 +24,6 @@ import android.content.Context;
  * - Load only local claims made by the user (for claiming)
  * - Load only local claims not made by the user (for approving) 
  * 
- * @author Team14
- * @date March 10, 2015
- * @version 0.2
  */
 public class FileHelper {
 	
@@ -49,12 +46,14 @@ public class FileHelper {
 		return fileHelper;
 	}
 	
+	/*
 	public static FileHelper getHelper() {
 		if(fileHelper == null) {
 			throw new RuntimeException("Missing instance of FileHelper");
 		}
 		return fileHelper;
 	}
+	*/
 	
 	private void save(Object data, String filename) {
 		Gson gson = new Gson();

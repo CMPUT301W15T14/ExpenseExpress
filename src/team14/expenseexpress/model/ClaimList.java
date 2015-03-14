@@ -42,5 +42,9 @@ public class ClaimList {
 	public void sort() {
 		Collections.sort(claimList, new Claim.ClaimComparator());
 	}
+
+	public void clear() {
+		claimList.clear();
+	}
 	
 }

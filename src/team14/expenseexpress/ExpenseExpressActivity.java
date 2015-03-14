@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 public abstract class ExpenseExpressActivity extends Activity {
-
 	
 	
 	@Override
