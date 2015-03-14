@@ -29,20 +29,26 @@ public class Claim {
     private ArrayList<ApproverComment> approverComments;
     
     private long claimId;
+    private long lastSave;
     
     public Claim() {
     	GregorianCalendar calendar = (GregorianCalendar) Calendar.getInstance();
     	this.setStartDate(calendar);
 	    this.setEndDate(calendar);
-	    this.claimId = generateClaimId();
+	    this.claimId = generateCurrentTime();
+	    this.lastSave = generateCurrentTime();
     }
 
+    public void setLastSave() {
+    	this.lastSave = generateCurrentTime();
+    }
+    
     /**
      * Obtains a unique expense id based off of real time in milliseconds.
      * 
      * @return The claim id as a long.
      */
-    private long generateClaimId(){
+    private long generateCurrentTime(){
     	return System.currentTimeMillis();
     }
     
