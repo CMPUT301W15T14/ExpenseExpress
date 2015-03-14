@@ -90,7 +90,7 @@ public class Claim {
      * @param expense
      */
     public void addExpense(Expense expense) {
-        this.expenseList.addExpense(expense);
+        this.expenseList.add(expense);
     }
 
     /**
