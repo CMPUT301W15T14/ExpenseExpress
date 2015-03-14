@@ -26,11 +26,11 @@ public class ClaimList {
 		return this.claimList;
 	}
 	
-	public void addClaim(Claim newClaim) {
+	public void add(Claim newClaim) {
 		this.claimList.add(newClaim);
 	}
 	
-	public void removeClaim(Claim oldClaim) {
+	public void remove(Claim oldClaim) {
 		this.claimList.remove(oldClaim);
 	}
 	
@@ -46,5 +46,7 @@ public class ClaimList {
 	public void clear() {
 		claimList.clear();
 	}
+
+
 	
 }
