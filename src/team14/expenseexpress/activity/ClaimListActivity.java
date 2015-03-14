@@ -26,10 +26,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import team14.expenseexpress.App;
+
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
+import team14.expenseexpress.controller.ClaimListController;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.User;
 
@@ -40,6 +42,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     private EditText editText_tagSearch;
     private ArrayList<ClaimTag> claimTags;
     private ArrayList<ClaimTag> chosenTags;
+    private ArrayList<Claim> claimList;
+    private ClaimListController cListController;
     private ArrayList<Claim> claims;
     private TagListDialogFragment.TagsListAdapter tagsListAdapter;
     private LayoutInflater inflater;
@@ -49,11 +53,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_list);
-        claimTags = app.getTags();
         chosenTags = new ArrayList<ClaimTag>();
         inflater = LayoutInflater.from(this);
         
-        // TODO 
+        // TODO
+        cListController = ClaimListController.getInstance();
+        cListController.initialize(this);
+        claimList = ClaimList.getInstance().getClaims();
     }
     
     @SuppressLint("ValidFragment")
@@ -240,6 +246,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		 }
 		 return true;
     }
+    
     
     private void updateTagsListAdapter(){
     	tagsListAdapter.notifyDataSetChanged();
