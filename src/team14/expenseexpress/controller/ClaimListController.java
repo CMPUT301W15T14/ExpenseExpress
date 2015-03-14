@@ -8,7 +8,6 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.User;
 import team14.expenseexpress.util.ElasticSearchHelper;
-import team14.expenseexpress.util.FileHelper;
 import team14.expenseexpress.util.LocalFileHelper;
 /**
  * Singleton controller.
@@ -35,7 +34,7 @@ public class ClaimListController {
 	
 	}
 	
-	public ClaimListController getInstance(){
+	public static ClaimListController getInstance(){
 		if (instance == null){
 			instance = new ClaimListController();
 		}
@@ -49,6 +48,15 @@ public class ClaimListController {
 		initializeClaimList();
 	}
 
+	
+	public void addClaim(Claim claim){
+		claimList.add(claim);
+	}
+	
+	public void removeClaim(Claim claim){
+		claimList.remove(claim);
+	}
+	
 	private void initializeClaimList() {
 		claimList = ClaimList.getInstance();
 		claimList.clear();
@@ -60,7 +68,13 @@ public class ClaimListController {
 	private void merge(List<Claim> localClaims, List<Claim> remoteClaims) {
 		// TODO merge the two lists.
 		List<Claim> mergedList = new ArrayList<Claim>(localClaims);
-		
+		for (int i = 0; i < remoteClaims.size(); i++){
+			Claim remoteClaim = remoteClaims.get(i);
+			if (mergedList.contains(remoteClaim)){
+				mergedList.remove(remoteClaim);
+			}
+			mergedList.add(remoteClaims.get(i));
+		}
 	}
 
 	private List<Claim> loadRemoteClaims() {
