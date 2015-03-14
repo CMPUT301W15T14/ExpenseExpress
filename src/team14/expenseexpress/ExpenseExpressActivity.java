@@ -8,17 +8,11 @@ import android.widget.Toast;
 
 public abstract class ExpenseExpressActivity extends Activity {
 
-	protected App app;
-	protected User user;
-	protected int mode;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		app = (App) getApplication();
-		user = app.getUser();
-		mode = app.getMode();
 	}
 	
 	protected void toast(CharSequence message){

@@ -4,11 +4,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ClaimList {
+	
+	// Singleton, to persist across Activities
+	private static ClaimList instance;
+	
+	private ClaimList(){
+		claimList = new ArrayList<Claim>();
+	}
+	
+	public static ClaimList getInstance(){
+		if (instance == null){
+			instance = new ClaimList();
+		}
+		return instance;
+	}
+	
 	private ArrayList<Claim> claimList = null;
 	
-	public ClaimList() {
-		this.claimList = new ArrayList<Claim>();
-	}
 	
 	public ArrayList<Claim> getClaims() {
 		return this.claimList;
