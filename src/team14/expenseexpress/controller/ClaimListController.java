@@ -42,6 +42,7 @@ public class ClaimListController {
 		return instance;
 	}
 	
+
 	private void setSelectedClaim (Claim claim){
 			selectedClaim = claim;
 		
@@ -49,12 +50,12 @@ public class ClaimListController {
 	public static Claim getSelectedClaim(){
 		return selectedClaim;
 	}
+
 	public void initialize(Context context){
 		this.context = context;
 		this.user = User.getInstance();
 		initializeClaimList();
 	}
-
 	
 	public void addClaim(Claim claim){
 		claimList.add(claim);
