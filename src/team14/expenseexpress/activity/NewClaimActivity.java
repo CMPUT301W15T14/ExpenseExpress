@@ -2,6 +2,7 @@ package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.R.layout;
@@ -25,6 +26,7 @@ public class NewClaimActivity extends Activity {
 	
 	private static EditText StartDateEdit;
 	private static EditText EndDateEdit;
+	private static GregorianCalendar startDate;  
 	private static boolean Start;
 	
 	@Override
@@ -70,6 +72,7 @@ public class NewClaimActivity extends Activity {
 			} else {
 				EndDateEdit.setText(day + "/" + (month + 1) + "/" + year);
 			}
+			startDate = new GregorianCalendar(year, month, day);
 		}
 	}
 	private void set_on_click() {
@@ -94,10 +97,9 @@ public class NewClaimActivity extends Activity {
 		ArrayList<Claim> claimList = ClaimList.getInstance().getClaims();
 		Claim claim = new Claim();
 		EditText nameView = (EditText) findViewById(R.id.newClaimNameText);
-		EditText StartDateView = (EditText) findViewById(R.id.tempStartDateTextfield);
-		//EditText EndDateView = (EditText) findViewById(R.id.tempEndDateTextField);
 		claim.setName(nameView.getText().toString());
-		claim.setStartDate(StartDateView.getText().toString());
+		claim.setStartDate(startDate);
+		claimList.add(claim);
 		Intent intent = new Intent(NewClaimActivity.this, ClaimListActivity.class);
 		startActivity(intent);
 		finish();
