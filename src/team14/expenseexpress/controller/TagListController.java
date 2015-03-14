@@ -28,13 +28,16 @@ public class TagListController {
 	
 	public void addTag(ClaimTag tag){
 		tagList.add(tag);
+		tagList.save();
 	}
 	
 	public void removeTag(ClaimTag tag){
 		tagList.remove(tag);
+		tagList.save();
 	}
 	
 	public void setTagName(ClaimTag tag, String name){
 		tag.setName(name);
+		tagList.save();
 	}
 }

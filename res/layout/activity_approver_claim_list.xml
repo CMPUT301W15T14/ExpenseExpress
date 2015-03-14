@@ -10,7 +10,7 @@
     tools:context=".ApproverClaimLIstActivity" >
 
     <ListView
-        android:id="@+id/currentTagsList"
+        android:id="@+id/ExpenseList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -23,7 +23,7 @@
         android:id="@+id/approverClaimTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/currentTagsList"
+        android:layout_alignLeft="@+id/ExpenseList"
         android:layout_alignParentTop="true"
         android:text="Claims Pending Approval"
         android:textColor="@color/mainYellow"

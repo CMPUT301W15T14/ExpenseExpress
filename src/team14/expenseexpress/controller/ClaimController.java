@@ -7,8 +7,7 @@ import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.model.Claim;
 
 public class ClaimController {
-	private ArrayList<Claim> localClaims;
-	private ArrayList<Claim> remoteClaims;
+	
 	
 	//Singleton
 	private ExpenseExpressActivity activity;	
@@ -31,9 +30,6 @@ public class ClaimController {
 		return instance;
 	}
 	
-	private Claim editClaim(Claim claim){ //doesn't feel right...
-		return ClaimList.getInstance().get(ClaimList.getInstance().indexOf(claim));
-	}
 	
 	
 	private void sortClaimsByDate(){
