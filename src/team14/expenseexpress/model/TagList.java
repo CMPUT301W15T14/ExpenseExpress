@@ -40,4 +40,9 @@ public class TagList {
 	public void remove(ClaimTag tag){
 		tags.remove(tag);
 	}
+	
+	public void save(){
+		LocalFileHelper helper = LocalFileHelper.getInstance(context);
+		helper.saveTags(tags);
+	}
 }
