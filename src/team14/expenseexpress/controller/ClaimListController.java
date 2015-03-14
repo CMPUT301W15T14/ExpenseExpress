@@ -27,7 +27,7 @@ public class ClaimListController {
 	private Context context;
 	private ClaimList claimList;
 	private User user;
-	private Claim selectedClaim;
+	private static Claim selectedClaim;
 	
 	// singleton
 	private static ClaimListController instance;
@@ -46,7 +46,7 @@ public class ClaimListController {
 			selectedClaim = claim;
 		
 	}
-	public Claim getSelectedClaim(){
+	public static Claim getSelectedClaim(){
 		return selectedClaim;
 	}
 	public void initialize(Context context){

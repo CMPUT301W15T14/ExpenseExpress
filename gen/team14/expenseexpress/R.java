@@ -37,6 +37,7 @@ public final class R {
     }
     public static final class id {
         public static final int DestinationListView=0x7f0a0003;
+        public static final int ExpenseList=0x7f0a0013;
         public static final int action_settings=0x7f0a0059;
         public static final int addDestinationTextField=0x7f0a000d;
         public static final int addDestinationTitle=0x7f0a000b;
@@ -71,7 +72,6 @@ public final class R {
         public static final int claimNameTitles=0x7f0a0032;
         public static final int claimantButton=0x7f0a001d;
         public static final int claimsDetailTitle=0x7f0a0020;
-        public static final int currentTagsList=0x7f0a0013;
         public static final int descriptionField=0x7f0a003b;
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a001e;
@@ -142,12 +142,11 @@ public final class R {
         public static final int activity_claims_expense_list=0x7f03000b;
         public static final int activity_expense=0x7f03000c;
         public static final int activity_expense_details=0x7f03000d;
-        public static final int activity_expense_list=0x7f03000e;
-        public static final int activity_expense_receipt=0x7f03000f;
-        public static final int activity_login=0x7f030010;
-        public static final int activity_main=0x7f030011;
-        public static final int activity_tags=0x7f030012;
-        public static final int activity_view_status=0x7f030013;
+        public static final int activity_expense_receipt=0x7f03000e;
+        public static final int activity_login=0x7f03000f;
+        public static final int activity_main=0x7f030010;
+        public static final int activity_tags=0x7f030011;
+        public static final int activity_view_status=0x7f030012;
     }
     public static final class menu {
         public static final int add_claim=0x7f090000;

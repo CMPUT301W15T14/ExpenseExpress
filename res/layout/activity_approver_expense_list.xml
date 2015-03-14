@@ -30,7 +30,7 @@
         android:textColor="@color/mainGreen" />
 
     <ListView
-        android:id="@+id/currentTagsList"
+        android:id="@+id/ExpenseList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/expenseListApproveReturnButton"
