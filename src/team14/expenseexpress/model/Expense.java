@@ -16,6 +16,7 @@ public class Expense implements Cloneable {
     private Amount amount;
     private String description;
     private Receipt receipt;
+    private String name;
 
     private long expenseId;
     
@@ -123,7 +124,8 @@ public class Expense implements Cloneable {
      * @param amount        Intended for a shallow copy of the Amount object.
      * @param description   The description as a String.
      */
-    private Expense(String category, GregorianCalendar date, Amount amount, String description){
+    private Expense(String name,String category, GregorianCalendar date, Amount amount, String description){
+    	this.name = name
         this.category = category;
         this.expenseDate = date;
         this.amount = amount;
@@ -137,7 +139,7 @@ public class Expense implements Cloneable {
      */
     @Override
     public Expense clone(){
-        return new Expense(category, (GregorianCalendar) expenseDate.clone(),
+        return new Expense(name ,category, (GregorianCalendar) expenseDate.clone(),
                 new Amount(amount.getNumber(), amount.getCurrency()), description);
     }
     
@@ -160,5 +162,11 @@ public class Expense implements Cloneable {
 			return (e1.getId() > e2.getId()) ? 1 : -1;
 				}
 		}
+
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
     
 }

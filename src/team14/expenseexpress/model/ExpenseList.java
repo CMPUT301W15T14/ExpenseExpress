@@ -26,7 +26,9 @@ public class ExpenseList {
 	public int size() {
 		return this.expenseList.size();
 	}
-	
+	public Expense get(int position){
+		return this.expenseList.get(position);
+	}
 	@SuppressWarnings("unchecked")
 	public void sort() {
 		Collections.sort(expenseList,new Expense.ExpenseComparator());
