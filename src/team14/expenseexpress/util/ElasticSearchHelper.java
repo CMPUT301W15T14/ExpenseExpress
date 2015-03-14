@@ -10,13 +10,13 @@ import team14.expenseexpress.model.User;
 
 public class ElasticSearchHelper {
     private Context context;
-    private FileHelper fh;
+    private LocalFileHelper fh;
     
     private static ElasticSearchHelper instance;
     
     private ElasticSearchHelper(Context context){
     	this.context = context;
-    	this.fh = FileHelper.getInstance(context);
+    	this.fh = LocalFileHelper.getInstance(context);
     }
     
     public static ElasticSearchHelper getInstance(Context context){

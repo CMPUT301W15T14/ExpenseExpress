@@ -17,6 +17,17 @@ public class User {
 	private static final String RESOURCE_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/users/";
     public final String name;
     private String password;
+    
+    private static User instance;
+    public void setInstance(User user){
+    	instance = user;
+    }
+    public User getInstance(){
+    	if (instance == null){
+    		throw new RuntimeException("No instance user defined");
+    	}
+    	return instance;
+    }
 
     public User(String name, String password){
         this.name = name;

@@ -1,4 +1,4 @@
-package team14.expenseexpress.util;
+package team14.expenseexpress.controller;
 
 /**
  * Singleton-like entity for holding claimant vs. approver information.

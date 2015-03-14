@@ -1,6 +1,9 @@
 package team14.expenseexpress.controller;
 
+import java.util.List;
+
 import android.content.Context;
+import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.User;
 import team14.expenseexpress.util.FileHelper;
@@ -19,13 +22,13 @@ import team14.expenseexpress.util.FileHelper;
  * 
  */
 public class ClaimListController {
+	private Context context;
+	private ClaimList claimList;
 	
 	// singleton
 	private static ClaimListController instance;
-	private Context context;
-	
 	private ClaimListController(){
-
+	
 	}
 	
 	public ClaimListController getInstance(){
@@ -35,7 +38,7 @@ public class ClaimListController {
 		return instance;
 	}
 	
-	private ClaimList claimList;
+	
 	
 	public void initialize(Context context){
 		this.context = context;
@@ -45,7 +48,20 @@ public class ClaimListController {
 	private void initializeClaimList() {
 		claimList = ClaimList.getInstance();
 		claimList.clear();
+		FileHelper fileHelper = FileHelper.getInstance(context);
+		switch (Mode.get()){
+		
+		}
+		List<Claim> localClaims = fileHelper.getLocalClaims();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*
 	private static ClaimList claimList = null;

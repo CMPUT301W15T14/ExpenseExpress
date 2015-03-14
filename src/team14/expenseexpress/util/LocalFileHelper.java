@@ -25,7 +25,7 @@ import android.content.Context;
  * - Load only local claims not made by the user (for approving) 
  * 
  */
-public class FileHelper {
+public class LocalFileHelper {
 	
 	private static final String CLAIMS_FILENAME = "claims.ee";
 	private static final String TAGS_FILENAME = "tags.ee";
@@ -33,15 +33,15 @@ public class FileHelper {
 	private Context context;
 	
 	// Singleton
-	private static FileHelper fileHelper;
+	private static LocalFileHelper fileHelper;
 	
-	private FileHelper(Context context){
+	private LocalFileHelper(Context context){
 		this.context = context;
 	}
 	
-	public static FileHelper getInstance(Context context){
+	public static LocalFileHelper getInstance(Context context){
 		if (fileHelper == null){
-			fileHelper = new FileHelper(context);
+			fileHelper = new LocalFileHelper(context);
 		}
 		return fileHelper;
 	}
