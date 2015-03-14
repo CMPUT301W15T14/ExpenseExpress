@@ -8,7 +8,6 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.User;
 import team14.expenseexpress.util.ElasticSearchHelper;
-import team14.expenseexpress.util.FileHelper;
 import team14.expenseexpress.util.LocalFileHelper;
 /**
  * Singleton controller.
