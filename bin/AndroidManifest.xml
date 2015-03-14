@@ -35,6 +35,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ca.ualberta.UI.ClaimListActivity" />
         </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.NewClaimActivity"
+            android:label="@string/title_activity_new_claim" >
+        </activity>
     </application>
 
 </manifest>

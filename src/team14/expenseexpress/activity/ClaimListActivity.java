@@ -33,7 +33,9 @@ import team14.expenseexpress.controller.ClaimListController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
+import team14.expenseexpress.model.TagList;
 import team14.expenseexpress.model.User;
+import team14.expenseexpress.util.LocalFileHelper;
 
 
 
@@ -45,14 +47,16 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     private ArrayList<Claim> claimList;
     private ClaimListController cListController;
     private ArrayList<Claim> claims;
-    private TagListDialogFragment.TagsListAdapter tagsListAdapter;
+    private LocalFileHelper helper;
     private LayoutInflater inflater;
+    private TagListDialogFragment.TagsListAdapter tagsListAdapter;
  
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_list);
+        claimTags = TagList.getInstance(this).get();
         chosenTags = new ArrayList<ClaimTag>();
         inflater = LayoutInflater.from(this);
         
@@ -265,6 +269,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     
     public void onClick_newClaim(View v) {
     	// TODO
+    	startActivity(new Intent(ClaimListActivity.this, NewClaimActivity.class));
     }
     
     public void onClick_searchByTag(View v) {

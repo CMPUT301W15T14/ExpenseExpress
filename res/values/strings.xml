@@ -35,5 +35,6 @@
     </string-array>
 
     <string name="title_activity_expense_list">ExpenseList</string>
+    <string name="title_activity_new_claim">NewClaimActivity</string>
 
 </resources>
