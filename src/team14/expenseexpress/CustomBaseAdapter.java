@@ -47,9 +47,9 @@ public class CustomBaseAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.custom_claim_list, null);
 			holder = new ViewHolder();
-			holder.claim = (TextView) convertView.findViewById(R.id.claimname);
+			holder.claim = (TextView) convertView.findViewById(R.id.expensename);
 			holder.date = (TextView) convertView.findViewById(R.id.date);
-			holder.tags = (TextView) convertView.findViewById(R.id.tags);
+			holder.tags = (TextView) convertView.findViewById(R.id.expensedate);
 
 			convertView.setTag(holder);
 		} else {
