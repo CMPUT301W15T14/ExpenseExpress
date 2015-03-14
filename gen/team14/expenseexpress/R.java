@@ -138,16 +138,16 @@ public final class R {
         public static final int activity_choice=0x7f030007;
         public static final int activity_claim_details=0x7f030008;
         public static final int activity_claim_list=0x7f030009;
-        public static final int activity_claim_list_lol=0x7f03000a;
-        public static final int activity_claims_expense_list=0x7f03000b;
-        public static final int activity_expense=0x7f03000c;
-        public static final int activity_expense_details=0x7f03000d;
-        public static final int activity_expense_receipt=0x7f03000e;
-        public static final int activity_login=0x7f03000f;
-        public static final int activity_main=0x7f030010;
-        public static final int activity_new_claim=0x7f030011;
-        public static final int activity_tags=0x7f030012;
-        public static final int activity_view_status=0x7f030013;
+        public static final int activity_claims_expense_list=0x7f03000a;
+        public static final int activity_expense=0x7f03000b;
+        public static final int activity_expense_details=0x7f03000c;
+        public static final int activity_expense_receipt=0x7f03000d;
+        public static final int activity_login=0x7f03000e;
+        public static final int activity_main=0x7f03000f;
+        public static final int activity_new_claim=0x7f030010;
+        public static final int activity_tags=0x7f030011;
+        public static final int activity_view_status=0x7f030012;
+        public static final int custom_claim_list=0x7f030013;
     }
     public static final class menu {
         public static final int add_claim=0x7f090000;
