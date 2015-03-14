@@ -28,9 +28,12 @@
     <string name="title_activity_approver_claim_list">ApproverClaimLIstActivity</string>
     <string name="title_activity_approver_expense_list">ApproverExpenseListActivity</string>
     <string name="title_activity_approve_return">ApproveReturnActivity</string>
+
     <string-array name="LongClickMenu">
-        <item >Delete</item>
-        <item >Edit</item>
+        <item>Delete</item>
+        <item>Edit</item>
     </string-array>
+
+    <string name="title_activity_expense_list">ExpenseList</string>
 
 </resources>

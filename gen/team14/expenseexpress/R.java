@@ -142,11 +142,12 @@ public final class R {
         public static final int activity_claims_expense_list=0x7f03000b;
         public static final int activity_expense=0x7f03000c;
         public static final int activity_expense_details=0x7f03000d;
-        public static final int activity_expense_receipt=0x7f03000e;
-        public static final int activity_login=0x7f03000f;
-        public static final int activity_main=0x7f030010;
-        public static final int activity_tags=0x7f030011;
-        public static final int activity_view_status=0x7f030012;
+        public static final int activity_expense_list=0x7f03000e;
+        public static final int activity_expense_receipt=0x7f03000f;
+        public static final int activity_login=0x7f030010;
+        public static final int activity_main=0x7f030011;
+        public static final int activity_tags=0x7f030012;
+        public static final int activity_view_status=0x7f030013;
     }
     public static final class menu {
         public static final int add_claim=0x7f090000;
@@ -163,12 +164,13 @@ public final class R {
         public static final int edit_claim=0x7f09000b;
         public static final int expense=0x7f09000c;
         public static final int expense_details=0x7f09000d;
-        public static final int expense_receipt=0x7f09000e;
-        public static final int login=0x7f09000f;
-        public static final int main=0x7f090010;
-        public static final int main1=0x7f090011;
-        public static final int tags=0x7f090012;
-        public static final int view_status=0x7f090013;
+        public static final int expense_list=0x7f09000e;
+        public static final int expense_receipt=0x7f09000f;
+        public static final int login=0x7f090010;
+        public static final int main=0x7f090011;
+        public static final int main1=0x7f090012;
+        public static final int tags=0x7f090013;
+        public static final int view_status=0x7f090014;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;
@@ -188,6 +190,7 @@ public final class R {
         public static final int title_activity_edit_claim=0x7f05000b;
         public static final int title_activity_expense=0x7f05000f;
         public static final int title_activity_expense_details=0x7f050013;
+        public static final int title_activity_expense_list=0x7f050017;
         public static final int title_activity_expense_receipt=0x7f050010;
         public static final int title_activity_login=0x7f050005;
         public static final int title_activity_main=0x7f050000;
