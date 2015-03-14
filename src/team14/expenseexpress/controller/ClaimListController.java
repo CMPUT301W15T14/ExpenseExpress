@@ -41,13 +41,11 @@ public class ClaimListController {
 		return instance;
 	}
 	
-		
 	public void initialize(Context context){
 		this.context = context;
 		this.user = User.getInstance();
 		initializeClaimList();
 	}
-
 	
 	public void addClaim(Claim claim){
 		claimList.add(claim);
