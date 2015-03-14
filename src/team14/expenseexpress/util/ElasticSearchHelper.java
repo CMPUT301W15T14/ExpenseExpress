@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-import team14.expenseexpress.App;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.User;
 

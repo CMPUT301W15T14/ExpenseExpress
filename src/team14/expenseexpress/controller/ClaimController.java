@@ -17,9 +17,6 @@ public class ClaimController {
 	
 	private ClaimController(ExpenseExpressActivity activity){
 		this.activity = activity;
-		//app = (App) activity.getApplication();
-		//localClaims = app.getLocalClaims();
-		//remoteClaims = app.getRemoteClaims();
 		mergeClaims();
 	}
 	

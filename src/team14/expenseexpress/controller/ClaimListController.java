@@ -6,7 +6,9 @@ import android.content.Context;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.User;
+import team14.expenseexpress.util.ElasticSearchHelper;
 import team14.expenseexpress.util.FileHelper;
+import team14.expenseexpress.util.LocalFileHelper;
 /**
  * Singleton controller.
  * 
@@ -24,6 +26,7 @@ import team14.expenseexpress.util.FileHelper;
 public class ClaimListController {
 	private Context context;
 	private ClaimList claimList;
+	private User user;
 	
 	// singleton
 	private static ClaimListController instance;
@@ -42,17 +45,47 @@ public class ClaimListController {
 	
 	public void initialize(Context context){
 		this.context = context;
+		this.user = User.getInstance();
 		initializeClaimList();
 	}
 
 	private void initializeClaimList() {
 		claimList = ClaimList.getInstance();
 		claimList.clear();
-		FileHelper fileHelper = FileHelper.getInstance(context);
-		switch (Mode.get()){
+		List<Claim> localClaims = loadLocalClaims();
+		List<Claim> remoteClaims = loadRemoteClaims();
+		merge(localClaims, remoteClaims);
+	}
+
+	private void merge(List<Claim> localClaims, List<Claim> remoteClaims) {
+		// TODO merge the two lists.
 		
+	}
+
+	private List<Claim> loadRemoteClaims() {
+		ElasticSearchHelper helper = ElasticSearchHelper.getInstance(context);
+		List<Claim> remoteClaims;
+		switch (Mode.get()){
+		case Mode.APPROVER:
+			remoteClaims = helper.getRemoteClaimsForApprover(user);
+			break;
+		case Mode.CLAIMANT:
+			remoteClaims = helper.getRemoteClaimsForClaimant(user);
 		}
-		List<Claim> localClaims = fileHelper.getLocalClaims();
+		return remoteClaims;
+	}
+
+	private List<Claim> loadLocalClaims() {
+		LocalFileHelper fileHelper = LocalFileHelper.getInstance(context);
+		List<Claim> localClaims;
+		switch (Mode.get()){
+		case Mode.APPROVER:
+			localClaims = fileHelper.getLocalClaimsForApprover(user);
+			break;
+		case Mode.CLAIMANT:
+			localClaims = fileHelper.getLocalClaimsForClaimant(user);
+		}
+		return localClaims;
 	}
 	
 	

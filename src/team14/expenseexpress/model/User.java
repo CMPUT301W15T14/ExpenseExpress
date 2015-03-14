@@ -18,16 +18,19 @@ public class User {
     public final String name;
     private String password;
     
+    // Static instance field added (it won't be serialized by Gson)--------------------
     private static User instance;
-    public void setInstance(User user){
+    public static void setInstance(User user){
     	instance = user;
     }
-    public User getInstance(){
+    public static User getInstance(){
     	if (instance == null){
     		throw new RuntimeException("No instance user defined");
     	}
+    	
     	return instance;
     }
+    // ---------------------------------------------------------------------------------
 
     public User(String name, String password){
         this.name = name;
@@ -52,4 +55,5 @@ public class User {
 	public int hashCode(){
 		return name.hashCode();
 	}
+
 }
