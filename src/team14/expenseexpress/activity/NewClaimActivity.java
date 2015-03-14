@@ -75,6 +75,7 @@ public class NewClaimActivity extends Activity {
 			startDate = new GregorianCalendar(year, month, day);
 		}
 	}
+	@SuppressWarnings("unused")
 	private void set_on_click() {
 		StartDateEdit.setOnClickListener(new View.OnClickListener() {
 			@Override
