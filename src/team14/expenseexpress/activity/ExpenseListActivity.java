@@ -3,6 +3,8 @@ package team14.expenseexpress.activity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.R.layout;
 import team14.expenseexpress.R.menu;
+import team14.expenseexpress.controller.ClaimListController;
+import team14.expenseexpress.model.Claim;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -15,18 +17,10 @@ public class ExpenseListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_expense_list);
-		// Show the Up button in the action bar.
-		setupActionBar();
+		Claim claim = ClaimListController.getSelectedClaim();
+		
 	}
 
-	/**
-	 * Set up the {@link android.app.ActionBar}.
-	 */
-	private void setupActionBar() {
-
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
