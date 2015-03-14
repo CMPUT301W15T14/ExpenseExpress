@@ -106,7 +106,7 @@
         android:id="@+id/claimListofCurrency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/claimListApproversTitle"
+        android:layout_above="@+id/claimListApproversTitle"
         android:layout_alignLeft="@+id/claimDetailsCurrencyTitle"
         android:layout_below="@+id/claimDetailsDestinationsTitle" >
 
@@ -116,31 +116,21 @@
         android:id="@+id/claimListofApprovers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/claimDetailsStatus"
+        android:layout_alignLeft="@+id/claimListofCurrency"
         android:layout_below="@+id/claimListofCurrency" >
+
     </ListView>
 
     <ListView
         android:id="@+id/claimListofDestinations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/claimListofApprovers"
+        android:layout_above="@+id/claimListApproversTitle"
         android:layout_alignLeft="@+id/claimDetailsStatusTitle"
         android:layout_below="@+id/claimDetailsDestinationsTitle"
         android:layout_toLeftOf="@+id/claimListofCurrency" >
 
     </ListView>
-
-    <TextView
-        android:id="@+id/claimListApproversTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="107dp"
-        android:layout_toLeftOf="@+id/claimListofApprovers"
-        android:text="Approvers"
-        android:textColor="@color/mainYellow"
-        android:textSize="3mm" />
 
     <TextView
         android:id="@+id/claimDetailsStartDateTitle"
@@ -163,5 +153,16 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/mainYellow"
         android:textSize="3.5mm" />
+
+    <TextView
+        android:id="@+id/claimListApproversTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/claimsDetailTitle"
+        android:layout_marginBottom="86dp"
+        android:text="Approvers"
+        android:textColor="@color/mainYellow"
+        android:textSize="3mm" />
 
 </RelativeLayout>
