@@ -19,7 +19,7 @@ public class ExpenseListController {
 	
 	}
 	public void addExpense(Expense expense){
-		expenseList.add(expense);
+		expenseList.addExpense(expense);
 	}
 	
 	public void removeExpense(Expense expense){
