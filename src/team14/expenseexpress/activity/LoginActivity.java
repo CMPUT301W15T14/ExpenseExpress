@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 
 
-import team14.expenseexpress.App;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
+import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.User;
 
 /*
@@ -65,14 +65,14 @@ public class LoginActivity extends ExpenseExpressActivity {
         .setNegativeButton("Approver", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				app.setMode(App.APPROVER_MODE);
+				Mode.set(Mode.APPROVER);
 			    startClaimsListActivity();
 			}
 		})
 		.setPositiveButton("Claimant", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				app.setMode(App.CLAIMANT_MODE);
+				Mode.set(Mode.CLAIMANT);
 				startClaimsListActivity();
 			}
 		}).setTitle(editText_name.getText().toString());
@@ -88,7 +88,7 @@ public class LoginActivity extends ExpenseExpressActivity {
 			return;
 		}
     	User user = new User(name);
-    	app.setUser(user);
+    	User.setInstance(user);
     	confirmNameDialog.setTitle(editText_name.getText().toString());
     	confirmNameDialog.show();
     }
