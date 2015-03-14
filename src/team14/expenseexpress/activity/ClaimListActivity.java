@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
+import team14.expenseexpress.CustomBaseAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimListController;
@@ -50,6 +52,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     private LocalFileHelper helper;
     private LayoutInflater inflater;
     private TagListDialogFragment.TagsListAdapter tagsListAdapter;
+    private CustomBaseAdapter adapter;
  
     
     @Override
@@ -64,6 +67,11 @@ public class ClaimListActivity extends ExpenseExpressActivity {
         cListController = ClaimListController.getInstance();
         cListController.initialize(this);
         claimList = ClaimList.getInstance().getClaims();
+        
+        final ListView lv1 = (ListView) findViewById(R.id.claimListView);
+		CustomBaseAdapter adapter = new CustomBaseAdapter(this, claimList);
+		lv1.setAdapter(adapter);
+		registerForContextMenu(lv1);
     }
     
     @SuppressLint("ValidFragment")
@@ -210,8 +218,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		 
 		 if (menuItemName.equals("Delete")) {
 			 claims.remove(claim);
-			 finish();
-			 startActivity(getIntent());
+			 adapter.notifyDataSetChanged();
 		 } else if (menuItemName.equals("Edit")) {
 			 if (claim.getStatus().equals("submitted") || (claim.getStatus().equals("approved"))) {
 				 Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT).show();

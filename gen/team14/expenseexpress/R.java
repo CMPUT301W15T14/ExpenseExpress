@@ -38,7 +38,7 @@ public final class R {
     public static final class id {
         public static final int DestinationListView=0x7f0a0003;
         public static final int ExpenseList=0x7f0a0013;
-        public static final int action_settings=0x7f0a0059;
+        public static final int action_settings=0x7f0a005c;
         public static final int addDestinationTextField=0x7f0a000d;
         public static final int addDestinationTitle=0x7f0a000b;
         public static final int addExpenseButton=0x7f0a0034;
@@ -71,7 +71,9 @@ public final class R {
         public static final int claimListofDestinations=0x7f0a002c;
         public static final int claimNameTitles=0x7f0a0032;
         public static final int claimantButton=0x7f0a001d;
+        public static final int claimname=0x7f0a005a;
         public static final int claimsDetailTitle=0x7f0a0020;
+        public static final int date=0x7f0a0059;
         public static final int descriptionField=0x7f0a003b;
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a001e;
@@ -121,6 +123,7 @@ public final class R {
         public static final int submittedApproved=0x7f0a0054;
         public static final int tagListView=0x7f0a0006;
         public static final int tagTextField=0x7f0a002d;
+        public static final int tags=0x7f0a005b;
         public static final int tagsTitle=0x7f0a0007;
         public static final int tempEndDateTextField=0x7f0a0009;
         public static final int tempStartDateTextfield=0x7f0a0008;

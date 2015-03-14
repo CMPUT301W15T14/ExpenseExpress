@@ -9,6 +9,8 @@
 package team14.expenseexpress;
 
 import java.util.ArrayList;
+
+import team14.expenseexpress.model.Claim;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -43,20 +45,20 @@ public class CustomBaseAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.customviewlist, null);
+			convertView = mInflater.inflate(R.layout.custom_claim_list, null);
 			holder = new ViewHolder();
-			holder.claim = (TextView) convertView.findViewById(R.id.customclaim);
-			holder.date = (TextView) convertView.findViewById(R.id.customdate);
-			holder.status = (TextView) convertView.findViewById(R.id.customstatus);
+			holder.claim = (TextView) convertView.findViewById(R.id.claimname);
+			holder.date = (TextView) convertView.findViewById(R.id.date);
+			holder.tags = (TextView) convertView.findViewById(R.id.tags);
 
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		
-		holder.claim.setText(ClaimList.get(position).getClaim());
-		holder.date.setText(ClaimList.get(position).getDateRange());
-		holder.status.setText(ClaimList.get(position).getStatus());
+		holder.claim.setText(ClaimList.get(position).getName());
+		holder.date.setText(ClaimList.get(position).getStartDateString());
+		holder.tags.setText(ClaimList.get(position).getStatus());
 		
 		return convertView;
 	}
@@ -64,6 +66,6 @@ public class CustomBaseAdapter extends BaseAdapter {
 	static class ViewHolder {
 		TextView claim;
 		TextView date;
-		TextView status;
+		TextView tags;
 	}
 }

@@ -23,6 +23,7 @@ public class Claim {
     private GregorianCalendar endDate;
     private ArrayList<Amount> amounts;
     private String status;
+    private String name;
     private User approver; // the approver responsible for the most recent change in status
     private User claimant;
     private ArrayList<ApproverComment> approverComments;
@@ -43,6 +44,14 @@ public class Claim {
      */
     private long generateClaimId(){
     	return System.currentTimeMillis();
+    }
+    
+    public void setName(String name) {
+    	this.name = name;
+    }
+    
+    public String getName() {
+    	return this.name;
     }
     
     public long getId(){
