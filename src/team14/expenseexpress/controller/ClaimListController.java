@@ -1,5 +1,6 @@
 package team14.expenseexpress.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -41,8 +42,7 @@ public class ClaimListController {
 		return instance;
 	}
 	
-	
-	
+		
 	public void initialize(Context context){
 		this.context = context;
 		this.user = User.getInstance();
@@ -59,6 +59,7 @@ public class ClaimListController {
 
 	private void merge(List<Claim> localClaims, List<Claim> remoteClaims) {
 		// TODO merge the two lists.
+		List<Claim> mergedList = new ArrayList<Claim>(localClaims);
 		
 	}
 
@@ -87,11 +88,6 @@ public class ClaimListController {
 		}
 		return localClaims;
 	}
-	
-	
-	
-	
-	
 	
 	
 	
