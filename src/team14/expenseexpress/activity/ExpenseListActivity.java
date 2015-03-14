@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
 public class ExpenseListActivity extends Activity {
@@ -16,8 +18,12 @@ public class ExpenseListActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_expense_list);
+		setContentView(R.layout.activity_claims_expense_list);
 		Claim claim = ClaimListController.getSelectedClaim();
+		TextView claimNameView = (TextView) findViewById(R.id.claimNameTitles);//get name view
+		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList); //get listview
+		
+		
 		
 	}
 

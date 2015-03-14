@@ -81,7 +81,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 					showNewTagDialog();
 				}
 			});
-			((ListView) v.findViewById(R.id.currentTagsList)).setAdapter(tagsListAdapter);
+			((ListView) v.findViewById(R.id.ExpenseList)).setAdapter(tagsListAdapter);
 			return v;
 		}
 		
