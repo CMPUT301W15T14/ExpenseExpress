@@ -61,5 +61,10 @@ public class User {
 	public int hashCode(){
 		return name.hashCode();
 	}
+	
+	// TODO: part 5
+	public String getPassword() {
+		return null;
+	}
 
 }
