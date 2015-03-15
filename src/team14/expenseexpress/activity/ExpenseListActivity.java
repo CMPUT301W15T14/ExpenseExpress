@@ -58,7 +58,14 @@ public class ExpenseListActivity extends Activity {
 							ClaimController.removeExpense(claim, expense);				//delete listener								
 						}										
 					});
-				
+				adb.setNeutralButton("Delete", new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Expense expense = expenseList.get(finalPosition);
+						
+						ClaimController.removeExpense(claim, expense);				//delete listener								
+					}										
+				});
 				adb.setNegativeButton("Cancel", new OnClickListener() {					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
