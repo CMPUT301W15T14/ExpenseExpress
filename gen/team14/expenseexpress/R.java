@@ -75,12 +75,17 @@ public final class R {
         public static final int claimsDetailTitle=0x7f0a0020;
         public static final int completeCheck=0x7f0a0049;
         public static final int date=0x7f0a0059;
+<<<<<<< Updated upstream
+=======
+        public static final int descriptionField=0x7f0a003b;
+>>>>>>> Stashed changes
         public static final int destinationName=0x7f0a005e;
         public static final int destinationReason=0x7f0a005f;
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a001e;
         public static final int detailsName=0x7f0a0027;
         public static final int detailsStartDate=0x7f0a0021;
+<<<<<<< Updated upstream
         public static final int editDescription=0x7f0a004c;
         public static final int editExpense=0x7f0a0043;
         public static final int editExpenseName=0x7f0a0045;
@@ -102,6 +107,24 @@ public final class R {
         public static final int expenseDetailsINCTitle=0x7f0a0040;
         public static final int expenseDetailsReceiptButton=0x7f0a0042;
         public static final int expenseDetailsTitle=0x7f0a0035;
+=======
+        public static final int expenseCost=0x7f0a0061;
+        public static final int expenseDateField=0x7f0a0036;
+        public static final int expenseDetailsAmount=0x7f0a0047;
+        public static final int expenseDetailsAmountTitle=0x7f0a0042;
+        public static final int expenseDetailsCategory=0x7f0a0046;
+        public static final int expenseDetailsCategoryTitle=0x7f0a0041;
+        public static final int expenseDetailsCurrency=0x7f0a0048;
+        public static final int expenseDetailsCurrencyTitle=0x7f0a0043;
+        public static final int expenseDetailsDate=0x7f0a0045;
+        public static final int expenseDetailsDateTitle=0x7f0a0040;
+        public static final int expenseDetailsDescription=0x7f0a0049;
+        public static final int expenseDetailsDescriptionTitle=0x7f0a0044;
+        public static final int expenseDetailsINC=0x7f0a004b;
+        public static final int expenseDetailsINCTitle=0x7f0a004a;
+        public static final int expenseDetailsReceiptButton=0x7f0a004c;
+        public static final int expenseDetailsTitle=0x7f0a003f;
+>>>>>>> Stashed changes
         public static final int expenseItem=0x7f0a0060;
         public static final int expenseListApproveReturnButton=0x7f0a001b;
         public static final int expenseName=0x7f0a0044;
