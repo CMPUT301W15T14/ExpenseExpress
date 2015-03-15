@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import team14.expenseexpress.CustomBaseAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
-import team14.expenseexpress.controller.ClaimListController;
+import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
@@ -49,7 +49,12 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     private ArrayList<ClaimTag> claimTags;
     private ArrayList<ClaimTag> chosenTags;
     private ArrayList<Claim> claimList;
+<<<<<<< HEAD
     private ClaimListController cListController;
+=======
+    private ClaimController cListController;
+    private ArrayList<Claim> claims;
+>>>>>>> branch 'master' of https://github.com/CMPUT301W15T14/ExpenseExpress.git
     private LocalFileHelper helper;
     private LayoutInflater inflater;
     private TagListDialogFragment.TagsListAdapter tagsListAdapter;
@@ -65,7 +70,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
         inflater = LayoutInflater.from(this);
         
         // TODO
-        cListController = ClaimListController.getInstance();
+        cListController = ClaimController.getInstance();
         cListController.initialize(this);
         claimList = ClaimList.getInstance().getClaims();
         

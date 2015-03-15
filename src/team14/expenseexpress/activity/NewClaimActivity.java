@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 import team14.expenseexpress.R;
 import team14.expenseexpress.R.layout;
 import team14.expenseexpress.R.menu;
-import team14.expenseexpress.controller.ClaimListController;
+import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import android.os.Bundle;
@@ -77,7 +77,7 @@ public class NewClaimActivity extends Activity {
 	}
 	
 	public void addClaim(View v) {
-		ClaimListController cListController = ClaimListController.getInstance();
+		ClaimController cListController = ClaimController.getInstance();
 		cListController.initialize(this);
 		Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
 		ArrayList<Claim> claimList = ClaimList.getInstance().getClaims();

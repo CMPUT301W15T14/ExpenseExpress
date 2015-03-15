@@ -9,7 +9,7 @@ import team14.expenseexpress.R;
 import team14.expenseexpress.R.layout;
 import team14.expenseexpress.R.menu;
 import team14.expenseexpress.controller.ClaimController;
-import team14.expenseexpress.controller.ClaimListController;
+import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ExpenseList;
@@ -36,7 +36,7 @@ public class ExpenseListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claims_expense_list);
-		final Claim claim = ClaimListController.getSelectedClaim();
+		final Claim claim = ClaimController.getSelectedClaim();
 		TextView claimNameView = (TextView) findViewById(R.id.claimNameTitles);
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList); 
 		claimNameView.setText(claim.getName());

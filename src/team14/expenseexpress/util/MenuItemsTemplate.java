@@ -1,5 +1,5 @@
 package team14.expenseexpress.util;
-
+/*
 //------------TEMPLATE!!!-----------------\\
  //MUST ADD TO MENU XML FOR EACH ACTIVITY\\
 import team14.expenseexpress.model.User;
@@ -25,3 +25,4 @@ public class MenuItemsTemplate extends Activity{
 		startActivity(intent);
 	}
 }
+*/
