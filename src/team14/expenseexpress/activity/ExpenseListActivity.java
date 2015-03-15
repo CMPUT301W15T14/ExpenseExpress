@@ -106,7 +106,7 @@ public class ExpenseListActivity extends Activity {
 	}
 	
     public void onClick_newExpense(View v) {
-    	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
+    	startActivity(new Intent(ExpenseListActivity.this, ExpenseListActivity.class));
     }
 	
 }

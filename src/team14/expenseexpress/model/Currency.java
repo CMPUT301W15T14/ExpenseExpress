@@ -6,11 +6,21 @@ package team14.expenseexpress.model;
  * @since   2015-02-19
  */
 public enum Currency {
-    CAD,
-    USD,
-    EUR,
-    GBP,
-    CHF,
-    JPY,
-    CNY
+    CAD ("CAD"),
+    USD ("USD"),
+    EUR ("EUR"),
+    GBP ("GBP"),
+    CHF ("CHF"),
+    JPY ("JPY"),
+    CNY ("CNY");
+    
+    private String name;
+    
+    Currency(String name){
+    	this.name = name;
+    }
+    
+    public String toString(){
+    	return name;
+    }
 }

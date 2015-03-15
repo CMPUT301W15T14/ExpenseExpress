@@ -1,21 +1,16 @@
 package team14.expenseexpress.activity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ExpenseController;
-import team14.expenseexpress.model.Expense;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -50,8 +45,8 @@ public class ExpenseEditActivity extends Activity {
 		expenseMonth = calendar.get(GregorianCalendar.MONTH);
 		expenseDay = calendar.get(GregorianCalendar.DAY_OF_MONTH);
 		showDate();
-		
-	}
+}
+
 	//*******************************************************************************
 	//http://www.tutorialspoint.com/android/android_datepicker_control.htm   
 	//All DatePicker code was implemented from this source, accessed Feb.1,2015
@@ -79,7 +74,7 @@ public class ExpenseEditActivity extends Activity {
 			expenseDay=day;
 			Calendar date = Calendar.getInstance();
 			date.set(year,month,day);
-			currentExpense.setExpenseDate(date);
+			expenseController.setExpenseDate((GregorianCalendar)date);
 			showDate();
 		}
 	};
@@ -94,6 +89,7 @@ public class ExpenseEditActivity extends Activity {
 		Toast.makeText(this,"Feature Unavailable",Toast.LENGTH_SHORT).show();
 	}
 	
+	/*
 	public void saveExpense(View view) {
 		Toast.makeText(this, "Expense Saved", Toast.LENGTH_SHORT).show();
 		currentExpense.setDescription(editDescriptionText.getEditableText().toString());
@@ -133,3 +129,4 @@ public class ExpenseEditActivity extends Activity {
 		}
 	} */
 }
+

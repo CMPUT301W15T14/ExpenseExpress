@@ -1,10 +1,7 @@
 package team14.expenseexpress.controller;
 
-
-
 import java.util.GregorianCalendar;
 
-import android.app.Activity;
 import android.content.Context;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.Expense;
@@ -48,6 +45,9 @@ public class ExpenseController {
 	public GregorianCalendar getExpenseDate() {
 		return currentExpense.getExpenseDate();
 	}
-
+	
+	public void setExpenseDate(GregorianCalendar calendar) {
+		currentExpense.setExpenseDate(calendar);
+	}
 	
 }

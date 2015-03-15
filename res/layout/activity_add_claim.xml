@@ -58,7 +58,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/tagListView"
         android:layout_marginBottom="58dp"
-        android:onClick="addClaim"
         android:text="Add Tag" />
 
     <ListView
@@ -90,7 +89,7 @@
         android:focusable="false"
         android:hint="Enter Start Date here"
         android:inputType="date"
-        android:onClick="showTruitonDatePickerDialog" >
+        android:onClick="showDatePickerDialog" >
 
         <requestFocus />
     </EditText>
@@ -106,7 +105,7 @@
         android:focusable="false"
         android:hint="Enter End Date Here"
         android:inputType="date"
-        android:onClick="showTruitonDatePickerDialog" />
+        android:onClick="showDatePickerDialog" />
 
     <Button
         android:id="@+id/submitNewClaimHere"

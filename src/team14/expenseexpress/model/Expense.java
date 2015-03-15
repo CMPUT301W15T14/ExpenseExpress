@@ -42,6 +42,10 @@ public class Expense implements Cloneable {
     	return this.expenseDate;
     }
     
+    public void setExpenseDate(GregorianCalendar calendar) {
+    	this.expenseDate = calendar;
+    }
+    
     /**
      * Default constructor, initializes GregorianCalendar and Amount objects.
      */
