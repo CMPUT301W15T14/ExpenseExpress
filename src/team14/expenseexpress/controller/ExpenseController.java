@@ -12,9 +12,9 @@ public class ExpenseController {
 		this.activity = activity;
 	}
 	
-	public static ExpenseController getInstance(ExpenseExpressActivity activity){
+	public static ExpenseController getInstance(){
 		if (instance == null){
-			instance = new ExpenseController(activity);
+			//instance = new ExpenseController();
 		}
 		return instance;
 	}

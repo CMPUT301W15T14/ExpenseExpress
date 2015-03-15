@@ -125,7 +125,7 @@ public class Expense implements Cloneable {
      * @param description   The description as a String.
      */
     private Expense(String name,String category, GregorianCalendar date, Amount amount, String description){
-    	this.name = name
+    	this.name = name;
         this.category = category;
         this.expenseDate = date;
         this.amount = amount;

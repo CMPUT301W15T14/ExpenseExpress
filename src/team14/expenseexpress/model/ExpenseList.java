@@ -15,7 +15,7 @@ public class ExpenseList {
 		return this.expenseList;
 	}
 	
-	public void addExpense(Expense newExpense) {
+	public void add(Expense newExpense) {
 		this.expenseList.add(newExpense);
 	}
 	
