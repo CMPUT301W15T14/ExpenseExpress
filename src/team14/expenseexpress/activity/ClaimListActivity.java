@@ -74,6 +74,39 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		CustomBaseAdapter adapter = new CustomBaseAdapter(this, claimList);
 		lv1.setAdapter(adapter);
 		registerForContextMenu(lv1);
+		lv1.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				
+				Claim claim = (Claim) lv1.getItemAtPosition(position);
+				cListController.setSelectedClaim(claim);
+				Intent intent = new Intent(ClaimListActivity.this, ExpenseListActivity.class);
+				startActivity(intent);
+			}
+        });
+    }
+    
+    @SuppressWarnings("unused")
+	@SuppressLint("ValidFragment")
+   	private class ExpenseListDialogFragment extends DialogFragment{
+       	
+       	
+       	@Override
+       	public Dialog onCreateDialog(Bundle savedInstanceState) {
+       	  Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+       	  // request a window without the title
+       	  dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+       	  return dialog;
+       	}
+       	
+   		@Override
+   		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+   				Bundle savedInstanceState) {
+   			
+   			View v = inflater.inflate(R.layout.activity_claim_details, container, false);
+   			return v;
+   		}
     }
     
     @SuppressLint("ValidFragment")
@@ -104,7 +137,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			((ListView) v.findViewById(R.id.ExpenseList)).setAdapter(tagsListAdapter);
 			return v;
 		}
-		
 
 
 		private class TagsListAdapter extends BaseAdapter{

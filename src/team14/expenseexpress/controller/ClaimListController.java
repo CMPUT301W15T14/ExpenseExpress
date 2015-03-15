@@ -43,11 +43,11 @@ public class ClaimListController {
 	}
 	
 
-	private void setSelectedClaim (Claim claim){
+	public void setSelectedClaim (Claim claim){
 			selectedClaim = claim;
-		
 	}
-	public static Claim getSelectedClaim(){
+	
+	public Claim getSelectedClaim(){
 		return selectedClaim;
 	}
 
