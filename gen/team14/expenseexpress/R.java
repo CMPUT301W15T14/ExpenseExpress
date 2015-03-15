@@ -38,7 +38,7 @@ public final class R {
     public static final class id {
         public static final int DestinationListView=0x7f0a0003;
         public static final int ExpenseList=0x7f0a0013;
-        public static final int action_settings=0x7f0a005c;
+        public static final int action_settings=0x7f0a005e;
         public static final int addDestinationTextField=0x7f0a000d;
         public static final int addDestinationTitle=0x7f0a000b;
         public static final int addExpenseButton=0x7f0a0034;
@@ -97,6 +97,8 @@ public final class R {
         public static final int expenseListApproveReturnButton=0x7f0a001b;
         public static final int expenseNameField=0x7f0a0037;
         public static final int expenseSubmitButton=0x7f0a0018;
+        public static final int expensedate=0x7f0a005d;
+        public static final int expensename=0x7f0a005c;
         public static final int getTagListButton=0x7f0a0031;
         public static final int inProgressRadio=0x7f0a0055;
         public static final int incompleteBox=0x7f0a003d;
@@ -151,6 +153,7 @@ public final class R {
         public static final int activity_tags=0x7f030011;
         public static final int activity_view_status=0x7f030012;
         public static final int custom_claim_list=0x7f030013;
+        public static final int custom_expense_list=0x7f030014;
     }
     public static final class menu {
         public static final int add_claim=0x7f090000;
