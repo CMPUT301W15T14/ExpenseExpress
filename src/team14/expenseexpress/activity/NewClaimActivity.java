@@ -105,5 +105,9 @@ public class NewClaimActivity extends Activity {
 		startActivity(intent);
 		finish();
 	}
+	
+	public void addDestination(View v) {
+		
+	}
 
 }
