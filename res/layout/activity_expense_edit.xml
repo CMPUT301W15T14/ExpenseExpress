@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainGreen"
+    android:onClick="setExpenseDate"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -22,8 +23,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Edit Expense"
         android:gravity="center"
+        android:text="Edit Expense"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/mainYellow" />
 
@@ -58,6 +59,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/editExpenseName"
         android:background="@color/mainYellow"
+        android:onClick="setExpenseDate"
         android:text="Expense Date :"
         android:textColor="@color/mainGreen" />
 
@@ -88,8 +90,8 @@
         android:id="@+id/completeCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_above="@+id/addReceipt"
         android:text="Expense Complete?"
         android:textColor="@color/mainYellow" />
 
@@ -98,33 +100,61 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/completeCheck"
+        android:layout_above="@+id/addExpense"
         android:layout_alignLeft="@+id/expenseDescription"
         android:layout_alignRight="@+id/expenseDescription"
-        android:background="@color/mainYellow"
+        android:background="@android:color/white"
         android:text="Add/Modify Receipt"
-        android:textColor="@color/mainGreen" />
+        android:textColor="@android:color/black" />
 
     <Spinner
         android:id="@+id/categorySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/addReceipt"
+        android:layout_above="@+id/completeCheck"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="24dp"
-        />
+        android:layout_alignParentRight="true" />
 
     <EditText
         android:id="@+id/editDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/categorySpinner"
+        android:layout_above="@+id/currencySpinner"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/expenseDescription"
         android:layout_below="@+id/expenseDescription"
         android:ems="10"
         android:inputType="textMultiLine"
         android:textColor="@android:color/white" />
+
+    <Spinner
+        android:id="@+id/currencySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/categorySpinner"
+        android:layout_alignTop="@+id/amountText"
+        android:layout_toRightOf="@+id/amountText" />
+
+    <EditText
+        android:id="@+id/amountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/categorySpinner"
+        android:layout_alignLeft="@+id/categorySpinner"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="Amount" />
+
+    <Button
+        android:id="@+id/addExpense"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/mainYellow"
+        android:text="Add Expense"
+        android:textColor="@color/mainGreen" />
 
 </RelativeLayout>

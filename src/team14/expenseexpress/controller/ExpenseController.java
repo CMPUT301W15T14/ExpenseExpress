@@ -2,6 +2,8 @@ package team14.expenseexpress.controller;
 
 
 
+import java.util.GregorianCalendar;
+
 import android.app.Activity;
 import android.content.Context;
 import team14.expenseexpress.model.Claim;
@@ -18,7 +20,9 @@ public class ExpenseController {
 	//singleton
 	private static ExpenseController instance;
 	private ExpenseController(){
-	
+		if(currentExpense == null) {
+			currentExpense = new Expense();
+		}
 	}
 	
 	public static ExpenseController getInstance(){
@@ -41,12 +45,8 @@ public class ExpenseController {
 		expenseList.remove(expense);
 	}
 	
-	public Expense getCurrentExpense() {
-		return this.currentExpense;
-	}
-	
-	public void setCurrentExpense(Expense expense) {
-		this.currentExpense = expense;
+	public GregorianCalendar getExpenseDate() {
+		return currentExpense.getExpenseDate();
 	}
 
 	

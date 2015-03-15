@@ -282,6 +282,20 @@ public class Claim {
 		
 	}
 	
+	public String startDateToString() {
+		if(startDate == null) {
+			return "";
+		}
+		return (String) android.text.format.DateFormat.format("yyyy-MM-dd",this.startDate);
+	}
+	
+	public String endDateToString() {
+		if(endDate == null) {
+			return "";
+		}
+		return (String) android.text.format.DateFormat.format("yyyy-MM-dd",this.endDate);
+	}
+	
 	
 	
 }

@@ -2,6 +2,7 @@ package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 import team14.expenseexpress.R;
@@ -23,10 +24,11 @@ import android.widget.Toast;
 
 public class ExpenseEditActivity extends Activity {
 
-	private Expense currentExpense;
+	private ExpenseController expenseController;
 	
 	private EditText expenseName;
 	private EditText expenseDescription;
+	private EditText expenseAmount;
 	private TextView expenseDateView;
 	
 	private int expenseYear, expenseMonth, expenseDay;
@@ -35,45 +37,20 @@ public class ExpenseEditActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_expense_edit);
-		currentExpense = ExpenseController.getInstance().getCurrentExpense();
 		
 		expenseName = (EditText) findViewById(R.id.editExpenseName);
 		expenseDescription = (EditText) findViewById(R.id.editDescription);
 		expenseDateView = (TextView) findViewById(R.id.expenseDateView);
+		expenseAmount = (EditText) findViewById(R.id.amountText);
 		
-		/*
-		setContentView(R.layout.activity_expense_edit);
-		ExpenseListManager.initManager(this.getApplicationContext());
+		expenseController = ExpenseController.getInstance();
 		
-		Intent intent = getIntent();
-		expensePosition = intent.getIntExtra("expensePosition", -1);
-		expenseId = intent.getLongExtra("claimId", -1);
-		
-		initExpenseList();
-		
-		expenseDateView = (TextView) findViewById(R.id.expenseDateText);
-		editDescriptionText = (EditText) findViewById(R.id.editExpenseDescription);
-		amountText = (EditText) findViewById(R.id.editAmountText);
-		currencyText = (EditText) findViewById(R.id.editCurrencyText);
-		
-		if(expensePosition >= 0) {
-			currentExpense = expenseList.get(expensePosition);
-			expenseDateView.setText(currentExpense.expenseDateToString());
-			editDescriptionText.append(currentExpense.getDescription());
-			amountText.append(Double.toString(currentExpense.getAmount()));
-			currencyText.append(currentExpense.getCurrency());
-		} if(expenseId >= 0) {
-			Toast.makeText(this, "New Expense", Toast.LENGTH_SHORT).show();
-			currentExpense = new Expense(expenseId);
-		}
-		
-		Calendar calendar = currentExpense.getExpenseDate();
-		expenseYear = calendar.get(Calendar.YEAR);
-		expenseMonth = calendar.get(Calendar.MONTH);
-		expenseDay = calendar.get(Calendar.DAY_OF_MONTH);
+		GregorianCalendar calendar = expenseController.getExpenseDate();
+		expenseYear = calendar.get(GregorianCalendar.YEAR);
+		expenseMonth = calendar.get(GregorianCalendar.MONTH);
+		expenseDay = calendar.get(GregorianCalendar.DAY_OF_MONTH);
 		showDate();
 		
-		*/
 	}
 	//*******************************************************************************
 	//http://www.tutorialspoint.com/android/android_datepicker_control.htm   
@@ -112,34 +89,13 @@ public class ExpenseEditActivity extends Activity {
    }
 	//*******************************************************************************
 	
-	private void initExpenseList() {
-		expenseList = new ArrayList<Expense>(ExpenseListController.getExpenseList().getExpenses());
-		subExpenseList = new ArrayList<Expense>();
-		for(int i = 0; i<=expenseList.size()-1; i++) {
-			if(expenseList.get(i).getExpenseId() == expenseId) {
-				subExpenseList.add(expenseList.get(i));
-			}
-		}
+	
+	public void modifyReceipt(View view) {
+		Toast.makeText(this,"Feature Unavailable",Toast.LENGTH_SHORT).show();
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.expense_edit, menu);
-		return true;
-	}
-	
-	public void deleteExpense(MenuItem menu) {
-		Toast.makeText(this, "Expense Deleted", Toast.LENGTH_SHORT).show();
-		if(expensePosition >= 0) {
-			ExpenseListController.getExpenseList().removeExpense(currentExpense);
-		}
-		finish();
-	}
-	
-	public void saveExpense(MenuItem menu) {
+	public void saveExpense(View view) {
 		Toast.makeText(this, "Expense Saved", Toast.LENGTH_SHORT).show();
-		ExpenseListController controller = new ExpenseListController();
 		currentExpense.setDescription(editDescriptionText.getEditableText().toString());
 		try {
 			currentExpense.setAmount(Double.parseDouble(amountText.getEditableText().toString()));
@@ -155,6 +111,7 @@ public class ExpenseEditActivity extends Activity {
 		}
 		finish();
 	}
+	
 	
 	@Override
 	public void onBackPressed() {
@@ -174,7 +131,5 @@ public class ExpenseEditActivity extends Activity {
 		} else {
 			ExpenseListController.getExpenseList().updateExpense();
 		}
-	}
-}
-	
+	} */
 }
