@@ -49,12 +49,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     private ArrayList<ClaimTag> claimTags;
     private ArrayList<ClaimTag> chosenTags;
     private ArrayList<Claim> claimList;
-<<<<<<< HEAD
-    private ClaimListController cListController;
-=======
     private ClaimController cListController;
     private ArrayList<Claim> claims;
->>>>>>> branch 'master' of https://github.com/CMPUT301W15T14/ExpenseExpress.git
     private LocalFileHelper helper;
     private LayoutInflater inflater;
     private TagListDialogFragment.TagsListAdapter tagsListAdapter;
