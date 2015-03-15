@@ -12,7 +12,7 @@ public class ExpenseController {
 	
 	private Context context;
 	private ExpenseList expenseList;
-	private static Expense currentExpense; 
+	private Expense currentExpense; 
 	
 	//singleton
 	private static ExpenseController instance;
@@ -31,23 +31,23 @@ public class ExpenseController {
 	}
 	
 	private ExpenseController(Claim claim){
-		expenseList = claim.getExpenseList();
+		this.expenseList = claim.getExpenseList();
 	
 	}
 	public void addExpense(Expense expense){
-		expenseList.add(expense);
+		this.expenseList.add(expense);
 	}
 	
 	public void removeExpense(Expense expense){
-		expenseList.remove(expense);
+		this.expenseList.remove(expense);
 	}
 	
 	public GregorianCalendar getExpenseDate() {
-		return currentExpense.getExpenseDate();
+		return this.currentExpense.getExpenseDate();
 	}
 	
 	public void setExpenseDate(GregorianCalendar calendar) {
-		currentExpense.setExpenseDate(calendar);
+		this.currentExpense.setExpenseDate(calendar);
 	}
 	
 }
