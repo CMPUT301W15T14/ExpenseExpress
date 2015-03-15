@@ -5,13 +5,9 @@ import java.util.Calendar;
 
 
 import team14.expenseexpress.R;
-<<<<<<< HEAD
-import team14.expenseexpress.controller.ExpenseListController;
-=======
 import team14.expenseexpress.controller.ExpenseController;
-import team14.expenseexpress.controller.ExpenseListController;
 import team14.expenseexpress.model.Expense;
->>>>>>> 004a966e77c6dea28754465f202b1d4b976f2ea0
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -31,6 +27,7 @@ public class ExpenseEditActivity extends Activity {
 	
 	private EditText expenseName;
 	private EditText expenseDescription;
+	private TextView expenseDateView;
 	
 	private int expenseYear, expenseMonth, expenseDay;
 	
@@ -38,7 +35,11 @@ public class ExpenseEditActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_expense_edit);
-		ExpenseController.getInstance(this.);
+		currentExpense = ExpenseController.getInstance().getCurrentExpense();
+		
+		expenseName = (EditText) findViewById(R.id.editExpenseName);
+		expenseDescription = (EditText) findViewById(R.id.editDescription);
+		expenseDateView = (TextView) findViewById(R.id.expenseDateView);
 		
 		/*
 		setContentView(R.layout.activity_expense_edit);
