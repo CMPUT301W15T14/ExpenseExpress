@@ -89,7 +89,8 @@
         android:ems="10"
         android:focusable="false"
         android:hint="Enter Start Date here"
-        android:inputType="date" >
+        android:inputType="date"
+        android:onClick="showTruitonDatePickerDialog" >
 
         <requestFocus />
     </EditText>
@@ -104,7 +105,8 @@
         android:ems="10"
         android:focusable="false"
         android:hint="Enter End Date Here"
-        android:inputType="date" />
+        android:inputType="date"
+        android:onClick="showTruitonDatePickerDialog" />
 
     <Button
         android:id="@+id/submitNewClaimHere"
@@ -113,6 +115,7 @@
         android:layout_alignLeft="@+id/claimAddTagsButton"
         android:layout_alignRight="@+id/claimAddTagsButton"
         android:layout_below="@+id/tempStartDateTextfield"
+        android:onClick="addClaim"
         android:text="Add Claim" />
 
     <TextView
