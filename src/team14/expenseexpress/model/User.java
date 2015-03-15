@@ -16,7 +16,7 @@ public class User {
 	 */
 	
 	private static final String RESOURCE_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/users/";
-	static final String INSTANCE_NOT_SET = "No instance user defined";
+	public static final String INSTANCE_NOT_SET = "No instance user defined";
     public final String name;
     private String password;
     
