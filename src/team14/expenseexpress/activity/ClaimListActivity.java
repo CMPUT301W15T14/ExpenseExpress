@@ -38,8 +38,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	private ArrayList<ClaimTag> chosenTags;
 	private ArrayList<Claim> claimList;
 	private ClaimController cListController;
-	private CustomBaseAdapter adapter;
 	private TagsListAdapter tagsListAdapter;
+	private CustomBaseAdapter claimsListAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 		final ListView lv1 = (ListView) findViewById(R.id.claimListView);
 		CustomBaseAdapter adapter = new CustomBaseAdapter(this, claimList);
+		setClaimListAdapter(adapter);
 		lv1.setAdapter(adapter);
 		registerForContextMenu(lv1);
 		lv1.setOnItemClickListener(new OnItemClickListener() {
@@ -144,8 +145,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 		if (menuItemName.equals("Delete")) {
 			claimList.remove(claim);
-			log(adapter.toString());
-			adapter.notifyDataSetChanged();
+			claimsListAdapter.notifyDataSetChanged();
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals("submitted")
 					|| (claim.getStatus().equals("approved"))) {
@@ -165,6 +165,10 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		this.tagsListAdapter = adapter;
 	}
 
+	public void setClaimListAdapter(CustomBaseAdapter adapter) {
+		this.claimsListAdapter = adapter;
+	}
+	
 	private void updateTagsListAdapter() {
 		tagsListAdapter.notifyDataSetChanged();
 	}

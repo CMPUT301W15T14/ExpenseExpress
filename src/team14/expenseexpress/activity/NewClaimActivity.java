@@ -8,6 +8,7 @@ import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -20,8 +21,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class NewClaimActivity extends ExpenseExpressActivity {
@@ -31,6 +36,11 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	private static GregorianCalendar startDate;  
 	private static boolean Start;
 	private static ArrayList<Destination> DestinationList;
+	private static ArrayList<String> Dname;
+	private static ArrayList<ClaimTag> chosenTags;
+	private ArrayAdapter<?> Dadapter;
+	private ArrayAdapter<?> Tadapter;
+	private boolean tags = false;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,10 +50,48 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		EndDateEdit = (EditText) findViewById(R.id.tempEndDateTextField);
 		
 		DestinationList = new ArrayList<Destination>();
+		Dname = new ArrayList<String>();
+		chosenTags = new ArrayList<ClaimTag>();
+		
+		final ListView Destlistview = (ListView) findViewById(R.id.DestinationListView);
+		final ListView Taglistview = (ListView) findViewById(R.id.tagListView);
+		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		ArrayAdapter Destadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, Dname);
+		setDadapter(Destadapter);
+		Destlistview.setAdapter(Destadapter);
+		Destlistview.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+			}
+         });
+		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		ArrayAdapter Tagadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, chosenTags);
+		tags = true;
+		setTadapter(Tagadapter);
+		Taglistview.setAdapter(Tagadapter);
+		Taglistview.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+			}
+         });
 		LayoutInflater.from(this);
 		
 	}
 	
+	private void setDadapter(ArrayAdapter adapter) {
+		// TODO Auto-generated method stub
+		this.Dadapter = adapter;
+	}
+	
+	private void setTadapter(ArrayAdapter adapter) {
+		// TODO Auto-generated method stub
+		this.Tadapter = adapter;
+	}
+
 	public void showDatePickerDialog(View v) {
 		
 		if (v == StartDateEdit) {
@@ -70,6 +118,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
+			
 			final View v = inflater.inflate(R.layout.activity_add_destinations, container, false);
 			final EditText nameText = (EditText) v.findViewById(R.id.addDestinationTextField);
 			final EditText reasonText = (EditText) v.findViewById(R.id.addReasonTextField);
@@ -87,13 +136,15 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 								destination.setReason(reason);
 								destination.setDestination(name);
 								// check if it's already in list
-								if (DestinationList.contains(destination)) {
+								if (Dname.contains(name)) {
 									toast("Already in List");
 									return;
 								}
 								// if all good, add to list and dismiss dialog
 								DestinationList.add(destination);
+								Dname.add(name);
 								toast("Added to List");
+								Dadapter.notifyDataSetChanged();
 								dismiss();
 							}
 						}
@@ -101,6 +152,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 			return v;
 		}
 	}
+	
  
 	public static class DatePickerFragment extends DialogFragment
     				implements DatePickerDialog.OnDateSetListener {
@@ -141,6 +193,11 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	}
 	
 	public void addDestination(View v) {
+		FragmentManager fm = getFragmentManager();
+		new NewDestinationDialogFragment().show(fm, "tagsListDialogFragment");
+	}
+	
+	public void addTags(View v) {
 		FragmentManager fm = getFragmentManager();
 		new NewDestinationDialogFragment().show(fm, "tagsListDialogFragment");
 	}
