@@ -43,7 +43,7 @@ public class ClaimController {
 	}
 	
 
-	private void setSelectedClaim (Claim claim){
+	public void setSelectedClaim (Claim claim){
 			selectedClaim = claim;
 		
 	}
