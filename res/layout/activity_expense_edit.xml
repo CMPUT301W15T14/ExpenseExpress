@@ -113,7 +113,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="24dp"
-        android:prompt="Category" />
+        />
 
     <EditText
         android:id="@+id/editDescription"
