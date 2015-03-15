@@ -21,6 +21,7 @@ public class ExpenseController {
 	public static ExpenseController getInstance(){
 		if (instance == null){
 			instance = new ExpenseController();
+
 		}
 		return instance;
 	}
