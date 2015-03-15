@@ -1,22 +1,17 @@
 package team14.expenseexpress.activity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import team14.expenseexpress.R;
-import team14.expenseexpress.R.layout;
-import team14.expenseexpress.R.menu;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.ClaimList;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -80,12 +75,17 @@ public class NewClaimActivity extends Activity {
 		ClaimController cListController = ClaimController.getInstance();
 		cListController.initialize(this);
 		Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
-		ArrayList<Claim> claimList = ClaimList.getInstance().getClaims();
 		Claim claim = new Claim();
 		EditText nameView = (EditText) findViewById(R.id.newClaimNameText);
 		claim.setName(nameView.getText().toString());
 		claim.setStartDate(startDate);
+<<<<<<< HEAD
 		claimList.add(claim);
+=======
+		cListController.addClaim(claim);
+		Intent intent = new Intent(NewClaimActivity.this, ClaimListActivity.class);
+		startActivity(intent);
+>>>>>>> branch 'master' of https://github.com/CMPUT301W15T14/ExpenseExpress.git
 		finish();
 	}
 	

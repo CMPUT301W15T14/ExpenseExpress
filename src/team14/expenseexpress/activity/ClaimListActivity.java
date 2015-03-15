@@ -33,19 +33,30 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+<<<<<<< HEAD
+=======
+
+import java.util.ArrayList;
+
+
+import team14.expenseexpress.CustomBaseAdapter;
+import team14.expenseexpress.ExpenseExpressActivity;
+import team14.expenseexpress.R;
+import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.ClaimList;
+import team14.expenseexpress.model.ClaimTag;
+import team14.expenseexpress.model.TagList;
+>>>>>>> branch 'master' of https://github.com/CMPUT301W15T14/ExpenseExpress.git
 
 
 
 public class ClaimListActivity extends ExpenseExpressActivity {
 
-    private EditText editText_tagSearch;
     private ArrayList<ClaimTag> claimTags;
     private ArrayList<ClaimTag> chosenTags;
     private ArrayList<Claim> claimList;
     private ClaimController cListController;
-    private ArrayList<Claim> claims;
-    private LocalFileHelper helper;
-    private LayoutInflater inflater;
     private TagListDialogFragment.TagsListAdapter tagsListAdapter;
     private CustomBaseAdapter adapter;
  
@@ -56,7 +67,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
         setContentView(R.layout.activity_claim_list);
         claimTags = TagList.getInstance(this).get();
         chosenTags = new ArrayList<ClaimTag>();
-        inflater = LayoutInflater.from(this);
+        LayoutInflater.from(this);
         
         // TODO
         cListController = ClaimController.getInstance();
