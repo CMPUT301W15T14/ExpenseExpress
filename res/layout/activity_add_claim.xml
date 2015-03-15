@@ -76,6 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/tagListView"
         android:layout_centerVertical="true"
+        android:onClick="addDestination"
         android:text="Add Destination" />
 
     <EditText

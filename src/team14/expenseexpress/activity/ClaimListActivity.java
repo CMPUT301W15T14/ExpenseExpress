@@ -43,13 +43,14 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_list);
+	    
 		claimTags = TagList.getInstance(this).get();
 		chosenTags = new ArrayList<ClaimTag>();
 		LayoutInflater.from(this);
 
-		// TODO
 		cListController = ClaimController.getInstance();
 		cListController.initialize(this);
 		claimList = ClaimList.getInstance().getClaims();

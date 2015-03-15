@@ -33,7 +33,7 @@
         <item>Delete</item>
         <item>Edit</item>
         
-        <item >Details</item><item>Cancel</item>
+        <item >Details</item>
     </string-array>
 
     <string name="title_activity_expense_list">ExpenseList</string>
