@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainGreen"
+    android:onClick="OnClick_NewExpense"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -28,7 +29,8 @@
         android:layout_alignParentLeft="true"
         android:background="@color/mainYellow"
         android:text="View Status"
-        android:textColor="@color/mainGreen" />
+        android:textColor="@color/mainGreen"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/addExpenseButton"
@@ -47,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/viewStatusButton"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/claimNameTitles" >
+        android:layout_below="@+id/claimNameTitles"
+        android:clickable="false" >
 
     </ListView>
 

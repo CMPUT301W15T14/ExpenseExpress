@@ -12,14 +12,25 @@ public class ExpenseListController {
 	
 	private Context context;
 	private ExpenseList expenseList;
-
+	private static ExpenseListController instance;
+	
+	private ExpenseListController(){
+	
+	}
+	
+	public static ExpenseListController getInstance(){
+		if (instance == null){
+			instance = new ExpenseListController();
+		}
+		return instance;
+	}
 	
 	private ExpenseListController(Claim claim){
 		expenseList = claim.getExpenseList();
 	
 	}
 	public void addExpense(Expense expense){
-		expenseList.addExpense(expense);
+		expenseList.add(expense);
 	}
 	
 	public void removeExpense(Expense expense){

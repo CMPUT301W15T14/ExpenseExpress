@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class expenseListAdapter extends BaseAdapter {
+public class ExpenseListAdapter extends BaseAdapter {
 	
 	private static ExpenseList expenseList;
 	private LayoutInflater mInflater;
 
-	public expenseListAdapter(Context context, ExpenseList list) {
+	public ExpenseListAdapter(Context context, ExpenseList list) {
 		expenseList = list;
 		mInflater = LayoutInflater.from(context);
 	}

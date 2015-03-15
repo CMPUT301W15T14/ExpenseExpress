@@ -90,7 +90,7 @@ public class Claim {
      * @param expense
      */
     public void addExpense(Expense expense) {
-        this.expenseList.addExpense(expense);
+        this.expenseList.add(expense);
     }
 
     /**
@@ -274,6 +274,12 @@ public class Claim {
 	
 	public void addListener(PropertyChangeListener newListener) {
 		listeners.add(newListener);
+	}
+
+	public void remove(Expense expense) {
+		expenseList.remove(expense);
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
