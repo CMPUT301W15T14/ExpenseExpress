@@ -5,6 +5,9 @@ import java.util.Calendar;
 
 
 import team14.expenseexpress.R;
+import team14.expenseexpress.controller.ExpenseController;
+import team14.expenseexpress.controller.ExpenseListController;
+import team14.expenseexpress.model.Expense;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -20,6 +23,8 @@ import android.widget.Toast;
 
 public class ExpenseEditActivity extends Activity {
 
+	private Expense currentExpense;
+	
 	private EditText expenseName;
 	private EditText expenseDescription;
 	
@@ -28,9 +33,8 @@ public class ExpenseEditActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.activity_expense_edit);
-		
+		ExpenseController.getInstance(this.);
 		
 		/*
 		setContentView(R.layout.activity_expense_edit);

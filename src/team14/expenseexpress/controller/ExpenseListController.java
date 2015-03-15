@@ -13,7 +13,6 @@ public class ExpenseListController {
 	private Context context;
 	private ExpenseList expenseList;
 
-	
 	private ExpenseListController(Claim claim){
 		expenseList = claim.getExpenseList();
 	
