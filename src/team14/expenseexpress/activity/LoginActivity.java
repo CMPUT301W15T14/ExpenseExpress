@@ -13,8 +13,10 @@ import team14.expenseexpress.R;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.User;
 
-/*
- * Done
+/**
+ * 
+ * Sets User instance.
+ *  
  */
 public class LoginActivity extends ExpenseExpressActivity {
 
