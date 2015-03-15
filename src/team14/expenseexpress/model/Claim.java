@@ -275,6 +275,12 @@ public class Claim {
 	public void addListener(PropertyChangeListener newListener) {
 		listeners.add(newListener);
 	}
+
+	public void remove(Expense expense) {
+		expenseList.remove(expense);
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

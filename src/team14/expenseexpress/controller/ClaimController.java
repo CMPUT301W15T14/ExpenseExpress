@@ -3,6 +3,7 @@ package team14.expenseexpress.controller;
 import java.util.ArrayList;
 
 import team14.expenseexpress.model.ClaimList;
+import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.model.Claim;
 
@@ -34,5 +35,12 @@ public class ClaimController {
 	
 	private void sortClaimsByDate(){
 		// TODO, should be called locally before displaying information
+	}
+
+
+	public static void removeExpense(Claim claim, Expense expense) {
+		claim.remove(expense);
+		// TODO Auto-generated method stub
+		
 	}
 }
