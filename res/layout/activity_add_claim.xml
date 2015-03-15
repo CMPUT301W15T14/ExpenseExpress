@@ -58,7 +58,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/tagListView"
         android:layout_marginBottom="58dp"
-        android:onClick="addClaim"
         android:text="Add Tag" />
 
     <ListView
