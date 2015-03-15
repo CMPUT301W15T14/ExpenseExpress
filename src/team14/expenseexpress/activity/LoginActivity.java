@@ -13,8 +13,10 @@ import team14.expenseexpress.R;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.User;
 
-/*
- * Done
+/**
+ * 
+ * Sets User instance.
+ *  
  */
 public class LoginActivity extends ExpenseExpressActivity {
 
@@ -51,14 +53,6 @@ public class LoginActivity extends ExpenseExpressActivity {
     	confirmNameDialog = builder.create();		
 	}
     
-    /*
-     
-    protected void onStop(){
-    	finish();
-    }
-    
-    */
-
 	private void buildModeDialog() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Log in as approver or claimant?")

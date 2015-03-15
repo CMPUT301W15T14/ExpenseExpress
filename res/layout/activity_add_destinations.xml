@@ -20,16 +20,6 @@
         android:textColor="@color/mainYellow"
         android:textSize="6mm" />
 
-    <Button
-        android:id="@+id/addInDestinationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addReasonTextField"
-        android:layout_alignRight="@+id/addReasonTextField"
-        android:layout_below="@+id/addReasonTextField"
-        android:layout_marginTop="64dp"
-        android:text="Add Destination" />
-
     <EditText
         android:id="@+id/addDestinationTextField"
         android:layout_width="wrap_content"
@@ -53,5 +43,14 @@
         android:layout_marginTop="57dp"
         android:ems="10"
         android:hint="Add Reason Here" />
+
+    <Button
+        android:id="@+id/addDestinationButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addReasonTextField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp"
+        android:text="Add Destination" />
 
 </RelativeLayout>

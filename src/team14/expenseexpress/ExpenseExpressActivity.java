@@ -27,7 +27,7 @@ public abstract class ExpenseExpressActivity extends Activity {
 	}
 	
 	protected void log(String message){
-		Log.d("EE", message);
+		Log.d("Exp^2", message);
 	}
 	
 	

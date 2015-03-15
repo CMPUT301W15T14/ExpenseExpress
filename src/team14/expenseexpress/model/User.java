@@ -17,7 +17,8 @@ public class User {
 	
 	private static final String RESOURCE_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/users/";
 	public static final String INSTANCE_NOT_SET = "No instance user defined";
-    public final String name;
+    
+	public final String name;
     private String password;
     
     // Static instance field added (it won't be serialized by Gson)--------------------
@@ -29,7 +30,6 @@ public class User {
     	if (instance == null){
     		throw new RuntimeException(INSTANCE_NOT_SET);
     	}
-    	
     	return instance;
     }
     // ---------------------------------------------------------------------------------
@@ -44,7 +44,6 @@ public class User {
     }
 
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
 	
@@ -62,9 +61,8 @@ public class User {
 		return name.hashCode();
 	}
 	
-	// TODO: part 5
 	public String getPassword() {
-		return null;
+		return password;
 	}
 
 }

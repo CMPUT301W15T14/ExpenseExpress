@@ -44,8 +44,8 @@
         android:id="@+id/DestinationListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/addInDestinationButton"
-        android:layout_alignRight="@+id/addInDestinationButton"
+        android:layout_above="@+id/addDestinationButton"
+        android:layout_alignRight="@+id/addDestinationButton"
         android:layout_below="@+id/destinationsTitle" >
 
     </ListView>
@@ -54,10 +54,11 @@
         android:id="@+id/claimAddTagsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addInDestinationButton"
+        android:layout_alignLeft="@+id/addDestinationButton"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/tagListView"
         android:layout_marginBottom="58dp"
+        android:onClick="addTag"
         android:text="Add Tag" />
 
     <ListView
@@ -70,11 +71,12 @@
     </ListView>
 
     <Button
-        android:id="@+id/addInDestinationButton"
+        android:id="@+id/addDestinationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/tagListView"
         android:layout_centerVertical="true"
+        android:onClick="addDestination"
         android:text="Add Destination" />
 
     <EditText
@@ -121,7 +123,7 @@
         android:id="@+id/tagsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/addInDestinationButton"
+        android:layout_alignBottom="@+id/addDestinationButton"
         android:layout_alignLeft="@+id/DestinationListView"
         android:text="Tags"
         android:textColor="@color/mainYellow"
