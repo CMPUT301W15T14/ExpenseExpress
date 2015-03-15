@@ -87,7 +87,7 @@ public class ClaimListController {
 
 	private List<Claim> loadRemoteClaims() {
 		ElasticSearchHelper helper = ElasticSearchHelper.getInstance(context);
-		List<Claim> remoteClaims = null;
+		List<Claim> remoteClaims = new ArrayList<Claim>();
 		switch (Mode.get()){
 		case Mode.APPROVER:
 			remoteClaims = helper.getRemoteClaimsForApprover(user);
@@ -100,7 +100,7 @@ public class ClaimListController {
 
 	private List<Claim> loadLocalClaims() {
 		LocalFileHelper fileHelper = LocalFileHelper.getInstance(context);
-		List<Claim> localClaims = null;
+		List<Claim> localClaims = new ArrayList<Claim>();
 		switch (Mode.get()){
 		case Mode.APPROVER:
 			localClaims = fileHelper.getLocalClaimsForApprover(user);
