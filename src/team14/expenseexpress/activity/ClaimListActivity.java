@@ -152,8 +152,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT)
 						.show();
 			} else {
-				// startActivity(new Intent(ClaimListActivity.this,
-				// ClaimDetailsAddEditActivity.class);
+				//startActivity(new Intent(ClaimListActivity.this,ClaimDetailsAddEditActivity.class));
 			}
 		} else if (menuItemName.equals("Details")) {
 			startActivity(new Intent(ClaimListActivity.this,

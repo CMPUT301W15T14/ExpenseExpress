@@ -39,6 +39,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		StartDateEdit = (EditText) findViewById(R.id.tempStartDateTextfield);
 		EndDateEdit = (EditText) findViewById(R.id.tempEndDateTextField);
 		
+		DestinationList = new ArrayList<Destination>();
 		LayoutInflater.from(this);
 		
 	}
@@ -69,23 +70,22 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View v = inflater.inflate(R.layout.activity_add_destinations, container, false);
-			v.findViewById(R.id.addInDestinationButton).setOnClickListener(
+			final View v = inflater.inflate(R.layout.activity_add_destinations, container, false);
+			final EditText nameText = (EditText) v.findViewById(R.id.addDestinationTextField);
+			final EditText reasonText = (EditText) v.findViewById(R.id.addReasonTextField);
+			v.findViewById(R.id.addDestinationButton2).setOnClickListener(
 					new OnClickListener() {
 
 						@Override
 						public void onClick(View v) {
-							String name = ((EditText) v
-									.findViewById(R.id.addDestinationTextField))
-									.getText().toString();
-							String reason = ((EditText) v
-									.findViewById(R.id.addReasonTextField))
-									.getText().toString();
+							String name = nameText.getText().toString();
+							String reason = reasonText.getText().toString();
 							if (name.length() == 0 || reason.length() == 0) {
 								toast("Empty Field");
 							} else {
 								Destination destination = new Destination(name);
 								destination.setReason(reason);
+								destination.setDestination(name);
 								// check if it's already in list
 								if (DestinationList.contains(destination)) {
 									toast("Already in List");
@@ -141,7 +141,6 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	}
 	
 	public void addDestination(View v) {
-		Toast.makeText(this, "Adding a Claim", Toast.LENGTH_LONG).show();
 		FragmentManager fm = getFragmentManager();
 		new NewDestinationDialogFragment().show(fm, "tagsListDialogFragment");
 	}
