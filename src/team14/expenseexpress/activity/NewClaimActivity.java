@@ -86,8 +86,6 @@ public class NewClaimActivity extends Activity {
 		claim.setName(nameView.getText().toString());
 		claim.setStartDate(startDate);
 		claimList.add(claim);
-		Intent intent = new Intent(NewClaimActivity.this, ClaimListActivity.class);
-		startActivity(intent);
 		finish();
 	}
 	

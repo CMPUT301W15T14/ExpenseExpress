@@ -67,6 +67,7 @@ public class ClaimController {
 	}
 	
 	private void initializeClaimList() {
+		
 		claimList = ClaimList.getInstance();
 		claimList.clear();
 		List<Claim> localClaims = loadLocalClaims();

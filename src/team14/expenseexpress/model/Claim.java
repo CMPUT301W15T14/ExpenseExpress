@@ -28,7 +28,7 @@ public class Claim {
     private User claimant;
     private ArrayList<ApproverComment> approverComments;
     
-    private long claimId;
+    private final long claimId;
     private long lastSave;
     
     public Claim() {
@@ -136,6 +136,9 @@ public class Claim {
      * @return  The starting date, as a String in the short date format.
      */
     public String getStartDateString(){
+    	if (startDate == null){
+    		return "Date not set";
+    	}
         return DateFormat.getDateInstance(DateFormat.SHORT).format(startDate.getTime());
     }
 

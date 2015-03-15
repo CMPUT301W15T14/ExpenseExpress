@@ -1,8 +1,8 @@
 package team14.expenseexpress;
 
-import team14.expenseexpress.model.User;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,6 +24,10 @@ public abstract class ExpenseExpressActivity extends Activity {
 	
 	protected void show(View view){
 		view.setVisibility(View.VISIBLE);
+	}
+	
+	protected void log(String message){
+		Log.d("EE", message);
 	}
 	
 	
