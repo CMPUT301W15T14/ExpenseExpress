@@ -1,22 +1,17 @@
 package team14.expenseexpress.activity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import team14.expenseexpress.R;
-import team14.expenseexpress.R.layout;
-import team14.expenseexpress.R.menu;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.ClaimList;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
