@@ -38,7 +38,7 @@ public final class R {
     public static final class id {
         public static final int DestinationListView=0x7f0a0003;
         public static final int ExpenseList=0x7f0a0013;
-        public static final int action_settings=0x7f0a005e;
+        public static final int action_settings=0x7f0a0062;
         public static final int addDestinationTextField=0x7f0a000d;
         public static final int addDestinationTitle=0x7f0a000b;
         public static final int addExpenseButton=0x7f0a0034;
@@ -75,6 +75,8 @@ public final class R {
         public static final int claimsDetailTitle=0x7f0a0020;
         public static final int completeCheck=0x7f0a0049;
         public static final int date=0x7f0a0059;
+        public static final int destinationName=0x7f0a005e;
+        public static final int destinationReason=0x7f0a005f;
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a001e;
         public static final int detailsName=0x7f0a0027;
@@ -82,6 +84,7 @@ public final class R {
         public static final int editDescription=0x7f0a004c;
         public static final int editExpense=0x7f0a0043;
         public static final int editExpenseName=0x7f0a0045;
+        public static final int expenseCost=0x7f0a0061;
         public static final int expenseDateButton=0x7f0a0046;
         public static final int expenseDateView=0x7f0a0047;
         public static final int expenseDescription=0x7f0a0048;
@@ -99,6 +102,7 @@ public final class R {
         public static final int expenseDetailsINCTitle=0x7f0a0040;
         public static final int expenseDetailsReceiptButton=0x7f0a0042;
         public static final int expenseDetailsTitle=0x7f0a0035;
+        public static final int expenseItem=0x7f0a0060;
         public static final int expenseListApproveReturnButton=0x7f0a001b;
         public static final int expenseName=0x7f0a0044;
         public static final int expenseSubmitButton=0x7f0a0018;
@@ -154,6 +158,8 @@ public final class R {
         public static final int activity_view_status=0x7f030012;
         public static final int custom_claim_list=0x7f030013;
         public static final int custom_expense_list=0x7f030014;
+        public static final int row_destination=0x7f030015;
+        public static final int row_expense=0x7f030016;
     }
     public static final class menu {
         public static final int add_claim=0x7f090000;
