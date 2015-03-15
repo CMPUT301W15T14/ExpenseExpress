@@ -1,4 +1,4 @@
-package team14.expenseexpress.activity;
+/*package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -74,11 +74,11 @@ public class ExpenseEditActivity extends Activity {
 		showDate();
 		
 		*/
-	}
+//	}
 	//*******************************************************************************
 	//http://www.tutorialspoint.com/android/android_datepicker_control.htm   
 	//All DatePicker code was implemented from this source, accessed Feb.1,2015
-	@SuppressWarnings("deprecation")
+/*	@SuppressWarnings("deprecation")
 	public void setExpenseDate(View view) {
 		showDialog(777);
 		Toast.makeText(getApplicationContext(), "Expense Date", Toast.LENGTH_SHORT).show();
@@ -178,3 +178,4 @@ public class ExpenseEditActivity extends Activity {
 }
 	
 }
+*/
