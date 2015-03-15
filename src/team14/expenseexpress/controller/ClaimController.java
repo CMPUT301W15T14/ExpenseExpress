@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
+import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.model.User;
 import team14.expenseexpress.util.ElasticSearchHelper;
 import team14.expenseexpress.util.LocalFileHelper;
@@ -43,7 +44,7 @@ public class ClaimController {
 	}
 	
 
-	private void setSelectedClaim (Claim claim){
+	public void setSelectedClaim (Claim claim){
 			selectedClaim = claim;
 		
 	}
@@ -109,6 +110,11 @@ public class ClaimController {
 			localClaims = fileHelper.getLocalClaimsForClaimant(user);
 		}
 		return localClaims;
+	}
+
+	public static void removeExpense(Claim claim, Expense expense) {
+		claim.remove(expense);
+		
 	}
 	
 	

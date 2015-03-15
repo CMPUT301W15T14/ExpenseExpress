@@ -1,4 +1,4 @@
-package team14.expenseexpress.util;
+/*package team14.expenseexpress.util;
 
 //------------TEMPLATE!!!-----------------\\
  //MUST ADD TO MENU XML FOR EACH ACTIVITY\\
@@ -25,3 +25,4 @@ public class MenuItemsTemplate extends Activity{
 		startActivity(intent);
 	}
 }
+*/
