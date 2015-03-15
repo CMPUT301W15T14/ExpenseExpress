@@ -3,7 +3,7 @@ package team14.expenseexpress.activity;
 import java.util.ArrayList;
 
 import team14.expenseexpress.R;
-import team14.expenseexpress.controller.ClaimListController;
+import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
@@ -16,7 +16,7 @@ import android.widget.EditText;
 public class ClaimDetailsActivity extends Activity {
 
 	    private ArrayList<Claim> claimList;
-	    private ClaimListController cListController;
+	    private ClaimController cListController;
 	    private ArrayList<Claim> claims;
 	    private LocalFileHelper helper;
 	    private LayoutInflater inflater;
@@ -28,7 +28,7 @@ public class ClaimDetailsActivity extends Activity {
         inflater = LayoutInflater.from(this);
         
         // TODO
-        cListController = ClaimListController.getInstance();
+        cListController = ClaimController.getInstance();
         cListController.initialize(this);
         claimList = ClaimList.getInstance().getClaims();
     }
