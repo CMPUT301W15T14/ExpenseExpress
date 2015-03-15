@@ -38,12 +38,12 @@ public class ElasticSearchHelper {
  */
 	public ArrayList<Claim> getRemoteClaimsForClaimant(User user) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<Claim>();
 	}
 
 	public ArrayList<Claim> getRemoteClaimsForApprover(User user) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<Claim>();
 	}
 
 	public boolean uploadClaim(Claim claim) {

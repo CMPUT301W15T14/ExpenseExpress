@@ -86,6 +86,7 @@
         android:layout_alignLeft="@+id/tagListView"
         android:layout_toLeftOf="@+id/claimAddTagsButton"
         android:ems="10"
+        android:focusable="false"
         android:hint="Enter Start Date here"
         android:inputType="date" >
 
@@ -100,6 +101,7 @@
         android:layout_alignRight="@+id/tempStartDateTextfield"
         android:layout_below="@+id/tempStartDateTextfield"
         android:ems="10"
+        android:focusable="false"
         android:hint="Enter End Date Here"
         android:inputType="date" />
 

@@ -26,8 +26,5 @@ public abstract class ExpenseExpressActivity extends Activity {
 		view.setVisibility(View.VISIBLE);
 	}
 	
-	private void test(){
-		// Hello?
-	}
 	
 }
