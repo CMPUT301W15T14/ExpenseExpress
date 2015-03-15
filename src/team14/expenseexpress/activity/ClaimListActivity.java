@@ -49,8 +49,12 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     private ArrayList<ClaimTag> claimTags;
     private ArrayList<ClaimTag> chosenTags;
     private ArrayList<Claim> claimList;
+<<<<<<< HEAD
+    private ClaimListController cListController;
+=======
     private ClaimController cListController;
     private ArrayList<Claim> claims;
+>>>>>>> branch 'master' of https://github.com/CMPUT301W15T14/ExpenseExpress.git
     private LocalFileHelper helper;
     private LayoutInflater inflater;
     private TagListDialogFragment.TagsListAdapter tagsListAdapter;
@@ -84,29 +88,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				startActivity(intent);
 			}
         });
-    }
-    
-    @SuppressWarnings("unused")
-	@SuppressLint("ValidFragment")
-   	private class ExpenseListDialogFragment extends DialogFragment{
-       	
-       	
-       	@Override
-       	public Dialog onCreateDialog(Bundle savedInstanceState) {
-       	  Dialog dialog = super.onCreateDialog(savedInstanceState);
-
-       	  // request a window without the title
-       	  dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-       	  return dialog;
-       	}
-       	
-   		@Override
-   		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-   				Bundle savedInstanceState) {
-   			
-   			View v = inflater.inflate(R.layout.activity_claim_details, container, false);
-   			return v;
-   		}
     }
     
     @SuppressLint("ValidFragment")
@@ -260,7 +241,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		 Claim claim = (Claim) lv1.getItemAtPosition(info.position);
 		 
 		 if (menuItemName.equals("Delete")) {
-			 claims.remove(claim);
+			 claimList.remove(claim);
 			 adapter.notifyDataSetChanged();
 		 } else if (menuItemName.equals("Edit")) {
 			 if (claim.getStatus().equals("submitted") || (claim.getStatus().equals("approved"))) {
@@ -268,6 +249,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			 } else {
 				// startActivity(new Intent(ClaimListActivity.this, ClaimDetailsAddEditActivity.class);
 			 }
+		 } else if (menuItemName.equals("Details")) {
+			 startActivity(new Intent(ClaimListActivity.this, ClaimDetailsActivity.class));
 		 }
 		 return true;
     }

@@ -47,9 +47,8 @@ public class CustomBaseAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.custom_claim_list, null);
 			holder = new ViewHolder();
-			holder.claim = (TextView) convertView.findViewById(R.id.expensename);
+			holder.claim = (TextView) convertView.findViewById(R.id.claimname);
 			holder.date = (TextView) convertView.findViewById(R.id.date);
-			holder.tags = (TextView) convertView.findViewById(R.id.expensedate);
 
 			convertView.setTag(holder);
 		} else {
@@ -58,7 +57,6 @@ public class CustomBaseAdapter extends BaseAdapter {
 		
 		holder.claim.setText(ClaimList.get(position).getName());
 		holder.date.setText(ClaimList.get(position).getStartDateString());
-		holder.tags.setText(ClaimList.get(position).getStatus());
 		
 		return convertView;
 	}
