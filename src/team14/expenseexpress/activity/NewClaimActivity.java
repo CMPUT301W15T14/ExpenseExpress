@@ -33,7 +33,7 @@ public class NewClaimActivity extends Activity {
 		EndDateEdit = (EditText) findViewById(R.id.tempEndDateTextField);
 	}
 	
-	public void showTruitonDatePickerDialog(View v) {
+	public void showDatePickerDialog(View v) {
 		
 		if (v == StartDateEdit) {
 			Start = true;
@@ -80,8 +80,6 @@ public class NewClaimActivity extends Activity {
 		claim.setName(nameView.getText().toString());
 		claim.setStartDate(startDate);
 		cListController.addClaim(claim);
-		Intent intent = new Intent(NewClaimActivity.this, ClaimListActivity.class);
-		startActivity(intent);
 		finish();
 	}
 	
