@@ -6,6 +6,8 @@ import java.util.GregorianCalendar;
 
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
+import team14.expenseexpress.activity.NCTagListDialogFragment.NCTagsListAdapter;
+import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
@@ -40,6 +42,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	private static ArrayList<ClaimTag> chosenTags;
 	private ArrayAdapter<?> Dadapter;
 	private ArrayAdapter<?> Tadapter;
+	private NCTagsListAdapter tagsListAdapter;
 	private boolean tags = false;
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +94,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		// TODO Auto-generated method stub
 		this.Tadapter = adapter;
 	}
-
+	
 	public void showDatePickerDialog(View v) {
 		
 		if (v == StartDateEdit) {
@@ -199,7 +202,16 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	
 	public void addTags(View v) {
 		FragmentManager fm = getFragmentManager();
-		new NewDestinationDialogFragment().show(fm, "tagsListDialogFragment");
+		new NCTagListDialogFragment(this).show(fm, "tagsListDialogFragment");
+	}
+
+	public void setTagsListAdapter1(NCTagsListAdapter adapter) {
+		// TODO Auto-generated method stub
+		this.tagsListAdapter = adapter;
+	}
+	
+	public ArrayList<ClaimTag> getChosenTags() {
+		return chosenTags;
 	}
 
 }
