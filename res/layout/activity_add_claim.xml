@@ -90,7 +90,7 @@
         android:focusable="false"
         android:hint="Enter Start Date here"
         android:inputType="date"
-        android:onClick="showTruitonDatePickerDialog" >
+        android:onClick="showDatePickerDialog" >
 
         <requestFocus />
     </EditText>
@@ -106,7 +106,7 @@
         android:focusable="false"
         android:hint="Enter End Date Here"
         android:inputType="date"
-        android:onClick="showTruitonDatePickerDialog" />
+        android:onClick="showDatePickerDialog" />
 
     <Button
         android:id="@+id/submitNewClaimHere"

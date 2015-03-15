@@ -64,6 +64,5 @@ public class CustomBaseAdapter extends BaseAdapter {
 	static class ViewHolder {
 		TextView claim;
 		TextView date;
-		TextView tags;
 	}
 }

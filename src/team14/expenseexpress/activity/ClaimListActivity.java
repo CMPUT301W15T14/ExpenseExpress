@@ -1,14 +1,11 @@
 package team14.expenseexpress.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -24,7 +21,6 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,21 +34,15 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.TagList;
-import team14.expenseexpress.model.User;
-import team14.expenseexpress.util.LocalFileHelper;
 
 
 
 public class ClaimListActivity extends ExpenseExpressActivity {
 
-    private EditText editText_tagSearch;
     private ArrayList<ClaimTag> claimTags;
     private ArrayList<ClaimTag> chosenTags;
     private ArrayList<Claim> claimList;
     private ClaimController cListController;
-    private ArrayList<Claim> claims;
-    private LocalFileHelper helper;
-    private LayoutInflater inflater;
     private TagListDialogFragment.TagsListAdapter tagsListAdapter;
     private CustomBaseAdapter adapter;
  
@@ -63,7 +53,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
         setContentView(R.layout.activity_claim_list);
         claimTags = TagList.getInstance(this).get();
         chosenTags = new ArrayList<ClaimTag>();
-        inflater = LayoutInflater.from(this);
+        LayoutInflater.from(this);
         
         // TODO
         cListController = ClaimController.getInstance();

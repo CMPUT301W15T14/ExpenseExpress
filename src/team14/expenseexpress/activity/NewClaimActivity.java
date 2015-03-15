@@ -80,12 +80,11 @@ public class NewClaimActivity extends Activity {
 		ClaimController cListController = ClaimController.getInstance();
 		cListController.initialize(this);
 		Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
-		ArrayList<Claim> claimList = ClaimList.getInstance().getClaims();
 		Claim claim = new Claim();
 		EditText nameView = (EditText) findViewById(R.id.newClaimNameText);
 		claim.setName(nameView.getText().toString());
 		claim.setStartDate(startDate);
-		claimList.add(claim);
+		cListController.addClaim(claim);
 		Intent intent = new Intent(NewClaimActivity.this, ClaimListActivity.class);
 		startActivity(intent);
 		finish();
