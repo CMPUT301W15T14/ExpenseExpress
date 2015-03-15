@@ -1,5 +1,7 @@
 package team14.expenseexpress.activity;
 
+import java.util.ArrayList;
+
 import team14.expenseexpress.R;
 import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.model.ClaimTag;
@@ -37,9 +39,17 @@ public class NCTagListDialogFragment extends android.app.DialogFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View v = inflater.inflate(R.layout.activity_tags, container, false);
+		View v = inflater.inflate(R.layout.activity_add_tag_to_claim, container, false);
 		NCTagsListAdapter adapter = new NCTagsListAdapter();
-		((ListView) v.findViewById(R.id.ExpenseList)).setAdapter(adapter);
+		(v.findViewById(R.id.addTag))
+		.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				activity.updateAdapter();
+				dismiss();
+			}
+		});
+		((ListView) v.findViewById(R.id.TagList)).setAdapter(adapter);
 		activity.setTagsListAdapter1(adapter);
 		return v;
 	}
@@ -70,7 +80,7 @@ public class NCTagListDialogFragment extends android.app.DialogFragment {
 			// Recycles convertView
 			// TODO: put controller in between View and Model
 			final ClaimTag tag = tagList.get(position);
-
+			//activity.Tname = new ArrayList<String>();
 			CheckBox checkBox = (CheckBox) convertView;
 			if (checkBox == null) {
 				checkBox = new CheckBox(activity);
@@ -81,7 +91,7 @@ public class NCTagListDialogFragment extends android.app.DialogFragment {
 			}
 
 			checkBox.setText(tag.getName());
-
+			
 			checkBox.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -90,8 +100,10 @@ public class NCTagListDialogFragment extends android.app.DialogFragment {
 					boolean checked = ((CheckBox) v).isChecked();
 					if (checked) {
 						activity.getChosenTags().add(tag);
+						activity.Tname.add(tag.getName());
 					} else {
 						activity.getChosenTags().remove(tag);
+						activity.Tname.remove(tag.getName());
 					}
 				}
 			});

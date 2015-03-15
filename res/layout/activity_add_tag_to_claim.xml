@@ -31,12 +31,22 @@
         android:textColor="@color/mainYellow"
         android:textSize="4mm" />
 
+    <Button
+        android:id="@+id/addTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Add Tags" />
+
     <ListView
-        android:id="@+id/ExpenseList"
+        android:id="@+id/TagList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/possibleTagsTitle"
+        android:layout_above="@+id/addTag"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/possibleTagsTitle" >
+
     </ListView>
 
 </RelativeLayout>

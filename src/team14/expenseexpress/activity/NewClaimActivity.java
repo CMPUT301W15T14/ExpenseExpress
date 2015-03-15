@@ -7,7 +7,6 @@ import java.util.GregorianCalendar;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.activity.NCTagListDialogFragment.NCTagsListAdapter;
-import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
@@ -40,6 +39,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	private static ArrayList<Destination> DestinationList;
 	private static ArrayList<String> Dname;
 	private static ArrayList<ClaimTag> chosenTags;
+	public ArrayList<String> Tname;
 	private ArrayAdapter<?> Dadapter;
 	private ArrayAdapter<?> Tadapter;
 	private NCTagsListAdapter tagsListAdapter;
@@ -55,6 +55,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		DestinationList = new ArrayList<Destination>();
 		Dname = new ArrayList<String>();
 		chosenTags = new ArrayList<ClaimTag>();
+		Tname = new ArrayList<String>();
 		
 		final ListView Destlistview = (ListView) findViewById(R.id.DestinationListView);
 		final ListView Taglistview = (ListView) findViewById(R.id.tagListView);
@@ -71,7 +72,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
          });
 		
 		@SuppressWarnings({ "unchecked", "rawtypes" })
-		ArrayAdapter Tagadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, chosenTags);
+		ArrayAdapter Tagadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, Tname);
 		tags = true;
 		setTadapter(Tagadapter);
 		Taglistview.setAdapter(Tagadapter);
@@ -212,6 +213,11 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	
 	public ArrayList<ClaimTag> getChosenTags() {
 		return chosenTags;
+	}
+
+	public void updateAdapter() {
+		// TODO Auto-generated method stub
+		Tadapter.notifyDataSetChanged();
 	}
 
 }
