@@ -53,14 +53,6 @@ public class LoginActivity extends ExpenseExpressActivity {
     	confirmNameDialog = builder.create();		
 	}
     
-    /*
-     
-    protected void onStop(){
-    	finish();
-    }
-    
-    */
-
 	private void buildModeDialog() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Log in as approver or claimant?")
