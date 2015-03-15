@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -204,6 +206,15 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			return view;
 		}
     }
+    
+    @Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		String[] menuItems = getResources().getStringArray(R.array.LongClickMenu);
+		for (int i = 0; i<menuItems.length; i++) {
+			menu.add(Menu.NONE, i, i, menuItems[i]);
+		}
+	}
     
     @Override
 	public boolean onContextItemSelected(MenuItem item) {
