@@ -46,6 +46,7 @@ public class ClaimController {
 			this.selectedClaim = claim;
 		
 	}
+	
 	public Claim getSelectedClaim(){
 		return this.selectedClaim;
 	}

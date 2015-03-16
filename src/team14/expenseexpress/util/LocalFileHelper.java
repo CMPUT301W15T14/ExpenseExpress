@@ -14,6 +14,7 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
+import team14.expenseexpress.model.TagList;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -169,9 +170,9 @@ public class LocalFileHelper {
 
 */
 
-	public ArrayList<ClaimTag> getTags() {
+	public TagList getTags() {
 		Gson gson = new Gson();
-		ArrayList<ClaimTag> tags = new ArrayList<ClaimTag>();
+		TagList tags = new TagList();
 		try {
 			FileInputStream fis = context.openFileInput(TAGS_FILENAME + UserController.getInstance().getCurrentUser().getName());
 			InputStreamReader isr = new InputStreamReader(fis);
@@ -186,7 +187,7 @@ public class LocalFileHelper {
 			e.printStackTrace();
 		}
 		if (tags == null) {
-			tags = new ArrayList<ClaimTag>();
+			tags = new TagList();
 		}
 		return tags; 
 	}

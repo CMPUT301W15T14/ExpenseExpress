@@ -7,6 +7,7 @@ import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.controller.TagListController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
@@ -41,8 +42,6 @@ import android.widget.Toast;
  */
 public class ClaimListActivity extends ExpenseExpressActivity {
 
-	private ArrayList<ClaimTag> claimTags;
-	private ArrayList<ClaimTag> chosenTags;
 	private TagsListAdapter tagsListAdapter;
 	private CustomBaseAdapter claimsListAdapter;
 
@@ -52,9 +51,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_list);
     	ClaimController.getInstance().initialize(this);
+    	TagListController.getInstance().initialize(this);
 	    
-		claimTags = TagList.getInstance(this).get();
-		chosenTags = new ArrayList<ClaimTag>();
 		LayoutInflater.from(this);
 
 		final ListView lv1 = (ListView) findViewById(R.id.claimListView);
@@ -114,20 +112,16 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 									.getText().toString();
 							if (text.length() == 0) {
 								toast("Tag name can't be empty");
-							} else {
-								ClaimTag tag = new ClaimTag(text);
-								// check if it's already in list
-								if (claimTags.contains(tag)) {
+							} else if (TagListController.getInstance().getTagList().getTags().contains(new ClaimTag(text))) {
 									toast("Already in list");
 									return;
 								}
 								// if all good, add to list and dismiss dialog
-								claimTags.add(tag);
+								TagListController.getInstance().getTagList().getTags().add(new ClaimTag(text));
 								toast("Added to list");
 								updateTagsListAdapter();
 								dismiss();
 							}
-						}
 					});
 			return view;
 		}
@@ -229,12 +223,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		// TODO
 	}
 
-	/**
-	 * A method to get a ArrayList of tags chosen by the user called chosenTags
-	 * @return chosenTags
-	 */
-	public ArrayList<ClaimTag> getChosenTags() {
-		return chosenTags;
-	}
+
 
 }
