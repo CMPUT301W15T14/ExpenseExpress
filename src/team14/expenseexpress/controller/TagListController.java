@@ -13,7 +13,6 @@ public class TagListController {
 	
 	private TagList usersTags;
 	private TagList chosenTags;
-	private Context context;
 	
 	// singleton
 	private static TagListController instance;
@@ -39,8 +38,7 @@ public class TagListController {
 		return instance;
 	}
 	
-	public void initialize(Context context){
-		this.context = context;
+	public void initialize(){
 		this.chosenTags = new TagList();
 		loadTags();
 	}
@@ -63,6 +61,6 @@ public class TagListController {
 	}
 	
 	private void loadTags() {
-		usersTags = LocalFileHelper.getInstance(this.context).getTags();
+		usersTags = LocalFileHelper.getInstance().getTags();
 	}
 }

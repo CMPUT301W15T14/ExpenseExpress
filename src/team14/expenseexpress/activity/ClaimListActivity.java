@@ -51,7 +51,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_list);
     	ClaimController.getInstance().initialize(this);
-    	TagListController.getInstance().initialize(this);
+    	TagListController.getInstance().initialize();
 	    
 		LayoutInflater.from(this);
 

@@ -35,7 +35,7 @@ public class LocalFileHelper {
 	private static final String TAGS_FILENAME = "ee.tags_";
 	//private static final String OFFLINE_FILENAME = "ee.offline"; TODO: implement in pp5
 	
-	private Context context;
+	private static Context context;
 	
 	// Singleton
 	private static LocalFileHelper fileHelper;
@@ -45,6 +45,13 @@ public class LocalFileHelper {
 	}
 	
 	public static LocalFileHelper getInstance(Context context){
+		if (fileHelper == null){
+			fileHelper = new LocalFileHelper(context);
+		}
+		return fileHelper;
+	}
+	
+	public static LocalFileHelper getInstance(){
 		if (fileHelper == null){
 			fileHelper = new LocalFileHelper(context);
 		}
