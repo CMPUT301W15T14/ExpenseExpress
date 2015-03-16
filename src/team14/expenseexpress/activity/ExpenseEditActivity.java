@@ -99,7 +99,7 @@ public class ExpenseEditActivity extends Activity {
 		String name = expenseName.getText().toString();
 		String description = expenseDescription.getText().toString(); 
 		double amount;
-		if (expenseAmount.getText().toString() == null)
+		if (expenseAmount.getText().toString().isEmpty())
 			amount = Double.valueOf("0.0");
 		else
 			amount = Double.valueOf(expenseAmount.getText().toString());
