@@ -220,7 +220,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	 */
 	public void addClaim(View v) {
 		ClaimController cListController = ClaimController.getInstance();
-		cListController.initialize(this);
+		//cListController.initialize(this);
 		Claim claim = new Claim();
 		EditText nameView = (EditText) findViewById(R.id.newClaimNameText);
 		claim.setName(nameView.getText().toString());
