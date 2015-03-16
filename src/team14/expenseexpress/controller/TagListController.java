@@ -41,6 +41,7 @@ public class TagListController {
 	
 	public void initialize(Context context){
 		this.context = context;
+		this.chosenTags = new TagList();
 		loadTags();
 	}
 	

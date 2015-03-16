@@ -84,7 +84,7 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 				checkBox = new CheckBox(activity);
 			}
 
-			if (tagController.getTagList().getTags().contains(tagController.getTagList().get(position))) {
+			if (tagController.getChosenTags().getTags().contains(tagController.getTagList().get(position))) {
 				checkBox.setChecked(true);
 			}
 
