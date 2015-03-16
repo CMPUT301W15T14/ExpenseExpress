@@ -32,7 +32,14 @@ public class Expense implements Cloneable {
     public Amount getAmount() {
         return amount;
     }
-
+    /**
+     * Setter for the Amount of this Expense
+     *
+     * @param amount The Amount object
+     */
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
     /**
      * Getter for the Expense Date object associated with this Expense.
      * 
@@ -171,6 +178,11 @@ public class Expense implements Cloneable {
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+		
 	}
     
 }

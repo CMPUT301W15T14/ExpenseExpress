@@ -154,6 +154,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:background="@color/mainYellow"
+        android:onClick="onClick_AddExpense"
         android:text="Add Expense"
         android:textColor="@color/mainGreen" />
 
