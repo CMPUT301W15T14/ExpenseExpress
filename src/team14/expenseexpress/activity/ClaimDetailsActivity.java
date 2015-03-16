@@ -2,7 +2,6 @@
 
 import java.util.ArrayList;
 
-//import com.example.assignment1.Globals;
 
 
 import team14.expenseexpress.ExpenseExpressActivity;
