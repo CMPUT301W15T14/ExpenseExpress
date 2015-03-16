@@ -71,7 +71,6 @@ public class ExpenseEditActivity extends Activity {
 			expenseMonth = month;
 			expenseDay=day;
 			date.set(year,month,day);
-			expenseController.setExpenseDate((GregorianCalendar)date);
 			showDate();
 		}
 	};
@@ -81,7 +80,12 @@ public class ExpenseEditActivity extends Activity {
    }
 	//*******************************************************************************
 	
-	
+	public void onClick_AddExpense(View v){
+		String name = expenseName.getText().toString();
+		String description = expenseDescription.getText().toString();
+		int amount = Integer.parseInt(expenseAmount.getText().toString());
+		ExpenseController.getInstance().setExpense(null, date, amount, description, null, name);
+	}
 	public void modifyReceipt(View view) {
 		Toast.makeText(this,"Feature Unavailable",Toast.LENGTH_SHORT).show();
 	}

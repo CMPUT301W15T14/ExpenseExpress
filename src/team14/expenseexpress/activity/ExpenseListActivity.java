@@ -32,7 +32,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.support.v4.app.NavUtils;
 
 public class ExpenseListActivity extends Activity {
-
+	
+	private ExpenseListAdapter expenseListAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,8 +81,17 @@ public class ExpenseListActivity extends Activity {
 			}			
 		});
 	}
-
-
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		try{
+			expenseListAdapter.notifyDataSetChanged();}
+		catch (NullPointerException e){
+			
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
