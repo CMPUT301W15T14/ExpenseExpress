@@ -5,22 +5,11 @@ import java.util.Collections;
 
 public class ClaimList {
 	
-	// Singleton, to persist across Activities
-	private static ClaimList instance;
+	private ArrayList<Claim> claimList;
 	
-	private ClaimList(){
+	public ClaimList(){
 		claimList = new ArrayList<Claim>();
 	}
-	
-	public static ClaimList getInstance(){
-		if (instance == null){
-			instance = new ClaimList();
-		}
-		return instance;
-	}
-	
-	private ArrayList<Claim> claimList = null;
-	
 	
 	public ArrayList<Claim> getClaims() {
 		return this.claimList;
@@ -42,11 +31,4 @@ public class ClaimList {
 	public void sort() {
 		Collections.sort(claimList, new Claim.ClaimComparator());
 	}
-
-	public void clear() {
-		claimList.clear();
-	}
-
-
-	
 }

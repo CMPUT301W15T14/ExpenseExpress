@@ -8,6 +8,7 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.User;
 
 public class ElasticSearchHelper {
+	//TODO: implement this class in pp5
     private Context context;
     private LocalFileHelper fh;
     

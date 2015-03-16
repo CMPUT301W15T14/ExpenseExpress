@@ -1,14 +1,9 @@
 package team14.expenseexpress.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.Expense;
-import team14.expenseexpress.model.User;
-import team14.expenseexpress.util.ElasticSearchHelper;
 import team14.expenseexpress.util.LocalFileHelper;
 /**
  * Singleton controller.
@@ -27,13 +22,12 @@ import team14.expenseexpress.util.LocalFileHelper;
 public class ClaimController {
 	private Context context;
 	private ClaimList claimList;
-	private User user;
 	private Claim selectedClaim;
 	
 	// singleton
 	private static ClaimController instance;
 	private ClaimController(){
-	
+		this.selectedClaim = new Claim();
 	}
 	
 	public static ClaimController getInstance(){
@@ -43,19 +37,23 @@ public class ClaimController {
 		return instance;
 	}
 	
+	public ClaimList getClaimList() {
+		return this.claimList;
+	}
+	
 
 	public void setSelectedClaim (Claim claim){
-			selectedClaim = claim;
+			this.selectedClaim = claim;
 		
 	}
 	public Claim getSelectedClaim(){
-		return selectedClaim;
+		return this.selectedClaim;
 	}
 
 	public void initialize(Context context){
 		this.context = context;
-		this.user = User.getInstance();
-		initializeClaimList();
+		//initializeClaimList();
+		loadLocalClaims();
 	}
 	
 	public void addClaim(Claim claim){
@@ -66,16 +64,17 @@ public class ClaimController {
 		claimList.remove(claim);
 	}
 	
+	
+	/*
 	private void initializeClaimList() {
 		
-		claimList = ClaimList.getInstance();
-		claimList.clear();
-		List<Claim> localClaims = loadLocalClaims();
-		List<Claim> remoteClaims = loadRemoteClaims();
+		claimList = new ClaimList();
+		ClaimList localClaims = loadLocalClaims();
+		ClaimList remoteClaims = loadRemoteClaims();
 		merge(localClaims, remoteClaims);
 	}
 
-	private void merge(List<Claim> localClaims, List<Claim> remoteClaims) {
+	private void merge(ClaimList localClaims, ClaimList remoteClaims) {
 		// TODO merge the two lists.
 		List<Claim> mergedList = new ArrayList<Claim>(localClaims);
 		for (int i = 0; i < remoteClaims.size(); i++){
@@ -100,39 +99,14 @@ public class ClaimController {
 		return remoteClaims;
 	}
 
-	private List<Claim> loadLocalClaims() {
-		LocalFileHelper fileHelper = LocalFileHelper.getInstance(context);
-		List<Claim> localClaims = new ArrayList<Claim>();
-		switch (Mode.get()){
-		case Mode.APPROVER:
-			localClaims = fileHelper.getLocalClaimsForApprover(user);
-			break;
-		case Mode.CLAIMANT:
-			localClaims = fileHelper.getLocalClaimsForClaimant(user);
-		}
-		return localClaims;
+
+*/
+	private void loadLocalClaims() {
+		this.claimList = LocalFileHelper.getInstance(context).loadClaims();
 	}
 
 	public static void removeExpense(Claim claim, Expense expense) {
 		claim.remove(expense);
-		
 	}
-	
-	
-	
-	
-	/*
-	private static ClaimList claimList = null;
-	
-	public static ClaimList getClaimList(User user) {
-		if (claimList == null) {
-			try {
-				claimList = FileHelper.getHelper().getLocalClaimsForClaimant(user);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	*/
-
 }
+

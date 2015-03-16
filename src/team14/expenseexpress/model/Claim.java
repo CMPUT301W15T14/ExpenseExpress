@@ -1,7 +1,5 @@
 package team14.expenseexpress.model;
 
-
-import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +14,6 @@ import java.util.GregorianCalendar;
  */
 public class Claim {
     private ArrayList<ClaimTag> tags;
-    private ArrayList<PropertyChangeListener> listeners;
     private ExpenseList expenseList;
     private ArrayList<Destination> destinations;
     private GregorianCalendar startDate;     // use getDateString for String
@@ -43,6 +40,10 @@ public class Claim {
 
     public void setLastSave() {
     	this.lastSave = generateCurrentTime();
+    }
+    
+    public long getLastSave() {
+    	return this.lastSave;
     }
     
     /**
@@ -274,12 +275,6 @@ public class Claim {
 			return c1.getStartDate().compareTo(c2.getStartDate());
 				}
 		}
-	
-	
-	
-	public void addListener(PropertyChangeListener newListener) {
-		listeners.add(newListener);
-	}
 
 	public void remove(Expense expense) {
 		expenseList.remove(expense);

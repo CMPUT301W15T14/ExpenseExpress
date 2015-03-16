@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class ExpenseList {
 
-	private ArrayList<Expense> expenseList = null;
+	private ArrayList<Expense> expenseList;
 	
 	public ExpenseList() {
 		this.expenseList = new ArrayList<Expense>();
