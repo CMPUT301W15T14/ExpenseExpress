@@ -1,5 +1,6 @@
 package team14.expenseexpress.controller;
 
+import java.util.Collections;
 import java.util.GregorianCalendar;
 
 import android.content.Context;
@@ -46,14 +47,12 @@ public class ExpenseController {
 						    double amount,
 						    String currency,
 						    String description,
-						    Receipt receipt,
 						    String name,
 						    boolean complete){
 		if (selectedExpense != null){
 			selectedExpense.setCategory(category);
 		    selectedExpense.setExpenseDate(expenseDate);
 			selectedExpense.setDescription(description);
-			selectedExpense.setReceipt(receipt);
 			Amount actualAmount = new Amount(amount, Currency.fromString(currency));
 			selectedExpense.setAmount(actualAmount);
 			selectedExpense.setName(name);
@@ -64,14 +63,14 @@ public class ExpenseController {
 			expense.setCategory(category);
 		    expense.setExpenseDate(expenseDate);
 			expense.setDescription(description);
-			expense.setReceipt(receipt);
 			Amount actualAmount = new Amount(amount, Currency.fromString(currency));
 			expense.setAmount(actualAmount);
 			expense.setName(name);
 			expense.setComplete(complete);
-			this.expenseList.add(expense);
+			addExpense(expense);
 			}
 		selectedExpense = null;
+		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
@@ -101,11 +100,13 @@ public class ExpenseController {
 	
 	public void addExpense(Expense expense){
 		this.expenseList.add(expense);
+		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
 	public void removeExpense(Expense expense){
 		this.expenseList.remove(expense);
+		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
@@ -133,5 +134,9 @@ public class ExpenseController {
 			}
 		}
 		return false;
+	}
+	public void sortExpenseList(){
+		expenseList.sort();
+
 	}
 }

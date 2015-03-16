@@ -8,6 +8,7 @@ import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.model.Expense;
+import team14.expenseexpress.receipt.ReceiptAddActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -144,7 +145,7 @@ public class ExpenseEditActivity extends Activity {
 		}
 		
 		else{
-			ExpenseController.getInstance().setExpense(category, date, amount,currency, description,null, name, complete);
+			ExpenseController.getInstance().setExpense(category, date, amount,currency, description,name, complete);
 			finish();}
 	}
 	public void modifyReceipt(View view) {

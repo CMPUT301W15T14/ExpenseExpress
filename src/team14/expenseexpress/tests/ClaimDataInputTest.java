@@ -1,7 +1,8 @@
-package team14.expenseexpress.tests;
+//package team14.expenseexpress.tests;
 //import team14.teamproject.test.R;
 //import team14.teamproject.ClaimSummaryActivity;
-import junit.framework.TestCase;
+//import junit.framework.TestCase;
+/*
 import android.test.ActivityInstrumentationTestCase2;
 import team14.expenseexpress.activity.NewClaimActivity;
 import team14.expenseexpress.controller.ClaimController;
@@ -40,4 +41,4 @@ public class ClaimDataInputTest extends ActivityInstrumentationTestCase2<NewClai
 		claim.endDate(dateIn);
 		assertEquals ("The start date is saved", dateIn, claim.getEndDate()); 
 	}*/
-}
+//}

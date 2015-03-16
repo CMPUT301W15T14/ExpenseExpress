@@ -27,6 +27,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:background="@color/mainYellow"
+        android:onClick="OnClick_ViewReceipt"
         android:text="View Receipt"
         android:textColor="@color/mainGreen" />
 
