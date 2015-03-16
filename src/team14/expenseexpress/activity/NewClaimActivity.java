@@ -11,6 +11,7 @@ import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
+import team14.expenseexpress.model.Status;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -39,8 +40,10 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	
 	private static EditText StartDateEdit;
 	private static EditText EndDateEdit;
-	private static GregorianCalendar startDate;  
+	private static GregorianCalendar startDate; 
+	private static GregorianCalendar endDate;  
 	private static boolean Start;
+	private static Claim claim;
 	private static ArrayList<Destination> DestinationList;
 	private static ArrayList<String> Dname;
 	private static ArrayList<ClaimTag> chosenTags;
@@ -57,6 +60,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		StartDateEdit = (EditText) findViewById(R.id.tempStartDateTextfield);
 		EndDateEdit = (EditText) findViewById(R.id.tempEndDateTextField);
 		
+		claim = new Claim();
 		DestinationList = new ArrayList<Destination>();
 		Dname = new ArrayList<String>();
 		chosenTags = new ArrayList<ClaimTag>();
@@ -200,10 +204,12 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 			// Do something with the date chosen by the user
 			if (Start) {
 				StartDateEdit.setText(day + "/" + (month + 1) + "/" + year);
+				startDate = new GregorianCalendar(year, month, day);
 			} else {
 				EndDateEdit.setText(day + "/" + (month + 1) + "/" + year);
+				endDate = new GregorianCalendar(year, month, day);
 			}
-			startDate = new GregorianCalendar(year, month, day);
+			
 		}
 	}
 	
@@ -215,12 +221,20 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	public void addClaim(View v) {
 		ClaimController cListController = ClaimController.getInstance();
 		cListController.initialize(this);
-		Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
 		Claim claim = new Claim();
 		EditText nameView = (EditText) findViewById(R.id.newClaimNameText);
 		claim.setName(nameView.getText().toString());
 		claim.setStartDate(startDate);
+		claim.setEndDate(endDate);
+		for (int i = 0; i < DestinationList.size(); i++) {
+			claim.addDestination(DestinationList.get(i));
+		}
+		for (int i = 0; i < chosenTags.size(); i++) {
+			claim.addTag(chosenTags.get(i));
+		}
+		claim.setStatus(Status.IN_PROGRESS);
 		cListController.addClaim(claim);
+		Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
 		finish();
 	}
 	

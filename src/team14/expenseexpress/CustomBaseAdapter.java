@@ -48,7 +48,10 @@ public class CustomBaseAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.custom_claim_list, null);
 			holder = new ViewHolder();
 			holder.claim = (TextView) convertView.findViewById(R.id.claimname);
-			holder.date = (TextView) convertView.findViewById(R.id.date);
+			holder.startdate = (TextView) convertView.findViewById(R.id.date);
+			holder.status = (TextView) convertView.findViewById(R.id.status);
+			holder.tags = (TextView) convertView.findViewById(R.id.tags);
+			holder.destination = (TextView) convertView.findViewById(R.id.destination);
 
 			convertView.setTag(holder);
 		} else {
@@ -56,13 +59,19 @@ public class CustomBaseAdapter extends BaseAdapter {
 		}
 		
 		holder.claim.setText(ClaimList.get(position).getName());
-		holder.date.setText(ClaimList.get(position).getStartDateString());
+		holder.startdate.setText(ClaimList.get(position).getStartDateString());
+		holder.status.setText(ClaimList.get(position).getStatus());
+		holder.tags.setText(ClaimList.get(position).getTags().get(0).getName());
+		holder.tags.setText(ClaimList.get(position).getDestinations().get(0).getDestination());
 		
 		return convertView;
 	}
 
 	static class ViewHolder {
 		TextView claim;
-		TextView date;
+		TextView startdate;
+		TextView status;
+		TextView tags;
+		TextView destination;
 	}
 }
