@@ -2,12 +2,14 @@ package team14.expenseexpress.activity;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.FileHandler;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
+import team14.expenseexpress.util.LocalFileHelper;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -179,8 +181,8 @@ public class ClaimEditActivity extends Activity {
 				Toast.makeText(this, "End date can't come before start date.", Toast.LENGTH_SHORT).show();
 				return;
 			} else {
-				//ClaimController.getInstance().addClaim(claim);
-				Toast.makeText(this, "Editing a Claim", Toast.LENGTH_SHORT).show();
+				LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
+				Toast.makeText(this, "Claim editted.", Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		}

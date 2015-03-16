@@ -1,5 +1,6 @@
 package team14.expenseexpress.activity;
 
+import team14.expenseexpress.ClaimListAdapter;
 import team14.expenseexpress.CustomBaseAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
@@ -40,7 +41,7 @@ import android.widget.Toast;
 public class ClaimListActivity extends ExpenseExpressActivity {
 
 	private TagsListAdapter tagsListAdapter;
-	private CustomBaseAdapter claimsListAdapter;
+	private ClaimListAdapter claimsListAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		LayoutInflater.from(this);
 
 		final ListView lv1 = (ListView) findViewById(R.id.claimListView);
-		CustomBaseAdapter adapter = new CustomBaseAdapter(this, ClaimController.getInstance().getClaimList().getClaims());
-		setClaimListAdapter(adapter);
-		lv1.setAdapter(adapter);
+		claimsListAdapter = new ClaimListAdapter(this);
+		setClaimListAdapter(claimsListAdapter);
+		lv1.setAdapter(claimsListAdapter);
 		registerForContextMenu(lv1);
 		lv1.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -178,7 +179,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	 * A method to set the adapter for claims in order to notifyDataSetChanged() 
 	 * @param adapter The CustomBaseAdapter used
 	 */
-	public void setClaimListAdapter(CustomBaseAdapter adapter) {
+	public void setClaimListAdapter(ClaimListAdapter adapter) {
 		this.claimsListAdapter = adapter;
 	}
 	
