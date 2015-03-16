@@ -9,7 +9,10 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import team14.expenseexpress.controller.Mode;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.User;
 
@@ -27,8 +30,10 @@ import android.content.Context;
  */
 public class LocalFileHelper {
 	
-	private static final String CLAIMS_FILENAME = "claims.ee";
-	private static final String TAGS_FILENAME = "tags.ee";
+	private static final String CLAIMANT_FILENAME = "ee.claimant_";
+	private static final String APPROVER_FILENAME = "ee.approver"; 
+	private static final String TAGS_FILENAME = "ee.tags_";
+	//private static final String OFFLINE_FILENAME = "ee.offline"; TODO: implement in pp5
 	
 	private Context context;
 	
@@ -45,15 +50,6 @@ public class LocalFileHelper {
 		}
 		return fileHelper;
 	}
-	
-	/*
-	public static FileHelper getHelper() {
-		if(fileHelper == null) {
-			throw new RuntimeException("Missing instance of FileHelper");
-		}
-		return fileHelper;
-	}
-	*/
 	
 	private void save(Object data, String filename) {
 		Gson gson = new Gson();
@@ -73,10 +69,60 @@ public class LocalFileHelper {
 	}
 
 	
-	public void saveClaims(ArrayList<Claim> claims){
-		save(claims, CLAIMS_FILENAME);
+	public void saveClaims(ClaimList claims){
+		switch(Mode.get()) {
+		case Mode.CLAIMANT:
+			save(claims,CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
+			break;
+		case Mode.APPROVER:
+			save(claims, APPROVER_FILENAME);
+			break;
+		}
 	}
 
+	public ClaimList loadClaims() {
+		Gson gson = new Gson();
+		ClaimList claims = new ClaimList();
+		
+		if(Mode.get() == Mode.CLAIMANT) {
+			try {
+				FileInputStream fis = context.openFileInput(CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
+				InputStreamReader isr = new InputStreamReader(fis);
+				Type dataType = new TypeToken<ArrayList<Claim>>() {	}.getType();
+				claims = gson.fromJson(isr, dataType);
+				fis.close();
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		} else if(Mode.get() == Mode.APPROVER) {
+			try {
+				FileInputStream fis = context.openFileInput(APPROVER_FILENAME);
+				InputStreamReader isr = new InputStreamReader(fis);
+				Type dataType = new TypeToken<ArrayList<Claim>>() {	}.getType();
+				claims = gson.fromJson(isr, dataType);
+				fis.close();
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (claims == null) {
+			claims = new ClaimList();
+		}
+		return claims;
+	}
+	
+	
+	/*
 	private ArrayList<Claim> getAllLocalClaims(){
 		Gson gson = new Gson();
 		ArrayList<Claim> claims = new ArrayList<Claim>();
@@ -122,11 +168,13 @@ public class LocalFileHelper {
 		return claimsForApprover;
 	}
 
+*/
+
 	public ArrayList<ClaimTag> getTags() {
 		Gson gson = new Gson();
 		ArrayList<ClaimTag> tags = new ArrayList<ClaimTag>();
 		try {
-			FileInputStream fis = context.openFileInput(TAGS_FILENAME);
+			FileInputStream fis = context.openFileInput(TAGS_FILENAME + UserController.getInstance().getCurrentUser().getName());
 			InputStreamReader isr = new InputStreamReader(fis);
 			Type dataType = new TypeToken<ArrayList<ClaimTag>>() {	}.getType();
 			tags = gson.fromJson(isr, dataType);
@@ -145,7 +193,7 @@ public class LocalFileHelper {
 	}
 
 	public void saveTags(ArrayList<ClaimTag> tags) {
-		save(tags, TAGS_FILENAME);
+		save(tags, TAGS_FILENAME + UserController.getInstance().getCurrentUser().getName());
 	}
 
 }

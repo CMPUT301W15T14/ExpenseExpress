@@ -16,23 +16,10 @@ public class User {
 	 */
 	
 	private static final String RESOURCE_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/users/";
-	public static final String INSTANCE_NOT_SET = "No instance user defined";
     
-	public final String name;
-    private String password;
-    
-    // Static instance field added (it won't be serialized by Gson)--------------------
-    private static User instance;
-    public static void setInstance(User user){
-    	instance = user;
-    }
-    public static User getInstance(){
-    	if (instance == null){
-    		throw new RuntimeException(INSTANCE_NOT_SET);
-    	}
-    	return instance;
-    }
-    // ---------------------------------------------------------------------------------
+	private final String name;
+    private String password = null;
+    //private Mode userMode; TODO pp5 after server is setup to save user info.
 
     public User(String name){
     	this.name = name;
@@ -65,4 +52,23 @@ public class User {
 		return password;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public void getUserMode() {
+		//TODO pp5 after server is setup to save user info.
+	}
+	
+	public void setUserMode(Mode mode) {
+		//TODO pp5 after server is setup to save user info.
+	}
+	
+	private enum Mode {
+		CLAIMANT,
+		APPROVER,
+		CLAIMANT_APPROVER,
+		OFFLINE,
+		//TODO implement mode conditions...
+	}	
 }

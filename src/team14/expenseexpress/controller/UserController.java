@@ -1,6 +1,5 @@
 package team14.expenseexpress.controller;
 
-import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
@@ -15,14 +14,30 @@ import team14.expenseexpress.model.User;
 
 public class UserController {
 	private Gson gson = new Gson();
-	private static User currentUser = null;
+	private User currentUser;
 	private static final String TAG = "UserController";
 	
-	public UserController() {
-		super();
+	private static UserController instance;
+	private UserController() {
 	}
 
+	public static UserController getInstance() {
+		if(instance == null) {
+			instance = new UserController();
+		}
+		return instance;
+	}
+	
+	public User getCurrentUser() {
+		return this.currentUser;
+	}
+	
+	public void setCurrentUser(User user) {
+		this.currentUser = user;
+	}
+	
 	public void getUser(User user) {
+		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
 			HttpGet getRequest = new HttpGet(user.getResourceUrl() + user.getName());
@@ -40,6 +55,7 @@ public class UserController {
 	}
 	
 	private void addUser(User user) {
+		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
 			HttpPost addRequest = new HttpPost(user.getResourceUrl() + user.getName());
@@ -58,6 +74,7 @@ public class UserController {
 	}
 	
 	public void removeUser(User user) {
+		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
 
 		try {

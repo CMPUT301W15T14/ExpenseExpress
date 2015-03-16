@@ -4,6 +4,6 @@ import java.net.URI;
 
 public class Receipt {
     private URI uri;
-    // TODO
+    // TODO: pp5
 
 }
