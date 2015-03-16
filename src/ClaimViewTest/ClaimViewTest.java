@@ -1,6 +1,7 @@
-package ClaimViewTest;
+/*package ClaimViewTest;
 
 import junit.framework.TestCase;
+
 
 import team14.teamproject.test.R;
 import team14.teamproject.ClaimSummaryActivity;
@@ -39,4 +40,4 @@ textInput.setText(claim.getInfo()); //returns all inputted data
 instrumentation.waitForIdleSync();
 assertEquals("Does this work?", nameIn+" "+place+" "+reason, textInput.getText().toString()); //assuming this is the orientation of presentation
 }
-}
+}*/
