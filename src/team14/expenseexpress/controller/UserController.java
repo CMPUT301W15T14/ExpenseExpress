@@ -17,7 +17,8 @@ public class UserController {
 	private User currentUser;
 	private static final String TAG = "UserController";
 	
-	private static UserController instance = null;;
+	private static UserController instance = null;
+	
 	private UserController() {
 	}
 
@@ -54,7 +55,7 @@ public class UserController {
 		
 	}
 	
-	private void addUser(User user) {
+	public void addUser(User user) {
 		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
