@@ -50,14 +50,17 @@ public class TagListController {
 	
 	public void addTag(ClaimTag tag){
 		usersTags.add(tag);
+		LocalFileHelper.getInstance().saveTags(this.usersTags);
 	}
 	
 	public void removeTag(ClaimTag tag){
 		usersTags.remove(tag);
+		LocalFileHelper.getInstance().saveTags(this.usersTags);
 	}
 	
 	public void setTagName(ClaimTag tag, String name){
 		tag.setName(name);
+		LocalFileHelper.getInstance().saveTags(this.usersTags);
 	}
 	
 	private void loadTags() {

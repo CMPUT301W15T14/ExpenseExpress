@@ -95,7 +95,7 @@ public class LocalFileHelper {
 			try {
 				FileInputStream fis = context.openFileInput(CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
 				InputStreamReader isr = new InputStreamReader(fis);
-				Type dataType = new TypeToken<ArrayList<Claim>>() {	}.getType();
+				Type dataType = new TypeToken<ClaimList>() {	}.getType();
 				claims = gson.fromJson(isr, dataType);
 				fis.close();
 
@@ -110,7 +110,7 @@ public class LocalFileHelper {
 			try {
 				FileInputStream fis = context.openFileInput(APPROVER_FILENAME);
 				InputStreamReader isr = new InputStreamReader(fis);
-				Type dataType = new TypeToken<ArrayList<Claim>>() {	}.getType();
+				Type dataType = new TypeToken<ClaimList>() {	}.getType();
 				claims = gson.fromJson(isr, dataType);
 				fis.close();
 
@@ -183,7 +183,7 @@ public class LocalFileHelper {
 		try {
 			FileInputStream fis = context.openFileInput(TAGS_FILENAME + UserController.getInstance().getCurrentUser().getName());
 			InputStreamReader isr = new InputStreamReader(fis);
-			Type dataType = new TypeToken<ArrayList<ClaimTag>>() {	}.getType();
+			Type dataType = new TypeToken<TagList>() {	}.getType();
 			tags = gson.fromJson(isr, dataType);
 			fis.close();
 
@@ -199,7 +199,7 @@ public class LocalFileHelper {
 		return tags; 
 	}
 
-	public void saveTags(ArrayList<ClaimTag> tags) {
+	public void saveTags(TagList tags) {
 		save(tags, TAGS_FILENAME + UserController.getInstance().getCurrentUser().getName());
 	}
 

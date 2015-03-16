@@ -8,6 +8,7 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.model.ExpenseList;
 import team14.expenseexpress.model.Receipt;
+import team14.expenseexpress.util.LocalFileHelper;
 
 
 public class ExpenseController {
@@ -53,6 +54,7 @@ public class ExpenseController {
 		selectedExpense.setAmount(actualAmount);
 		selectedExpense.setName(name);
 		expenseList.add(selectedExpense);
+		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 		
 	}
 	
@@ -82,10 +84,12 @@ public class ExpenseController {
 	
 	public void addExpense(Expense expense){
 		this.expenseList.add(expense);
+		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
 	public void removeExpense(Expense expense){
 		this.expenseList.remove(expense);
+		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
 	public GregorianCalendar getExpenseDate() {
