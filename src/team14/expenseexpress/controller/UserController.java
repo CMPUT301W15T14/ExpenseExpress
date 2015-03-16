@@ -17,7 +17,7 @@ public class UserController {
 	private User currentUser;
 	private static final String TAG = "UserController";
 	
-	private static UserController instance;
+	private static UserController instance = null;;
 	private UserController() {
 	}
 

@@ -19,13 +19,14 @@ import team14.expenseexpress.util.LocalFileHelper;
  * - Does NOT deal with tags (done by TagListController for list, and ClaimController for attachment to a Claim).
  * 
  */
+
 public class ClaimController {
 	private Context context;
 	private ClaimList claimList;
 	private Claim selectedClaim;
 	
 	// singleton
-	private static ClaimController instance;
+	private static ClaimController instance = null;
 	private ClaimController(){
 		this.selectedClaim = new Claim();
 	}
@@ -44,7 +45,6 @@ public class ClaimController {
 
 	public void setSelectedClaim (Claim claim){
 			this.selectedClaim = claim;
-		
 	}
 	
 	public Claim getSelectedClaim(){

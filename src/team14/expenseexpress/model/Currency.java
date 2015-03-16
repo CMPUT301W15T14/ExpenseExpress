@@ -16,7 +16,7 @@ public enum Currency {
     
     private String name;
     
-    Currency(String name){
+    private Currency(String name){
     	this.name = name;
     }
     

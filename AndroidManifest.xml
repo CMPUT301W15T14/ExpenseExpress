@@ -12,6 +12,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="team14.expenseexpress.activity.LoginActivity"
@@ -49,6 +50,30 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ExpenseListActivity" />
+        </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.ClaimEditActivity"
+            android:label="@string/title_activity_claim_edit"
+            android:parentActivityName="team14.expenseexpress.activity.ClaimListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team14.expenseexpress.activity.ClaimListActivity" />
+        </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.EditTags"
+            android:label="@string/title_activity_edit_tags"
+            android:parentActivityName="team14.expenseexpress.activity.ClaimEditActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team14.expenseexpress.activity.ClaimEditActivity" />
+        </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.EditDestinations"
+            android:label="@string/title_activity_edit_destinations"
+            android:parentActivityName="team14.expenseexpress.activity.ClaimEditActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team14.expenseexpress.activity.ClaimEditActivity" />
         </activity>
     </application>
 

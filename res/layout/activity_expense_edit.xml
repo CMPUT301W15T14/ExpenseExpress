@@ -141,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/categorySpinner"
         android:layout_toLeftOf="@+id/currencySpinner"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/endDateText"
         android:ems="10"
         android:inputType="numberDecimal" />
 
@@ -159,7 +159,7 @@
         android:textColor="@color/mainGreen" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/endDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/amountText"
@@ -173,7 +173,7 @@
         android:id="@+id/categoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/endDateText"
         android:layout_alignRight="@+id/expenseDateButton"
         android:layout_alignTop="@+id/categorySpinner"
         android:layout_marginTop="14dp"
