@@ -18,7 +18,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
+/**
+ * View
+ * ClaimDetailsActivity Class:
+ * This view is for the Claim Details page of the app.
+ * It allows the user to see the name, start and end date, status, 
+ * destination, approvers, and Total spent.
+ */
 public class ClaimDetailsActivity extends ExpenseExpressActivity {
 
 	    private ArrayList<Claim> claimList;

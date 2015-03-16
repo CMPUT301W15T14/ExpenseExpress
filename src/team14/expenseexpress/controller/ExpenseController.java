@@ -12,13 +12,14 @@ public class ExpenseController {
 	
 	private Context context;
 	private ExpenseList expenseList;
-	private Expense currentExpense; 
+	private Expense selectedExpense; 
 	
 	//singleton
 	private static ExpenseController instance;
+	
 	private ExpenseController(){
-		if(currentExpense == null) {
-			currentExpense = new Expense();
+		if(selectedExpense == null) {
+			selectedExpense = new Expense();
 		}
 	}
 	
@@ -29,7 +30,13 @@ public class ExpenseController {
 		}
 		return instance;
 	}
+	public void setSelectedExpense (Expense expense){
+		selectedExpense = expense;
 	
+	}
+	public Expense getSelectedExpense(){
+	return selectedExpense;
+	}
 	private ExpenseController(Claim claim){
 		this.expenseList = claim.getExpenseList();
 	
@@ -43,11 +50,11 @@ public class ExpenseController {
 	}
 	
 	public GregorianCalendar getExpenseDate() {
-		return this.currentExpense.getExpenseDate();
+		return this.selectedExpense.getExpenseDate();
 	}
 	
 	public void setExpenseDate(GregorianCalendar calendar) {
-		this.currentExpense.setExpenseDate(calendar);
+		this.selectedExpense.setExpenseDate(calendar);
 	}
 	
 }

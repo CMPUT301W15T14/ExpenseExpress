@@ -31,15 +31,22 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
+/**
+ * <p> View
+ * <p> ClaimListActivity Class:
+ * This view is for showing the list of claims a user has.
+ * It allows the user to see a list of claims, go to the add a new claim activity, 
+ * see a list of tags and add new tags. The user will also be able to sort claims
+ * by tags.
+ */
 public class ClaimListActivity extends ExpenseExpressActivity {
 
 	private ArrayList<ClaimTag> claimTags;
 	private ArrayList<ClaimTag> chosenTags;
 	private ArrayList<Claim> claimList;
 	private ClaimController cListController;
-	private CustomBaseAdapter adapter;
 	private TagsListAdapter tagsListAdapter;
+	private CustomBaseAdapter claimsListAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 		final ListView lv1 = (ListView) findViewById(R.id.claimListView);
 		CustomBaseAdapter adapter = new CustomBaseAdapter(this, claimList);
+		setClaimListAdapter(adapter);
 		lv1.setAdapter(adapter);
 		registerForContextMenu(lv1);
 		lv1.setOnItemClickListener(new OnItemClickListener() {
@@ -72,7 +80,11 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			}
 		});
 	}
-
+	/**
+	 * A DialogFragment class for tags. This creates a dialog that will show a list tags
+	 * and allows the user to add new tags. 
+	 * <p> Constraints: No duplicate tags, name field must be filled in
+	 */
 	@SuppressLint("ValidFragment")
 	private class NewTagDialogFragment extends DialogFragment {
 
@@ -118,7 +130,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			return view;
 		}
 	}
-
+	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -144,8 +156,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 		if (menuItemName.equals("Delete")) {
 			claimList.remove(claim);
-			log(adapter.toString());
-			adapter.notifyDataSetChanged();
+			claimsListAdapter.notifyDataSetChanged();
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals("submitted")
 					|| (claim.getStatus().equals("approved"))) {
@@ -160,26 +171,53 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * A method to set the adapter for tags in order to notifyDataSetChanged() 
+	 * @param adapter The TagsListAdapter used
+	 */
 	public void setTagsListAdapter(TagsListAdapter adapter) {
 		this.tagsListAdapter = adapter;
 	}
-
+	
+	/**
+	 * A method to set the adapter for claims in order to notifyDataSetChanged() 
+	 * @param adapter The CustomBaseAdapter used
+	 */
+	public void setClaimListAdapter(CustomBaseAdapter adapter) {
+		this.claimsListAdapter = adapter;
+	}
+	
+	/**
+	 * A method to update the tag list when a new tag is added by calling notifyDataSetChanged()
+	 */
 	private void updateTagsListAdapter() {
 		tagsListAdapter.notifyDataSetChanged();
 	}
-
+	
+	/**
+	 * A method that calls the NewTagDialogFragment in order to create a dialog for adding a new tag
+	 */
 	public void showNewTagDialog() {
 		FragmentManager fm = getFragmentManager();
 		new NewTagDialogFragment().show(fm, "newTagDialogFragment");
 	}
 
+	/**
+	 * when user press the "add new tag" button, this method calls TagListDialogFragment in order to
+	 * create a dialog to view the list of tags
+	 * @param v View
+	 */
 	public void onClick_seeTags(View v) {
 		FragmentManager fm = getFragmentManager();
 		new TagListDialogFragment(this).show(fm, "tagsListDialogFragment");
 
 	}
 
+	/**
+	 * When user press the "add new claim" button goes to the NewClaimActivity
+	 * @param v View
+	 */
 	public void onClick_newClaim(View v) {
 		// TODO
 		startActivity(new Intent(ClaimListActivity.this, NewClaimActivity.class));
@@ -189,6 +227,10 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		// TODO
 	}
 
+	/**
+	 * A method to get a ArrayList of tags chosen by the user called chosenTags
+	 * @return chosenTags
+	 */
 	public ArrayList<ClaimTag> getChosenTags() {
 		return chosenTags;
 	}
