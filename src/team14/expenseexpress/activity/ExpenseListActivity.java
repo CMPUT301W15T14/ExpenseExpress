@@ -38,7 +38,8 @@ public class ExpenseListActivity extends Activity {
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList); 
 		
 		claimNameView.setText(ClaimController.getInstance().getSelectedClaim().getName());
-		ExpenseListAdapter adapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList());	
+		expenseListAdapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList());
+		expenseListView.setAdapter(expenseListAdapter);
 		expenseListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapterView, View view,
@@ -71,11 +72,9 @@ public class ExpenseListActivity extends Activity {
 	@Override
 	protected void onResume(){
 		super.onResume();
-		try{
-			expenseListAdapter.notifyDataSetChanged();}
-		catch (NullPointerException e){
-			
-		}
+		
+			expenseListAdapter.notifyDataSetChanged();
+		
 	}
 	
 	@Override

@@ -85,6 +85,7 @@ public class ExpenseEditActivity extends Activity {
 		String description = expenseDescription.getText().toString();
 		int amount = Integer.parseInt(expenseAmount.getText().toString());
 		ExpenseController.getInstance().setExpense(null, date, amount, description, null, name);
+		finish();
 	}
 	public void modifyReceipt(View view) {
 		Toast.makeText(this,"Feature Unavailable",Toast.LENGTH_SHORT).show();
