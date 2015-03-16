@@ -53,7 +53,6 @@ public class ExpenseController {
 		expense.setDescription(description);
 		expense.setReceipt(receipt);
 		Amount actualAmount = new Amount(amount, null);
-		expenseList.add(selectedExpense);
 		expense.setAmount(actualAmount);
 		expense.setName(name);
 		this.expenseList.add(expense);

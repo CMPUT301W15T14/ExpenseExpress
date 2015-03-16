@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 
 
 import team14.expenseexpress.R;
+import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
 
 import android.app.Activity;
@@ -100,8 +101,23 @@ public class ExpenseEditActivity extends Activity {
 		double amount = Double.valueOf(expenseAmount.getText().toString());
 		String category = ctgrySpinner.getSelectedItem().toString();
 		String currency = crncySpinner.getSelectedItem().toString();
-		ExpenseController.getInstance().setExpense(category, date, amount,currency, description,null, name);
-		finish();
+		if (name.isEmpty()){
+			Toast.makeText(this, "Name is a Mandatory Field", Toast.LENGTH_LONG).show();
+		}
+		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getStartDate()) <= 0){
+			Toast.makeText(this, "Invalid Date (Before Claim Start Date)", Toast.LENGTH_LONG).show();
+
+		}
+		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getEndDate()) >= 0){
+			Toast.makeText(this, "Invalid Date (After Claim End Date)", Toast.LENGTH_LONG).show();
+		}
+		
+		else{
+			if (expenseAmount.getText() != null){
+				amount = Double.valueOf(0.0);
+			}
+			ExpenseController.getInstance().setExpense(category, date, amount,currency, description,null, name);
+			finish();}
 	}
 	public void modifyReceipt(View view) {
 		Toast.makeText(this,"Feature Unavailable",Toast.LENGTH_SHORT).show();
