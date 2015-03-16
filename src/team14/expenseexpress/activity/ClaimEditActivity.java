@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
 import android.os.Bundle;
@@ -152,9 +153,20 @@ public class ClaimEditActivity extends Activity {
 			startActivity(new Intent(ClaimEditActivity.this,EditDestinations.class));
 		}
 
+		@Override
+		public void onBackPressed() {
+			finishEdit();
+	
+		}
+		
 		public void editClaim(View v) {
+			finishEdit();
+		}
+		
+		private void finishEdit() {
+			Claim claim = ClaimController.getInstance().getSelectedClaim();
 			try {
-			ClaimController.getInstance().getSelectedClaim().setName(claimNameText.getEditableText().toString());
+				claim.setName(claimNameText.getEditableText().toString());
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 				Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show();
@@ -163,10 +175,14 @@ public class ClaimEditActivity extends Activity {
 			if(claimNameText.getEditableText().toString().isEmpty()) {
 				Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show();
 				return;
+			} else if(claim.getEndDate().compareTo(claim.getStartDate()) < 0) {
+				Toast.makeText(this, "End date can't come before start date.", Toast.LENGTH_SHORT).show();
+				return;
+			} else {
+				//ClaimController.getInstance().addClaim(claim);
+				Toast.makeText(this, "Editing a Claim", Toast.LENGTH_SHORT).show();
+				finish();
 			}
-			finish();
 		}
-
-		
 
 }

@@ -39,8 +39,11 @@ public class EditTags extends Activity {
 		
 	}
 	
+	@Override
+	public void onBackPressed() {
+		finish();
+	}
 	public void acceptTags(View v) {
-		
 		finish();
 	}
 }

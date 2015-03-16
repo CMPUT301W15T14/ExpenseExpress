@@ -113,8 +113,12 @@ public class EditDestinations extends Activity {
 		new NewDestinationDialogFragment().show(fm, "DestinationsDialogFragment");
 	}
 	
+	@Override
+	public void onBackPressed() {
+		finish();
+	}
+	
 	public void acceptDestinations(View v) {
-		
 		finish();
 	}
 	
