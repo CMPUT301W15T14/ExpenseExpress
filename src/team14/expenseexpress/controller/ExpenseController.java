@@ -41,7 +41,7 @@ public class ExpenseController {
 	
 	public void setExpense(String category,
 						    GregorianCalendar expenseDate,
-						    int amount,
+						    double amount,
 						    String description,
 						    Receipt receipt,
 						    String name){

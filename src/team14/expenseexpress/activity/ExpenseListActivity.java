@@ -108,7 +108,7 @@ public class ExpenseListActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-    public void onClick_newExpense(View v) {
+    public void onClick_NewExpense(View v) {
     	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
     	
     }

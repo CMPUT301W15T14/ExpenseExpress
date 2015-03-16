@@ -38,10 +38,10 @@ public class ExpenseEditActivity extends Activity {
 		expenseDateView = (TextView) findViewById(R.id.expenseDateView);
 		expenseAmount = (EditText) findViewById(R.id.amountText);
 		
-		GregorianCalendar calendar = ExpenseController.getInstance().getExpenseDate();
-		expenseYear = calendar.get(GregorianCalendar.YEAR);
-		expenseMonth = calendar.get(GregorianCalendar.MONTH);
-		expenseDay = calendar.get(GregorianCalendar.DAY_OF_MONTH);
+		date = ExpenseController.getInstance().getExpenseDate();
+		expenseYear = date.get(GregorianCalendar.YEAR);
+		expenseMonth = date.get(GregorianCalendar.MONTH);
+		expenseDay = date.get(GregorianCalendar.DAY_OF_MONTH);
 		showDate();
 }
 
@@ -83,7 +83,7 @@ public class ExpenseEditActivity extends Activity {
 	public void onClick_AddExpense(View v){
 		String name = expenseName.getText().toString();
 		String description = expenseDescription.getText().toString();
-		int amount = Integer.parseInt(expenseAmount.getText().toString());
+		double amount = Double.valueOf(expenseAmount.getText().toString());
 		ExpenseController.getInstance().setExpense(null, date, amount, description, null, name);
 		finish();
 	}

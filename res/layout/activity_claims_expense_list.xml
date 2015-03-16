@@ -17,9 +17,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:clickable="false"
+        android:longClickable="false"
         android:text="Claim Name"
-        android:textSize="6mm"
-        android:textColor="@color/mainYellow" />
+        android:textColor="@color/mainYellow"
+        android:textSize="6mm" />
 
     <Button
         android:id="@+id/viewStatusButton"

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @since   2015-02-19
  */
 public class Amount {
-    private int number;
+    private double number;
     private Currency currency;
 
     /**
@@ -24,7 +24,7 @@ public class Amount {
      *
      * @return  Numerical amount.
      */
-    public int getNumber() {
+    public double getNumber() {
         return number;
     }
 
@@ -37,7 +37,7 @@ public class Amount {
      * @param number    Numerical amount.
      * @param currency  Currency (enum).
      */
-    public Amount(int number, Currency currency){
+    public Amount(double number, Currency currency){
         this.number = number;
         this.currency = currency;
     }
