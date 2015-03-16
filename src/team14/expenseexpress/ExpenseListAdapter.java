@@ -44,7 +44,7 @@ public class ExpenseListAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.custom_expense_list, null);
 			holder = new ViewHolder();
 			holder.expense = (TextView) convertView.findViewById(R.id.expensename);
-			holder.date = (TextView) convertView.findViewById(R.id.expensedate);
+			holder.date = (TextView) convertView.findViewById(R.id.date);
 
 			convertView.setTag(holder);
 		} else {
@@ -52,7 +52,7 @@ public class ExpenseListAdapter extends BaseAdapter {
 		}
 		
 		holder.expense.setText(expenseList.get(position).getName());
-		holder.date.setText(expenseList.get(position).getExpenseDate().toString());
+		holder.date.setText((String) android.text.format.DateFormat.format("yyyy-MM-dd",expenseList.get(position).getExpenseDate()));
 		
 		return convertView;
 	}

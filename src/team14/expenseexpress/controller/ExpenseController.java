@@ -43,19 +43,21 @@ public class ExpenseController {
 	public void setExpense(String category,
 						    GregorianCalendar expenseDate,
 						    double amount,
+						    String currency,
 						    String description,
 						    Receipt receipt,
 						    String name){
-		selectedExpense.setCategory(category);
-		selectedExpense.setExpenseDate(expenseDate);
-		selectedExpense.setDescription(description);
-		selectedExpense.setReceipt(receipt);
+		Expense expense = new Expense();
+		expense.setCategory(category);
+	    expense.setExpenseDate(expenseDate);
+		expense.setDescription(description);
+		expense.setReceipt(receipt);
 		Amount actualAmount = new Amount(amount, null);
-		selectedExpense.setAmount(actualAmount);
-		selectedExpense.setName(name);
 		expenseList.add(selectedExpense);
+		expense.setAmount(actualAmount);
+		expense.setName(name);
+		this.expenseList.add(expense);
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
-		
 	}
 	
 	public void setSelectedExpense (Expense expense){
