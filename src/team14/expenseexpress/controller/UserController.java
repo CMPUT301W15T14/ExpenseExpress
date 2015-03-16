@@ -20,8 +20,7 @@ public class UserController {
 	private static UserController instance = null;;
 	private UserController() {
 	}
-
-	public static UserController getInstance() {
+		public static UserController getInstance() {
 		if(instance == null) {
 			instance = new UserController();
 		}
@@ -35,7 +34,12 @@ public class UserController {
 	public void setCurrentUser(User user) {
 		this.currentUser = user;
 	}
-	
+	  /**
+		 * GetUser accepts a User user object
+		 * and sets up framework for future file managements
+		 * 
+		 *
+		 */
 	public void getUser(User user) {
 		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
@@ -53,7 +57,12 @@ public class UserController {
 		// Always attempt to getUser first, then add if not returned...
 		
 	}
-	
+	  /**
+		 * AddUser receives a new unique User username, and 
+		 * creates a new folder for them to be saved in.
+		 * 
+		 *
+		 */
 	private void addUser(User user) {
 		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
@@ -72,7 +81,12 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
-	
+	  /**
+		 * 
+		 * RemoveUser recieves a User user and removes them from the file system
+		 * 
+		 *
+		 */
 	public void removeUser(User user) {
 		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();

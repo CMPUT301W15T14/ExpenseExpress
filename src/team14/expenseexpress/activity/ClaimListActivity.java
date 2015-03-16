@@ -161,8 +161,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				startActivity(new Intent(ClaimListActivity.this, ClaimEditActivity.class));
 			}
 		} else if (menuItemName.equals("Details")) {
-			//startActivity(new Intent(ClaimListActivity.this,
-			//		ClaimDetailsActivity.class));
+			ClaimController.getInstance().setSelectedClaim(claim);
+			startActivity(new Intent(ClaimListActivity.this,
+					ClaimDetailsActivity.class));
 		}
 		return true;
 	}

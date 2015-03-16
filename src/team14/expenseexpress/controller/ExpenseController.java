@@ -41,7 +41,18 @@ public class ExpenseController {
 		expenseList = ClaimController.getInstance().getSelectedClaim().getExpenseList(); 
 	}
 	
-	
+	  /**
+		 * Set Expense recieves fields for a new or edited expense and modifies the Expense object
+		 * This ensures a MVC framework.
+		 * @param String category,
+						    GregorianCalendar expenseDate,
+						    double amount,
+						    String currency,
+						    String description,
+						    String name,
+						    boolean complete
+		 *
+		 */
 	public void setExpense(String category,
 						    GregorianCalendar expenseDate,
 						    double amount,
@@ -73,12 +84,20 @@ public class ExpenseController {
 		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
-	
+	  /**
+		 * SetSelecetedExpense(Expense expense) takes an Expense object and sets it as the selectedExpense variable
+		 * 
+		 *@param Expense expense
+		 */
 	public void setSelectedExpense (Expense expense){
 		this.selectedExpense = expense;
 	
 	}
-	
+	  /**
+		 * SetSelecetedExpense(position) takes a position and gets the expense at that index and sets it as 
+		 * setSelectedExpense
+		 *@param Expense expense
+		 */
 	public void setSelectedExpense (int position){
 		this.selectedExpense = expenseList.get(position);
 	

@@ -95,6 +95,14 @@
             android:name="team14.expenseexpress.receipt.ViewReceiptActivity"
             android:label="@string/title_activity_view_receipt" >
         </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.ClaimDetailsActivity"
+            android:label="@string/title_activity_claim_details"
+            android:parentActivityName="ClaimListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ClaimListActivity" />
+        </activity>
     </application>
 
 </manifest>
