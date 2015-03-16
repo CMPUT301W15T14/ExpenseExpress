@@ -57,9 +57,7 @@ public class ExpenseListActivity extends Activity {
 				adb.setNeutralButton("Edit", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Expense expense = expenseList.get(finalPosition);
-						ExpenseController EC = ExpenseController.getInstance();
-						EC.setSelectedExpense(expense);
+						ExpenseController.getInstance().setSelectedExpense(finalPosition);
 						startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
 						
 					}										
