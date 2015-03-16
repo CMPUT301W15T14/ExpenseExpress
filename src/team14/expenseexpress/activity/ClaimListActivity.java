@@ -113,7 +113,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 									return;
 								}
 								// if all good, add to list and dismiss dialog
-								TagListController.getInstance().getTagList().getTags().add(new ClaimTag(text));
+								TagListController.getInstance().addTag(new ClaimTag(text));
 								toast("Added to list");
 								updateTagsListAdapter();
 								dismiss();
