@@ -98,7 +98,11 @@ public class ExpenseEditActivity extends Activity {
 	public void onClick_AddExpense(View v){
 		String name = expenseName.getText().toString();
 		String description = expenseDescription.getText().toString(); 
-		double amount = Double.valueOf(expenseAmount.getText().toString());
+		double amount;
+		if (expenseAmount.getText().toString() == null)
+			amount = Double.valueOf("0.0");
+		else
+			amount = Double.valueOf(expenseAmount.getText().toString());
 		String category = ctgrySpinner.getSelectedItem().toString();
 		String currency = crncySpinner.getSelectedItem().toString();
 		if (name.isEmpty()){
@@ -113,9 +117,6 @@ public class ExpenseEditActivity extends Activity {
 		}
 		
 		else{
-			if (expenseAmount.getText() != null){
-				amount = Double.valueOf(0.0);
-			}
 			ExpenseController.getInstance().setExpense(category, date, amount,currency, description,null, name);
 			finish();}
 	}

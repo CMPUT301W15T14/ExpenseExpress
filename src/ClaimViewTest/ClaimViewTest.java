@@ -1,8 +1,12 @@
 
 /*
 package ClaimViewTest;
+=======
+/*package ClaimViewTest;
+>>>>>>> a018ed70f67199892f29f3b40fa5f2f2b290fbb6
 
 import junit.framework.TestCase;
+
 
 import team14.teamproject.test.R;
 import team14.teamproject.ClaimSummaryActivity;
@@ -43,3 +47,4 @@ assertEquals("Does this work?", nameIn+" "+place+" "+reason, textInput.getText()
 }
 }
 */
+
