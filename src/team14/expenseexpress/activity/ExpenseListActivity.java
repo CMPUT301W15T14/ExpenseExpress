@@ -38,7 +38,7 @@ public class ExpenseListActivity extends Activity {
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList); 
 		
 		claimNameView.setText(ClaimController.getInstance().getSelectedClaim().getName());
-		expenseListAdapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList());
+		expenseListAdapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList().getExpenses());
 		expenseListView.setAdapter(expenseListAdapter);
 		expenseListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
@@ -52,7 +52,7 @@ public class ExpenseListActivity extends Activity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 						ExpenseController.getInstance().setSelectedExpense(finalPosition);
-
+						
 						startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
 						
 					}										
