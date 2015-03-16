@@ -71,7 +71,7 @@ public class ExpenseEditActivity extends Activity {
 			expenseMonth = month;
 			expenseDay=day;
 			date.set(year,month,day);
-			expenseController.setExpenseDate((GregorianCalendar)date);
+			ExpenseController.getInstance().setExpenseDate((GregorianCalendar)date);
 			showDate();
 		}
 	};
