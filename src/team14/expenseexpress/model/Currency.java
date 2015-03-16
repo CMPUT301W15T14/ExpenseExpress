@@ -19,8 +19,18 @@ public enum Currency {
     private Currency(String name){
     	this.name = name;
     }
-    
-    public String toString(){
+    public static Currency fromString(String text) {
+        if (text != null) {
+          for (Currency currency : Currency.values()) {
+            if (text.equalsIgnoreCase(currency.name)) {
+              return currency;
+            }
+          }
+        }
+        return null;
+      }
+  
+    public String getName(){
     	return name;
     }
 }

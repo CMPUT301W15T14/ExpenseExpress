@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainGreen"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/mainGreen"
     tools:context=".ExpenseDetailsActivity" >
 
     <TextView
@@ -19,80 +19,68 @@
         android:textColor="@color/mainYellow"
         android:textSize="6mm" />
 
+    <Button
+        android:id="@+id/expenseDetailsReceiptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="8mm"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/mainYellow"
+        android:text="View Receipt"
+        android:textColor="@color/mainGreen" />
+
     <TextView
         android:id="@+id/expenseDetailsDateTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/expenseDetailsTitle"
         android:layout_below="@+id/expenseDetailsTitle"
-        android:layout_marginTop="14dp"
         android:text="Date:"
-        android:textColor="@color/mainYellow"
-        android:textSize="4mm" />
-
-    <TextView
-        android:id="@+id/expenseDetailsCategoryTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/expenseDetailsDateTitle"
-        android:layout_below="@+id/expenseDetailsDateTitle"
-        android:layout_marginTop="20dp"
-        android:text="Category"
-        android:textColor="@color/mainYellow"
-        android:textSize="4mm" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/mainYellow" />
 
     <TextView
         android:id="@+id/expenseDetailsAmountTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/expenseDetailsCategoryTitle"
-        android:layout_below="@+id/expenseDetailsCategoryTitle"
-        android:layout_marginTop="18dp"
+        android:layout_alignLeft="@+id/expenseDetailsDateTitle"
+        android:layout_below="@+id/expenseDetailsDate"
         android:text="Amount:"
-        android:textColor="@color/mainYellow"
-        android:textSize="4mm" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/mainYellow" />
 
     <TextView
         android:id="@+id/expenseDetailsCurrencyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/expenseDetailsDescriptionTitle"
-        android:layout_below="@+id/expenseDetailsAmountTitle"
-        android:layout_marginTop="14dp"
-        android:text="Currency:"
-        android:textColor="@color/mainYellow"
-        android:textSize="4mm" />
-
-    <TextView
-        android:id="@+id/expenseDetailsDescriptionTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/expenseDetailsAmountTitle"
-        android:layout_below="@+id/expenseDetailsCurrencyTitle"
-        android:layout_marginTop="22dp"
-        android:text="Description:"
-        android:textColor="@color/mainYellow"
-        android:textSize="3.5mm" />
+        android:layout_below="@+id/expenseDetailsAmount"
+        android:text="Currency:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/mainYellow" />
 
     <TextView
         android:id="@+id/expenseDetailsDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/expenseDetailsCategoryTitle"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="38dp"
+        android:layout_alignRight="@+id/expenseDetailsTitle"
+        android:layout_below="@+id/expenseDetailsDateTitle"
         android:text="YY/MM/DD"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
         android:textSize="2.5mm"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/expenseDetailsCategory"
+        android:id="@+id/expenseDetailsCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/expenseDetailsCategoryTitle"
-        android:layout_alignBottom="@+id/expenseDetailsCategoryTitle"
-        android:layout_alignRight="@+id/expenseDetailsDate"
-        android:text="Category"
+        android:layout_alignLeft="@+id/expenseDetailsAmount"
+        android:layout_alignRight="@+id/expenseDetailsAmount"
+        android:layout_below="@+id/expenseDetailsCurrencyTitle"
+        android:text="Currency"
+        android:textColor="@android:color/black"
         android:textSize="2.5mm"
         android:textStyle="bold" />
 
@@ -100,62 +88,76 @@
         android:id="@+id/expenseDetailsAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/expenseDetailsCurrencyTitle"
-        android:layout_alignRight="@+id/expenseDetailsCategory"
+        android:layout_alignLeft="@+id/expenseDetailsDate"
+        android:layout_alignRight="@+id/expenseDetailsDate"
+        android:layout_below="@+id/expenseDetailsAmountTitle"
+        android:text="Amount"
+        android:textColor="@android:color/black"
         android:textSize="2.5mm"
-        android:textStyle="bold"
-        android:text="Amount" />
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/expenseDetailsCurrency"
+        android:id="@+id/expenseDetailsDescriptTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/expenseDetailsCurrencyTitle"
-        android:layout_alignRight="@+id/expenseDetailsAmount"
-        android:textSize="2.5mm"
-        android:textStyle="bold"
-        android:text="Currency" />
+        android:layout_alignLeft="@+id/expenseDetailsCurrencyTitle"
+        android:layout_below="@+id/expenseDetailsCurrency"
+        android:text="Description:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/mainYellow" />
 
     <TextView
         android:id="@+id/expenseDetailsDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/expenseDetailsDescriptionTitle"
+        android:layout_alignLeft="@+id/expenseDetailsCurrency"
+        android:layout_below="@+id/expenseDetailsDescriptTitle"
+        android:text="Description"
+        android:textColor="@android:color/black"
+        android:textSize="3mm"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/expenseDetialsCategoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/expenseDetailsDescriptTitle"
+        android:layout_below="@+id/expenseDetailsDescription"
+        android:text="Category:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/expenseDetailsCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/expenseDetailsDescription"
         android:layout_alignRight="@+id/expenseDetailsCurrency"
-        android:textSize="2mm"
-        android:textStyle="bold"
-        android:text="Description" />
+        android:layout_below="@+id/expenseDetialsCategoryTitle"
+        android:text="Category"
+        android:textColor="@android:color/black"
+        android:textSize="2.5mm"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/expenseDetailsINCTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/expenseDetailsCurrencyTitle"
-        android:layout_below="@+id/expenseDetailsDescriptionTitle"
-        android:layout_marginTop="16dp"
-        android:text="Incomplete?:"
-        android:textColor="@color/mainYellow"
-        android:textSize="3mm" />
+        android:layout_alignLeft="@+id/expenseDetialsCategoryTitle"
+        android:layout_below="@+id/expenseDetailsCategory"
+        android:text="Complete?:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/mainYellow" />
 
     <TextView
         android:id="@+id/expenseDetailsINC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/expenseDetailsINCTitle"
-        android:layout_alignRight="@+id/expenseDetailsDescription"
-        android:text="Y or N"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/expenseDetailsReceiptButton"
-        android:layout_width="wrap_content"
-        android:layout_height="8mm"
-        android:layout_alignLeft="@+id/expenseDetailsINCTitle"
-        android:layout_alignRight="@+id/expenseDetailsINC"
+        android:layout_alignLeft="@+id/expenseDetailsCategory"
+        android:layout_alignRight="@+id/expenseDetailsCurrency"
         android:layout_below="@+id/expenseDetailsINCTitle"
-        android:layout_marginTop="32dp"
-        android:background="@color/mainYellow"
-        android:text="View Receipt"
-        android:textColor="@color/mainGreen" />
+        android:text="Y or N"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
 </RelativeLayout>

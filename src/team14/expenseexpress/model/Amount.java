@@ -59,7 +59,7 @@ public class Amount {
     public Currency getCurrency() {
         return currency;
     }
-
+    
     /**
      * Setter for the currency as a String.
      *

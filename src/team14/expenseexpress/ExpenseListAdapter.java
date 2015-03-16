@@ -45,6 +45,12 @@ public class ExpenseListAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			holder.expense = (TextView) convertView.findViewById(R.id.expensename);
 			holder.date = (TextView) convertView.findViewById(R.id.date);
+			holder.category = (TextView) convertView.findViewById(R.id.expenseCategory);
+			holder.amount = (TextView) convertView.findViewById(R.id.expenseAmount);
+			holder.currency = (TextView) convertView.findViewById(R.id.expenseCurrency);
+			holder.description = (TextView) convertView.findViewById(R.id.expenseDescript);
+			holder.complete = (TextView) convertView.findViewById(R.id.complete);
+			holder.incomplete = (TextView) convertView.findViewById(R.id.incomplete);
 
 			convertView.setTag(holder);
 		} else {
@@ -53,12 +59,29 @@ public class ExpenseListAdapter extends BaseAdapter {
 		
 		holder.expense.setText(expenseList.get(position).getName());
 		holder.date.setText((String) android.text.format.DateFormat.format("yyyy-MM-dd",expenseList.get(position).getExpenseDate()));
-		
+		holder.category.setText(expenseList.get(position).getCategory());
+		holder.amount.setText(Double.toString(expenseList.get(position).getAmount().getNumber()));
+		holder.currency.setText(expenseList.get(position).getAmount().getCurrency().getName());
+		holder.description.setText(expenseList.get(position).getDescription());
+		if (expenseList.get(position).getComplete()){
+			holder.complete.setVisibility(View.VISIBLE);
+			holder.incomplete.setVisibility(View.INVISIBLE);
+		}	///not correct boolean factors reversed
+		else{
+			holder.incomplete.setVisibility(View.VISIBLE);
+			holder.complete.setVisibility(View.INVISIBLE);
+		}
 		return convertView;
 	}
 
 	static class ViewHolder {
 		TextView expense;
 		TextView date;
+		TextView category;
+		TextView amount;
+		TextView currency;
+		TextView description;
+		TextView complete;
+		TextView incomplete;
 	}
 }

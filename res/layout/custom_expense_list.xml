@@ -25,13 +25,103 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/expensedate"
+        android:id="@+id/customCategoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/expensename"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/expensename"
-        android:layout_marginRight="16dp"
+        android:text="Category:   "
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/customCurrencyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/customAmountTitle"
+        android:text="Currency:"
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/customDescriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/customCategoryTitle"
+        android:text="Description:  "
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/customAmountTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/customDescriptionTitle"
+        android:layout_below="@+id/customDescriptionTitle"
+        android:text="Amount:"
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/expenseDescript"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/customAmountTitle"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/customCategoryTitle"
+        android:layout_toRightOf="@+id/customDescriptionTitle"
+        android:text="TextView"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/expenseAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/customDescriptionTitle"
+        android:layout_toRightOf="@+id/customAmountTitle"
         android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/expenseCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/customCurrencyTitle"
+        android:layout_alignBottom="@+id/customCurrencyTitle"
+        android:layout_alignLeft="@+id/expenseCategory"
+        android:layout_alignParentRight="true"
+        android:text="TextView"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/expenseCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/expenseDescript"
+        android:layout_alignLeft="@+id/expenseDescript"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/incomplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/complete"
+        android:layout_alignBottom="@+id/complete"
+        android:layout_alignParentRight="true"
+        android:text="Incomplete"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FF0000" />
+
+    <TextView
+        android:id="@+id/complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/expenseCurrency"
+        android:text="Complete"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

@@ -77,7 +77,7 @@
         android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/expenseDescription"
+        android:id="@+id/expenseDescript"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/expenseDateButton"
@@ -101,19 +101,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/addExpense"
-        android:layout_alignLeft="@+id/expenseDescription"
-        android:layout_alignRight="@+id/expenseDescription"
+        android:layout_alignLeft="@+id/expenseDescript"
+        android:layout_alignRight="@+id/expenseDescript"
         android:background="@android:color/white"
+        android:onClick="modifyReceipt"
         android:text="Add/Modify Receipt"
         android:textColor="@android:color/black" />
-
-    <Spinner
-        android:id="@+id/categorySpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/completeCheck"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/expenseDateButton" />
 
     <EditText
         android:id="@+id/editDescription"
@@ -121,8 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/currencySpinner"
         android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/expenseDescription"
-        android:layout_below="@+id/expenseDescription"
+        android:layout_alignRight="@+id/expenseDescript"
+        android:layout_below="@+id/expenseDescript"
         android:ems="10"
         android:inputType="textMultiLine"
         android:textColor="@android:color/white" />
@@ -141,7 +134,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/categorySpinner"
         android:layout_toLeftOf="@+id/currencySpinner"
-        android:layout_toRightOf="@+id/endDateText"
+
+        android:layout_toRightOf="@+id/expenseAmount"
+
         android:ems="10"
         android:inputType="numberDecimal" />
 
@@ -159,7 +154,10 @@
         android:textColor="@color/mainGreen" />
 
     <TextView
-        android:id="@+id/endDateText"
+
+        android:id="@+id/expenseAmount"
+
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/amountText"
@@ -173,13 +171,23 @@
         android:id="@+id/categoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/endDateText"
+
+        android:layout_alignLeft="@+id/expenseAmount"
+
+
         android:layout_alignRight="@+id/expenseDateButton"
         android:layout_alignTop="@+id/categorySpinner"
         android:layout_marginTop="14dp"
         android:text="Category:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/mainYellow"
-        android:textColorHint="@color/mainYellow" />
+	 />
+
+    <Spinner
+        android:id="@+id/categorySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/completeCheck"
+        android:layout_toRightOf="@+id/categoryTitle" />
 
 </RelativeLayout>

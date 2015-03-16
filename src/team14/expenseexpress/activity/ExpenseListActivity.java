@@ -34,7 +34,7 @@ public class ExpenseListActivity extends Activity {
 		
 		TextView claimNameView = (TextView) findViewById(R.id.claimNameTitles);
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList); 
-		
+
 		claimNameView.setText(ClaimController.getInstance().getSelectedClaim().getName());
 		expenseListAdapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList().getExpenses());
 		expenseListView.setAdapter(expenseListAdapter);
@@ -43,13 +43,17 @@ public class ExpenseListActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> adapterView, View view,
 					int position, long id) {
 				AlertDialog.Builder adb = new AlertDialog.Builder(ExpenseListActivity.this);
-				adb.setMessage("Delete "+ ExpenseController.getInstance().getExpenseList().get(position).toString()+"?");
+				adb.setMessage("Menu Of "+ ExpenseController.getInstance().getExpenseList().get(position).getName());
 				adb.setCancelable(true);
 				final int finalPosition = position;
 				adb.setPositiveButton("Delete", new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							Expense expense = ExpenseController.getInstance().getExpenseList().get(finalPosition);							
+							
+							ExpenseController.getInstance().removeExpense
+							(ExpenseController.getInstance().getExpenseList().get(finalPosition));
+							expenseListAdapter.notifyDataSetChanged();
+							
 						}										
 					});
 				adb.setNeutralButton("Edit", new OnClickListener() {
@@ -60,9 +64,11 @@ public class ExpenseListActivity extends Activity {
 						
 					}										
 				});
-				adb.setNegativeButton("Cancel", new OnClickListener() {					
+				adb.setNegativeButton("Details", new OnClickListener() {					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
+						ExpenseController.getInstance().setSelectedExpense(finalPosition);
+						startActivity(new Intent(ExpenseListActivity.this, ExpenseDetailsActivity.class));
 					}
 				});
 				//Toast.makeText(ListStudentsActivity.this, "Is the on click working?", Toast.LENGTH_SHORT).show();
@@ -106,6 +112,7 @@ public class ExpenseListActivity extends Activity {
 	}
 	
     public void onClick_NewExpense(View v) {
+    	ExpenseController.getInstance().setSelectedExpense(null);
     	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
     	
     }

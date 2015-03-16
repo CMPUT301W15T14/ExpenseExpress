@@ -17,13 +17,19 @@ public class Expense implements Cloneable {
     private String description;
     private Receipt receipt;
     private String name;
+    private boolean complete; 
 
     private long expenseId;
     
     public long getId(){
     	return this.expenseId;
     }
-    
+    public boolean getComplete(){
+    	return this.complete;
+    }
+    public void setComplete(boolean complete){
+    	this.complete = complete;
+    }
     /**
      * Getter for the Amount object associated with this Expense.
      *
@@ -87,9 +93,7 @@ public class Expense implements Cloneable {
      * @param category  The category as a String (choose from Category constants)
      */
     public void setCategory(String category) {
-        if (Arrays.asList(Category.LIST).contains(category)) {
-            this.category = category;
-        }
+    	this.category = category;
     }
 
     /**
@@ -184,5 +188,6 @@ public class Expense implements Cloneable {
 		this.name = name;
 		
 	}
+	
     
 }
