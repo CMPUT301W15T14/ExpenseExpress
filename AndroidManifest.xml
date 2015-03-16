@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="team14.expenseexpress.activity.LoginActivity"
             android:label="LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,11 +23,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ClaimListActivity"
+            android:name="team14.expenseexpress.activity.ClaimListActivity"
             android:label="@string/title_activity_claim_list" >
         </activity>
         <activity
-            android:name=".activity.ExpenseListActivity"
+            android:name="team14.expenseexpress.activity.ExpenseListActivity"
             android:label="@string/title_activity_expense_list"
             android:parentActivityName="ca.ualberta.UI.ClaimListActivity" >
             <meta-data
@@ -35,12 +35,20 @@
                 android:value="ca.ualberta.UI.ClaimListActivity" />
         </activity>
         <activity
-            android:name=".activity.NewClaimActivity"
+            android:name="team14.expenseexpress.activity.NewClaimActivity"
             android:label="@string/title_activity_new_claim" >
         </activity>
         <activity
             android:name="team14.expenseexpress.activity.ClaimDetailsActivity"
             android:label="@string/title_activity_claim_details" >
+        </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.ExpenseEditActivity"
+            android:label="@string/title_activity_expense_edit"
+            android:parentActivityName="ExpenseListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ExpenseListActivity" />
         </activity>
     </application>
 

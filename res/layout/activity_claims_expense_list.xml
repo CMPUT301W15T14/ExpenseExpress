@@ -40,6 +40,7 @@
         android:layout_alignRight="@+id/claimNameTitles"
         android:layout_alignTop="@+id/viewStatusButton"
         android:background="@color/mainYellow"
+        android:onClick="onClick_newExpense"
         android:text="Add Expense"
         android:textColor="@color/mainGreen" />
 

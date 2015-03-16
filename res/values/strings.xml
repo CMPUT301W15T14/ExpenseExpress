@@ -32,11 +32,11 @@
     <string-array name="LongClickMenu">
         <item>Delete</item>
         <item>Edit</item>
-        
-        <item >Details</item>
+        <item>Details</item>
     </string-array>
 
     <string name="title_activity_expense_list">ExpenseList</string>
     <string name="title_activity_new_claim">NewClaimActivity</string>
+    <string name="title_activity_expense_edit">ExpenseEditActivity</string>
 
 </resources>
