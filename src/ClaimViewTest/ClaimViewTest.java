@@ -1,3 +1,5 @@
+
+/*
 package ClaimViewTest;
 
 import junit.framework.TestCase;
@@ -40,3 +42,4 @@ instrumentation.waitForIdleSync();
 assertEquals("Does this work?", nameIn+" "+place+" "+reason, textInput.getText().toString()); //assuming this is the orientation of presentation
 }
 }
+*/
