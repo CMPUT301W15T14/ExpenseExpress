@@ -43,7 +43,6 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	private static GregorianCalendar startDate; 
 	private static GregorianCalendar endDate;  
 	private static boolean Start;
-	private static Claim claim;
 	private static ArrayList<Destination> DestinationList;
 	private static ArrayList<String> Dname;
 	private static ArrayList<ClaimTag> chosenTags;
@@ -60,7 +59,6 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		StartDateEdit = (EditText) findViewById(R.id.tempStartDateTextfield);
 		EndDateEdit = (EditText) findViewById(R.id.tempEndDateTextField);
 		
-		claim = new Claim();
 		DestinationList = new ArrayList<Destination>();
 		Dname = new ArrayList<String>();
 		chosenTags = new ArrayList<ClaimTag>();
@@ -219,7 +217,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	 * @param v View
 	 */
 	public void addClaim(View v) {
-		Claim claim = ClaimController.getInstance().getNewClaim();
+		Claim claim = new Claim();
 		
 		EditText nameView = (EditText) findViewById(R.id.newClaimNameText);
 		claim.setName(nameView.getText().toString());
@@ -240,9 +238,21 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		} else {
 			claim.setStatus(Status.IN_PROGRESS);
 		}
-		ClaimController.getInstance().addClaim(claim);
-		Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
-		finish();
+		
+		if(claim.getName().isEmpty()) {
+			Toast.makeText(this, "Claim must have a name", Toast.LENGTH_SHORT).show();
+			return;
+		} else if((claim.getEndDate() == null)||(claim.getStartDate() == null)) {
+			Toast.makeText(this, "Must add dates.", Toast.LENGTH_SHORT).show();
+			return;
+		} else if(claim.getEndDate().compareTo(claim.getStartDate()) < 0) {
+			Toast.makeText(this, "End date can't come before start date.", Toast.LENGTH_SHORT).show();
+			return;
+		} else {
+			ClaimController.getInstance().addClaim(claim);
+			Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
+			finish();
+		}
 	}
 	
 	/**
