@@ -31,11 +31,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 /**
  * <p> View
- * <p> ClaimListActivity Class:
- * This view is for showing the list of claims a user has.
- * It allows the user to see a list of claims, go to the add a new claim activity, 
- * see a list of tags and add new tags. The user will also be able to sort claims
- * by tags.
+ * <p> NewClaimActivity Class:
+ *  This view is for adding a new claim. User can name the claim, add destinations,
+ *  add a start date and end date, and add tags to the claim.
  */
 public class NewClaimActivity extends ExpenseExpressActivity {
 	
@@ -92,16 +90,28 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		
 	}
 	
+	/**
+	 * A method to set the adapter for destination in order to notifyDataSetChanged() 
+	 * @param adapter The ArrayAdapter used
+	 */
 	private void setDadapter(ArrayAdapter adapter) {
 		// TODO Auto-generated method stub
 		this.Dadapter = adapter;
 	}
 	
+	/**
+	 * A method to set the adapter for tags in order to notifyDataSetChanged() 
+	 * @param adapter The ArrayAdapter used
+	 */
 	private void setTadapter(ArrayAdapter adapter) {
 		// TODO Auto-generated method stub
 		this.Tadapter = adapter;
 	}
 	
+	/**
+	 * A method that will create a date picker dialog for start date and end date
+	 * @param v View
+	 */
 	public void showDatePickerDialog(View v) {
 		
 		if (v == StartDateEdit) {
@@ -113,6 +123,10 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		DialogFragment newFragment = new DatePickerFragment();
 		newFragment.show(getFragmentManager(), "datePicker");
 	}
+	/**
+	 * A DialogFragment class that create a dialog for adding a new destination and a reason for this destination
+	 * <p> Constraints: no empty fields
+	 */
 	@SuppressLint("ValidFragment")
 	private class NewDestinationDialogFragment extends DialogFragment {
 
@@ -163,7 +177,10 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		}
 	}
 	
- 
+	/**
+	 * A DialogFragment class for creating a date picker dialog to get the start date and end date
+	 * <p> Source taken from: http://www.truiton.com/2013/03/android-pick-date-time-from-edittext-onclick-event/
+	 */
 	public static class DatePickerFragment extends DialogFragment
     				implements DatePickerDialog.OnDateSetListener {
 
@@ -190,6 +207,11 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		}
 	}
 	
+	/**
+	 * When the user press the "Add Claim" button, this method calls the ClaimController and adds the claim and its fields 
+	 * to the claim list.
+	 * @param v View
+	 */
 	public void addClaim(View v) {
 		ClaimController cListController = ClaimController.getInstance();
 		cListController.initialize(this);
@@ -202,25 +224,46 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		finish();
 	}
 	
+	/**
+	 * When the user press the "Add destination" button, this method calls NewDestinationDialogFragment() in order to
+	 * create a dialog for adding a new destination
+	 * @param v View
+	 */
 	public void addDestination(View v) {
 		FragmentManager fm = getFragmentManager();
 		new NewDestinationDialogFragment().show(fm, "tagsListDialogFragment");
 	}
 	
+	/**
+	 * When the user press the "Add Tag" button, this method calls NCTagListDialogFragment() in order to
+	 * create a dialog for selecting a tag to add to the claim
+	 * @param v View
+	 */
 	public void addTags(View v) {
 		FragmentManager fm = getFragmentManager();
 		new NCTagListDialogFragment(this).show(fm, "tagsListDialogFragment");
 	}
-
+	
+	/**
+	 * A method to set the adapter for Tags in order to notifyDataSetChanged() 
+	 * @param adapter The NCTagsListAdapter used
+	 */
 	public void setTagsListAdapter1(NCTagsListAdapter adapter) {
 		// TODO Auto-generated method stub
 		this.tagsListAdapter = adapter;
 	}
 	
+	/**
+	 * A method to get a ArrayList of tags chosen by the user called chosenTags
+	 * @return chosenTags
+	 */
 	public ArrayList<ClaimTag> getChosenTags() {
 		return chosenTags;
 	}
-
+	
+	/**
+	 * A method to update the tag list when a new tag is added by calling notifyDataSetChanged()
+	 */
 	public void updateAdapter() {
 		// TODO Auto-generated method stub
 		Tadapter.notifyDataSetChanged();
