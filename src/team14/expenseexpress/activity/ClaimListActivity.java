@@ -75,6 +75,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			}
 		});
 	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		claimsListAdapter.notifyDataSetChanged();
+	}
+	
 	/**
 	 * A DialogFragment class for tags. This creates a dialog that will show a list tags
 	 * and allows the user to add new tags. 
@@ -161,8 +168,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				//startActivity(new Intent(ClaimListActivity.this,ClaimDetailsAddEditActivity.class));
 			}
 		} else if (menuItemName.equals("Details")) {
-			startActivity(new Intent(ClaimListActivity.this,
-					ClaimDetailsActivity.class));
+			//startActivity(new Intent(ClaimListActivity.this,
+			//		ClaimDetailsActivity.class));
 		}
 		return true;
 	}

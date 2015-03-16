@@ -1,4 +1,4 @@
-package team14.expenseexpress.activity;
+/*package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ import android.widget.TextView;
  * It allows the user to see the name, start and end date, status, 
  * destination, approvers, and Total spent.
  */
-public class ClaimDetailsActivity extends ExpenseExpressActivity {
+/*public class ClaimDetailsActivity extends ExpenseExpressActivity {
 
 	    private LayoutInflater inflater;
 	
@@ -151,3 +151,4 @@ public class ClaimDetailsActivity extends ExpenseExpressActivity {
     
     
 }
+*/
