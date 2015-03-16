@@ -64,7 +64,10 @@ public class ClaimController {
 		claimList.remove(claim);
 	}
 	
-	
+	public Claim getNewClaim(){
+		Claim claim = new Claim();
+		return claim;
+	}
 	/*
 	private void initializeClaimList() {
 		

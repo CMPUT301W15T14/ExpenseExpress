@@ -3,9 +3,11 @@ package team14.expenseexpress.controller;
 import java.util.GregorianCalendar;
 
 import android.content.Context;
+import team14.expenseexpress.model.Amount;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.model.ExpenseList;
+import team14.expenseexpress.model.Receipt;
 
 
 public class ExpenseController {
@@ -37,6 +39,21 @@ public class ExpenseController {
 		expenseList = ClaimController.getInstance().getSelectedClaim().getExpenseList(); 
 	}
 	
+	
+	public void setExpense(String category,
+						    GregorianCalendar expenseDate,
+						    Amount amount,
+						    String description,
+						    Receipt receipt,
+						    String name){
+		selectedExpense.setCategory(category);
+		selectedExpense.setExpenseDate(expenseDate);
+		selectedExpense.setDescription(description);
+		selectedExpense.setReceipt(receipt);
+		selectedExpense.setAmount(amount);
+		selectedExpense.setName(name);
+		
+	}
 	
 	public void setSelectedExpense (Expense expense){
 		this.selectedExpense = expense;

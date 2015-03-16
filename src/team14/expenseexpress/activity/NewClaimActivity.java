@@ -219,9 +219,8 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	 * @param v View
 	 */
 	public void addClaim(View v) {
-		ClaimController cListController = ClaimController.getInstance();
-		//cListController.initialize(this);
-		Claim claim = new Claim();
+		Claim claim = ClaimController.getInstance().getNewClaim();
+		
 		EditText nameView = (EditText) findViewById(R.id.newClaimNameText);
 		claim.setName(nameView.getText().toString());
 		claim.setStartDate(startDate);
@@ -232,8 +231,16 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		for (int i = 0; i < chosenTags.size(); i++) {
 			claim.addTag(chosenTags.get(i));
 		}
-		claim.setStatus(Status.IN_PROGRESS);
-		cListController.addClaim(claim);
+		if (claim.getTags().size() == 0) {
+			claim.addTag(new ClaimTag(""));
+			claim.setStatus(Status.INCOMPLETE);
+		} else if (claim.getDestinations().size() == 0) {
+			claim.addDestination(new Destination(""));
+			claim.setStatus(Status.INCOMPLETE);
+		} else {
+			claim.setStatus(Status.IN_PROGRESS);
+		}
+		ClaimController.getInstance().addClaim(claim);
 		Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
 		finish();
 	}

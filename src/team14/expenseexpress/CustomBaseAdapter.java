@@ -59,8 +59,8 @@ public class CustomBaseAdapter extends BaseAdapter {
 		holder.claim.setText(ClaimList.get(position).getName());
 		holder.startdate.setText(ClaimList.get(position).getStartDateString());
 		holder.status.setText(ClaimList.get(position).getStatus());
-		//holder.tags.setText(ClaimList.get(position).getTags().get(0).getName());
-	//	holder.tags.setText(ClaimList.get(position).getDestinations().get(0).getDestination());
+		holder.tags.setText(ClaimList.get(position).getTags().get(0).getName());
+		holder.destination.setText(ClaimList.get(position).getDestinations().get(0).getDestination());
 		
 		return convertView;
 	}
