@@ -18,8 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ExpenseEditActivity extends Activity {
-
-	private ExpenseController expenseController;
+	
+	private GregorianCalendar date;
 	
 	private EditText expenseName;
 	private EditText expenseDescription;
@@ -38,9 +38,7 @@ public class ExpenseEditActivity extends Activity {
 		expenseDateView = (TextView) findViewById(R.id.expenseDateView);
 		expenseAmount = (EditText) findViewById(R.id.amountText);
 		
-		expenseController = ExpenseController.getInstance();
-		
-		GregorianCalendar calendar = expenseController.getExpenseDate();
+		GregorianCalendar calendar = ExpenseController.getInstance().getExpenseDate();
 		expenseYear = calendar.get(GregorianCalendar.YEAR);
 		expenseMonth = calendar.get(GregorianCalendar.MONTH);
 		expenseDay = calendar.get(GregorianCalendar.DAY_OF_MONTH);
@@ -72,7 +70,6 @@ public class ExpenseEditActivity extends Activity {
 			expenseYear = year;
 			expenseMonth = month;
 			expenseDay=day;
-			Calendar date = Calendar.getInstance();
 			date.set(year,month,day);
 			expenseController.setExpenseDate((GregorianCalendar)date);
 			showDate();
