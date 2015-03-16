@@ -9,6 +9,11 @@ public class Destination {
     private String destination;
     private String reason;
 
+    @Override
+	public String toString() {
+		return "Destination:   "  + this.destination + "\n" + "Reason:   " + this.reason;
+	}
+    
     /**
      * Constructor that initializes the destination String.
      *

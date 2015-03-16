@@ -38,9 +38,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/newClaimNameText"
-        android:layout_toRightOf="@+id/destinationsTitle"
+        android:layout_toRightOf="@+id/startDateText"
+        android:background="@color/mainYellow"
         android:onClick="editDestinations"
-        android:text="Edit Destinations" />
+        android:text="Edit Destinations"
+        android:textColor="@color/mainGreen" />
 
     <TextView
         android:id="@+id/destinationsTitle"
@@ -80,6 +82,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/startDateText"
+        android:background="@color/mainYellow"
+        android:textColor="@color/mainGreen"
+        android:onClick="setEndDate"
         android:text="End Date :" />
 
     <Button
@@ -89,6 +94,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/endDateButton"
         android:layout_alignParentLeft="true"
+        android:background="@color/mainYellow"
+        android:textColor="@color/mainGreen"
+        android:onClick="setStartDate"
         android:text="Start Date :" />
 
     <Button
@@ -99,6 +107,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/startDateText"
+        android:background="@color/mainYellow"
+        android:textColor="@color/mainGreen"
         android:onClick="editClaim"
         android:text="Edit Claim" />
 
@@ -118,6 +128,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editDestinationsButton"
+        android:background="@color/mainYellow"
+        android:textColor="@color/mainGreen"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:onClick="editTags"

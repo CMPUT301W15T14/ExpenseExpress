@@ -213,6 +213,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	 */
 	public void onClick_newClaim(View v) {
 		ClaimController.getInstance().setSelectedClaim(new Claim());
+		ClaimController.getInstance().addClaim(ClaimController.getInstance().getSelectedClaim());
 		startActivity(new Intent(ClaimListActivity.this, ClaimEditActivity.class));
 	}
 

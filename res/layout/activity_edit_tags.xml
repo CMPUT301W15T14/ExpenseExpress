@@ -30,6 +30,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:background="@color/mainYellow"
+        android:onClick="acceptTags"
         android:text="Accept Tags"
         android:textColor="@color/mainGreen" />
 
@@ -39,13 +40,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="@color/mainYellow"
         android:layout_below="@+id/editTagsView"
+        android:background="@color/mainYellow"
+        android:onClick="addNewTags"
         android:text="Add New Tag"
         android:textColor="@color/mainGreen" />
 
     <ListView
-        android:id="@+id/destinationsListView"
+        android:id="@+id/ListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/acceptClaimTags"

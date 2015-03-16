@@ -30,6 +30,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:background="@color/mainYellow"
+        android:onClick="acceptDestinations"
         android:text="Accept Destinations"
         android:textColor="@color/mainGreen" />
 
@@ -41,11 +42,12 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editTagsView"
         android:background="@color/mainYellow"
-        android:textColor="@color/mainGreen"
-        android:text="Add New Destination" />
+        android:onClick="addNewDestinations"
+        android:text="Add New Destination"
+        android:textColor="@color/mainGreen" />
 
     <ListView
-        android:id="@+id/destinationsListView"
+        android:id="@+id/ListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/acceptClaimDestinations"

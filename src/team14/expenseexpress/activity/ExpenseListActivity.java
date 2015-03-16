@@ -5,8 +5,6 @@ import team14.expenseexpress.ExpenseListAdapter;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
-import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.ExpenseList;
 import team14.expenseexpress.model.Expense;
 import android.os.Bundle;
 import android.app.Activity;
