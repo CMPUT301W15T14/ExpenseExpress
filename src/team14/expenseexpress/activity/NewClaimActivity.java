@@ -29,7 +29,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
+/**
+ * <p> View
+ * <p> ClaimListActivity Class:
+ * This view is for showing the list of claims a user has.
+ * It allows the user to see a list of claims, go to the add a new claim activity, 
+ * see a list of tags and add new tags. The user will also be able to sort claims
+ * by tags.
+ */
 public class NewClaimActivity extends ExpenseExpressActivity {
 	
 	private static EditText StartDateEdit;
@@ -43,7 +50,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 	private ArrayAdapter<?> Dadapter;
 	private ArrayAdapter<?> Tadapter;
 	private NCTagsListAdapter tagsListAdapter;
-	private boolean tags = false;
+	
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,7 +80,6 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		ArrayAdapter Tagadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, Tname);
-		tags = true;
 		setTadapter(Tagadapter);
 		Taglistview.setAdapter(Tagadapter);
 		Taglistview.setOnItemClickListener(new OnItemClickListener() {
