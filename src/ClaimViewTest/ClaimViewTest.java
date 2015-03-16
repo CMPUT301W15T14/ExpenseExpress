@@ -1,4 +1,9 @@
+
+/*
+package ClaimViewTest;
+=======
 /*package ClaimViewTest;
+>>>>>>> a018ed70f67199892f29f3b40fa5f2f2b290fbb6
 
 import junit.framework.TestCase;
 
@@ -40,4 +45,6 @@ textInput.setText(claim.getInfo()); //returns all inputted data
 instrumentation.waitForIdleSync();
 assertEquals("Does this work?", nameIn+" "+place+" "+reason, textInput.getText().toString()); //assuming this is the orientation of presentation
 }
-}*/
+}
+*/
+

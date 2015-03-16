@@ -18,7 +18,7 @@ public class ExpenseController {
 	private Expense selectedExpense = null; 
 	
 	//singleton
-	private static ExpenseController instance;
+	private static ExpenseController instance = null;
 	
 	private ExpenseController(){
 		if(selectedExpense == null) {

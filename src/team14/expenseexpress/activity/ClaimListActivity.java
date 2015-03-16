@@ -98,7 +98,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				Bundle savedInstanceState) {
 			final View view = inflater.inflate(R.layout.activity_add_tag,
 					container, false);
-			view.findViewById(R.id.newTagButton).setOnClickListener(
+			view.findViewById(R.id.addTagButton).setOnClickListener(
 					new OnClickListener() {
 
 						@Override
@@ -155,7 +155,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT)
 						.show();
 			} else {
-				//startActivity(new Intent(ClaimListActivity.this,ClaimDetailsAddEditActivity.class));
+				ClaimController.getInstance().setSelectedClaim(claim);
+				startActivity(new Intent(ClaimListActivity.this, ClaimEditActivity.class));
 			}
 		} else if (menuItemName.equals("Details")) {
 			//startActivity(new Intent(ClaimListActivity.this,
@@ -211,8 +212,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	 * @param v View
 	 */
 	public void onClick_newClaim(View v) {
-		// TODO
-		startActivity(new Intent(ClaimListActivity.this, NewClaimActivity.class));
+		ClaimController.getInstance().setSelectedClaim(new Claim());
+		startActivity(new Intent(ClaimListActivity.this, ClaimEditActivity.class));
 	}
 
 	public void onClick_searchByTag(View v) {

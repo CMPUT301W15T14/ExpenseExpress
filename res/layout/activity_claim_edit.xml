@@ -1,0 +1,148 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainGreen"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ClaimEditActivity" >
+
+    <TextView
+        android:id="@+id/newClaimTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="Edit Claim"
+        android:textColor="@color/mainYellow"
+        android:textSize="7mm" />
+
+    <EditText
+        android:id="@+id/newClaimNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/newClaimTitle"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/newClaimTitle"
+        android:ems="10"
+        android:hint="Name of New Claim" />
+
+    <Button
+        android:id="@+id/editDestinationsButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/newClaimNameText"
+        android:layout_toRightOf="@+id/destinationsTitle"
+        android:onClick="editDestinations"
+        android:text="Edit Destinations" />
+
+    <TextView
+        android:id="@+id/destinationsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/newClaimNameText"
+        android:text="Destinations"
+        android:textColor="@color/mainYellow"
+        android:textSize="4mm" />
+
+    <TextView
+        android:id="@+id/endDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/endDateButton"
+        android:layout_alignBottom="@+id/endDateButton"
+        android:layout_toRightOf="@+id/endDateButton"
+        android:text="end date"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/startDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/startDateButton"
+        android:layout_alignBottom="@+id/startDateButton"
+        android:layout_toRightOf="@+id/startDateButton"
+        android:text="start date"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/endDateButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/startDateText"
+        android:text="End Date :" />
+
+    <Button
+        android:id="@+id/startDateButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/endDateButton"
+        android:layout_alignParentLeft="true"
+        android:text="Start Date :" />
+
+    <Button
+        android:id="@+id/editClaimButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/startDateText"
+        android:onClick="editClaim"
+        android:text="Edit Claim" />
+
+    <TextView
+        android:id="@+id/tagsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="Tags"
+        android:textColor="@color/mainYellow"
+        android:textSize="4mm" />
+
+    <Button
+        android:id="@+id/editTagsButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editDestinationsButton"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:onClick="editTags"
+        android:text="Edit Tags" />
+
+    <ListView
+        android:id="@+id/tagList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/startDateButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTagsButton" >
+
+    </ListView>
+
+    <ListView
+        android:id="@+id/destinationList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editTagsButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editDestinationsButton" >
+
+    </ListView>
+
+</RelativeLayout>

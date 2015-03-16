@@ -1,3 +1,4 @@
+
 package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
@@ -6,8 +7,8 @@ import java.util.GregorianCalendar;
 
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
-import team14.expenseexpress.activity.NCTagListDialogFragment.NCTagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
@@ -36,12 +37,20 @@ import android.widget.Toast;
  *  This view is for adding a new claim. User can name the claim, add destinations,
  *  add a start date and end date, and add tags to the claim.
  */
+
+/*
 public class NewClaimActivity extends ExpenseExpressActivity {
 	
 	private static EditText StartDateEdit;
 	private static EditText EndDateEdit;
+	private static EditText nameView;
+	
 	private static GregorianCalendar startDate; 
 	private static GregorianCalendar endDate;  
+	
+	int startYear, startMonth, startDay;
+	int endYear, endMonth, endDay;
+	
 	private static boolean Start;
 	private static ArrayList<Destination> DestinationList;
 	private static ArrayList<String> Dname;
@@ -58,14 +67,24 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		
 		StartDateEdit = (EditText) findViewById(R.id.tempStartDateTextfield);
 		EndDateEdit = (EditText) findViewById(R.id.tempEndDateTextField);
-		
-		DestinationList = new ArrayList<Destination>();
-		Dname = new ArrayList<String>();
-		chosenTags = new ArrayList<ClaimTag>();
-		Tname = new ArrayList<String>();
-		
+		nameView = (EditText) findViewById(R.id.newClaimNameText);
 		final ListView Destlistview = (ListView) findViewById(R.id.DestinationListView);
 		final ListView Taglistview = (ListView) findViewById(R.id.tagListView);
+		
+		ClaimController controller = ClaimController.getInstance();
+		
+		DestinationList = controller.getSelectedClaim().getDestinations();
+		chosenTags = controller.getSelectedClaim().getTags();
+		
+		Dname = new ArrayList<String>();
+		for(Destination d:DestinationList) {
+			Dname.add(d.getDestination());
+			}
+		
+		Tname = new ArrayList<String>();
+		for(ClaimTag t:chosenTags) {
+			Tname.add(t.getName());
+		}
 		
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		ArrayAdapter Destadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, Dname);
@@ -88,32 +107,31 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 					int position, long id) {
 			}
          });
+		
+		//if(ClaimController.getInstance().getSelectedClaim() != null) {
+		Claim claim = ClaimController.getInstance().getSelectedClaim();
+		StartDateEdit.setText(claim.startDateToString());
+		EndDateEdit.setText(claim.endDateToString());
+		nameView.setText(claim.getName());
+		Destadapter.notifyDataSetChanged();
+		Tagadapter.notifyDataSetChanged();
 		LayoutInflater.from(this);
 		
 	}
 	
-	/**
-	 * A method to set the adapter for destination in order to notifyDataSetChanged() 
-	 * @param adapter The ArrayAdapter used
-	 */
+
 	private void setDadapter(ArrayAdapter adapter) {
 		// TODO Auto-generated method stub
 		this.Dadapter = adapter;
 	}
 	
-	/**
-	 * A method to set the adapter for tags in order to notifyDataSetChanged() 
-	 * @param adapter The ArrayAdapter used
-	 */
+
 	private void setTadapter(ArrayAdapter adapter) {
 		// TODO Auto-generated method stub
 		this.Tadapter = adapter;
 	}
 	
-	/**
-	 * A method that will create a date picker dialog for start date and end date
-	 * @param v View
-	 */
+
 	public void showDatePickerDialog(View v) {
 		
 		if (v == StartDateEdit) {
@@ -125,10 +143,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		DialogFragment newFragment = new DatePickerFragment();
 		newFragment.show(getFragmentManager(), "datePicker");
 	}
-	/**
-	 * A DialogFragment class that create a dialog for adding a new destination and a reason for this destination
-	 * <p> Constraints: no empty fields
-	 */
+
 	@SuppressLint("ValidFragment")
 	private class NewDestinationDialogFragment extends DialogFragment {
 
@@ -179,10 +194,7 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		}
 	}
 	
-	/**
-	 * A DialogFragment class for creating a date picker dialog to get the start date and end date
-	 * <p> Source taken from: http://www.truiton.com/2013/03/android-pick-date-time-from-edittext-onclick-event/
-	 */
+
 	public static class DatePickerFragment extends DialogFragment
     				implements DatePickerDialog.OnDateSetListener {
 
@@ -211,15 +223,10 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 		}
 	}
 	
-	/**
-	 * When the user press the "Add Claim" button, this method calls the ClaimController and adds the claim and its fields 
-	 * to the claim list.
-	 * @param v View
-	 */
+
 	public void addClaim(View v) {
-		Claim claim = new Claim();
+		Claim claim = ClaimController.getInstance().getSelectedClaim();
 		
-		EditText nameView = (EditText) findViewById(R.id.newClaimNameText);
 		claim.setName(nameView.getText().toString());
 		claim.setStartDate(startDate);
 		claim.setEndDate(endDate);
@@ -249,55 +256,40 @@ public class NewClaimActivity extends ExpenseExpressActivity {
 			Toast.makeText(this, "End date can't come before start date.", Toast.LENGTH_SHORT).show();
 			return;
 		} else {
-			ClaimController.getInstance().addClaim(claim);
+			//ClaimController.getInstance().addClaim(claim);
 			Toast.makeText(this, "Adding a Claim", Toast.LENGTH_SHORT).show();
 			finish();
 		}
 	}
 	
-	/**
-	 * When the user press the "Add destination" button, this method calls NewDestinationDialogFragment() in order to
-	 * create a dialog for adding a new destination
-	 * @param v View
-	 */
+
 	public void addDestination(View v) {
 		FragmentManager fm = getFragmentManager();
 		new NewDestinationDialogFragment().show(fm, "tagsListDialogFragment");
 	}
 	
-	/**
-	 * When the user press the "Add Tag" button, this method calls NCTagListDialogFragment() in order to
-	 * create a dialog for selecting a tag to add to the claim
-	 * @param v View
-	 */
+
 	public void addTags(View v) {
 		FragmentManager fm = getFragmentManager();
 		new NCTagListDialogFragment(this).show(fm, "tagsListDialogFragment");
 	}
 	
-	/**
-	 * A method to set the adapter for Tags in order to notifyDataSetChanged() 
-	 * @param adapter The NCTagsListAdapter used
-	 */
+
 	public void setTagsListAdapter1(NCTagsListAdapter adapter) {
 		// TODO Auto-generated method stub
 		this.tagsListAdapter = adapter;
 	}
 	
-	/**
-	 * A method to get a ArrayList of tags chosen by the user called chosenTags
-	 * @return chosenTags
-	 */
+
 	public ArrayList<ClaimTag> getChosenTags() {
 		return chosenTags;
 	}
 	
-	/**
-	 * A method to update the tag list when a new tag is added by calling notifyDataSetChanged()
-	 */
+	
 	public void updateAdapter() {
 		// TODO Auto-generated method stub
 		Tadapter.notifyDataSetChanged();
 	}
 
 }
+*/

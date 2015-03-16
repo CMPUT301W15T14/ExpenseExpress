@@ -41,10 +41,13 @@
         <item>CAD</item>
         <item>USD</item>
         <item>EUR</item>
+
         <item>GBP</item>
         <item>JPY</item>
         <item>CNY</item>
         <item>CHF</item>
+
+
     </string-array>
 
     <string name="title_activity_expense_details">ExpenseDetailsActivity</string>
@@ -61,6 +64,12 @@
     <string name="title_activity_expense_list">ExpenseList</string>
     <string name="title_activity_new_claim">NewClaimActivity</string>
     <string name="title_activity_expense_edit">ExpenseEditActivity</string>
+
     <string name="title_activity_receipt_add">ReceiptAddActivity</string>
+
+    <string name="title_activity_claim_edit">ClaimEditActivity</string>
+    <string name="title_activity_edit_tags">EditTags</string>
+    <string name="title_activity_edit_destinations">EditDestinations</string>
+
 
 </resources>

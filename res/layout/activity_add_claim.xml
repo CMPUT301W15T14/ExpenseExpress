@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/newClaimNameText"
         android:layout_alignParentTop="true"
-        android:text="New Claim"
+        android:text="Modify Claim"
         android:textColor="@color/mainYellow"
         android:textSize="7mm" />
 
@@ -44,17 +44,17 @@
         android:id="@+id/DestinationListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/addDestinationButton"
-        android:layout_alignRight="@+id/addDestinationButton"
+        android:layout_above="@+id/editDestinationsButton"
+        android:layout_alignRight="@+id/editDestinationsButton"
         android:layout_below="@+id/destinationsTitle" >
 
     </ListView>
 
     <Button
-        android:id="@+id/claimAddTagsButton"
+        android:id="@+id/editTagsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addDestinationButton"
+        android:layout_alignLeft="@+id/editDestinationsButton"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/tagListView"
         android:layout_marginBottom="58dp"
@@ -65,13 +65,13 @@
         android:id="@+id/tagListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/claimAddTagsButton"
+        android:layout_above="@+id/editTagsButton"
         android:layout_below="@+id/tagsTitle" >
 
     </ListView>
 
     <Button
-        android:id="@+id/addDestinationButton"
+        android:id="@+id/editDestinationsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/tagListView"
@@ -83,10 +83,10 @@
         android:id="@+id/tempStartDateTextfield"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/claimAddTagsButton"
-        android:layout_alignBottom="@+id/claimAddTagsButton"
+        android:layout_alignBaseline="@+id/editTagsButton"
+        android:layout_alignBottom="@+id/editTagsButton"
         android:layout_alignLeft="@+id/tagListView"
-        android:layout_toLeftOf="@+id/claimAddTagsButton"
+        android:layout_toLeftOf="@+id/editTagsButton"
         android:ems="10"
         android:focusable="false"
         android:hint="Enter Start Date here"
@@ -110,11 +110,11 @@
         android:onClick="showDatePickerDialog" />
 
     <Button
-        android:id="@+id/submitNewClaimHere"
+        android:id="@+id/editClaimButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/claimAddTagsButton"
-        android:layout_alignRight="@+id/claimAddTagsButton"
+        android:layout_alignLeft="@+id/editTagsButton"
+        android:layout_alignRight="@+id/editTagsButton"
         android:layout_below="@+id/tempStartDateTextfield"
         android:onClick="addClaim"
         android:text="Add Claim" />
@@ -123,7 +123,7 @@
         android:id="@+id/tagsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/addDestinationButton"
+        android:layout_alignBottom="@+id/editDestinationsButton"
         android:layout_alignLeft="@+id/DestinationListView"
         android:text="Tags"
         android:textColor="@color/mainYellow"

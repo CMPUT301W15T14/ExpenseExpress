@@ -15,7 +15,7 @@ public class TagListController {
 	private TagList chosenTags;
 	
 	// singleton
-	private static TagListController instance;
+	private static TagListController instance = null;
 	private TagListController() {
 	}
 	

@@ -1,5 +1,5 @@
 package team14.expenseexpress.activity;
-
+/*
 import java.util.ArrayList;
 
 import team14.expenseexpress.R;
@@ -65,13 +65,13 @@ public class NCTagListDialogFragment extends android.app.DialogFragment {
 
 		@Override
 		public Object getItem(int arg0) {
-			/* not needed */
+			// not needed 
 			return null;
 		}
 
 		@Override
 		public long getItemId(int arg0) {
-			/* not needed */
+			// not needed 
 			return 0;
 		}
 
@@ -113,3 +113,4 @@ public class NCTagListDialogFragment extends android.app.DialogFragment {
 		}
 	}
 }
+*/
