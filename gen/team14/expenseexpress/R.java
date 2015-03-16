@@ -94,14 +94,8 @@ public final class R {
         public static final int date=0x7f0a0070;
         public static final int destination=0x7f0a006f;
         public static final int destinationList=0x7f0a0035;
-<<<<<<< HEAD
-        public static final int destinationName=0x7f0a0072;
-        public static final int destinationReason=0x7f0a0073;
-=======
         public static final int destinationName=0x7f0a007a;
         public static final int destinationReason=0x7f0a007b;
-        public static final int destinationsListView=0x7f0a0041;
->>>>>>> 73436ca727c68bc7497fb490f41a3bf260d8c67d
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a0021;
         public static final int detailsName=0x7f0a002a;
@@ -113,18 +107,12 @@ public final class R {
         public static final int editExpenseName=0x7f0a0053;
         public static final int editTagsButton=0x7f0a0005;
         public static final int editTagsView=0x7f0a003e;
-<<<<<<< HEAD
         public static final int endDateButton=0x7f0a0032;
         public static final int endDateText=0x7f0a0031;
-        public static final int expenseCost=0x7f0a0075;
-=======
-        public static final int endDateButton=0x7f0a0031;
-        public static final int endDateText=0x7f0a0030;
         public static final int expenseAmount=0x7f0a005e;
         public static final int expenseCategory=0x7f0a0077;
         public static final int expenseCost=0x7f0a007d;
         public static final int expenseCurrency=0x7f0a0076;
->>>>>>> 73436ca727c68bc7497fb490f41a3bf260d8c67d
         public static final int expenseDateButton=0x7f0a0054;
         public static final int expenseDateView=0x7f0a0055;
         public static final int expenseDescript=0x7f0a0056;
@@ -164,19 +152,11 @@ public final class R {
         public static final int searchButton=0x7f0a0037;
         public static final int signInButton=0x7f0a0063;
         public static final int startDateButton=0x7f0a0033;
-<<<<<<< HEAD
         public static final int startDateText=0x7f0a0030;
-        public static final int status=0x7f0a006b;
-        public static final int statusSubmitButton=0x7f0a006a;
-        public static final int statusTitle=0x7f0a0069;
-        public static final int submittedApproved=0x7f0a0066;
-=======
-        public static final int startDateText=0x7f0a0032;
         public static final int status=0x7f0a006c;
         public static final int statusSubmitButton=0x7f0a006b;
         public static final int statusTitle=0x7f0a006a;
         public static final int submittedApproved=0x7f0a0067;
->>>>>>> 73436ca727c68bc7497fb490f41a3bf260d8c67d
         public static final int tagList=0x7f0a0034;
         public static final int tagListView=0x7f0a0006;
         public static final int tagTextField=0x7f0a0036;

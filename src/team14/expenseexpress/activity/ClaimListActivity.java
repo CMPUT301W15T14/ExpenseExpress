@@ -8,6 +8,7 @@ import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.TagListController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
+import team14.expenseexpress.model.Status;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -150,7 +151,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			ClaimController.getInstance().removeClaim(claim);
 			claimsListAdapter.notifyDataSetChanged();
 		} else if (menuItemName.equals("Edit")) {
-			if (claim.getStatus().equals("submitted")
+			if (claim.getStatus().equals(Status.SUBMITTED)
 					|| (claim.getStatus().equals("approved"))) {
 				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT)
 						.show();
