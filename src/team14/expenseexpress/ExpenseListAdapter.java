@@ -16,13 +16,14 @@ import android.widget.TextView;
 
 public class ExpenseListAdapter extends BaseAdapter {
 	
-	private static ExpenseList expenseList;
+	private static ArrayList<Expense> expenseList;
 	private LayoutInflater mInflater;
 
-	public ExpenseListAdapter(Context context, ExpenseList list) {
-		expenseList = list;
+	public ExpenseListAdapter(Context context, ArrayList<Expense> arrayList) {
+		expenseList = arrayList;
 		mInflater = LayoutInflater.from(context);
 	}
+
 
 	public int getCount() {
 		return expenseList.size();
