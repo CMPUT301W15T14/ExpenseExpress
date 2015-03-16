@@ -41,7 +41,7 @@ public class ExpenseListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.custom_claim_list, null);
+			convertView = mInflater.inflate(R.layout.custom_expense_list, null);
 			holder = new ViewHolder();
 			holder.expense = (TextView) convertView.findViewById(R.id.expensename);
 			holder.date = (TextView) convertView.findViewById(R.id.expensedate);

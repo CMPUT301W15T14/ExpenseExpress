@@ -1,7 +1,5 @@
 package team14.expenseexpress.activity;
 
-import java.util.ArrayList;
-
 import team14.expenseexpress.CustomBaseAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
@@ -9,9 +7,7 @@ import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.TagListController;
 import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
-import team14.expenseexpress.model.TagList;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
