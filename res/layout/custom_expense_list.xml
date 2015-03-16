@@ -5,7 +5,7 @@
     android:background="@color/mainGreen" >
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/startdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -18,8 +18,8 @@
         android:id="@+id/expensename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/date"
-        android:layout_alignBottom="@+id/date"
+        android:layout_alignBaseline="@+id/startdate"
+        android:layout_alignBottom="@+id/startdate"
         android:layout_alignParentLeft="true"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />

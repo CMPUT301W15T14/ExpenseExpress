@@ -5,26 +5,6 @@
     android:background="@color/mainGreen" >
 
     <TextView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/claimname"
-        android:layout_marginLeft="15dp"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/tags"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/status"
-        android:layout_marginTop="16dp"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
         android:id="@+id/claimname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,22 +14,60 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/startdate"
+        android:layout_below="@+id/startdate"
+        android:layout_marginRight="22dp"
+        android:text="to"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/enddate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/startdate"
+        android:layout_below="@+id/textView1"
+        android:text="enddate"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/startdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/claimname"
+        android:layout_alignBottom="@+id/claimname"
+        android:layout_alignParentRight="true"
+        android:text="startdate"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
         android:id="@+id/destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/status"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/enddate"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/tags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/status"
-        android:layout_alignBottom="@+id/status"
-        android:layout_alignLeft="@+id/destination"
-        android:layout_marginLeft="18dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/destination"
+        android:layout_toLeftOf="@+id/startdate"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/destination"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

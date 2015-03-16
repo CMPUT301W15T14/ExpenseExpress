@@ -44,7 +44,7 @@ public class ExpenseListAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.custom_expense_list, null);
 			holder = new ViewHolder();
 			holder.expense = (TextView) convertView.findViewById(R.id.expensename);
-			holder.date = (TextView) convertView.findViewById(R.id.date);
+			holder.date = (TextView) convertView.findViewById(R.id.startdate);
 			holder.category = (TextView) convertView.findViewById(R.id.expenseCategory);
 			holder.amount = (TextView) convertView.findViewById(R.id.expenseAmount);
 			holder.currency = (TextView) convertView.findViewById(R.id.expenseCurrency);
