@@ -1,5 +1,7 @@
 package team14.expenseexpress.activity;
 
+import java.util.logging.FileHandler;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,8 +12,11 @@ import android.widget.EditText;
 
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
+import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.Mode;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.User;
+import team14.expenseexpress.util.LocalFileHelper;
 
 /**
  * 
@@ -81,8 +86,7 @@ public class LoginActivity extends ExpenseExpressActivity {
 			toast("Can't be empty");
 			return;
 		}
-    	User user = new User(name);
-    	User.setInstance(user);
+    	UserController.getInstance().setCurrentUser(new User(name));
     	confirmNameDialog.setTitle(editText_name.getText().toString());
     	confirmNameDialog.show();
     }

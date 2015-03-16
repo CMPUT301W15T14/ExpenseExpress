@@ -43,8 +43,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	private ArrayList<ClaimTag> claimTags;
 	private ArrayList<ClaimTag> chosenTags;
-	private ArrayList<Claim> claimList;
-	private ClaimController cListController;
 	private TagsListAdapter tagsListAdapter;
 	private CustomBaseAdapter claimsListAdapter;
 
@@ -53,17 +51,14 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_list);
+    	ClaimController.getInstance().initialize(this);
 	    
 		claimTags = TagList.getInstance(this).get();
 		chosenTags = new ArrayList<ClaimTag>();
 		LayoutInflater.from(this);
 
-		cListController = ClaimController.getInstance();
-		cListController.initialize(this);
-		claimList = ClaimList.getInstance().getClaims();
-
 		final ListView lv1 = (ListView) findViewById(R.id.claimListView);
-		CustomBaseAdapter adapter = new CustomBaseAdapter(this, claimList);
+		CustomBaseAdapter adapter = new CustomBaseAdapter(this, ClaimController.getInstance().getClaimList().getClaims());
 		setClaimListAdapter(adapter);
 		lv1.setAdapter(adapter);
 		registerForContextMenu(lv1);
@@ -73,7 +68,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 					int position, long id) {
 
 				Claim claim = (Claim) lv1.getItemAtPosition(position);
-				cListController.setSelectedClaim(claim);
+				ClaimController.getInstance().setSelectedClaim(claim);
 				Intent intent = new Intent(ClaimListActivity.this,
 						ExpenseListActivity.class);
 				startActivity(intent);
@@ -155,7 +150,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		Claim claim = (Claim) lv1.getItemAtPosition(info.position);
 
 		if (menuItemName.equals("Delete")) {
-			claimList.remove(claim);
+			ClaimController.getInstance().removeClaim(claim);
 			claimsListAdapter.notifyDataSetChanged();
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals("submitted")

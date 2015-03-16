@@ -14,7 +14,6 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
-import team14.expenseexpress.model.User;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

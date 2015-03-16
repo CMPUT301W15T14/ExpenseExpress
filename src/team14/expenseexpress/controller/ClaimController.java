@@ -37,6 +37,10 @@ public class ClaimController {
 		return instance;
 	}
 	
+	public ClaimList getClaimList() {
+		return this.claimList;
+	}
+	
 
 	public void setSelectedClaim (Claim claim){
 			this.selectedClaim = claim;
