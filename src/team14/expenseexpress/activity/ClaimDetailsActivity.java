@@ -27,11 +27,6 @@ import android.widget.TextView;
  */
 public class ClaimDetailsActivity extends ExpenseExpressActivity {
 
-	    private ArrayList<Claim> claimList;
-	    private ClaimController cListController;
-	    private ArrayList<Claim> claims;
-	    private LocalFileHelper helper;
-	    private Claim claim;
 	    private LayoutInflater inflater;
 	
     @Override

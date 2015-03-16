@@ -1,7 +1,5 @@
 package team14.expenseexpress.activity;
 
-import java.util.logging.FileHandler;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
