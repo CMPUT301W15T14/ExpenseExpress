@@ -77,8 +77,7 @@ public class ExpenseListActivity extends Activity {
 	@Override
 	protected void onResume(){
 		super.onResume();
-		
-			expenseListAdapter.notifyDataSetChanged();
+		expenseListAdapter.notifyDataSetChanged();
 		
 	}
 	
