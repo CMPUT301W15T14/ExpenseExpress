@@ -19,7 +19,9 @@
     <string name="title_activity_edit_claim">EditClaimActivity</string>
     <string name="title_activity_tags">TagsActivity</string>
     <string name="title_activity_add_tag">AddTagActivity</string>
-    <string name="title_activity_claims_expense_list">ClaimsExpenseListActivity</string><string-array name="Categories">        
+    <string name="title_activity_claims_expense_list">ClaimsExpenseListActivity</string>
+
+    <string-array name="Categories">
         <item>Air Fare</item>
         <item>Ground Transport</item>
         <item>Vehical Rental</item>
@@ -27,18 +29,24 @@
         <item>Parking</item>
         <item>Registration</item>
         <item>Accmondation</item>
-        <item>Meal</item></string-array>
+        <item>Meal</item>
+    </string-array>
+
     <string name="title_activity_expense">ExpenseActivity</string>
     <string name="title_activity_expense_receipt">ExpenseReceiptActivity</string>
     <string name="title_activity_view_status">ViewStatusActivity</string>
-    <string name="title_activity_claim_details">ClaimDetailsActivity</string><string-array name="Currency">        
+    <string name="title_activity_claim_details">ClaimDetailsActivity</string>
+
+    <string-array name="Currency">
         <item>CAD</item>
         <item>USD</item>
         <item>EUR</item>
-        <item>GSP</item>
-        <item>JYN</item>
-        <item>CYN</item>
- 		</string-array>
+        <item>GBP</item>
+        <item>JPY</item>
+        <item>CNY</item>
+        <item>CHF</item>
+    </string-array>
+
     <string name="title_activity_expense_details">ExpenseDetailsActivity</string>
     <string name="title_activity_approver_claim_list">ApproverClaimLIstActivity</string>
     <string name="title_activity_approver_expense_list">ApproverExpenseListActivity</string>
@@ -53,5 +61,6 @@
     <string name="title_activity_expense_list">ExpenseList</string>
     <string name="title_activity_new_claim">NewClaimActivity</string>
     <string name="title_activity_expense_edit">ExpenseEditActivity</string>
+    <string name="title_activity_receipt_add">ReceiptAddActivity</string>
 
 </resources>

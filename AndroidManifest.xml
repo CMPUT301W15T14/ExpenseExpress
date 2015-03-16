@@ -50,6 +50,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ExpenseListActivity" />
         </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.ExpenseDetailsActivity"
+            android:label="@string/title_activity_expense_details"
+            android:parentActivityName="ExpenseListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ExpenseListActivity" />
+        </activity>
+        <activity
+            android:name="team14.expenseexpress.activity.ReceiptAddActivity"
+            android:label="@string/title_activity_receipt_add"
+            android:parentActivityName="ExpenseEditActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ExpenseEditActivity" />
+        </activity>
     </application>
 
 </manifest>
