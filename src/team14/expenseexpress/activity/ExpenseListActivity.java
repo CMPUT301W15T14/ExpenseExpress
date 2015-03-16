@@ -25,7 +25,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.support.v4.app.NavUtils;
 
 public class ExpenseListActivity extends Activity {
-
+	
+	private ExpenseListAdapter expenseListAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +38,8 @@ public class ExpenseListActivity extends Activity {
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList); 
 		
 		claimNameView.setText(ClaimController.getInstance().getSelectedClaim().getName());
-		ExpenseListAdapter adapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList());	
+		expenseListAdapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList());
+		expenseListView.setAdapter(expenseListAdapter);
 		expenseListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapterView, View view,
@@ -49,8 +51,7 @@ public class ExpenseListActivity extends Activity {
 				adb.setPositiveButton("Delete", new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							Expense expense = ExpenseController.getInstance().getExpenseList().get(finalPosition);
-							ClaimController.removeExpense(expense);								
+							Expense expense = ExpenseController.getInstance().getExpenseList().get(finalPosition);							
 						}										
 					});
 				adb.setNeutralButton("Edit", new OnClickListener() {
@@ -72,8 +73,15 @@ public class ExpenseListActivity extends Activity {
 			}			
 		});
 	}
-
-
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		
+			expenseListAdapter.notifyDataSetChanged();
+		
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

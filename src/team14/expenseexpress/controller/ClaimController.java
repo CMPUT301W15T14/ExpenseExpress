@@ -108,8 +108,9 @@ public class ClaimController {
 		this.claimList = LocalFileHelper.getInstance(context).loadClaims();
 	}
 
-	public static void removeExpense(Claim claim, Expense expense) {
-		claim.remove(expense);
+	public void removeExpense(Expense expense) {
+		selectedClaim.remove(expense);
+		
 	}
 }
 
