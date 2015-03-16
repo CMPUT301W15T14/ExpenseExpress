@@ -12,8 +12,10 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ public class ExpenseEditActivity extends Activity {
 	private EditText expenseDescription;
 	private EditText expenseAmount;
 	private TextView expenseDateView;
+	private Spinner ctgrySpinner;
+	private Spinner crncySpinner ;
 	
 	private int expenseYear, expenseMonth, expenseDay;
 	
@@ -37,11 +41,21 @@ public class ExpenseEditActivity extends Activity {
 		expenseDescription = (EditText) findViewById(R.id.editDescription);
 		expenseDateView = (TextView) findViewById(R.id.expenseDateView);
 		expenseAmount = (EditText) findViewById(R.id.amountText);
+		ctgrySpinner = (Spinner) findViewById(R.id.categorySpinner);
+		crncySpinner = (Spinner) findViewById(R.id.currencySpinner);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		        R.array.Categories, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ctgrySpinner.setAdapter(adapter);
+		adapter = ArrayAdapter.createFromResource(this,
+		        R.array.Currency, android.R.layout.simple_spinner_item);
+		crncySpinner.setAdapter(adapter);
 		
-		GregorianCalendar calendar = ExpenseController.getInstance().getExpenseDate();
-		expenseYear = calendar.get(GregorianCalendar.YEAR);
-		expenseMonth = calendar.get(GregorianCalendar.MONTH);
-		expenseDay = calendar.get(GregorianCalendar.DAY_OF_MONTH);
+		
+		date = ExpenseController.getInstance().getExpenseDate();
+		expenseYear = date.get(GregorianCalendar.YEAR);
+		expenseMonth = date.get(GregorianCalendar.MONTH);
+		expenseDay = date.get(GregorianCalendar.DAY_OF_MONTH);
 		showDate();
 }
 
@@ -82,9 +96,11 @@ public class ExpenseEditActivity extends Activity {
 	
 	public void onClick_AddExpense(View v){
 		String name = expenseName.getText().toString();
-		String description = expenseDescription.getText().toString();
-		int amount = Integer.parseInt(expenseAmount.getText().toString());
-		ExpenseController.getInstance().setExpense(null, date, amount, description, null, name);
+		String description = expenseDescription.getText().toString(); 
+		double amount = Double.valueOf(expenseAmount.getText().toString());
+		String category = ctgrySpinner.getSelectedItem().toString();
+		String currency = crncySpinner.getSelectedItem().toString();
+		ExpenseController.getInstance().setExpense(category, date, amount,currency, description,null, name);
 		finish();
 	}
 	public void modifyReceipt(View view) {

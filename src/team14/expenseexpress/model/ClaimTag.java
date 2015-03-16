@@ -7,7 +7,7 @@ package team14.expenseexpress.model;
  */
 public class ClaimTag{
     private String name;
-    private static final String DEFAULT_NAME = "derp";
+    private static final String DEFAULT_NAME = "default";
 
     
     public boolean equals(Object o){
@@ -22,7 +22,7 @@ public class ClaimTag{
      * Empty private constructor.
      */
     private ClaimTag(){
-        // empty
+        //derp
     }
 
     /**

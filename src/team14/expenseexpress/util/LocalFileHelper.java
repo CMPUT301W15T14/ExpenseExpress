@@ -14,6 +14,7 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
+import team14.expenseexpress.model.TagList;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -34,7 +35,7 @@ public class LocalFileHelper {
 	private static final String TAGS_FILENAME = "ee.tags_";
 	//private static final String OFFLINE_FILENAME = "ee.offline"; TODO: implement in pp5
 	
-	private Context context;
+	private static Context context;
 	
 	// Singleton
 	private static LocalFileHelper fileHelper;
@@ -44,6 +45,13 @@ public class LocalFileHelper {
 	}
 	
 	public static LocalFileHelper getInstance(Context context){
+		if (fileHelper == null){
+			fileHelper = new LocalFileHelper(context);
+		}
+		return fileHelper;
+	}
+	
+	public static LocalFileHelper getInstance(){
 		if (fileHelper == null){
 			fileHelper = new LocalFileHelper(context);
 		}
@@ -87,7 +95,7 @@ public class LocalFileHelper {
 			try {
 				FileInputStream fis = context.openFileInput(CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
 				InputStreamReader isr = new InputStreamReader(fis);
-				Type dataType = new TypeToken<ArrayList<Claim>>() {	}.getType();
+				Type dataType = new TypeToken<ClaimList>() {	}.getType();
 				claims = gson.fromJson(isr, dataType);
 				fis.close();
 
@@ -102,7 +110,7 @@ public class LocalFileHelper {
 			try {
 				FileInputStream fis = context.openFileInput(APPROVER_FILENAME);
 				InputStreamReader isr = new InputStreamReader(fis);
-				Type dataType = new TypeToken<ArrayList<Claim>>() {	}.getType();
+				Type dataType = new TypeToken<ClaimList>() {	}.getType();
 				claims = gson.fromJson(isr, dataType);
 				fis.close();
 
@@ -169,13 +177,13 @@ public class LocalFileHelper {
 
 */
 
-	public ArrayList<ClaimTag> getTags() {
+	public TagList getTags() {
 		Gson gson = new Gson();
-		ArrayList<ClaimTag> tags = new ArrayList<ClaimTag>();
+		TagList tags = new TagList();
 		try {
 			FileInputStream fis = context.openFileInput(TAGS_FILENAME + UserController.getInstance().getCurrentUser().getName());
 			InputStreamReader isr = new InputStreamReader(fis);
-			Type dataType = new TypeToken<ArrayList<ClaimTag>>() {	}.getType();
+			Type dataType = new TypeToken<TagList>() {	}.getType();
 			tags = gson.fromJson(isr, dataType);
 			fis.close();
 
@@ -186,12 +194,12 @@ public class LocalFileHelper {
 			e.printStackTrace();
 		}
 		if (tags == null) {
-			tags = new ArrayList<ClaimTag>();
+			tags = new TagList();
 		}
 		return tags; 
 	}
 
-	public void saveTags(ArrayList<ClaimTag> tags) {
+	public void saveTags(TagList tags) {
 		save(tags, TAGS_FILENAME + UserController.getInstance().getCurrentUser().getName());
 	}
 

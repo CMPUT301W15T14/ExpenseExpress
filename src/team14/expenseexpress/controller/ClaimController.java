@@ -46,6 +46,7 @@ public class ClaimController {
 			this.selectedClaim = claim;
 		
 	}
+	
 	public Claim getSelectedClaim(){
 		return this.selectedClaim;
 	}
@@ -58,10 +59,12 @@ public class ClaimController {
 	
 	public void addClaim(Claim claim){
 		claimList.add(claim);
+		LocalFileHelper.getInstance().saveClaims(claimList);
 	}
 	
 	public void removeClaim(Claim claim){
 		claimList.remove(claim);
+		LocalFileHelper.getInstance().saveClaims(claimList);
 	}
 	
 	public Claim getNewClaim(){

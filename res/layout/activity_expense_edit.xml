@@ -112,8 +112,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/completeCheck"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/expenseDateButton" />
 
     <EditText
         android:id="@+id/editDescription"
@@ -133,17 +133,17 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/categorySpinner"
         android:layout_alignTop="@+id/amountText"
-        android:layout_toRightOf="@+id/amountText" />
+        android:layout_toRightOf="@+id/completeCheck" />
 
     <EditText
         android:id="@+id/amountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/categorySpinner"
-        android:layout_alignLeft="@+id/categorySpinner"
+        android:layout_toLeftOf="@+id/currencySpinner"
+        android:layout_toRightOf="@+id/textView1"
         android:ems="10"
-        android:inputType="numberDecimal"
-        android:text="Amount" />
+        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/addExpense"
@@ -157,5 +157,29 @@
         android:onClick="onClick_AddExpense"
         android:text="Add Expense"
         android:textColor="@color/mainGreen" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/amountText"
+        android:layout_alignBottom="@+id/amountText"
+        android:layout_alignParentLeft="true"
+        android:text="Amount :"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/categoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/expenseDateButton"
+        android:layout_alignTop="@+id/categorySpinner"
+        android:layout_marginTop="14dp"
+        android:text="Category:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/mainYellow"
+        android:textColorHint="@color/mainYellow" />
 
 </RelativeLayout>

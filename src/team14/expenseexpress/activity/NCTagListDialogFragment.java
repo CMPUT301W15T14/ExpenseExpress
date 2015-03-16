@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
+import team14.expenseexpress.controller.TagListController;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.TagList;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,12 +19,11 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+@SuppressLint("ValidFragment")
 public class NCTagListDialogFragment extends android.app.DialogFragment {
-	private final TagList tagList;
 	private final NewClaimActivity activity;
 
 	public NCTagListDialogFragment(NewClaimActivity activity) {
-		tagList = TagList.getInstance(activity);
 		this.activity = activity;
 	}
 
@@ -59,7 +60,7 @@ public class NCTagListDialogFragment extends android.app.DialogFragment {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return tagList.size();
+			return TagListController.getInstance().getTagList().size();
 		}
 
 		@Override
@@ -79,7 +80,7 @@ public class NCTagListDialogFragment extends android.app.DialogFragment {
 				ViewGroup parent) {
 			// Recycles convertView
 			// TODO: put controller in between View and Model
-			final ClaimTag tag = tagList.get(position);
+			final ClaimTag tag = TagListController.getInstance().getTagList().get(position);
 			//activity.Tname = new ArrayList<String>();
 			CheckBox checkBox = (CheckBox) convertView;
 			if (checkBox == null) {

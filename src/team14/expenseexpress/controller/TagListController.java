@@ -2,6 +2,7 @@ package team14.expenseexpress.controller;
 
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.TagList;
+import team14.expenseexpress.util.LocalFileHelper;
 import android.content.Context;
 
 /**
@@ -10,34 +11,59 @@ import android.content.Context;
  */
 public class TagListController {
 	
-	private TagList tagList;
+	private TagList usersTags;
+	private TagList chosenTags;
 	
 	// singleton
 	private static TagListController instance;
-	
-	private TagListController(Context context){
-		tagList = TagList.getInstance(context);
+	private TagListController() {
 	}
 	
-	public static TagListController getInstance(Context context){
+	public void setChosenTags(TagList tags) {
+		this.chosenTags = tags;
+	}
+	
+	public TagList getChosenTags() {
+		return this.chosenTags;
+	}
+	
+	public void addChosenTag(ClaimTag tag) {
+		this.chosenTags.add(tag);
+	}
+	
+	public static TagListController getInstance(){
 		if (instance == null){
-			instance = new TagListController(context);
+			instance = new TagListController();
 		}
 		return instance;
 	}
 	
+	public void initialize(){
+		this.chosenTags = new TagList();
+		loadTags();
+	}
+	
+	
+	public TagList getTagList() {
+		return this.usersTags;
+	}
+	
 	public void addTag(ClaimTag tag){
-		tagList.add(tag);
-		tagList.save();
+		usersTags.add(tag);
+		LocalFileHelper.getInstance().saveTags(this.usersTags);
 	}
 	
 	public void removeTag(ClaimTag tag){
-		tagList.remove(tag);
-		tagList.save();
+		usersTags.remove(tag);
+		LocalFileHelper.getInstance().saveTags(this.usersTags);
 	}
 	
 	public void setTagName(ClaimTag tag, String name){
 		tag.setName(name);
-		tagList.save();
+		LocalFileHelper.getInstance().saveTags(this.usersTags);
+	}
+	
+	private void loadTags() {
+		usersTags = LocalFileHelper.getInstance().getTags();
 	}
 }

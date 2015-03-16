@@ -8,6 +8,7 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.model.ExpenseList;
 import team14.expenseexpress.model.Receipt;
+import team14.expenseexpress.util.LocalFileHelper;
 
 
 public class ExpenseController {
@@ -41,18 +42,22 @@ public class ExpenseController {
 	
 	public void setExpense(String category,
 						    GregorianCalendar expenseDate,
-						    int amount,
+						    double amount,
+						    String currency,
 						    String description,
 						    Receipt receipt,
 						    String name){
-		selectedExpense.setCategory(category);
-		selectedExpense.setExpenseDate(expenseDate);
-		selectedExpense.setDescription(description);
-		selectedExpense.setReceipt(receipt);
+		Expense expense = new Expense();
+		expense.setCategory(category);
+	    expense.setExpenseDate(expenseDate);
+		expense.setDescription(description);
+		expense.setReceipt(receipt);
 		Amount actualAmount = new Amount(amount, null);
-		selectedExpense.setAmount(actualAmount);
-		selectedExpense.setName(name);
-		
+		expenseList.add(selectedExpense);
+		expense.setAmount(actualAmount);
+		expense.setName(name);
+		this.expenseList.add(expense);
+		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
 	public void setSelectedExpense (Expense expense){
@@ -81,10 +86,12 @@ public class ExpenseController {
 	
 	public void addExpense(Expense expense){
 		this.expenseList.add(expense);
+		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
 	public void removeExpense(Expense expense){
 		this.expenseList.remove(expense);
+		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
 	public GregorianCalendar getExpenseDate() {

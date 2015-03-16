@@ -29,6 +29,7 @@ public class Claim {
     private long lastSave;
     
     public Claim() {
+    	this.expenseList = new ExpenseList();
     	GregorianCalendar calendar = (GregorianCalendar) Calendar.getInstance();
     	this.setStartDate(calendar);
 	    this.setEndDate(calendar);

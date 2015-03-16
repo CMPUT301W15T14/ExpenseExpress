@@ -1,8 +1,10 @@
 package team14.expenseexpress.activity;
 
 import team14.expenseexpress.R;
+import team14.expenseexpress.controller.TagListController;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.TagList;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,12 +16,11 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+@SuppressLint("ValidFragment")
 public class TagListDialogFragment extends android.app.DialogFragment {
-	private final TagList tagList;
 	private final ClaimListActivity activity;
 
 	public TagListDialogFragment(ClaimListActivity activity) {
-		tagList = TagList.getInstance(activity);
 		this.activity = activity;
 	}
 
@@ -55,7 +56,7 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return tagList.size();
+			return TagListController.getInstance().getTagList().getTags().size();
 		}
 
 		@Override
@@ -70,23 +71,25 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 			return 0;
 		}
 
+		
 		@Override
 		public View getView(final int position, final View convertView,
 				ViewGroup parent) {
 			// Recycles convertView
 			// TODO: put controller in between View and Model
-			final ClaimTag tag = tagList.get(position);
+			final TagListController tagController = TagListController.getInstance();
 
 			CheckBox checkBox = (CheckBox) convertView;
 			if (checkBox == null) {
 				checkBox = new CheckBox(activity);
 			}
 
-			if (activity.getChosenTags().contains(tag)) {
+			if (tagController.getChosenTags().getTags().contains(tagController.getTagList().get(position))) {
 				checkBox.setChecked(true);
 			}
 
-			checkBox.setText(tag.getName());
+			
+			checkBox.setText(tagController.getTagList().get(position).getName());
 
 			checkBox.setOnClickListener(new OnClickListener() {
 
@@ -95,14 +98,14 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 					// Is the view now checked?
 					boolean checked = ((CheckBox) v).isChecked();
 					if (checked) {
-						activity.getChosenTags().add(tag);
+						tagController.getChosenTags().getTags().add(tagController.getTagList().get(position));
 					} else {
-						activity.getChosenTags().remove(tag);
+						tagController.getChosenTags().getTags().remove(tagController.getTagList().get(position));
 					}
-				}
-			});
+				} 
+			}); 
 
 			return checkBox;
-		}
+		} 
 	}
 }
