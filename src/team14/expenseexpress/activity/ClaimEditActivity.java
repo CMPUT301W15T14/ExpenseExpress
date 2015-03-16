@@ -155,12 +155,16 @@ public class ClaimEditActivity extends Activity {
 		public void editClaim(View v) {
 			try {
 			ClaimController.getInstance().getSelectedClaim().setName(claimNameText.getEditableText().toString());
-			finish();
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 				Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show();
 				return;
 			}
+			if(claimNameText.getEditableText().toString().isEmpty()) {
+				Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show();
+				return;
+			}
+			finish();
 		}
 
 		
