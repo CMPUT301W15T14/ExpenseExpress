@@ -44,6 +44,7 @@ public final class R {
         public static final int DestinationListView=0x7f0a0003;
         public static final int ExpenseList=0x7f0a001b;
         public static final int LinearLayout1=0x7f0a006c;
+        public static final int ListView=0x7f0a0041;
         public static final int TagList=0x7f0a0015;
         public static final int TakeAPhoto=0x7f0a0062;
         public static final int acceptClaimDestinations=0x7f0a003f;
@@ -100,7 +101,6 @@ public final class R {
         public static final int destinationList=0x7f0a0035;
         public static final int destinationName=0x7f0a0080;
         public static final int destinationReason=0x7f0a0081;
-        public static final int destinationsListView=0x7f0a0041;
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a0021;
         public static final int detailsName=0x7f0a002a;
@@ -112,8 +112,8 @@ public final class R {
         public static final int editExpenseName=0x7f0a0053;
         public static final int editTagsButton=0x7f0a0005;
         public static final int editTagsView=0x7f0a003e;
-        public static final int endDateButton=0x7f0a0031;
-        public static final int endDateText=0x7f0a0030;
+        public static final int endDateButton=0x7f0a0032;
+        public static final int endDateText=0x7f0a0031;
         public static final int expenseAmount=0x7f0a005e;
         public static final int expenseCategory=0x7f0a007b;
         public static final int expenseCost=0x7f0a0083;
@@ -158,7 +158,7 @@ public final class R {
         public static final int searchButton=0x7f0a0037;
         public static final int signInButton=0x7f0a0063;
         public static final int startDateButton=0x7f0a0033;
-        public static final int startDateText=0x7f0a0032;
+        public static final int startDateText=0x7f0a0030;
         public static final int status=0x7f0a0070;
         public static final int statusSubmitButton=0x7f0a006b;
         public static final int statusTitle=0x7f0a006a;

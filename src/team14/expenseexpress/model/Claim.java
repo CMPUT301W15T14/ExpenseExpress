@@ -35,8 +35,9 @@ public class Claim {
 	    this.setEndDate(calendar);
 	    this.claimId = generateCurrentTime();
 	    this.lastSave = generateCurrentTime();
-	    destinations = new ArrayList<Destination>();
-	    tags = new ArrayList<ClaimTag>();
+	    this.destinations = new ArrayList<Destination>();
+	    this.tags = new ArrayList<ClaimTag>();
+	    this.status = Status.IN_PROGRESS;
     }
 
     public void setLastSave() {

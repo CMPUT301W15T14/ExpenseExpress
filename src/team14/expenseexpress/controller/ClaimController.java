@@ -67,6 +67,10 @@ public class ClaimController {
 		LocalFileHelper.getInstance().saveClaims(claimList);
 	}
 	
+	public void saveClaims() {
+		LocalFileHelper.getInstance().saveClaims(claimList);
+	}
+	
 	public Claim getNewClaim(){
 		Claim claim = new Claim();
 		return claim;

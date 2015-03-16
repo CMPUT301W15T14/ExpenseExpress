@@ -4,14 +4,13 @@
 //import junit.framework.TestCase;
 /*
 import android.test.ActivityInstrumentationTestCase2;
-import team14.expenseexpress.activity.NewClaimActivity;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 
 
 
-
+/*
 public class ClaimDataInputTest extends ActivityInstrumentationTestCase2<NewClaimActivity> {
 
 	public ClaimDataInputTest(Class<NewClaimActivity> activityClass) {
@@ -34,11 +33,11 @@ public class ClaimDataInputTest extends ActivityInstrumentationTestCase2<NewClai
 		String dateIn = "10-11-12";
 		claim.setStartDate(dateIn);
 		assertEquals ("The start date is saved", dateIn, claim.getStartDate()); 
-	}*/
-	/*public void testClaimDateEnd(){
+	}
+	public void testClaimDateEnd(){
 		Claim claim = new Claim();
 		String dateIn = "12-11-12";
 		claim.endDate(dateIn);
 		assertEquals ("The start date is saved", dateIn, claim.getEndDate()); 
-	}*/
-//}
+*/
+

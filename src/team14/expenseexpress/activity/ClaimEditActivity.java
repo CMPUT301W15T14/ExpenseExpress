@@ -1,11 +1,9 @@
 package team14.expenseexpress.activity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import team14.expenseexpress.R;
-import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
@@ -15,7 +13,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -47,14 +44,12 @@ public class ClaimEditActivity extends Activity {
 		claimNameText = (EditText) findViewById(R.id.newClaimNameText);
 		
 		tagListView = (ListView) findViewById(R.id.tagList);
-		//final ArrayList<ClaimTag> tagList = new ArrayList<ClaimTag>(ClaimController.getInstance().getSelectedClaim().getTags());
 		tagAdapter = new ArrayAdapter<ClaimTag>(this, R.layout.listtextview, ClaimController.getInstance().getSelectedClaim().getTags());
 		tagListView.setAdapter(tagAdapter);
 		
 		destinationListView = (ListView) findViewById(R.id.destinationList);
-		//final ArrayList<Destination> destinationList = new ArrayList<Destination>(ClaimController.getInstance().getSelectedClaim().getDestinations());
 		destinationAdapter = new ArrayAdapter<Destination>(this, R.layout.listtextview, ClaimController.getInstance().getSelectedClaim().getDestinations());
-		tagListView.setAdapter(destinationAdapter);
+		destinationListView.setAdapter(destinationAdapter);
 		
 		Calendar calendar = ClaimController.getInstance().getSelectedClaim().getStartDate();
 		startYear = calendar.get(Calendar.YEAR);
@@ -144,6 +139,9 @@ public class ClaimEditActivity extends Activity {
 		@Override
 		protected void onResume() {
 			super.onResume();
+			tagAdapter.notifyDataSetChanged();
+			destinationAdapter.notifyDataSetChanged();
+			ClaimController.getInstance().saveClaims();
 		}
 		
 		public void editTags(View v) {
@@ -155,7 +153,17 @@ public class ClaimEditActivity extends Activity {
 		}
 
 		public void editClaim(View v) {
-			
+			try {
+			ClaimController.getInstance().getSelectedClaim().setName(claimNameText.getEditableText().toString());
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+				Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show();
+				return;
+			}
+			if(claimNameText.getEditableText().toString().isEmpty()) {
+				Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show();
+				return;
+			}
 			finish();
 		}
 
