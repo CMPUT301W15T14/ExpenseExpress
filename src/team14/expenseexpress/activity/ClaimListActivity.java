@@ -69,9 +69,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 				Claim claim = (Claim) lv1.getItemAtPosition(position);
 				ClaimController.getInstance().setSelectedClaim(claim);
-				Intent intent = new Intent(ClaimListActivity.this,
-						ExpenseListActivity.class);
-				startActivity(intent);
+				//Intent intent = new Intent(ClaimListActivity.this,
+						//ExpenseListActivity.class);
+				//startActivity(intent);
 			}
 		});
 	}
