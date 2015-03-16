@@ -1,11 +1,4 @@
-/* Assignment 1: TravelClaim
- * Name: Brandon Cheung
- * CCID: bwcheung
- * Date: Feb 2, 2015
- * LICENSE: APACHE 2.0 (read the Readme file)
- * Source taken from: http://www.androidhive.info/2012/02/android-custom-listview-with-image-and-text/ -- Jan 31, 2015
- * Description: This is a custom adapter that lets me show my claims in a custom listview.
- */
+
 package team14.expenseexpress;
 
 import java.util.ArrayList;
@@ -18,7 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+/**
+ * A CustomBaseAdapter for claims list. This lets use show destination, status, claim name, date, and tags
+ * in the listview
+ * Source taken from: http://www.androidhive.info/2012/02/android-custom-listview-with-image-and-text/ -- Jan 31, 2015
+ *
+ */
 public class CustomBaseAdapter extends BaseAdapter {
 	
 	private static ArrayList<Claim> ClaimList;
