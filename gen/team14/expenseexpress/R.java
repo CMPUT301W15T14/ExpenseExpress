@@ -9,7 +9,9 @@ package team14.expenseexpress;
 
 public final class R {
     public static final class array {
-        public static final int LongClickMenu=0x7f070000;
+        public static final int Categories=0x7f070000;
+        public static final int Currency=0x7f070001;
+        public static final int LongClickMenu=0x7f070002;
     }
     public static final class attr {
     }
