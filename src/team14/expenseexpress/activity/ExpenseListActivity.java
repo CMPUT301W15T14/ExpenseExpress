@@ -50,14 +50,8 @@ public class ExpenseListActivity extends Activity {
 				adb.setPositiveButton("Delete", new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							Expense expense = ExpenseController.getInstance().getExpenseList().get(finalPosition);	
-							ClaimController.getInstance().removeExpense(expense);				//delete listener								
-						}										
-					});
-				adb.setNeutralButton("Edit", new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						ExpenseController.getInstance().setSelectedExpense(ExpenseController.getInstance().getExpenseList().get(finalPosition));
+						ExpenseController.getInstance().setSelectedExpense(finalPosition);
+
 						startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
 						
 					}										

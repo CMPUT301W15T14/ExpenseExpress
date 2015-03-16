@@ -12,7 +12,6 @@ import team14.expenseexpress.model.Receipt;
 
 public class ExpenseController {
 	
-	private Context context;
 	private static ExpenseList expenseList;
 	private Expense selectedExpense; 
 	
@@ -58,6 +57,11 @@ public class ExpenseController {
 	
 	public void setSelectedExpense (Expense expense){
 		this.selectedExpense = expense;
+	
+	}
+	
+	public void setSelectedExpense (int position){
+		this.selectedExpense = expenseList.get(position);
 	
 	}
 	
