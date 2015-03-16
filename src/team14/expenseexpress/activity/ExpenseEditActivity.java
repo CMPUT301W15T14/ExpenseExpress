@@ -8,6 +8,7 @@ import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.model.Expense;
+import team14.expenseexpress.receipt.ReceiptAddActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -55,23 +56,24 @@ public class ExpenseEditActivity extends Activity {
 		completeCheck = (CheckBox) findViewById(R.id.completeCheck);
 		receiptButton = (Button) findViewById(R.id.addReceipt);
 		
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		ArrayAdapter<CharSequence> ctgryAdapter = ArrayAdapter.createFromResource(this,
 		        R.array.Categories, android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		ctgrySpinner.setAdapter(adapter);
+		ctgryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ctgrySpinner.setAdapter(ctgryAdapter);
+		ArrayAdapter<CharSequence> crncyAdapter = ArrayAdapter.createFromResource(this,
+		        R.array.Currency, android.R.layout.simple_spinner_item);
+		crncyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		crncySpinner.setAdapter(crncyAdapter);
 		Expense expense = ExpenseController.getInstance().getSelectedExpense();
 		if (ExpenseController.getInstance().getSelectedExpense() != null){
 			expenseName.setText(expense.getName());
-			expenseDescription.setText(expense.getDescription());
-			ctgrySpinner.setSelection(adapter.getPosition(expense.getCategory()));
+			expenseDescription.setText(expense.getDescription());;
+			crncySpinner.setSelection(ctgryAdapter.getPosition(expense.getAmount().getCurrency().toString()));
+			ctgrySpinner.setSelection(crncyAdapter.getPosition(expense.getCategory()));
 			expenseAmount.setText(Double.toString(expense.getAmount().getNumber()));
 			completeCheck.setChecked(expense.getComplete());
 		}
-		adapter = ArrayAdapter.createFromResource(this,
-		        R.array.Currency, android.R.layout.simple_spinner_item);
-		crncySpinner.setAdapter(adapter);
-		if (ExpenseController.getInstance().getSelectedExpense() != null)
-			crncySpinner.setSelection(adapter.getPosition(expense.getAmount().getCurrency().toString()));
+
 		date = ExpenseController.getInstance().getExpenseDate();
 		expenseYear = date.get(GregorianCalendar.YEAR);
 		expenseMonth = date.get(GregorianCalendar.MONTH);
@@ -135,16 +137,16 @@ public class ExpenseEditActivity extends Activity {
 		else if ((ExpenseController.getInstance().containsByName(name))){
 			Toast.makeText(this, "An Expense With This Name Already Exists", Toast.LENGTH_LONG).show();
 		}
-		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getStartDate()) <= 0){
+		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getStartDate()) < 0){
 			Toast.makeText(this, "Invalid Date (Before Claim Start Date)", Toast.LENGTH_LONG).show();
 
 		}
-		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getEndDate()) >= 0){
+		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getEndDate()) > 0){
 			Toast.makeText(this, "Invalid Date (After Claim End Date)", Toast.LENGTH_LONG).show();
 		}
 		
 		else{
-			ExpenseController.getInstance().setExpense(category, date, amount,currency, description,null, name, complete);
+			ExpenseController.getInstance().setExpense(category, date, amount,currency, description,name, complete);
 			finish();}
 	}
 	public void modifyReceipt(View view) {

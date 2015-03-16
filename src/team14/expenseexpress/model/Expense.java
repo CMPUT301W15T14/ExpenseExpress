@@ -19,14 +19,30 @@ public class Expense implements Cloneable {
     private String name;
     private boolean complete; 
 
+
     private long expenseId;
-    
+    /**
+     * Getter for the Unique ID associated with this Expense.
+     * returns the unique ID
+     * @return long Id
+     */
     public long getId(){
     	return this.expenseId;
     }
+    /**
+     * Getter for the complete boolean associated with this Expense.
+     * returns the completeness of the expense, as indicated by user
+     * @return  Boolean complete
+     */
     public boolean getComplete(){
     	return this.complete;
     }
+    /**
+     * Setter for the complete boolean associated with this Expense.
+     * Sets the completeness of the expense, as indicated by user
+     * 
+     * @param Boolean
+     */
     public void setComplete(boolean complete){
     	this.complete = complete;
     }
@@ -54,6 +70,12 @@ public class Expense implements Cloneable {
     public GregorianCalendar getExpenseDate() {
     	return this.expenseDate;
     }
+    
+    /**
+     * Setter for the Expense Date object associated with this Expense.
+     * returns the completeness of the expense, as indicated by user
+     * @param GregorianCalendar calendar
+     */
     
     public void setExpenseDate(GregorianCalendar calendar) {
     	this.expenseDate = calendar;
@@ -174,20 +196,29 @@ public class Expense implements Cloneable {
 			Expense e1 = (Expense)lhs;
 			Expense e2 = (Expense)rhs;
 			
-			return (e1.getId() > e2.getId()) ? 1 : -1;
+			return (e1.getId() < e2.getId()) ? 1 : -1;
 				}
 		}
 
-
+    /**
+     * Getter for the Name associated with this Expense.
+     * returns the name of the expense
+     * @return  String name
+     */
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
 	}
-
+	  /**
+     * Setter for the name associated with this Expense.
+     * 
+     * @param  String name
+     */
 	public void setName(String name) {
 		this.name = name;
 		
 	}
+	
 	
     
 }

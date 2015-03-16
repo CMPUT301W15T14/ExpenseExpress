@@ -5,10 +5,13 @@ import team14.expenseexpress.R.layout;
 import team14.expenseexpress.R.menu;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.model.Expense;
+import team14.expenseexpress.receipt.ViewReceiptActivity;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
@@ -20,6 +23,7 @@ public class ExpenseDetailsActivity extends Activity {
 		setContentView(R.layout.activity_expense_details);
 		// Show the Up button in the action bar.
 		Expense expense = ExpenseController.getInstance().getSelectedExpense();
+		
 		TextView expenseNameTitle = (TextView) findViewById(R.id.expenseDetailsTitle);
 		expenseNameTitle.setText(expense.getName());
 		
@@ -66,5 +70,8 @@ public class ExpenseDetailsActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	public void OnClick_ViewReceipt(View v){
+		startActivity(new Intent(ExpenseDetailsActivity.this, ViewReceiptActivity.class));
+	}
 }

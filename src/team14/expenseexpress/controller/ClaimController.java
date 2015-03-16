@@ -75,49 +75,10 @@ public class ClaimController {
 		Claim claim = new Claim();
 		return claim;
 	}
-	/*
-	private void initializeClaimList() {
-		
-		claimList = new ClaimList();
-		ClaimList localClaims = loadLocalClaims();
-		ClaimList remoteClaims = loadRemoteClaims();
-		merge(localClaims, remoteClaims);
-	}
 
-	private void merge(ClaimList localClaims, ClaimList remoteClaims) {
-		// TODO merge the two lists.
-		List<Claim> mergedList = new ArrayList<Claim>(localClaims);
-		for (int i = 0; i < remoteClaims.size(); i++){
-			Claim remoteClaim = remoteClaims.get(i);
-			if (mergedList.contains(remoteClaim)){
-				mergedList.remove(remoteClaim);
-			}
-			mergedList.add(remoteClaims.get(i));
-		}
-	}
-
-	private List<Claim> loadRemoteClaims() {
-		ElasticSearchHelper helper = ElasticSearchHelper.getInstance(context);
-		List<Claim> remoteClaims = new ArrayList<Claim>();
-		switch (Mode.get()){
-		case Mode.APPROVER:
-			remoteClaims = helper.getRemoteClaimsForApprover(user);
-			break;
-		case Mode.CLAIMANT:
-			remoteClaims = helper.getRemoteClaimsForClaimant(user);
-		}
-		return remoteClaims;
-	}
-
-
-*/
 	private void loadLocalClaims() {
 		this.claimList = LocalFileHelper.getInstance(context).loadClaims();
 	}
 
-	public void removeExpense(Expense expense) {
-		selectedClaim.remove(expense);
-		
-	}
 }
 

@@ -11,6 +11,13 @@ import java.util.GregorianCalendar;
  * @author  Team 14
  * @version 0.1
  * @since   2015-02-19
+ * 
+ * Claim holds 5 Lists:
+ * tags, expenseList, destinations, amount, approverComments
+ * It is the key object in the Expense Express framework.
+ * 
+ * 
+ * 
  */
 public class Claim {
     private ArrayList<ClaimTag> tags;
@@ -56,24 +63,49 @@ public class Claim {
     private long generateCurrentTime(){
     	return System.currentTimeMillis();
     }
-    
+	/**
+	 * Setter, sets Claim name
+	 * 
+	 * @param String name
+	 *
+	 */
     public void setName(String name) {
     	this.name = name;
     }
-    
+    /**
+	 * getter, gets Claim name
+	 * 
+	 * @return String name
+	 *
+	 */
     public String getName() {
     	return this.name;
     }
-    
+    /**
+	 * getter, gets Claim unique ID
+	 * 
+	 * @return long
+	 *
+	 */
     public long getId(){
     	return this.claimId;
     }
-
+    /**
+	 * getter, gets ExpenseList
+	 * 
+	 * @return ArrayList<Expense>
+	 *
+	 */
     public ExpenseList getExpenseList() {
         return this.expenseList;
     }
 
-   
+    /**
+  	 * getter, gets TagList
+  	 * 
+  	 * @return ArrayList<ClaimTag>
+  	 *
+  	 */
     public ArrayList<ClaimTag> getTags() {
         return tags;
     }
@@ -106,7 +138,13 @@ public class Claim {
     public ArrayList<Destination> getDestinations() {
         return destinations;
     }
-
+    public ArrayList<String> getDestinationsNames(){
+    	ArrayList <String> list = new ArrayList<String>();
+    	ArrayList <Destination> des = getDestinations();
+    	for (Destination destination : des)
+    		list.add(destination.getDestination());
+		return list;
+    }
     /**
      * Adds a Destination to this Claim.
      *
@@ -115,7 +153,7 @@ public class Claim {
     public void addDestination(Destination destination) {
         destinations.add(destination);
     }
-
+    
     /**
      * Getter for the starting date associated with this Claim.
      *
@@ -277,12 +315,12 @@ public class Claim {
 			return c1.getStartDate().compareTo(c2.getStartDate());
 				}
 		}
-
-	public void remove(Expense expense) {
-		expenseList.remove(expense);
-		// TODO Auto-generated method stub
-		
-	}
+	/**
+	 * date To string used to get formatted date objects
+	 * 
+	 * @author pkuczera
+	 * @return String date
+	 */
 	
 	public String startDateToString() {
 		if(startDate == null) {
@@ -290,7 +328,12 @@ public class Claim {
 		}
 		return (String) android.text.format.DateFormat.format("yyyy-MM-dd",this.startDate);
 	}
-	
+	/**
+	 * date To string used to get formatted date objects
+	 * 
+	 * @author pkuczera
+	 * @return String date
+	 */
 	public String endDateToString() {
 		if(endDate == null) {
 			return "";

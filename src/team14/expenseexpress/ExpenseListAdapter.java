@@ -51,6 +51,9 @@ public class ExpenseListAdapter extends BaseAdapter {
 			holder.description = (TextView) convertView.findViewById(R.id.expenseDescript);
 			holder.complete = (TextView) convertView.findViewById(R.id.complete);
 			holder.incomplete = (TextView) convertView.findViewById(R.id.incomplete);
+			holder.yesreceipt = (TextView) convertView.findViewById(R.id.yesReceipt);
+			holder.noreceipt = (TextView) convertView.findViewById(R.id.noReceipt);
+			
 
 			convertView.setTag(holder);
 		} else {
@@ -71,6 +74,14 @@ public class ExpenseListAdapter extends BaseAdapter {
 			holder.incomplete.setVisibility(View.VISIBLE);
 			holder.complete.setVisibility(View.INVISIBLE);
 		}
+		if (expenseList.get(position).getReceipt() != null){
+			holder.yesreceipt.setVisibility(View.VISIBLE);
+			holder.noreceipt.setVisibility(View.INVISIBLE);
+		}	
+		else{
+			holder.noreceipt.setVisibility(View.VISIBLE);
+			holder.yesreceipt.setVisibility(View.INVISIBLE);
+		}
 		return convertView;
 	}
 
@@ -83,5 +94,7 @@ public class ExpenseListAdapter extends BaseAdapter {
 		TextView description;
 		TextView complete;
 		TextView incomplete;
+		TextView yesreceipt;
+		TextView noreceipt;
 	}
 }

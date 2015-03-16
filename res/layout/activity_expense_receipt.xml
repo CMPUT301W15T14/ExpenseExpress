@@ -20,25 +20,25 @@
         android:textSize="6mm" />
 
     <Button
-        android:id="@+id/reciptSubmitButton"
+        android:id="@+id/receiptSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="10mm"
         android:layout_alignLeft="@+id/receiptTitle"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:background="@color/mainYellow"
+        android:onClick="OnClick_SubmitReceipt"
         android:text="Submit Receipt"
         android:textColor="@color/mainGreen" />
 
-    <ImageView
-        android:id="@+id/receiptView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/reciptSubmitButton"
+    <ImageButton
+        android:id="@+id/TakeAPhoto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/receiptSubmitButton"
         android:layout_alignLeft="@+id/receiptTitle"
-        android:layout_alignRight="@+id/reciptSubmitButton"
         android:layout_below="@+id/receiptTitle"
-        android:scaleType="center"
-        android:src="@android:drawable/ic_menu_camera" />
+        android:layout_weight="0.82"
+        android:src="@drawable/ic_action_search" />
 
 </RelativeLayout>

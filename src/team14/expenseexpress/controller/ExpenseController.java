@@ -1,5 +1,6 @@
 package team14.expenseexpress.controller;
 
+import java.util.Collections;
 import java.util.GregorianCalendar;
 
 import android.content.Context;
@@ -40,20 +41,29 @@ public class ExpenseController {
 		expenseList = ClaimController.getInstance().getSelectedClaim().getExpenseList(); 
 	}
 	
-	
+	  /**
+		 * Set Expense recieves fields for a new or edited expense and modifies the Expense object
+		 * This ensures a MVC framework.
+		 * @param String category,
+						    GregorianCalendar expenseDate,
+						    double amount,
+						    String currency,
+						    String description,
+						    String name,
+						    boolean complete
+		 *
+		 */
 	public void setExpense(String category,
 						    GregorianCalendar expenseDate,
 						    double amount,
 						    String currency,
 						    String description,
-						    Receipt receipt,
 						    String name,
 						    boolean complete){
 		if (selectedExpense != null){
 			selectedExpense.setCategory(category);
 		    selectedExpense.setExpenseDate(expenseDate);
 			selectedExpense.setDescription(description);
-			selectedExpense.setReceipt(receipt);
 			Amount actualAmount = new Amount(amount, Currency.fromString(currency));
 			selectedExpense.setAmount(actualAmount);
 			selectedExpense.setName(name);
@@ -64,22 +74,30 @@ public class ExpenseController {
 			expense.setCategory(category);
 		    expense.setExpenseDate(expenseDate);
 			expense.setDescription(description);
-			expense.setReceipt(receipt);
 			Amount actualAmount = new Amount(amount, Currency.fromString(currency));
 			expense.setAmount(actualAmount);
 			expense.setName(name);
 			expense.setComplete(complete);
-			this.expenseList.add(expense);
+			addExpense(expense);
 			}
 		selectedExpense = null;
+		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
-	
+	  /**
+		 * SetSelecetedExpense(Expense expense) takes an Expense object and sets it as the selectedExpense variable
+		 * 
+		 *@param Expense expense
+		 */
 	public void setSelectedExpense (Expense expense){
 		this.selectedExpense = expense;
 	
 	}
-	
+	  /**
+		 * SetSelecetedExpense(position) takes a position and gets the expense at that index and sets it as 
+		 * setSelectedExpense
+		 *@param Expense expense
+		 */
 	public void setSelectedExpense (int position){
 		this.selectedExpense = expenseList.get(position);
 	
@@ -101,11 +119,13 @@ public class ExpenseController {
 	
 	public void addExpense(Expense expense){
 		this.expenseList.add(expense);
+		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
 	public void removeExpense(Expense expense){
 		this.expenseList.remove(expense);
+		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
@@ -133,5 +153,9 @@ public class ExpenseController {
 			}
 		}
 		return false;
+	}
+	public void sortExpenseList(){
+		expenseList.sort();
+
 	}
 }

@@ -15,10 +15,20 @@ public enum Currency {
     CNY ("CNY");
     
     private String name;
-    
+	 /**
+     * UnCallable Constructor
+     *	
+     * @param Expense expense
+     */
     private Currency(String name){
     	this.name = name;
     }
+	 /**
+     * Getter method that returns a currency object, relevant
+     *	to a String that is passed
+     *
+     * @param String text
+     */
     public static Currency fromString(String text) {
         if (text != null) {
           for (Currency currency : Currency.values()) {
@@ -29,7 +39,11 @@ public enum Currency {
         }
         return null;
       }
-  
+	 /**
+     * getter, retrieves currency name
+     *	
+     * @param String
+     */
     public String getName(){
     	return name;
     }

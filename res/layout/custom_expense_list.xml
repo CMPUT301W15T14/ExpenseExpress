@@ -124,4 +124,25 @@
         android:text="Complete"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <TextView
+        android:id="@+id/noReceipt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expenseCurrency"
+        android:layout_toRightOf="@+id/customCategoryTitle"
+        android:text="No Receipt"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FF0000" />
+
+    <TextView
+        android:id="@+id/yesReceipt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/noReceipt"
+        android:layout_alignBottom="@+id/noReceipt"
+        android:layout_alignLeft="@+id/noReceipt"
+        android:layout_alignRight="@+id/noReceipt"
+        android:text="Receipt"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </RelativeLayout>
