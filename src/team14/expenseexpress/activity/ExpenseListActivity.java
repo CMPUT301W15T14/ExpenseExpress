@@ -10,6 +10,7 @@ import team14.expenseexpress.R.layout;
 import team14.expenseexpress.R.menu;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ExpenseList;
@@ -36,7 +37,7 @@ public class ExpenseListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claims_expense_list);
-		final Claim claim = ClaimController.getSelectedClaim();
+		final Claim claim = ClaimController.getInstance().getSelectedClaim();
 		TextView claimNameView = (TextView) findViewById(R.id.claimNameTitles);
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList); 
 		claimNameView.setText(claim.getName());
@@ -58,12 +59,14 @@ public class ExpenseListActivity extends Activity {
 							ClaimController.removeExpense(claim, expense);				//delete listener								
 						}										
 					});
-				adb.setNeutralButton("Delete", new OnClickListener() {
+				adb.setNeutralButton("Edit", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						Expense expense = expenseList.get(finalPosition);
+						ExpenseController EC = ExpenseController.getInstance();
+						EC.setSelectedExpense(expense);
+						startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
 						
-						ClaimController.removeExpense(claim, expense);				//delete listener								
 					}										
 				});
 				adb.setNegativeButton("Cancel", new OnClickListener() {					
@@ -106,7 +109,7 @@ public class ExpenseListActivity extends Activity {
 	}
 	
     public void onClick_newExpense(View v) {
-    	startActivity(new Intent(ExpenseListActivity.this, ExpenseListActivity.class));
+    	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
     }
 	
 }
