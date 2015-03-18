@@ -58,10 +58,7 @@ public class UserController {
 		// Always attempt to getUser first, then add if not returned...
 		
 	}
-<<<<<<< HEAD
 	
-	public void addUser(User user) {
-=======
 	  /**
 		 * AddUser receives a new unique User username, and 
 		 * creates a new folder for them to be saved in.
@@ -69,7 +66,6 @@ public class UserController {
 		 *
 		 */
 	private void addUser(User user) {
->>>>>>> b81c91b8bdee1e321134b97c11a9ce6b2d0cbd66
 		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
