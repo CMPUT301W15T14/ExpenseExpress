@@ -1,12 +1,13 @@
 package team14.expenseexpress.activity;
 
 import team14.expenseexpress.ClaimListAdapter;
-import team14.expenseexpress.CustomBaseAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.TagListController;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Status;
@@ -29,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 /**
  * <p> View
@@ -50,20 +52,38 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		setContentView(R.layout.activity_claim_list);
     	ClaimController.getInstance().initialize(this);
     	TagListController.getInstance().initialize();
-	    
 		LayoutInflater.from(this);
 
-		final ListView lv1 = (ListView) findViewById(R.id.claimListView);
+		initializeListViewClaimList();
+		setSubtitle();
+	}
+
+	private void setSubtitle() {
+		TextView textView_usernameAndMode = (TextView) findViewById(R.id.textView_usernameAndMode);
+		String subtitle = UserController.getInstance().getCurrentUser().getName();
+		switch(team14.expenseexpress.controller.Mode.get()){
+		case Mode.APPROVER:
+			subtitle += " - Approver";
+			break;
+		case Mode.CLAIMANT:
+			subtitle += " - Claimant";
+			break;
+		}
+		textView_usernameAndMode.setText(subtitle);
+	}
+
+	private void initializeListViewClaimList() {
+		final ListView listView_claimList = (ListView) findViewById(R.id.claimListView);
 		claimsListAdapter = new ClaimListAdapter(this);
 		setClaimListAdapter(claimsListAdapter);
-		lv1.setAdapter(claimsListAdapter);
-		registerForContextMenu(lv1);
-		lv1.setOnItemClickListener(new OnItemClickListener() {
+		listView_claimList.setAdapter(claimsListAdapter);
+		registerForContextMenu(listView_claimList);
+		listView_claimList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				Claim claim = (Claim) lv1.getItemAtPosition(position);
+				Claim claim = (Claim) listView_claimList.getItemAtPosition(position);
 				ClaimController.getInstance().setSelectedClaim(claim);
 				Intent intent = new Intent(ClaimListActivity.this,
 						ExpenseListActivity.class);
