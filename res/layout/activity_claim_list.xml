@@ -1,70 +1,68 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainGreen"
+    android:gravity="center"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/mainGreen"
     tools:context=".ClaimListActivity" >
 
-    <EditText
-        android:id="@+id/tagTextField"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:ems="10"
-        android:hint="Search By Tag" >
+        android:text="List of Claims"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/mainYellow"
+        android:textStyle="bold" />
 
-    </EditText>
-
-    <Button
-        android:id="@+id/searchButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="15mm"
+    <TextView
+        android:id="@+id/textView_usernameAndMode"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/claimListView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/tagTextField"
-        android:background="@color/mainYellow"
-        android:onClick="onClick_searchByTag"
-        android:text="Search"
-        android:textColor="@color/mainGreen" />
+        android:text="John Doe - Claimant"
+        android:textColor="@color/mainYellow" />
 
     <ListView
         android:id="@+id/claimListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/addNewClaimListViewButton"
-        android:layout_alignLeft="@+id/tagTextField"
-        android:layout_below="@+id/tagTextField"
-        android:textColor="@color/mainGreen" >
-
+        android:layout_height="0dp"
+        android:textColor="@color/mainGreen"
+        android:layout_weight="1">
     </ListView>
 
-    <Button
-        android:id="@+id/addNewClaimListViewButton"
-        android:layout_width="15mm"
-        android:layout_height="10mm"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@color/mainYellow"
-        android:onClick="onClick_newClaim"
-        android:text="Add New Claim"
-        android:textColor="@color/mainGreen" />
+    <LinearLayout
+        android:id="@+id/linearLayout_claimantButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/getTagListButton"
-        android:layout_width="15mm"
-        android:layout_height="10mm"
-        android:layout_alignRight="@+id/claimListView"
-        android:layout_alignTop="@+id/addNewClaimListViewButton"
-        android:background="@color/mainYellow"
-        android:onClick="onClick_seeTags"
-        android:text="Look At Tags"
-        android:textColor="@color/mainGreen" />
+        <Button
+            android:id="@+id/addNewClaimListViewButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@color/mainYellow"
+            android:onClick="onClick_newClaim"
+            android:text="New Claim"
+            android:textColor="@color/mainGreen" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/getTagListButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@color/mainYellow"
+            android:onClick="onClick_seeTags"
+            android:text="Tags"
+            android:textColor="@color/mainGreen" />
+
+    </LinearLayout>
+
+</LinearLayout>
