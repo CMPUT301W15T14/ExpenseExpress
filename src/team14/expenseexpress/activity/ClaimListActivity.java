@@ -240,10 +240,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		startActivity(new Intent(ClaimListActivity.this, ClaimEditActivity.class));
 	}
 
-	public void onClick_searchByTag(View v) {
-		// TODO
+
+	public void filterClaimsByTags() {
+		// claimsListAdapter.updateFilteredClaimList()
 	}
-
-
-
 }
