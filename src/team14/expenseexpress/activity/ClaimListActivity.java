@@ -245,5 +245,21 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	public void filterClaimsByTags(ArrayList<ClaimTag> tags) {
 		claimsListAdapter.updateFilteredClaimList(tags);
+		setChosenTagsTextView();
+	}
+
+	private void setChosenTagsTextView() {
+		String tagsString = "";
+		ArrayList<ClaimTag> chosenTags = TagListController.getInstance().getChosenTags().getTags();
+		if (chosenTags.size()>0){
+			for (int i = 0; i < chosenTags.size(); i++){
+				tagsString += chosenTags.get(i).getName();
+				tagsString += ", ";
+			}
+			tagsString = tagsString.substring(0,tagsString.length()-2);
+		} else {
+			tagsString = "(Showing all Claims)";
+		}
+		((TextView)findViewById(R.id.textView_chosenTags)).setText(tagsString);
 	}
 }
