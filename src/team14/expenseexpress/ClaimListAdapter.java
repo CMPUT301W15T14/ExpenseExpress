@@ -56,12 +56,12 @@ public class ClaimListAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		return claimList.size();
+		return filteredClaimList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return claimList.get(position);
+		return filteredClaimList.get(position);
 	}
 
 	@Override
