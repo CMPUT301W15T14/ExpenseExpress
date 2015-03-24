@@ -19,7 +19,7 @@ import android.widget.ListView;
 @SuppressLint("ValidFragment")
 public class TagListDialogFragment extends android.app.DialogFragment {
 	private final ClaimListActivity activity;
-	private static final int CHECKBOX_SIZE_IN_SP = 12;
+	private static final int CHECKBOX_SIZE_IN_SP = 25;
 
 	public TagListDialogFragment(ClaimListActivity activity) {
 		this.activity = activity;
@@ -40,13 +40,22 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 
 		View v = inflater.inflate(R.layout.activity_tags, container, false);
 		TagsListAdapter adapter = new TagsListAdapter();
-		(v.findViewById(R.id.addNewTagButton))
+		v.findViewById(R.id.addNewTagButton)
 				.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View view) {
 						activity.showNewTagDialog();
 					}
 				});
+		v.findViewById(R.id.button_confirm).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				dismiss();
+				activity.filterClaimsByTags();				
+			}
+			
+		});
 		((ListView) v.findViewById(R.id.ExpenseList)).setAdapter(adapter);
 		activity.setTagsListAdapter(adapter);
 		return v;
