@@ -114,10 +114,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		});
 	}
 	
+	/**
+	 * Shows all claims.
+	 */
 	@Override
 	protected void onResume(){
 		super.onResume();
-		claimsListAdapter.notifyDataSetChanged();
+		claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
 	}
 	
 	/**
@@ -192,7 +195,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 		if (menuItemName.equals("Delete")) {
 			ClaimController.getInstance().removeClaim(claim);
-			claimsListAdapter.notifyDataSetChanged();
+			claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals(Status.SUBMITTED)
 					|| (claim.getStatus().equals("approved"))) {
