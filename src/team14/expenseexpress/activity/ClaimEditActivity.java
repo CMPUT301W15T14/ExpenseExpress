@@ -2,7 +2,6 @@ package team14.expenseexpress.activity;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.logging.FileHandler;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
@@ -10,11 +9,11 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
 import team14.expenseexpress.util.LocalFileHelper;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -98,7 +97,7 @@ public class ClaimEditActivity extends Activity {
 			return null;
 		}
 
-		private DatePickerDialog.OnDateSetListener startDateListener
+		private final DatePickerDialog.OnDateSetListener startDateListener
 		= new DatePickerDialog.OnDateSetListener() {
 			
 			@Override
@@ -113,7 +112,7 @@ public class ClaimEditActivity extends Activity {
 			}
 		};
 		
-		private DatePickerDialog.OnDateSetListener endDateListener
+		private final DatePickerDialog.OnDateSetListener endDateListener
 		= new DatePickerDialog.OnDateSetListener() {
 
 			@Override
@@ -186,5 +185,4 @@ public class ClaimEditActivity extends Activity {
 				finish();
 			}
 		}
-
 }
