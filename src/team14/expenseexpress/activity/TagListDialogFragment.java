@@ -2,11 +2,10 @@ package team14.expenseexpress.activity;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.TagListController;
-import team14.expenseexpress.model.ClaimTag;
-import team14.expenseexpress.model.TagList;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,9 +15,11 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+
 @SuppressLint("ValidFragment")
 public class TagListDialogFragment extends android.app.DialogFragment {
 	private final ClaimListActivity activity;
+	private static final int CHECKBOX_SIZE_IN_SP = 12;
 
 	public TagListDialogFragment(ClaimListActivity activity) {
 		this.activity = activity;
@@ -88,7 +89,8 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 				checkBox.setChecked(true);
 			}
 
-			
+			checkBox.setTextColor(getResources().getColor(R.color.white));
+			checkBox.setTextSize(TypedValue.COMPLEX_UNIT_SP, CHECKBOX_SIZE_IN_SP);
 			checkBox.setText(tagController.getTagList().get(position).getName());
 
 			checkBox.setOnClickListener(new OnClickListener() {
