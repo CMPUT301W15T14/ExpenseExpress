@@ -1,5 +1,10 @@
 package team14.expenseexpress.activity;
 
+import team14.expenseexpress.ExpenseExpressActivity;
+import team14.expenseexpress.R;
+import team14.expenseexpress.controller.Mode;
+import team14.expenseexpress.controller.UserController;
+import team14.expenseexpress.model.User;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,19 +12,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-
-import team14.expenseexpress.ExpenseExpressActivity;
-import team14.expenseexpress.R;
-import team14.expenseexpress.controller.ClaimController;
-import team14.expenseexpress.controller.Mode;
-import team14.expenseexpress.controller.UserController;
-import team14.expenseexpress.model.User;
-import team14.expenseexpress.util.LocalFileHelper;
-
 /**
- * 
- * Sets User instance.
- *  
+ * Sets User instance and proceeds into ClaimListActivity.  
  */
 public class LoginActivity extends ExpenseExpressActivity {
 
@@ -27,6 +21,11 @@ public class LoginActivity extends ExpenseExpressActivity {
     private AlertDialog modeDialog;
     private AlertDialog confirmNameDialog;
     
+    /**
+     * Builds the dialogs that are used to ensure the correct information is used
+     * by the app to proceed into ClaimListActivity.
+     * 
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +35,11 @@ public class LoginActivity extends ExpenseExpressActivity {
         buildConfirmNameDialog();
     }
 
+    /**
+     * Builds dialog to confirm the entered name.
+     * 
+     * Positive button results in opening the Approver vs. Claimant mode dialog.
+     */
     private void buildConfirmNameDialog() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	builder.setMessage("Confirm your name.\n\nIt's case-sensitive.")
@@ -56,6 +60,13 @@ public class LoginActivity extends ExpenseExpressActivity {
     	confirmNameDialog = builder.create();		
 	}
     
+    /**
+     * Builds dialog for choosing Approver vs. Claimant mode.
+     * 
+     * The "negative" button is for Approver. "Positive" is for Claimant. Both set the Mode singleton
+     * appropriately and starts ClaimsListActivity.
+     * 
+     */
 	private void buildModeDialog() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Log in as approver or claimant?")
@@ -77,7 +88,13 @@ public class LoginActivity extends ExpenseExpressActivity {
         modeDialog = builder.create();                		
 	}
 
-	// The listener is defined in the XML (onClick attribute)
+	/**
+	 * Opens a chain of dialogs resulting in starting ClaimListActivity.
+	 * 
+	 * Ensures the name entered in the sign in box isn't an empty String.
+	 * 
+	 * @param view
+	 */
 	public void onClick_signIn(View view){
 		String name = editText_name.getText().toString();
 		if (name.length()==0){
@@ -90,6 +107,9 @@ public class LoginActivity extends ExpenseExpressActivity {
     }
 
 
+	/**
+	 * Starts ClaimListActivity
+	 */
 	private void startClaimsListActivity() {
         startActivity(new Intent(this, ClaimListActivity.class));
     }
