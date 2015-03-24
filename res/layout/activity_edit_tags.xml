@@ -21,15 +21,6 @@
         android:textColor="@color/mainYellow"
         android:textSize="6mm" />
 
-    <Button
-        android:id="@+id/addTagButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/mainYellow"
-        android:onClick="addNewTags"
-        android:text="Add"
-        android:textColor="@color/mainGreen" />
-
     <ListView
         android:id="@+id/ListView"
         android:layout_width="match_parent"
@@ -38,12 +29,22 @@
     </ListView>
 
     <Button
+        android:id="@+id/addTagButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mainYellow"
+        android:onClick="addNewTags"
+        android:text="Add Tag"
+        android:textColor="@color/mainGreen"
+        android:layout_marginBottom="5dp" />
+
+    <Button
         android:id="@+id/acceptClaimTags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/mainYellow"
         android:onClick="acceptTags"
-        android:text="Filter Claims"
+        android:text="Accept Tags"
         android:textColor="@color/mainGreen" />
 
 </LinearLayout>
