@@ -55,9 +55,21 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     	ClaimController.getInstance().initialize(this);
     	TagListController.getInstance().initialize();
 		LayoutInflater.from(this);
-
 		initializeListViewClaimList();
 		setSubtitle();
+		displayUiBasedOnMode();
+	}
+
+	private void displayUiBasedOnMode() {
+		View claimantUI = findViewById(R.id.linearLayout_claimantOnlyUserInterface);
+		switch (Mode.get()){
+		case Mode.APPROVER:
+			hide(claimantUI);
+			break;
+		case Mode.CLAIMANT:
+			// TODO: add approverUI. here, hide(approverUI);
+			break;
+		}
 	}
 
 	private void setSubtitle() {
