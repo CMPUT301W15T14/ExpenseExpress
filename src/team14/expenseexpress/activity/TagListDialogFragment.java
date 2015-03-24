@@ -52,7 +52,7 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 			@Override
 			public void onClick(View arg0) {
 				dismiss();
-				activity.filterClaimsByTags();				
+				activity.filterClaimsByTags(TagListController.getInstance().getChosenTags().getTags());				
 			}
 			
 		});

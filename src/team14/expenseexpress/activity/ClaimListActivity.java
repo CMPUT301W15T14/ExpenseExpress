@@ -1,5 +1,7 @@
 package team14.expenseexpress.activity;
 
+import java.util.ArrayList;
+
 import team14.expenseexpress.ClaimListAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
@@ -241,7 +243,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	}
 
 
-	public void filterClaimsByTags() {
-		// claimsListAdapter.updateFilteredClaimList()
+	public void filterClaimsByTags(ArrayList<ClaimTag> tags) {
+		claimsListAdapter.updateFilteredClaimList(tags);
 	}
 }
