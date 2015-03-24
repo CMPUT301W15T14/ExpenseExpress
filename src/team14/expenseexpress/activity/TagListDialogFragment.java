@@ -20,6 +20,14 @@ import android.widget.ListView;
 public class TagListDialogFragment extends android.app.DialogFragment {
 	private final ClaimListActivity activity;
 	private static final int CHECKBOX_SIZE_IN_SP = 25;
+	
+	
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		activity.filterClaimsByTags(TagListController.getInstance().getChosenTags().getTags());		
+	}
 
 	public TagListDialogFragment(ClaimListActivity activity) {
 		this.activity = activity;
@@ -51,8 +59,7 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 
 			@Override
 			public void onClick(View arg0) {
-				dismiss();
-				activity.filterClaimsByTags(TagListController.getInstance().getChosenTags().getTags());				
+				dismiss();		
 			}
 			
 		});
