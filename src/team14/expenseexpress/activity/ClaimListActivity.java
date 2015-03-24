@@ -49,7 +49,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_list);
     	ClaimController.getInstance().initialize(this);
@@ -60,6 +59,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		displayUiBasedOnMode();
 	}
 
+	/**
+	 * Hides UI that's irrelevant to the mode chosen by the user
+	 */
 	private void displayUiBasedOnMode() {
 		View claimantUI = findViewById(R.id.linearLayout_claimantOnlyUserInterface);
 		switch (Mode.get()){
@@ -72,6 +74,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		}
 	}
 
+	/**
+	 * Displays the user's name and chosen mode in a subtitle
+	 */
 	private void setSubtitle() {
 		TextView textView_usernameAndMode = (TextView) findViewById(R.id.textView_usernameAndMode);
 		String subtitle = UserController.getInstance().getCurrentUser().getName();
@@ -86,6 +91,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		textView_usernameAndMode.setText(subtitle);
 	}
 
+	/**
+	 * Loads the claim list into the ListView
+	 */
 	private void initializeListViewClaimList() {
 		final ListView listView_claimList = (ListView) findViewById(R.id.claimListView);
 		claimsListAdapter = new ClaimListAdapter(this);
@@ -255,11 +263,19 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	}
 
 
+	/**
+	 * Communication method for updating the BaseAdapter
+	 * 
+	 * @param tags Chosen tags
+	 */
 	public void filterClaimsByTags(ArrayList<ClaimTag> tags) {
 		claimsListAdapter.updateFilteredClaimList(tags);
 		setChosenTagsTextView();
 	}
 
+	/**
+	 * Updates the Chosen Tags text appropriately.
+	 */
 	private void setChosenTagsTextView() {
 		String tagsString = "";
 		ArrayList<ClaimTag> chosenTags = TagListController.getInstance().getChosenTags().getTags();
