@@ -152,12 +152,3 @@ public class ExpenseEditActivity extends Activity {
 		startActivity(new Intent(ExpenseEditActivity.this, ReceiptAddActivity.class));
 	}
 }
-
-	
-	
-	
-	
-	
-
-
-
