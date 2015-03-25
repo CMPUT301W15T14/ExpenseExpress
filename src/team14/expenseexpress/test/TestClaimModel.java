@@ -9,9 +9,9 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.Destination;
 import android.test.ActivityInstrumentationTestCase2;
 /**
- * Tests to check Claim and ClaimList model and its methods. Also test the ClaimController nad 
+ * Tests to check Claim and ClaimList model and its methods. Also test the ClaimController and 
  * any other model related to claim model. 
- * <p>Related Use Cases: UC1, UC4
+ * <p>Related Use Cases: UC1, UC4, UC7
  */
 public class TestClaimModel extends
 		ActivityInstrumentationTestCase2<ClaimEditActivity> {
@@ -37,7 +37,7 @@ public class TestClaimModel extends
 	/**
 	 * Test the Claim and ClaimList model and its controller to see if we can add a new 
 	 * claim with startdate, enddate, and multiple destinations and test if we can delete
-	 * the claim
+	 * the claim. Also test if we can add a tag to the claim.
 	 */
 	public void testNewClaim() {
 		GregorianCalendar startdate = new GregorianCalendar(15, 3, 16);
