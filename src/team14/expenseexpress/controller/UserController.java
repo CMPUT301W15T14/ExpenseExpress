@@ -8,12 +8,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.util.Log;
-import com.google.gson.Gson;
 import team14.expenseexpress.model.User;
+import android.util.Log;
+
+import com.google.gson.Gson;
 
 public class UserController {
-	private Gson gson = new Gson();
+	private final Gson gson = new Gson();
 	private User currentUser;
 	private static final String TAG = "UserController";
 	
@@ -65,12 +66,12 @@ public class UserController {
 		 * 
 		 *
 		 */
-	private void addUser(User user) {
+	public void addUser(User user) {
 		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
 			HttpPost addRequest = new HttpPost(user.getResourceUrl() + user.getName());
-
+			this.currentUser = user;
 			StringEntity stringEntity = new StringEntity(gson.toJson(user));
 			addRequest.setEntity(stringEntity);
 			addRequest.setHeader("Accept", "user.json");

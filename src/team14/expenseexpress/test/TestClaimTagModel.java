@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import team14.expenseexpress.activity.EditTags;
 import team14.expenseexpress.controller.TagListController;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.TagList;
+import team14.expenseexpress.model.User;
 import android.test.ActivityInstrumentationTestCase2;
 /**
  * Tests to check ClaimTag and TagList model and its methods. Also test the TagListController and 
@@ -39,6 +41,7 @@ public class TestClaimTagModel extends
 	 * Test the TagList model and the TagListController to see if we can list, add, rename and delete tags
 	 */
 	public void testManageTags() {
+		UserController.getInstance().addUser(new User("zach"));
 		TagListController.getInstance().initialize();
 		ClaimTag tag = new ClaimTag("1st tag");
 		TagListController.getInstance().addTag(tag);

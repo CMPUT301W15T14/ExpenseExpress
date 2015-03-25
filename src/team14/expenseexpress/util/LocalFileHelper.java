@@ -7,19 +7,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.UserController;
-import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
-import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.TagList;
+import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import android.content.Context;
 
 /**
  * Singleton with these public methods:
@@ -72,6 +68,9 @@ public class LocalFileHelper {
 			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		}
+		catch(NullPointerException e){
+			e.printStackTrace();
 		}
 	}
 
@@ -192,6 +191,9 @@ public class LocalFileHelper {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		catch (NullPointerException e){
+			tags = new TagList();
 		}
 		if (tags == null) {
 			tags = new TagList();
