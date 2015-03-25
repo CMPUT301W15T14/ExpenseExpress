@@ -1,19 +1,17 @@
 package team14.expenseexpress.activity;
 
 import team14.expenseexpress.R;
-import team14.expenseexpress.R.layout;
-import team14.expenseexpress.R.menu;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.receipt.ViewReceiptActivity;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.support.v4.app.NavUtils;
 
 public class ExpenseDetailsActivity extends Activity {
 
@@ -31,7 +29,7 @@ public class ExpenseDetailsActivity extends Activity {
 		expenseCategory.setText(expense.getCategory());
 		
 		TextView expenseDate = (TextView) findViewById(R.id.expenseDetailsDate);
-		expenseDate.setText((String) android.text.format.DateFormat.format("yyyy-MM-dd",expense.getExpenseDate()));
+		expenseDate.setText(android.text.format.DateFormat.format("yyyy-MM-dd",expense.getExpenseDate()));
 		
 		TextView expenseAmount = (TextView) findViewById(R.id.expenseDetailsAmount);
 		expenseAmount.setText(Double.toString(expense.getAmount().getNumber()));

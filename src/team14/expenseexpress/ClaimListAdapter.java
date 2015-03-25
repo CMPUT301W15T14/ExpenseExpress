@@ -2,7 +2,6 @@
 package team14.expenseexpress;
 
 import java.util.ArrayList;
-import java.util.EmptyStackException;
 
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
@@ -23,31 +22,59 @@ import android.widget.TextView;
  */
 public class ClaimListAdapter extends BaseAdapter {
 	
-	private static ArrayList<Claim> ClaimList;
-	private LayoutInflater mInflater;
+	private static ArrayList<Claim> claimList;
+	private static ArrayList<Claim> filteredClaimList;
+	private final LayoutInflater mInflater;
 
 	public ClaimListAdapter(Context context) {
 		mInflater = LayoutInflater.from(context);
-		ClaimList = ClaimController.getInstance().getClaimList().getClaims();
+		claimList = ClaimController.getInstance().getClaimList().getClaims();
+		filteredClaimList = new ArrayList<Claim>();
+		filteredClaimList.addAll(claimList);
 	}
 
+	/**
+	 * (Re)builds filteredClaimList filtered by chosen tags.
+	 *  
+	 * @param tags	If no tags are chosen, then all Claims are displayed.
+	 */
+	public void updateFilteredClaimList(ArrayList<ClaimTag> tags){
+		filteredClaimList.clear();
+		if (tags.size() == 0){
+			filteredClaimList.addAll(claimList);
+		}
+		for (int i = 0; i < claimList.size(); i ++ ){
+			for (int j = 0; j < tags.size(); j ++ ){
+				if (claimList.get(i).getTags().contains(tags.get(j)) &&
+						!filteredClaimList.contains(claimList.get(i))){
+					filteredClaimList.add(claimList.get(i));
+				}
+			}
+		}
+		notifyDataSetChanged();
+	}
+	
+	@Override
 	public int getCount() {
-		return ClaimList.size();
+		return filteredClaimList.size();
 	}
 
+	@Override
 	public Object getItem(int position) {
-		return ClaimList.get(position);
+		return filteredClaimList.get(position);
 	}
 
+	@Override
 	public long getItemId(int position) {
 		return position;
 	}
 
+	@Override
 	@SuppressLint("InflateParams")
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		
-		ClaimList = ClaimController.getInstance().getClaimList().getClaims();
+		// claimList = ClaimController.getInstance().getClaimList().getClaims();
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.custom_claim_list, null);
 			holder = new ViewHolder();
@@ -63,21 +90,21 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		
-		holder.claim.setText(ClaimList.get(position).getName());
-		holder.startdate.setText(ClaimList.get(position).getStartDateString());
-		holder.enddate.setText(ClaimList.get(position).getEndDateString());
-		holder.status.setText(ClaimList.get(position).getStatus());
+		holder.claim.setText(filteredClaimList.get(position).getName());
+		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
+		holder.enddate.setText(filteredClaimList.get(position).getEndDateString());
+		holder.status.setText(filteredClaimList.get(position).getStatus());
 		String tags = new String("");
 		String destinations = new String("");
 		try {
-			for(ClaimTag tag: ClaimList.get(position).getTags()) {
+			for(ClaimTag tag: filteredClaimList.get(position).getTags()) {
 				tags += ("  " +tag.getName() +",");
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 		try {
-			for(Destination destination: ClaimList.get(position).getDestinations()) {
+			for(Destination destination: filteredClaimList.get(position).getDestinations()) {
 				destinations += ("  " +destination.getDestination());
 			}
 		} catch (NullPointerException e) {

@@ -10,16 +10,17 @@ import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.model.Receipt;
+import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
 
-public class VewExpenseItemsTest extends
+public class ViewExpenseItemsTest extends
 		ActivityInstrumentationTestCase2<ExpenseDetailsActivity> {
 	
 	ExpenseDetailsActivity activity;
-	//Instrumentation instrumentation;
+	Instrumentation instrumentation;
 
-	public VewExpenseItemsTest() {
+	public ViewExpenseItemsTest() {
 		super(ExpenseDetailsActivity.class);
 	}
 	
@@ -28,10 +29,10 @@ public class VewExpenseItemsTest extends
 		//just setting up the things for tests
 		super.setUp();
 		this.activity = getActivity();
-		//this.instrumentation = getInstrumentation();
+		this.instrumentation = getInstrumentation();
 	}
 	
-	public void testVewExpenseDetails() {
+	public void testViewExpenseDetails() {
 		
 		GregorianCalendar date = new GregorianCalendar(15, 3, 16);
 		double amount = 3.00;
@@ -41,7 +42,7 @@ public class VewExpenseItemsTest extends
 		ClaimController.getInstance().setSelectedClaim(claim);
 		ExpenseController.initialize();
 		ExpenseController.getInstance().setSelectedExpense(null);
-		ExpenseController.getInstance().setExpense("Food", date, amount, "CAD", "I like food", receipt, "poutine", false);
+		ExpenseController.getInstance().setExpense("Food", date, amount, "CAD", "I like food", "poutine", false);
 		ArrayList<Expense> expenselist = ExpenseController.getInstance().getExpenseList().getExpenses();
 		
 		TextView expenseNameTitle = (TextView) activity.findViewById(R.id.expenseDetailsTitle);

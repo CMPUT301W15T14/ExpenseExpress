@@ -58,7 +58,7 @@ public class TestExpenseModel extends
 		ClaimController.getInstance().setSelectedClaim(claim);
 		ExpenseController.initialize();
 		ExpenseController.getInstance().setSelectedExpense(null);
-		ExpenseController.getInstance().setExpense("Food", date, amount, "CAD", "I like food", receipt, "poutine", false);
+		ExpenseController.getInstance().setExpense("Food", date, amount, "CAD", "I like food", "poutine", false);
 		
 		
 		ArrayList<Expense> expenselist = ExpenseController.getInstance().getExpenseList().getExpenses();

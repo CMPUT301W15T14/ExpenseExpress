@@ -1,12 +1,15 @@
 package team14.expenseexpress.activity;
 
+import java.util.ArrayList;
+
 import team14.expenseexpress.ClaimListAdapter;
-import team14.expenseexpress.CustomBaseAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.TagListController;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Status;
@@ -29,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 /**
  * <p> View
@@ -45,25 +49,63 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_list);
     	ClaimController.getInstance().initialize(this);
     	TagListController.getInstance().initialize();
-	    
 		LayoutInflater.from(this);
+		initializeListViewClaimList();
+		setSubtitle();
+		displayUiBasedOnMode();
+	}
 
-		final ListView lv1 = (ListView) findViewById(R.id.claimListView);
+	/**
+	 * Hides UI that's irrelevant to the mode chosen by the user
+	 */
+	private void displayUiBasedOnMode() {
+		View claimantUI = findViewById(R.id.linearLayout_claimantOnlyUserInterface);
+		switch (Mode.get()){
+		case Mode.APPROVER:
+			hide(claimantUI);
+			break;
+		case Mode.CLAIMANT:
+			// TODO: add approverUI. here, hide(approverUI);
+			break;
+		}
+	}
+
+	/**
+	 * Displays the user's name and chosen mode in a subtitle
+	 */
+	private void setSubtitle() {
+		TextView textView_usernameAndMode = (TextView) findViewById(R.id.textView_usernameAndMode);
+		String subtitle = UserController.getInstance().getCurrentUser().getName();
+		switch(team14.expenseexpress.controller.Mode.get()){
+		case Mode.APPROVER:
+			subtitle += " - Approver";
+			break;
+		case Mode.CLAIMANT:
+			subtitle += " - Claimant";
+			break;
+		}
+		textView_usernameAndMode.setText(subtitle);
+	}
+
+	/**
+	 * Loads the claim list into the ListView
+	 */
+	private void initializeListViewClaimList() {
+		final ListView listView_claimList = (ListView) findViewById(R.id.claimListView);
 		claimsListAdapter = new ClaimListAdapter(this);
 		setClaimListAdapter(claimsListAdapter);
-		lv1.setAdapter(claimsListAdapter);
-		registerForContextMenu(lv1);
-		lv1.setOnItemClickListener(new OnItemClickListener() {
+		listView_claimList.setAdapter(claimsListAdapter);
+		registerForContextMenu(listView_claimList);
+		listView_claimList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				Claim claim = (Claim) lv1.getItemAtPosition(position);
+				Claim claim = (Claim) listView_claimList.getItemAtPosition(position);
 				ClaimController.getInstance().setSelectedClaim(claim);
 				Intent intent = new Intent(ClaimListActivity.this,
 						ExpenseListActivity.class);
@@ -72,10 +114,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		});
 	}
 	
+	/**
+	 * Shows all claims.
+	 */
 	@Override
 	protected void onResume(){
 		super.onResume();
-		claimsListAdapter.notifyDataSetChanged();
+		claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
 	}
 	
 	/**
@@ -150,7 +195,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 		if (menuItemName.equals("Delete")) {
 			ClaimController.getInstance().removeClaim(claim);
-			claimsListAdapter.notifyDataSetChanged();
+			claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals(Status.SUBMITTED)
 					|| (claim.getStatus().equals("approved"))) {
@@ -220,10 +265,32 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		startActivity(new Intent(ClaimListActivity.this, ClaimEditActivity.class));
 	}
 
-	public void onClick_searchByTag(View v) {
-		// TODO
+
+	/**
+	 * Communication method for updating the BaseAdapter
+	 * 
+	 * @param tags Chosen tags
+	 */
+	public void filterClaimsByTags(ArrayList<ClaimTag> tags) {
+		claimsListAdapter.updateFilteredClaimList(tags);
+		setChosenTagsTextView();
 	}
 
-
-
+	/**
+	 * Updates the Chosen Tags text appropriately.
+	 */
+	private void setChosenTagsTextView() {
+		String tagsString = "";
+		ArrayList<ClaimTag> chosenTags = TagListController.getInstance().getChosenTags().getTags();
+		if (chosenTags.size()>0){
+			for (int i = 0; i < chosenTags.size(); i++){
+				tagsString += chosenTags.get(i).getName();
+				tagsString += ", ";
+			}
+			tagsString = tagsString.substring(0,tagsString.length()-2);
+		} else {
+			tagsString = "(Showing all Claims)";
+		}
+		((TextView)findViewById(R.id.textView_chosenTags)).setText(tagsString);
+	}
 }

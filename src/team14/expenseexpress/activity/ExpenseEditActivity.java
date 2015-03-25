@@ -1,22 +1,17 @@
 package team14.expenseexpress.activity;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-
 import team14.expenseexpress.R;
-import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.receipt.ReceiptAddActivity;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,7 +20,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class ExpenseEditActivity extends Activity {
 	
@@ -99,7 +93,7 @@ public class ExpenseEditActivity extends Activity {
 		return null;
 	}
 	
-	private DatePickerDialog.OnDateSetListener expenseDateListener
+	private final DatePickerDialog.OnDateSetListener expenseDateListener
 	= new DatePickerDialog.OnDateSetListener() {
 		
 		@Override
@@ -137,6 +131,9 @@ public class ExpenseEditActivity extends Activity {
 		else if ((ExpenseController.getInstance().containsByName(name))){
 			Toast.makeText(this, "An Expense With This Name Already Exists", Toast.LENGTH_LONG).show();
 		}
+		/* NOTE: expense date doesn't have to be inside Claim's date range (e.g. buying a plane ticket before
+		 * the trip begins, or paying for something after the fact. The profs clarified on this in one of the forum posts. -John
+		
 		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getStartDate()) < 0){
 			Toast.makeText(this, "Invalid Date (Before Claim Start Date)", Toast.LENGTH_LONG).show();
 
@@ -144,6 +141,8 @@ public class ExpenseEditActivity extends Activity {
 		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getEndDate()) > 0){
 			Toast.makeText(this, "Invalid Date (After Claim End Date)", Toast.LENGTH_LONG).show();
 		}
+		
+		*/
 		
 		else{
 			ExpenseController.getInstance().setExpense(category, date, amount,currency, description,name, complete);
@@ -153,12 +152,3 @@ public class ExpenseEditActivity extends Activity {
 		startActivity(new Intent(ExpenseEditActivity.this, ReceiptAddActivity.class));
 	}
 }
-
-	
-	
-	
-	
-	
-
-
-

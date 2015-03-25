@@ -1,17 +1,12 @@
 package team14.expenseexpress.activity;
 
 import team14.expenseexpress.R;
-import team14.expenseexpress.R.layout;
-import team14.expenseexpress.R.menu;
 import team14.expenseexpress.controller.ClaimController;
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.support.v4.app.NavUtils;
 
 public class ClaimDetailsActivity extends Activity {
 

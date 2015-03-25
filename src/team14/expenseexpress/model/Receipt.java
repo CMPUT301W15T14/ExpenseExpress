@@ -5,7 +5,7 @@ package team14.expenseexpress.model;
 import android.net.Uri;
 
 public class Receipt {
-    private String uri;
+    private Uri uri;
     
     /**
      * Constructor
@@ -20,15 +20,15 @@ public class Receipt {
      *	
      * @return String uri
      */
-    public String getUri(){
+    public Uri getUri(){
     	return this.uri;
     }
     /**
      * Method to set the uri to a receipt
      *	
-     * @param String uri
+     * @param
      */
-    public void setUri(String uri){
+    public void setUri(Uri uri){
     	this.uri = uri;
     }
 

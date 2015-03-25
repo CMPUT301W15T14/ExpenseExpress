@@ -1,14 +1,11 @@
 package team14.expenseexpress.receipt;
 
 import team14.expenseexpress.R;
-import team14.expenseexpress.R.layout;
-import team14.expenseexpress.R.menu;
 import team14.expenseexpress.controller.ExpenseController;
-import team14.expenseexpress.controller.ReceiptController;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -32,7 +29,7 @@ public class ViewReceiptActivity extends Activity {
 		imageButton.refreshDrawableState();
 		Uri receiptUri;
 		try{
-			receiptUri = Uri.parse(ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri());
+			receiptUri = ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri();
 			Drawable drawable = Drawable.createFromPath(receiptUri.getPath());
 			imageButton.setImageDrawable(drawable);
 			Toast.makeText(this, receiptUri.toString(), Toast.LENGTH_LONG).show();

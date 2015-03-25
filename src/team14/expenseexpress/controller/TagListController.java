@@ -3,7 +3,6 @@ package team14.expenseexpress.controller;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.TagList;
 import team14.expenseexpress.util.LocalFileHelper;
-import android.content.Context;
 
 /**
  * Singleton controller for tags.
