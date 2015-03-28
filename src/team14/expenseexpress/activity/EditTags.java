@@ -1,13 +1,17 @@
 package team14.expenseexpress.activity;
 
+import java.util.ArrayList;
+
 import team14.expenseexpress.R;
 import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.TagListController;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
+import team14.expenseexpress.model.TagList;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -20,7 +24,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class EditTags extends Activity {
-	private Activity activity;
+	private EditTags activity;
 
 	private ListView tagListView;
 	private ArrayAdapter<ClaimTag> tagAdapter;
@@ -30,9 +34,11 @@ public class EditTags extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_tags);
 		
+		final ListView taglistview = (ListView) findViewById(R.id.editTagList);
+
+		TagListAdapter adapter = new TagListAdapter(this);
+		taglistview.setAdapter(adapter);
 	}
-	
-	
 	
 	
 	public void addNewTags(View v) {

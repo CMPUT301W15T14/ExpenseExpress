@@ -33,7 +33,7 @@ public class EditDestinations extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_destinations);
 		
-		destinationListView = (ListView) findViewById(R.id.ListView);
+		destinationListView = (ListView) findViewById(R.id.editTagList);
 		destinationAdapter = new ArrayAdapter<Destination>(this, R.layout.listtextview, ClaimController.getInstance().getSelectedClaim().getDestinations());
 		destinationListView.setAdapter(destinationAdapter);
 		registerForContextMenu(destinationListView);
@@ -91,7 +91,7 @@ public class EditDestinations extends Activity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
-		final ListView lv1 = (ListView) findViewById(R.id.ListView);
+		final ListView lv1 = (ListView) findViewById(R.id.editTagList);
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
 		int menuItemIndex = item.getItemId();
