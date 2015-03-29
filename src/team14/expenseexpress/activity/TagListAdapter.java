@@ -69,7 +69,7 @@ public class TagListAdapter extends BaseAdapter {
 				}
 			} 
 		}); 
-		holder.tag.setText(taglist.get(0).getName());
+		holder.tag.setText(taglist.get(position).getName());
 		
 		return convertView;
 	}
