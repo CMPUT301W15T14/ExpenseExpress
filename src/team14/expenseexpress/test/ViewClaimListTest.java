@@ -9,6 +9,8 @@ import android.widget.ListView;
 
 public class ViewClaimListTest extends ActivityInstrumentationTestCase2<ClaimListActivity> {
 
+	//Instrumentation instrumentation;
+	
 	public ViewClaimListTest() {
 		super(ClaimListActivity.class);
 	}
@@ -16,8 +18,8 @@ public class ViewClaimListTest extends ActivityInstrumentationTestCase2<ClaimLis
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		//Instrumentation instrumentation = getInstrumentation();
-		ClaimListActivity activity;
+		//this.instrumentation = getInstrumentation();
+		//ClaimListActivity activity;
 		//ActivityMonitor monitor; // this monitors any newly opened activities
 	}
 	
