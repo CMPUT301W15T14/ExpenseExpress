@@ -120,6 +120,10 @@ public class Claim {
             tags.add(tag);
         }
     }
+    
+    public void removeTag(ClaimTag tag) {
+            tags.remove(tag);
+    }
 
     /**
      * Adds an Expense to this Claim while preventing duplicates.
