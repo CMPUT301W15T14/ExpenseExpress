@@ -54,10 +54,6 @@ public class ReceiptAddActivity extends Activity {
 	// TODO: Create an intent with the action
 	// MediaStore.ACTION_IMAGE_CAPTURE
 	
-	
-	ComponentName cn = new ComponentName("team14.expenseexpress.receipt.bogopicgen",
-						"team14.expenseexpress.receipt.BogoPicGenActivity");
-
 
 	// Create a folder to store pictures
 	String folder = Environment.getExternalStorageDirectory()

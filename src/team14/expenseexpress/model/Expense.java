@@ -93,7 +93,7 @@ public class Expense implements Cloneable {
     
     /**
      * Obtains a unique expense id based off of real time in milliseconds.
-     * 
+     * text
      * @return The expense id as a long.
      */
     private long getExpenseId() {

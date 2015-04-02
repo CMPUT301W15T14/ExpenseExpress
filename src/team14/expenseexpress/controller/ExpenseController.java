@@ -67,7 +67,6 @@ public class ExpenseController {
 		selectedExpense.setAmount(actualAmount);
 		selectedExpense.setName(name);
 		selectedExpense.setComplete(complete);
-		selectedExpense = null;
 		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
@@ -92,7 +91,7 @@ public class ExpenseController {
 	
 	public void makeSelectedExpense(){
 		this.selectedExpense = new Expense();
-		addExpense(this.selectedExpense);
+		addExpense(selectedExpense);
 	}
 	
 	

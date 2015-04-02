@@ -66,7 +66,7 @@ public class ExpenseEditActivity extends Activity {
 			ctgrySpinner.setSelection(crncyAdapter.getPosition(expense.getCategory()));
 			expenseAmount.setText(Double.toString(expense.getAmount().getNumber()));
 			completeCheck.setChecked(expense.getComplete());
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -115,6 +115,7 @@ public class ExpenseEditActivity extends Activity {
 	
 	public void onClick_AddExpense(View v){
 		String name = expenseName.getText().toString();
+		Toast.makeText(this, name, Toast.LENGTH_LONG).show();
 		String description = expenseDescription.getText().toString(); 
 		double amount;
 
@@ -127,27 +128,14 @@ public class ExpenseEditActivity extends Activity {
 		String category = ctgrySpinner.getSelectedItem().toString();
 		String currency = crncySpinner.getSelectedItem().toString();
 		boolean complete = completeCheck.isChecked();
+		ExpenseController.getInstance().setExpense(category, date, amount,currency, description,name, complete);
 		if (name.isEmpty()){
 			Toast.makeText(this, "Name is a Mandatory Field", Toast.LENGTH_LONG).show();
 		}
 		else if ((ExpenseController.getInstance().containsByName(name))){
 			Toast.makeText(this, "An Expense With This Name Already Exists", Toast.LENGTH_LONG).show();
 		}
-		/* NOTE: expense date doesn't have to be inside Claim's date range (e.g. buying a plane ticket before
-		 * the trip begins, or paying for something after the fact. The profs clarified on this in one of the forum posts. -John
-		
-		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getStartDate()) < 0){
-			Toast.makeText(this, "Invalid Date (Before Claim Start Date)", Toast.LENGTH_LONG).show();
-
-		}
-		else if (date.compareTo(ClaimController.getInstance().getSelectedClaim().getEndDate()) > 0){
-			Toast.makeText(this, "Invalid Date (After Claim End Date)", Toast.LENGTH_LONG).show();
-		}
-		
-		*/
-		
 		else{
-			ExpenseController.getInstance().setExpense(category, date, amount,currency, description,name, complete);
 			finish();}
 	}
 	public void modifyReceipt(View view) {
