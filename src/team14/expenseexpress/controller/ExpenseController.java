@@ -60,26 +60,13 @@ public class ExpenseController {
 						    String description,
 						    String name,
 						    boolean complete){
-		if (selectedExpense != null){
-			selectedExpense.setCategory(category);
-		    selectedExpense.setExpenseDate(expenseDate);
-			selectedExpense.setDescription(description);
-			Amount actualAmount = new Amount(amount, Currency.fromString(currency));
-			selectedExpense.setAmount(actualAmount);
-			selectedExpense.setName(name);
-			selectedExpense.setComplete(complete);
-		}
-		else{
-			Expense expense = new Expense();
-			expense.setCategory(category);
-		    expense.setExpenseDate(expenseDate);
-			expense.setDescription(description);
-			Amount actualAmount = new Amount(amount, Currency.fromString(currency));
-			expense.setAmount(actualAmount);
-			expense.setName(name);
-			expense.setComplete(complete);
-			addExpense(expense);
-			}
+		selectedExpense.setCategory(category);
+		selectedExpense.setExpenseDate(expenseDate);
+		selectedExpense.setDescription(description);
+		Amount actualAmount = new Amount(amount, Currency.fromString(currency));
+		selectedExpense.setAmount(actualAmount);
+		selectedExpense.setName(name);
+		selectedExpense.setComplete(complete);
 		selectedExpense = null;
 		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
@@ -102,6 +89,12 @@ public class ExpenseController {
 		this.selectedExpense = expenseList.get(position);
 	
 	}
+	
+	public void makeSelectedExpense(){
+		this.selectedExpense = new Expense();
+		addExpense(this.selectedExpense);
+	}
+	
 	
 	public ExpenseList getExpenseList() {
 		return this.expenseList;

@@ -59,13 +59,15 @@ public class ExpenseEditActivity extends Activity {
 		crncyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		crncySpinner.setAdapter(crncyAdapter);
 		Expense expense = ExpenseController.getInstance().getSelectedExpense();
-		if (ExpenseController.getInstance().getSelectedExpense() != null){
+		try {
 			expenseName.setText(expense.getName());
 			expenseDescription.setText(expense.getDescription());;
 			crncySpinner.setSelection(ctgryAdapter.getPosition(expense.getAmount().getCurrency().toString()));
 			ctgrySpinner.setSelection(crncyAdapter.getPosition(expense.getCategory()));
 			expenseAmount.setText(Double.toString(expense.getAmount().getNumber()));
 			completeCheck.setChecked(expense.getComplete());
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 
 		date = ExpenseController.getInstance().getExpenseDate();

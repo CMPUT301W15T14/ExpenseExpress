@@ -79,16 +79,16 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	 */
 	private void setSubtitle() {
 		TextView textView_usernameAndMode = (TextView) findViewById(R.id.textView_usernameAndMode);
-		String subtitle = UserController.getInstance().getCurrentUser().getName();
+		//String subtitle = UserController.getInstance().getCurrentUser().getName();
 		switch(team14.expenseexpress.controller.Mode.get()){
 		case Mode.APPROVER:
-			subtitle += " - Approver";
+			//subtitle += " - Approver";
 			break;
 		case Mode.CLAIMANT:
-			subtitle += " - Claimant";
+			//subtitle += " - Claimant";
 			break;
 		}
-		textView_usernameAndMode.setText(subtitle);
+	//	textView_usernameAndMode.setText(subtitle);
 	}
 
 	/**

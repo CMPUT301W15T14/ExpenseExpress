@@ -112,7 +112,7 @@ public class ExpenseListActivity extends Activity {
 	}
 	
     public void onClick_NewExpense(View v) {
-    	ExpenseController.getInstance().setSelectedExpense(null);
+    	ExpenseController.getInstance().makeSelectedExpense();
     	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
     	
     }
