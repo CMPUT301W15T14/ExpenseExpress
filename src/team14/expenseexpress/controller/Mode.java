@@ -6,7 +6,7 @@ package team14.expenseexpress.controller;
  * @author hzou
  */
 public enum Mode {;
-	public static final int UNDEFINED = 0;
+	public static final int OFFLINE = 0;
 	public static final int CLAIMANT = 1;
 	public static final int APPROVER = 2;
 	

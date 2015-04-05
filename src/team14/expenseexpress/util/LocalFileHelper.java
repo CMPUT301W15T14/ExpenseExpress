@@ -14,6 +14,7 @@ import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.TagList;
 import android.content.Context;
 
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,17 +28,19 @@ import com.google.gson.reflect.TypeToken;
 public class LocalFileHelper {
 	
 	private static final String CLAIMANT_FILENAME = "ee.claimant_";
-	private static final String APPROVER_FILENAME = "ee.approver"; 
+	private static final String APPROVER_FILENAME = "ee.approver_"; 
 	private static final String TAGS_FILENAME = "ee.tags_";
-	//private static final String OFFLINE_FILENAME = "ee.offline"; TODO: implement in pp5
+	private static final String OFFLINE_FILENAME = "ee.offline_";
 	
 	private static Context context;
 	
 	// Singleton
 	private static LocalFileHelper fileHelper;
+	private ElasticSearchHelper elasticHelper;
 	
 	private LocalFileHelper(Context context){
 		this.context = context;
+		this.elasticHelper = ElasticSearchHelper.getInstance(context);
 	}
 	
 	public static LocalFileHelper getInstance(Context context){
@@ -76,13 +79,22 @@ public class LocalFileHelper {
 
 	
 	public void saveClaims(ClaimList claims){
+		Thread thread = new Thread();
 		switch(Mode.get()) {
 		case Mode.CLAIMANT:
 			save(claims,CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
+			// Execute the thread
+			//thread = new SaveThread(claims);
+			//thread.start();
 			break;
 		case Mode.APPROVER:
-			save(claims, APPROVER_FILENAME);
+			save(claims, APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName());
+			// Execute the thread
+			//thread = new SaveThread(claims);
+			//thread.start();
 			break;
+		case Mode.OFFLINE:
+			save(claims, OFFLINE_FILENAME +  UserController.getInstance().getCurrentUser().getName());
 		}
 	}
 
@@ -90,52 +102,16 @@ public class LocalFileHelper {
 		Gson gson = new Gson();
 		ClaimList claims = new ClaimList();
 		
+		String FileUrl = new String("");
 		if(Mode.get() == Mode.CLAIMANT) {
-			try {
-				FileInputStream fis = context.openFileInput(CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
-				InputStreamReader isr = new InputStreamReader(fis);
-				Type dataType = new TypeToken<ClaimList>() {	}.getType();
-				claims = gson.fromJson(isr, dataType);
-				fis.close();
-
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+			FileUrl = CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName();
 		} else if(Mode.get() == Mode.APPROVER) {
-			try {
-				FileInputStream fis = context.openFileInput(APPROVER_FILENAME);
-				InputStreamReader isr = new InputStreamReader(fis);
-				Type dataType = new TypeToken<ClaimList>() {	}.getType();
-				claims = gson.fromJson(isr, dataType);
-				fis.close();
-
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			FileUrl = APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName();
 		}
-		
-		if (claims == null) {
-			claims = new ClaimList();
-		}
-		return claims;
-	}
-	
-	
-	/*
-	private ArrayList<Claim> getAllLocalClaims(){
-		Gson gson = new Gson();
-		ArrayList<Claim> claims = new ArrayList<Claim>();
 		try {
-			FileInputStream fis = context.openFileInput(CLAIMS_FILENAME);
+			FileInputStream fis = context.openFileInput(FileUrl);
 			InputStreamReader isr = new InputStreamReader(fis);
-			Type dataType = new TypeToken<ArrayList<Claim>>() {	}.getType();
+			Type dataType = new TypeToken<ClaimList>() {	}.getType();
 			claims = gson.fromJson(isr, dataType);
 			fis.close();
 
@@ -145,37 +121,41 @@ public class LocalFileHelper {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		if (claims == null) {
-			claims = new ArrayList<Claim>();
+			claims = new ClaimList();
 		}
-		return claims; 
+		return claims;
 	}
 	
-	public ArrayList<Claim> getLocalClaimsForClaimant(User claimant){
-		ArrayList<Claim> allClaims = getAllLocalClaims();
-		ArrayList<Claim> claimsByClaimant = new ArrayList<Claim>();
-		for (int i = 0; i<allClaims.size(); i++){
-			if (allClaims.get(i).getClaimant().equals(claimant)){ //overridden equals method
-				claimsByClaimant.add(allClaims.get(i));
-			}
-		}
-		return claimsByClaimant;
+	
+	private void merge() {
+		
 	}
 	
-	public ArrayList<Claim> getLocalClaimsForApprover(User approver){
-		ArrayList<Claim> allClaims = getAllLocalClaims();
-		ArrayList<Claim> claimsForApprover = new ArrayList<Claim>();
-		for (int i = 0; i<allClaims.size(); i++){
-			// Opposite of getLocalClaimsForClaimant
-			if (!allClaims.get(i).getClaimant().equals(approver)){
-				claimsForApprover.add(allClaims.get(i));
-			}
+	/*
+	class SaveThread extends Thread {
+		private ClaimList claims;
+
+		public SaveThread(ClaimList claims) {
+			this.claims = claims;
 		}
-		return claimsForApprover;
+
+		@Override
+		public void run() {
+			elasticHelper.saveRemoteClaimList(claims);
+			// Give some time to get updated info
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			runOnUiThread(doFinishAdd);
+		}
 	}
-
-*/
-
+	*/
+	
 	public TagList getTags() {
 		Gson gson = new Gson();
 		TagList tags = new TagList();

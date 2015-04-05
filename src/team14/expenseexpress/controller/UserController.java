@@ -47,7 +47,7 @@ public class UserController {
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
 			HttpGet getRequest = new HttpGet(user.getResourceUrl() + user.getName());
-			getRequest.setHeader("Accept", "user.json");
+			getRequest.setHeader("Accept", "application/json");
 			
 			HttpResponse response = httpClient.execute(getRequest);
 			String status = response.getStatusLine().toString();
@@ -74,7 +74,7 @@ public class UserController {
 			this.currentUser = user;
 			StringEntity stringEntity = new StringEntity(gson.toJson(user));
 			addRequest.setEntity(stringEntity);
-			addRequest.setHeader("Accept", "user.json");
+			addRequest.setHeader("Accept", "application/json");
 
 			HttpResponse response = httpClient.execute(addRequest);
 			String status = response.getStatusLine().toString();
@@ -96,7 +96,7 @@ public class UserController {
 
 		try {
 			HttpDelete deleteRequest = new HttpDelete(user.getResourceUrl() + user.getName());
-			deleteRequest.setHeader("Assecpt","user.json");
+			deleteRequest.setHeader("Assecpt","application/json");
 
 			HttpResponse response = httpClient.execute(deleteRequest);
 			String status = response.getStatusLine().toString();
