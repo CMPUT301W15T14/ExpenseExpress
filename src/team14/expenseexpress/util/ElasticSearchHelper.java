@@ -28,10 +28,10 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.ClaimList;
 
 public class ElasticSearchHelper {
-	private static final String CLAIMANT_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/users/claimant/";
-	private static final String APPROVER_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/users/approver/";
-	private static final String SUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/users/submitted/";
-	private static final String RETURNED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/users/returned/";
+	private static final String CLAIMANT_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/claimant/";
+	private static final String APPROVER_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/approver/";
+	private static final String SUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/submitted/";
+	private static final String RETURNED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/returned/";
 	private static final String TAG = "ElasticSearchHelper";
 	private Gson gson = new Gson();
 	

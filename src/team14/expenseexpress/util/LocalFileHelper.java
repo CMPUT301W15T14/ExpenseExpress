@@ -13,6 +13,7 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.TagList;
 import android.content.Context;
+import android.os.AsyncTask;
 
 
 import com.google.gson.Gson;
@@ -79,19 +80,15 @@ public class LocalFileHelper {
 
 	
 	public void saveClaims(ClaimList claims){
-		Thread thread = new Thread();
+		SaveSyncRunner runner = new SaveSyncRunner();
 		switch(Mode.get()) {
 		case Mode.CLAIMANT:
 			save(claims,CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
-			// Execute the thread
-			//thread = new SaveThread(claims);
-			//thread.start();
+			runner.execute(claims);
 			break;
 		case Mode.APPROVER:
 			save(claims, APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName());
-			// Execute the thread
-			//thread = new SaveThread(claims);
-			//thread.start();
+			runner.execute(claims);
 			break;
 		case Mode.OFFLINE:
 			save(claims, OFFLINE_FILENAME +  UserController.getInstance().getCurrentUser().getName());
@@ -128,31 +125,35 @@ public class LocalFileHelper {
 		return claims;
 	}
 	
-	
-	private void merge() {
+	private class SaveSyncRunner extends AsyncTask<ClaimList, Void, Void> {
+
+		@Override
+		protected Void doInBackground(ClaimList... params) {
+			ClaimList claims = params[0];
+			elasticHelper.saveRemoteClaimList(claims);
+			try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                Thread.interrupted();
+            } catch (Exception e) {
+            	e.printStackTrace();
+            }
+			return null;
+		}	
+	}
+	/*
+	private class LoadSyncRunner extends AsyncTask<Params, Progress, Result> {
+
+		@Override
+		protected Result doInBackground(Params... params) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 		
 	}
 	
-	/*
-	class SaveThread extends Thread {
-		private ClaimList claims;
-
-		public SaveThread(ClaimList claims) {
-			this.claims = claims;
-		}
-
-		@Override
-		public void run() {
-			elasticHelper.saveRemoteClaimList(claims);
-			// Give some time to get updated info
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			runOnUiThread(doFinishAdd);
-		}
+	private void merge() {
+		
 	}
 	*/
 	
