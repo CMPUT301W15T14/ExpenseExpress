@@ -1,22 +1,46 @@
 package team14.expenseexpress.util;
 
 import android.content.Context;
+import android.util.Log;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.User;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+
+import team14.expenseexpress.controller.Mode;
+import team14.expenseexpress.controller.UserController;
+import team14.expenseexpress.model.ClaimList;
 
 public class ElasticSearchHelper {
-	//TODO: implement this class in pp5
+	private static final String CLAIMANT_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/claimant/";
+	private static final String APPROVER_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/approver/";
+	private static final String SUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/submitted/";
+	private static final String RETURNED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/returned/";
+	private static final String TAG = "ElasticSearchHelper";
+	private Gson gson = new Gson();
+	
     private Context context;
-    private LocalFileHelper fh;
     
     private static ElasticSearchHelper instance;
     
     private ElasticSearchHelper(Context context){
     	this.context = context;
-    	this.fh = LocalFileHelper.getInstance(context);
     }
     
     public static ElasticSearchHelper getInstance(Context context){
@@ -26,30 +50,78 @@ public class ElasticSearchHelper {
     	return instance;
     }
     
+    /**
+	 * Adds a new movie
+	 */
+	public void saveRemoteClaimList(ClaimList claims) {
+		HttpClient httpClient = new DefaultHttpClient();
+		
+		String serverUrl = new String();
+		if(Mode.get() == Mode.CLAIMANT) {
+			serverUrl = CLAIMANT_URL + UserController.getInstance().getCurrentUser().getName();
+		} else if (Mode.get() == Mode.APPROVER) {
+			serverUrl = APPROVER_URL + UserController.getInstance().getCurrentUser().getName();
+		}
+
+		try {
+			HttpPut addRequest = new HttpPut(serverUrl);
+
+			StringEntity stringEntity = new StringEntity(gson.toJson(claims));
+			addRequest.setEntity(stringEntity);
+			addRequest.setHeader("Accept", "application/json");
+
+			HttpResponse response = httpClient.execute(addRequest);
+			String status = response.getStatusLine().toString();
+			Log.i(TAG, status);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
     
-/*
- * 	TODO:
- * 
- *  Idea:
- *  
- *  On a background thread, download literally every claim that matters
- *  (=user for claimant, !=user for approver). Add a button in the ClaimsList to "refresh"
- *  
- *  
- */
-	public ArrayList<Claim> getRemoteClaimsForClaimant(User user) {
-		// TODO Auto-generated method stub
-		return new ArrayList<Claim>();
-	}
+    
+    /**
+	 * Get a movie with the specified id
+	 */
+	public ClaimList getRemoteClaimList() {
+		ClaimList claims = null;
+		HttpClient httpClient = new DefaultHttpClient();
 
-	public ArrayList<Claim> getRemoteClaimsForApprover(User user) {
-		// TODO Auto-generated method stub
-		return new ArrayList<Claim>();
-	}
+		String serverUrl = new String();
+		if(Mode.get() == Mode.CLAIMANT) {
+			serverUrl = CLAIMANT_URL + UserController.getInstance().getCurrentUser().getName();
+		} else if (Mode.get() == Mode.APPROVER) {
+			serverUrl = APPROVER_URL + UserController.getInstance().getCurrentUser().getName();
+		}
+		
+		HttpGet httpGet = new HttpGet(serverUrl);
+		
+		HttpResponse response = null;
 
-	public boolean uploadClaim(Claim claim) {
-		// TODO Auto-generated method stub
-		return false; // return whether succeeded
+		try {
+			response = httpClient.execute(httpGet);
+		} catch (ClientProtocolException e1) {
+			throw new RuntimeException(e1);
+		} catch (IOException e1) {
+			throw new RuntimeException(e1);
+		}
+
+		try {
+			claims = gson.fromJson(
+					new InputStreamReader(response.getEntity().getContent()),
+					ClaimList.class);
+		} catch (JsonIOException e) {
+			throw new RuntimeException(e);
+		} catch (JsonSyntaxException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalStateException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		return claims;
+
 	}
 
 }

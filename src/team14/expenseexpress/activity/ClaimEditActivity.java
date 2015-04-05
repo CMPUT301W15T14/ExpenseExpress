@@ -157,7 +157,7 @@ public class ClaimEditActivity extends Activity {
 
 		@Override
 		public void onBackPressed() {
-			finishEdit();
+			//finishEdit();
 	
 		}
 		
