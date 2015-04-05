@@ -1,29 +1,34 @@
 package team14.expenseexpress.activity;
 
 
+import java.util.ArrayList;
+
 import team14.expenseexpress.ExpenseListAdapter;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.model.Expense;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.support.v4.app.NavUtils;
 
 public class ExpenseListActivity extends Activity {
 	
+	double CAD = 0, USD = 0, EUR = 0, GBP = 0, CHF = 0, JPY = 0, CNY = 0;
+	double number;
+	private ArrayList<String> amountListString;
 	private ExpenseListAdapter expenseListAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +83,68 @@ public class ExpenseListActivity extends Activity {
 		});
 	}
 	
+	public void totalCost() {
+		amountListString = new ArrayList<String>();
+		ArrayList<Expense> amountlist = ClaimController.getInstance().getSelectedClaim().getExpenseList().getExpenses();
+		if (amountlist.size() != 0) {
+			for (int i = 0; i < amountlist.size(); i++) {
+				number = amountlist.get(i).getAmount().getNumber();
+				String currency = amountlist.get(i).getAmount().getCurrency().getName();
+				if(currency.equals("CAD")) {
+					CAD = CAD + number;
+				} else if(currency.equals("USD")) {
+					USD = USD + number;
+				} else if(currency.equals("EUR")) {
+					EUR = EUR + number;
+				} else if(currency.equals("GBP")) {
+					GBP = GBP + number;
+				} else if(currency.equals("CHF")) {
+					CHF = CHF + number;
+				} else if(currency.equals("JPY")) {
+					JPY = JPY + number;
+				} else if(currency.equals("CNY")) {
+					CNY = CNY + number;
+				}
+			}
+		}
+		determineCosts();
+		ClaimController.getInstance().getSelectedClaim().setTotalAmounts(amountListString);
+	}
+	public void determineCosts() {
+		if(CAD != 0) {
+			String line = "CAD" + " " + CAD;
+			amountListString.add(line);
+		}
+		if(USD != 0) {
+			String line = "USD" + " " + USD;
+			amountListString.add(line);
+		}
+		if(EUR != 0) {
+			String line = "EUR" + " " + EUR;
+			amountListString.add(line);
+		}
+		if(GBP != 0) {
+			String line = "GBP" + " " + GBP;
+			amountListString.add(line);
+		}
+		if(CHF != 0) {
+			String line = "CHF" + " " + CHF;
+			amountListString.add(line);
+		}
+		if(JPY != 0) {
+			String line = "JPY" + " " + JPY;
+			amountListString.add(line);
+		}
+		if(CNY != 0) {
+			String line = "CNY" + " " + CNY;
+			amountListString.add(line);
+		}
+	}
 	@Override
 	protected void onResume(){
 		super.onResume();
 		expenseListAdapter.notifyDataSetChanged();
-		
+		totalCost();
 	}
 	
 	@Override

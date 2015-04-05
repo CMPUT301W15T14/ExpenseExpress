@@ -49,7 +49,7 @@ public final class R {
         public static final int TakeAPhoto=0x7f0a0065;
         public static final int acceptClaimDestinations=0x7f0a0042;
         public static final int acceptClaimTags=0x7f0a0045;
-        public static final int action_settings=0x7f0a0089;
+        public static final int action_settings=0x7f0a008a;
         public static final int addDestinationButton=0x7f0a0043;
         public static final int addDestinationButton2=0x7f0a000e;
         public static final int addDestinationTextField=0x7f0a000c;
@@ -74,7 +74,7 @@ public final class R {
         public static final int button_confirm=0x7f0a0069;
         public static final int categorySpinner=0x7f0a005f;
         public static final int categoryTitle=0x7f0a0062;
-        public static final int checkBox1=0x7f0a0084;
+        public static final int checkBox1=0x7f0a0085;
         public static final int claimDetailsCurrencyTitle=0x7f0a0026;
         public static final int claimDetailsDestinationsTitle=0x7f0a0027;
         public static final int claimDetailsEndDateTitle=0x7f0a0022;
@@ -91,17 +91,18 @@ public final class R {
         public static final int claimantButton=0x7f0a0020;
         public static final int claimname=0x7f0a0073;
         public static final int claimsDetailTitle=0x7f0a0023;
-        public static final int complete=0x7f0a0081;
+        public static final int complete=0x7f0a0082;
         public static final int completeCheck=0x7f0a005a;
+        public static final int costs=0x7f0a0079;
         public static final int currencySpinner=0x7f0a005e;
-        public static final int customAmountTitle=0x7f0a007c;
-        public static final int customCategoryTitle=0x7f0a007a;
-        public static final int customCurrencyTitle=0x7f0a007b;
-        public static final int customDescriptionTitle=0x7f0a007d;
+        public static final int customAmountTitle=0x7f0a007d;
+        public static final int customCategoryTitle=0x7f0a007b;
+        public static final int customCurrencyTitle=0x7f0a007c;
+        public static final int customDescriptionTitle=0x7f0a007e;
         public static final int destination=0x7f0a0076;
         public static final int destinationList=0x7f0a0035;
-        public static final int destinationName=0x7f0a0085;
-        public static final int destinationReason=0x7f0a0086;
+        public static final int destinationName=0x7f0a0086;
+        public static final int destinationReason=0x7f0a0087;
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a0021;
         public static final int detailsName=0x7f0a002a;
@@ -118,9 +119,9 @@ public final class R {
         public static final int endDateText=0x7f0a0031;
         public static final int enddate=0x7f0a0075;
         public static final int expenseAmount=0x7f0a0061;
-        public static final int expenseCategory=0x7f0a007f;
-        public static final int expenseCost=0x7f0a0088;
-        public static final int expenseCurrency=0x7f0a007e;
+        public static final int expenseCategory=0x7f0a0080;
+        public static final int expenseCost=0x7f0a0089;
+        public static final int expenseCurrency=0x7f0a007f;
         public static final int expenseDateButton=0x7f0a0057;
         public static final int expenseDateView=0x7f0a0058;
         public static final int expenseDescript=0x7f0a0059;
@@ -138,14 +139,14 @@ public final class R {
         public static final int expenseDetailsReceiptButton=0x7f0a0047;
         public static final int expenseDetailsTitle=0x7f0a0046;
         public static final int expenseDetialsCategoryTitle=0x7f0a0050;
-        public static final int expenseItem=0x7f0a0087;
+        public static final int expenseItem=0x7f0a0088;
         public static final int expenseListApproveReturnButton=0x7f0a001e;
         public static final int expenseName=0x7f0a0055;
         public static final int expenseSubmitButton=0x7f0a001a;
-        public static final int expensename=0x7f0a0079;
+        public static final int expensename=0x7f0a007a;
         public static final int getTagListButton=0x7f0a003d;
         public static final int inProgressRadio=0x7f0a006c;
-        public static final int incomplete=0x7f0a0080;
+        public static final int incomplete=0x7f0a0081;
         public static final int linearLayout2=0x7f0a0070;
         public static final int linearLayout_claimantOnlyUserInterface=0x7f0a003a;
         public static final int loginEditText=0x7f0a0067;
@@ -153,7 +154,7 @@ public final class R {
         public static final int newClaimTitle=0x7f0a0002;
         public static final int newTagNameField=0x7f0a0011;
         public static final int newTagTitle=0x7f0a000f;
-        public static final int noReceipt=0x7f0a0082;
+        public static final int noReceipt=0x7f0a0083;
         public static final int possibleTagsTitle=0x7f0a0013;
         public static final int receiptSubmitButton=0x7f0a0064;
         public static final int receiptTitle=0x7f0a0063;
@@ -177,7 +178,7 @@ public final class R {
         public static final int textView_chosenTags=0x7f0a003b;
         public static final int textView_usernameAndMode=0x7f0a0038;
         public static final int viewStatusButton=0x7f0a003f;
-        public static final int yesReceipt=0x7f0a0083;
+        public static final int yesReceipt=0x7f0a0084;
     }
     public static final class layout {
         public static final int activity_add_claim=0x7f030000;
