@@ -90,7 +90,6 @@ public class ClaimListAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		
 		holder.claim.setText(filteredClaimList.get(position).getName());
 		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
 		holder.enddate.setText(filteredClaimList.get(position).getEndDateString());
