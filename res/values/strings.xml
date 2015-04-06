@@ -54,6 +54,7 @@
     <string name="title_activity_approve_return">ApproveReturnActivity</string>
 
     <string-array name="LongClickMenu">
+        <item>Submit</item>
         <item>Delete</item>
         <item>Edit</item>
         <item>Details</item>
@@ -67,8 +68,11 @@
     <string name="title_activity_edit_tags">EditTags</string>
     <string name="title_activity_edit_destinations">EditDestinations</string>
     <string name="title_activity_view_receipt">MainActivity</string>
+
     <string-array name="LongClickMenuApprov">
-        <item >Details</item>
+        <item>Details</item>
     </string-array>
+
+    <string name="title_activity_return_claim">ReturnClaimActivity</string>
 
 </resources>
