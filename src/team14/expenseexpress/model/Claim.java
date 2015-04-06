@@ -19,7 +19,7 @@ import java.util.GregorianCalendar;
  * 
  * 
  */
-public class Claim {
+public class Claim implements Comparable{
     private final ArrayList<ClaimTag> tags;
     private final ExpenseList expenseList;
     private final ArrayList<Destination> destinations;
@@ -353,6 +353,13 @@ public class Claim {
 	
 	public ArrayList<String> getTotalAmounts() {
 		return totalAmount;
+	}
+
+	@Override
+	public int compareTo(Object another) {
+		Claim otherClaim = (Claim) another;
+		
+		return this.startDate.compareTo(otherClaim.startDate);
 	}
 	
 }
