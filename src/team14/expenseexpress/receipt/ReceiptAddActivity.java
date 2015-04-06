@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 public class ReceiptAddActivity extends Activity {
 	
-	private Bitmap receiptImage;
+	private Bitmap bitmap;
 	private Uri uri;
 	
 
@@ -42,7 +42,7 @@ public class ReceiptAddActivity extends Activity {
 		
 		ImageButton button = (ImageButton) findViewById(R.id.TakeAPhoto);
 		button.refreshDrawableState();
-		receiptImage = null;
+		bitmap = null;
 		
 		try{
 			uri = ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri();
@@ -81,7 +81,6 @@ public class ReceiptAddActivity extends Activity {
 			+ String.valueOf(System.currentTimeMillis()) + ".jpg";
 	File imageFile = new File(imageFilePath);
 	uri = Uri.fromFile(imageFile);
-	
 	Toast.makeText(this, uri.toString(), Toast.LENGTH_LONG).show();
 	// TODO: Put in the intent in the tag MediaStore.EXTRA_OUTPUT the URI
 	Intent intent =new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -96,12 +95,13 @@ public class ReceiptAddActivity extends Activity {
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
 			if (resultCode == RESULT_OK){
 		        try {
-					
-					if (receiptImage != null){
-						Bitmap bitmap = receiptImage;
+					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+					if (bitmap != null){
+						Toast.makeText(this,Integer.toString(bitmap.getByteCount()), Toast.LENGTH_LONG).show();
 				    	while (bitmap.getByteCount() > 65536){
 							   bitmap = Bitmap.createScaledBitmap(bitmap,(int) (bitmap.getWidth()*0.2),(int) (bitmap.getHeight()*0.2), true);
 						    }
+				    	Toast.makeText(this,Integer.toString(bitmap.getByteCount()) + "new", Toast.LENGTH_LONG).show();
 				    File imageFile = new File(uri.getPath());
 				    FileOutputStream out = new FileOutputStream(imageFile);
 				    bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
@@ -118,7 +118,7 @@ public class ReceiptAddActivity extends Activity {
 				}
 		        
 				ImageView ib = (ImageButton) findViewById(R.id.TakeAPhoto);
-				ib.setImageBitmap(receiptImage);
+				ib.setImageBitmap(bitmap);
 			}
 		}
 	}
