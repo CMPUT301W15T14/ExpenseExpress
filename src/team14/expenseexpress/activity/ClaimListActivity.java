@@ -1,6 +1,7 @@
 package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 
 import team14.expenseexpress.ClaimListAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
@@ -14,15 +15,12 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Status;
 import team14.expenseexpress.util.ElasticSearchHelper;
-import team14.expenseexpress.util.LocalFileHelper;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -206,6 +204,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		Claim claim = (Claim) lv1.getItemAtPosition(info.position);
 
 		if (menuItemName.equals("Delete")) {
+			toast(String.valueOf(claim.getId()));
 			ClaimController.getInstance().removeClaim(claim);
 			claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 		} else if (menuItemName.equals("Edit")) {
@@ -221,6 +220,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			ClaimController.getInstance().setSelectedClaim(claim);
 			startActivity(new Intent(ClaimListActivity.this,
 					ClaimDetailsActivity.class));
+		} else if (menuItemName.equals("Submit")) {
+			ElasticSearchHelper.getInstance().addClaim(claim);
 		}
 		return true;
 	}

@@ -7,7 +7,9 @@ import team14.expenseexpress.ExpenseListAdapter;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
+import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.Expense;
+import team14.expenseexpress.util.LocalFileHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,9 +22,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ExpenseListActivity extends Activity {
 	
@@ -38,7 +40,14 @@ public class ExpenseListActivity extends Activity {
 		ExpenseController.initialize();
 		
 		TextView claimNameView = (TextView) findViewById(R.id.claimNameTitles);
-		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList); 
+		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList);
+		Button ApproveButton = (Button) findViewById(R.id.ApproveButton);
+		Button ExpenseButton = (Button) findViewById(R.id.addExpenseButton);
+		
+		if (Mode.get() == Mode.APPROVER) {
+			ApproveButton.setVisibility(View.VISIBLE);
+			ExpenseButton.setVisibility(View.INVISIBLE);
+		}
 
 		claimNameView.setText(ClaimController.getInstance().getSelectedClaim().getName());
 		expenseListAdapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList().getExpenses());
@@ -51,7 +60,8 @@ public class ExpenseListActivity extends Activity {
 				adb.setMessage("Menu Of "+ ExpenseController.getInstance().getExpenseList().get(position).getName());
 				adb.setCancelable(true);
 				final int finalPosition = position;
-				adb.setPositiveButton("Delete", new OnClickListener() {
+				if (Mode.get() == Mode.CLAIMANT) {
+					adb.setPositiveButton("Delete", new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							
@@ -61,14 +71,15 @@ public class ExpenseListActivity extends Activity {
 							
 						}										
 					});
-				adb.setNeutralButton("Edit", new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						ExpenseController.getInstance().setSelectedExpense(finalPosition);
-						startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
-						
-					}										
-				});
+					adb.setNeutralButton("Edit", new OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							ExpenseController.getInstance().setSelectedExpense(finalPosition);
+							startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
+							
+						}										
+					});
+				}
 				adb.setNegativeButton("Details", new OnClickListener() {					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -109,6 +120,7 @@ public class ExpenseListActivity extends Activity {
 		}
 		determineCosts();
 		ClaimController.getInstance().getSelectedClaim().setTotalAmounts(amountListString);
+		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	public void determineCosts() {
 		if(CAD != 0) {
@@ -143,8 +155,10 @@ public class ExpenseListActivity extends Activity {
 	@Override
 	protected void onResume(){
 		super.onResume();
-		expenseListAdapter.notifyDataSetChanged();
-		totalCost();
+		if (Mode.get() == Mode.CLAIMANT) {
+			expenseListAdapter.notifyDataSetChanged();
+			totalCost();
+		}
 	}
 	
 	@Override
@@ -177,6 +191,10 @@ public class ExpenseListActivity extends Activity {
     	ExpenseController.getInstance().makeSelectedExpense();
     	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
     	
+    }
+    
+    public void onClick_ReturnApproveClaim(View v) {
+    	startActivity(new Intent(ExpenseListActivity.this, ReturnClaimActivity.class));
     }
 	
 }

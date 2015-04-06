@@ -26,6 +26,7 @@
         android:layout_alignLeft="@+id/approveExpenseListTitle"
         android:layout_alignParentBottom="true"
         android:background="@color/mainYellow"
+        android:onClick="onClick_ReturnApproveClaim"
         android:text="Approve/Return"
         android:textColor="@color/mainGreen" />
 

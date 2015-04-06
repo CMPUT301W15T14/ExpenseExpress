@@ -14,6 +14,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -63,7 +64,8 @@ public class ElasticSearchHelper {
     	return instance;
     }
     
-	private void add(Claim claim) {
+	private boolean add(Claim claim) {
+		boolean value = false;
 		HttpClient httpClient = new DefaultHttpClient();
 		
 		String serverUrl = new String();
@@ -83,6 +85,7 @@ public class ElasticSearchHelper {
 			HttpResponse response = httpClient.execute(addRequest);
 			String status = response.getStatusLine().toString();
 			Log.i(TAG, status);
+			value = true;
 
 		} catch (JsonIOException e) {
 			throw new RuntimeException(e);
@@ -93,9 +96,11 @@ public class ElasticSearchHelper {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		return value;
 	}
 	
-	private void delete(Claim claim) {
+	private boolean delete(Claim claim) {
+		boolean value = false;
 		HttpClient httpClient = new DefaultHttpClient();
 
 		String serverUrl = new String();
@@ -112,6 +117,7 @@ public class ElasticSearchHelper {
 			HttpResponse response = httpClient.execute(deleteRequest);
 			String status = response.getStatusLine().toString();
 			Log.i(TAG, status);
+			value = true;
 
 		} catch (JsonIOException e) {
 			throw new RuntimeException(e);
@@ -122,46 +128,54 @@ public class ElasticSearchHelper {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		return value;
 	}
 	
 	public void addClaim(Claim claim) {
-		if(isNetworkAvailable() && isConnectedToServer()) {
-			//TODO: Update claim Status here! That way it's updated only when added.
-			AddClaimSync task = new AddClaimSync();
-			task.execute(claim);
-		} else {
-			//TODO: If fails... do something,
-			// Maybe make this return a boolean???
-		}
+		AddClaimSync task = new AddClaimSync(claim);
+		task.execute();
 	}
 
 	public void deleteClaim(Claim claim) {
-		if(isNetworkAvailable() && isConnectedToServer()) {
-			//TODO: Update claim Status here! That way it's updated only when deleted.
-			DeleteClaimSync task = new DeleteClaimSync();
-			task.execute(claim);
-		} else {
-			//TODO: If fails... do something,
-			// Maybe make this return a boolean???
-		}
+		DeleteClaimSync task = new DeleteClaimSync();
+		task.execute(claim);
 	}
 	
-	public class AddClaimSync extends AsyncTask<Claim, Void, String> {
-
+	public class AddClaimSync extends AsyncTask<Void, Void, Boolean> {
+		
+		Claim claim;
+		
+		private AddClaimSync(Claim claim) {
+			this.claim = claim;
+		}
+		
 		@Override
-		protected String doInBackground(Claim... params) {
-			add(params[0]);
-			return null;
+		protected Boolean doInBackground(Void... params) {
+			return add(claim);
+		}
+		
+		protected void onPostExecute(Boolean result) {
+			if((result == false) && (Mode.get() == Mode.CLAIMANT)) {
+				claim.setStatus(team14.expenseexpress.model.Status.IN_PROGRESS);
+				Toast.makeText(context, "Failed to Submit", Toast.LENGTH_SHORT).show();
+			}
+			if((result == false) && (Mode.get() == Mode.APPROVER)) {
+				claim.setStatus(team14.expenseexpress.model.Status.SUBMITTED);
+				Toast.makeText(context, "Failed to Return", Toast.LENGTH_SHORT).show();
+			}
 		}
 		
 	}
 	
-	public class DeleteClaimSync extends AsyncTask<Claim, Void, String> {
+	public class DeleteClaimSync extends AsyncTask<Claim, Void, Boolean> {
 
 		@Override
-		protected String doInBackground(Claim... params) {
-			delete(params[0]);
-			return null;
+		protected Boolean doInBackground(Claim... params) {
+			return delete(params[0]);
+		}
+		
+		protected void onPostExecute(Boolean result) {
+			
 		}
 		
 	}
@@ -245,9 +259,10 @@ public class ElasticSearchHelper {
 	}
 	
 	//http://stackoverflow.com/questions/22443853/check-http-connection-to-a-url-android    Accessed April.6th, 2015
+	/*
 	private boolean isConnectedToServer() {
 		try{
-            URL myUrl = new URL("http://cmput301.softwareprocess.es:8080/cmput301w15t14");
+            URL myUrl = new URL("http://cmput301.softwareprocess.es:8080/cmput301w15t14/");
             URLConnection connection = myUrl.openConnection();
             connection.setConnectTimeout(500);
             connection.connect();
@@ -255,6 +270,7 @@ public class ElasticSearchHelper {
         } catch (Exception e) {
             return false;
         }
-	} 
+	}
+	*/
 	
 }
