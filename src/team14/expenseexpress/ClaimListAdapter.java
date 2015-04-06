@@ -84,6 +84,7 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.status = (TextView) convertView.findViewById(R.id.status);
 			holder.tags = (TextView) convertView.findViewById(R.id.tags);
 			holder.destination = (TextView) convertView.findViewById(R.id.destination);
+			holder.costs = (TextView) convertView.findViewById(R.id.costs);
 
 			convertView.setTag(holder);
 		} else {
@@ -94,6 +95,23 @@ public class ClaimListAdapter extends BaseAdapter {
 		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
 		holder.enddate.setText(filteredClaimList.get(position).getEndDateString());
 		holder.status.setText(filteredClaimList.get(position).getStatus());
+		int i = 0;
+		String text =  new String();
+		if (filteredClaimList.get(position).getTotalAmounts().size() != 0) {
+			while (i < filteredClaimList.get(position).getTotalAmounts().size()){
+				if (i == 0)
+					text += filteredClaimList.get(position).getTotalAmounts().get(i);
+				else{
+					text += " ," + filteredClaimList.get(position).getTotalAmounts().get(i);
+			}
+				i++;
+			}
+			holder.costs.setText(text);
+			
+		}
+		else {
+			holder.costs.setText("No Costs");
+		}
 		String tags = new String("");
 		String destinations = new String("");
 		try {
@@ -123,5 +141,6 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView status;
 		TextView tags;
 		TextView destination;
+		TextView costs;
 	}
 }

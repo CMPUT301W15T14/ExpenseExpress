@@ -31,7 +31,7 @@ public class ExpenseEditActivity extends Activity {
 	private TextView expenseDateView;
 	private Spinner ctgrySpinner;
 	private Spinner crncySpinner ;
-	private CheckBox completeCheck;
+	private CheckBox incompleteCheck;
 	private Button receiptButton;
 	
 	private int expenseYear, expenseMonth, expenseDay;
@@ -47,7 +47,7 @@ public class ExpenseEditActivity extends Activity {
 		expenseAmount = (EditText) findViewById(R.id.amountText);
 		ctgrySpinner = (Spinner) findViewById(R.id.categorySpinner);
 		crncySpinner = (Spinner) findViewById(R.id.currencySpinner);
-		completeCheck = (CheckBox) findViewById(R.id.completeCheck);
+		incompleteCheck = (CheckBox) findViewById(R.id.completeCheck);
 		receiptButton = (Button) findViewById(R.id.addReceipt);
 		
 		ArrayAdapter<CharSequence> ctgryAdapter = ArrayAdapter.createFromResource(this,
@@ -65,7 +65,7 @@ public class ExpenseEditActivity extends Activity {
 			crncySpinner.setSelection(ctgryAdapter.getPosition(expense.getAmount().getCurrency().toString()));
 			ctgrySpinner.setSelection(crncyAdapter.getPosition(expense.getCategory()));
 			expenseAmount.setText(Double.toString(expense.getAmount().getNumber()));
-			completeCheck.setChecked(expense.getComplete());
+			incompleteCheck.setChecked(expense.getIncomplete());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -127,8 +127,8 @@ public class ExpenseEditActivity extends Activity {
 			amount = Double.valueOf(expenseAmount.getText().toString());
 		String category = ctgrySpinner.getSelectedItem().toString();
 		String currency = crncySpinner.getSelectedItem().toString();
-		boolean complete = completeCheck.isChecked();
-		ExpenseController.getInstance().setExpense(category, date, amount,currency, description,name, complete);
+		boolean incomplete = incompleteCheck.isChecked();
+		ExpenseController.getInstance().setExpense(category, date, amount,currency, description,name, incomplete);
 		if (name.isEmpty()){
 			Toast.makeText(this, "Name is a Mandatory Field", Toast.LENGTH_LONG).show();
 		}
@@ -138,6 +138,7 @@ public class ExpenseEditActivity extends Activity {
 		else{
 			finish();}
 	}
+	
 	public void modifyReceipt(View view) {
 		startActivity(new Intent(ExpenseEditActivity.this, ReceiptAddActivity.class));
 	}

@@ -77,7 +77,7 @@ public class TestExpenseModel extends
 				date, expenselist.get(0).getExpenseDate());
 		assertEquals("ExpenseList model and ExpenseController getting expense amount does not work",
 				amount, expenselist.get(0).getAmount().getNumber());
-		assertFalse("ExpenseList model and ExpenseController check if incomplete does not work", expenselist.get(0).getComplete());
+		assertFalse("ExpenseList model and ExpenseController check if incomplete does not work", expenselist.get(0).getIncomplete());
 		//assertNotNull("ExpenseList model and ExpenseController getting reciept does not work", expenselist.get(0).getReceipt());
 
 		/*
@@ -100,7 +100,7 @@ public class TestExpenseModel extends
 				newdate, expenselist.get(0).getExpenseDate());
 		assertEquals("ExpenseList model and ExpenseController editing expense amount does not work",
 				newamount, expenselist.get(0).getAmount().getNumber());
-		assertTrue("ExpenseList model and ExpenseController check if incomplete, does not work", expenselist.get(0).getComplete());
+		assertTrue("ExpenseList model and ExpenseController check if incomplete, does not work", expenselist.get(0).getIncomplete());
 		//assertNotNull("ExpenseList model and ExpenseController editing reciept does not work", expenselist.get(0).getReceipt());
 		
 		//Test Delete Expense Item

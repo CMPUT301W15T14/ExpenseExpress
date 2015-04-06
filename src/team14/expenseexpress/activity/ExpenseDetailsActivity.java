@@ -41,7 +41,7 @@ public class ExpenseDetailsActivity extends Activity {
 		expenseDescription.setText(expense.getDescription());
 		
 		TextView expenseComplete = (TextView) findViewById(R.id.expenseDetailsINC);
-		expenseComplete.setText(Boolean.toString(expense.getComplete()));
+		expenseComplete.setText(Boolean.toString(expense.getIncomplete()));
 	}
 
 

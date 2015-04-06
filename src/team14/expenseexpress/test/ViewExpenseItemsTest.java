@@ -59,7 +59,7 @@ public class ViewExpenseItemsTest extends
 		expenseAmount.setText(Double.toString(expenselist.get(0).getAmount().getNumber()));
 		expenseCurrency.setText(expenselist.get(0).getAmount().getCurrency().getName());
 		expenseDescription.setText(expenselist.get(0).getDescription());
-		expenseComplete.setText(Boolean.toString(expenselist.get(0).getComplete()));
+		expenseComplete.setText(Boolean.toString(expenselist.get(0).getIncomplete()));
 		
 		assertEquals("expense name textview does not work", "poutine", expenseNameTitle.getText());
 		assertEquals("expense date textview does not work", "2015-03-16", expenseDate.getText()); 

@@ -1,28 +1,40 @@
 package team14.expenseexpress.receipt;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.controller.ReceiptController;
 import team14.expenseexpress.model.Receipt;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Media;
+import android.util.Config;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
+
 
 public class ReceiptAddActivity extends Activity {
 	
-	private Uri receiptUri = null;
+	private Bitmap receiptImage;
+	private Uri uri;
 	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,10 +42,11 @@ public class ReceiptAddActivity extends Activity {
 		
 		ImageButton button = (ImageButton) findViewById(R.id.TakeAPhoto);
 		button.refreshDrawableState();
+		receiptImage = null;
 		
 		try{
-			receiptUri = ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri();
-			Drawable drawable = Drawable.createFromPath(receiptUri.getPath());
+			uri = ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri();
+			Drawable drawable = Drawable.createFromPath(uri.getPath());
 			button.setImageDrawable(drawable);
 		}
 		catch (Exception e){
@@ -67,13 +80,12 @@ public class ReceiptAddActivity extends Activity {
 	String imageFilePath = folder + "/"
 			+ String.valueOf(System.currentTimeMillis()) + ".jpg";
 	File imageFile = new File(imageFilePath);
-	Receipt receipt = ReceiptController.getInstance().getSelectedReceipt();
-	receiptUri = Uri.fromFile(imageFile);
-	receipt.setUri(receiptUri);
+	uri = Uri.fromFile(imageFile);
+	
+	Toast.makeText(this, uri.toString(), Toast.LENGTH_LONG).show();
 	// TODO: Put in the intent in the tag MediaStore.EXTRA_OUTPUT the URI
 	Intent intent =new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-	intent.putExtra(MediaStore.EXTRA_OUTPUT,receipt.getUri());
-
+	intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
 	startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	
 }
@@ -83,19 +95,39 @@ public class ReceiptAddActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
 			if (resultCode == RESULT_OK){
-;
-				ImageButton ib = (ImageButton) findViewById(R.id.TakeAPhoto);
-				Drawable drawable = Drawable.createFromPath(receiptUri.getPath());
-				ib.setImageDrawable(drawable);
-				
-	
+		        try {
+					
+					if (receiptImage != null){
+						Bitmap bitmap = receiptImage;
+				    	while (bitmap.getByteCount() > 65536){
+							   bitmap = Bitmap.createScaledBitmap(bitmap,(int) (bitmap.getWidth()*0.2),(int) (bitmap.getHeight()*0.2), true);
+						    }
+				    File imageFile = new File(uri.getPath());
+				    FileOutputStream out = new FileOutputStream(imageFile);
+				    bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+				    out.flush();
+				    out.close();
+				    
+					}
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        
+				ImageView ib = (ImageButton) findViewById(R.id.TakeAPhoto);
+				ib.setImageBitmap(receiptImage);
 			}
 		}
 	}
 		
 	public void OnClick_SubmitReceipt(View v){
+		
+		ReceiptController.getInstance().getSelectedReceipt().setUri(uri);
 		ExpenseController.getInstance().getSelectedExpense().setReceipt(ReceiptController.getInstance().getSelectedReceipt());
-		Toast.makeText(this, "adding " + ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri().toString(), Toast.LENGTH_LONG).show();
+		
 		finish();
 	}
 

@@ -1,8 +1,14 @@
 package team14.expenseexpress.controller;
 
+
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import team14.expenseexpress.model.Expense;
-import team14.expenseexpress.model.ExpenseList;
+import android.provider.MediaStore;
 import team14.expenseexpress.model.Receipt;
 
 public class ReceiptController {
@@ -31,4 +37,8 @@ public class ReceiptController {
 		return this.selectedReceipt = receipt;
 	}
 	
+	public Bitmap getBitmap(Receipt receipt, Context context) throws FileNotFoundException, IOException{
+		Uri uri = receipt.getUri();
+		return MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
+	}
 }

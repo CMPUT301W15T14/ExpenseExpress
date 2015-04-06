@@ -59,14 +59,14 @@ public class ExpenseController {
 						    String currency,
 						    String description,
 						    String name,
-						    boolean complete){
+						    boolean incomplete){
 		selectedExpense.setCategory(category);
 		selectedExpense.setExpenseDate(expenseDate);
 		selectedExpense.setDescription(description);
 		Amount actualAmount = new Amount(amount, Currency.fromString(currency));
 		selectedExpense.setAmount(actualAmount);
 		selectedExpense.setName(name);
-		selectedExpense.setComplete(complete);
+		selectedExpense.setIncomplete(incomplete);
 		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
@@ -111,8 +111,6 @@ public class ExpenseController {
 	
 	public void addExpense(Expense expense){
 		this.expenseList.add(expense);
-		sortExpenseList();
-		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	
 	public void removeExpense(Expense expense){

@@ -14,7 +14,8 @@ public enum Currency {
     JPY ("JPY"),
     CNY ("CNY");
     
-    private String name;
+    private String name = "CAD";
+   
 	 /**
      * UnCallable Constructor
      *	
@@ -29,10 +30,11 @@ public enum Currency {
      *
      * @param String text
      */
-    public static Currency fromString(String text) {
+	public static Currency fromString(String text) {
         if (text != null) {
           for (Currency currency : Currency.values()) {
             if (text.equalsIgnoreCase(currency.name)) {
+            	//currency.name = text;
               return currency;
             }
           }

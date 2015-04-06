@@ -49,7 +49,6 @@ public class ExpenseListAdapter extends BaseAdapter {
 			holder.amount = (TextView) convertView.findViewById(R.id.expenseAmount);
 			holder.currency = (TextView) convertView.findViewById(R.id.expenseCurrency);
 			holder.description = (TextView) convertView.findViewById(R.id.expenseDescript);
-			holder.complete = (TextView) convertView.findViewById(R.id.complete);
 			holder.incomplete = (TextView) convertView.findViewById(R.id.incomplete);
 			holder.yesreceipt = (TextView) convertView.findViewById(R.id.yesReceipt);
 			holder.noreceipt = (TextView) convertView.findViewById(R.id.noReceipt);
@@ -66,13 +65,13 @@ public class ExpenseListAdapter extends BaseAdapter {
 		holder.amount.setText(Double.toString(expenseList.get(position).getAmount().getNumber()));
 		holder.currency.setText(expenseList.get(position).getAmount().getCurrency().getName());
 		holder.description.setText(expenseList.get(position).getDescription());
-		if (expenseList.get(position).getComplete()){
-			holder.complete.setVisibility(View.VISIBLE);
-			holder.incomplete.setVisibility(View.INVISIBLE);
+		if (expenseList.get(position).getIncomplete()){
+
+			holder.incomplete.setVisibility(View.VISIBLE);
 		}	///not correct boolean factors reversed
 		else{
-			holder.incomplete.setVisibility(View.VISIBLE);
-			holder.complete.setVisibility(View.INVISIBLE);
+			holder.incomplete.setVisibility(View.INVISIBLE);
+
 		}
 		if (expenseList.get(position).getReceipt() != null){
 			holder.yesreceipt.setVisibility(View.VISIBLE);
