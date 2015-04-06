@@ -84,16 +84,16 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	 */
 	private void setSubtitle() {
 		TextView textView_usernameAndMode = (TextView) findViewById(R.id.textView_usernameAndMode);
-		//String subtitle = UserController.getInstance().getCurrentUser().getName();
+		String subtitle = UserController.getInstance().getCurrentUser().getName();
 		switch(team14.expenseexpress.controller.Mode.get()){
 		case Mode.APPROVER:
-			//subtitle += " - Approver";
+			subtitle += " - Approver";
 			break;
 		case Mode.CLAIMANT:
-			//subtitle += " - Claimant";
+			subtitle += " - Claimant";
 			break;
 		}
-	//	textView_usernameAndMode.setText(subtitle);
+		textView_usernameAndMode.setText(subtitle);
 	}
 
 	/**
@@ -187,13 +187,20 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-
+		String[] menuItems = null;
 		final ListView lv1 = (ListView) findViewById(R.id.claimListView);
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
 		int menuItemIndex = item.getItemId();
-		String[] menuItems = getResources().getStringArray(
-				R.array.LongClickMenu);
+		switch(Mode.get()) {
+		case(Mode.APPROVER) :
+			menuItems = getResources().getStringArray(R.array.LongClickMenuApprov);
+			break;
+		case(Mode.CLAIMANT) :
+			menuItems = getResources().getStringArray(
+					R.array.LongClickMenu);
+			break;
+		}
 		String menuItemName = menuItems[menuItemIndex];
 
 		Claim claim = (Claim) lv1.getItemAtPosition(info.position);

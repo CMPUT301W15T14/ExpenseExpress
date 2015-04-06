@@ -67,5 +67,8 @@
     <string name="title_activity_edit_tags">EditTags</string>
     <string name="title_activity_edit_destinations">EditDestinations</string>
     <string name="title_activity_view_receipt">MainActivity</string>
+    <string-array name="LongClickMenuApprov">
+        <item >Details</item>
+    </string-array>
 
 </resources>
