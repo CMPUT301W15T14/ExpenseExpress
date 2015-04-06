@@ -1,6 +1,7 @@
 package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 
 import team14.expenseexpress.ClaimListAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
@@ -206,6 +207,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		Claim claim = (Claim) lv1.getItemAtPosition(info.position);
 
 		if (menuItemName.equals("Delete")) {
+			toast(String.valueOf(claim.getId()));
 			ClaimController.getInstance().removeClaim(claim);
 			claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 		} else if (menuItemName.equals("Edit")) {
