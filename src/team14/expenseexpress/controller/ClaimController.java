@@ -52,7 +52,6 @@ public class ClaimController {
 
 	public void initialize(Context context){
 		this.context = context;
-		//initializeClaimList();
 		loadLocalClaims();
 	}
 	

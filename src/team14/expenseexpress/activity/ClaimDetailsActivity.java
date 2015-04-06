@@ -1,5 +1,7 @@
 package team14.expenseexpress.activity;
 
+import java.util.ArrayList;
+
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import android.app.Activity;
@@ -9,7 +11,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ClaimDetailsActivity extends Activity {
-
+	double CAD = 0, USD = 0, EUR = 0, GBP = 0, CHF = 0, JPY = 0, CNY = 0;
+	double number;
+	ArrayList<String> amountListString = new ArrayList<String>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,8 +37,10 @@ public class ClaimDetailsActivity extends Activity {
 			    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ClaimController.getInstance().getSelectedClaim().getDestinationsNames());
 		destinationsList.setAdapter(destinationsAdapter);
 		
-		
+		ListView totalAmountList = (ListView) findViewById(R.id.claimListofCurrency);
+		ArrayList<String> amountlist = ClaimController.getInstance().getSelectedClaim().getTotalAmounts();
+		ArrayAdapter<String> totalCostAdapter = 
+			    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, amountlist);
+		totalAmountList.setAdapter(totalCostAdapter);
 	}
-
-
 }

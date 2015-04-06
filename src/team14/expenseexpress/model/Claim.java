@@ -20,9 +20,9 @@ import java.util.GregorianCalendar;
  * 
  */
 public class Claim {
-    private ArrayList<ClaimTag> tags;
-    private ExpenseList expenseList;
-    private ArrayList<Destination> destinations;
+    private final ArrayList<ClaimTag> tags;
+    private final ExpenseList expenseList;
+    private final ArrayList<Destination> destinations;
     private GregorianCalendar startDate;     // use getDateString for String
     private GregorianCalendar endDate;
     private ArrayList<Amount> amounts;
@@ -31,6 +31,7 @@ public class Claim {
     private User approver; // the approver responsible for the most recent change in status
     private User claimant;
     private ArrayList<ApproverComment> approverComments;
+    private ArrayList<String> totalAmount;
     
     private final long claimId;
     private long lastSave;
@@ -45,6 +46,7 @@ public class Claim {
 	    this.destinations = new ArrayList<Destination>();
 	    this.tags = new ArrayList<ClaimTag>();
 	    this.status = Status.IN_PROGRESS;
+	    this.totalAmount = new ArrayList<String>();
     }
 
     public void setLastSave() {
@@ -345,6 +347,12 @@ public class Claim {
 		return (String) android.text.format.DateFormat.format("yyyy-MM-dd",this.endDate);
 	}
 	
+	public void setTotalAmounts(ArrayList<String> amount) {
+		this.totalAmount = amount;
+	}
 	
+	public ArrayList<String> getTotalAmounts() {
+		return totalAmount;
+	}
 	
 }
