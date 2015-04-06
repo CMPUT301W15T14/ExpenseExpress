@@ -15,7 +15,7 @@ import android.test.ActivityInstrumentationTestCase2;
 /**
  * Tests to check Expense and ExpenseList model and its methods. Also test the ExpenseController and
  * any other models related to expense model.
- * <p>Related Use Cases: UC10, UC11, UC12, UC13, UC15, UC17
+ * <p>Related Use Cases: UC10, UC11, UC12, UC13, UC15
  * 
  *
  */
@@ -78,7 +78,6 @@ public class TestExpenseModel extends
 		assertEquals("ExpenseList model and ExpenseController getting expense amount does not work",
 				amount, expenselist.get(0).getAmount().getNumber());
 		assertFalse("ExpenseList model and ExpenseController check if incomplete does not work", expenselist.get(0).getIncomplete());
-		//assertNotNull("ExpenseList model and ExpenseController getting reciept does not work", expenselist.get(0).getReceipt());
 
 		/*
 		 * Test editing a Expense Item
@@ -101,7 +100,6 @@ public class TestExpenseModel extends
 		assertEquals("ExpenseList model and ExpenseController editing expense amount does not work",
 				newamount, expenselist.get(0).getAmount().getNumber());
 		assertTrue("ExpenseList model and ExpenseController check if incomplete, does not work", expenselist.get(0).getIncomplete());
-		//assertNotNull("ExpenseList model and ExpenseController editing reciept does not work", expenselist.get(0).getReceipt());
 		
 		//Test Delete Expense Item
 		Expense expense = ExpenseController.getInstance().getSelectedExpense();

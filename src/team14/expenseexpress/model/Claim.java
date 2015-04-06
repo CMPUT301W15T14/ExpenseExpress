@@ -308,7 +308,7 @@ public class Claim implements Comparable{
 	 *
 	 */
 	@SuppressWarnings("rawtypes")
-	static class ClaimComparator implements Comparator {
+	public static class ClaimComparator implements Comparator {
 		@Override
 		public int compare(Object lhs, Object rhs) {
 			if(!(lhs instanceof Claim) || !(rhs instanceof Claim)) 

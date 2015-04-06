@@ -1,21 +1,26 @@
-/*package team14.expenseexpress.test;
+package team14.expenseexpress.test;
 
 import java.util.GregorianCalendar;
 
+import team14.expenseexpress.activity.ClaimDetailsActivity;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.Destination;
+import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
 
 public class ViewClaimTest extends
 		ActivityInstrumentationTestCase2<ClaimDetailsActivity> {
 	
+	Instrumentation instrumentation;
 	ClaimDetailsActivity activity;
+
 	
 	public ViewClaimTest() {
 		super(ClaimDetailsActivity.class);;
+		instrumentation = getInstrumentation();
+		activity = getActivity();
 	}
 	
 	public void testViewClaimDetails() {
@@ -28,10 +33,7 @@ public class ViewClaimTest extends
     	GregorianCalendar startdate = new GregorianCalendar(15, 3, 16);
 		GregorianCalendar enddate = new GregorianCalendar(15, 3, 17);
 		
-		ClaimList claimlist;
-		ClaimController claimcontroller;
-		claimcontroller.getInstance();
-		Claim claim = claimcontroller.getNewClaim();
+		Claim claim = ClaimController.getInstance().getNewClaim();
 		claim.setName("First Claim");
 		Destination destination1 = new Destination("Canada");
 		Destination destination2 = new Destination("USA");
@@ -41,8 +43,11 @@ public class ViewClaimTest extends
 		claim.setEndDate(enddate);
 		
 		claimName.setText(claim.getName());
-		claimName.setText(text)
+		claimStart.setText(claim.getStartDateString());
+		claimEnd.setText(claim.getEndDateString());
+		claimStatus.setText(claim.getStatus());
+		
     	
 	}
 
-}*/
+}
