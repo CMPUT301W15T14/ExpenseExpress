@@ -5,6 +5,7 @@ import team14.expenseexpress.R;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.User;
+import team14.expenseexpress.util.ElasticSearchHelper;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +32,7 @@ public class LoginActivity extends ExpenseExpressActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         editText_name = (EditText) findViewById(R.id.loginEditText);
+        ElasticSearchHelper.getInstance(this); //Initialize the context.
         buildModeDialog();
         buildConfirmNameDialog();
     }
