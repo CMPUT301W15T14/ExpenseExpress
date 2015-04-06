@@ -23,7 +23,6 @@ public class TestServerConnectivity extends
 	public void testServer() {
 		User user = new User("Bob");
 		Mode.set(1);
-		UserController.getInstance().addUser(user);
 		UserController.getInstance().setCurrentUser(user);
 		ClaimController.getInstance().initialize(getActivity());
 		Claim claim = ClaimController.getInstance().getNewClaim();

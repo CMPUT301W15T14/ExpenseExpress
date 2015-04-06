@@ -1,32 +1,26 @@
 package team14.expenseexpress.controller;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import team14.expenseexpress.model.User;
-import android.util.Log;
 
-import com.google.gson.Gson;
 
 public class UserController {
-	private final Gson gson = new Gson();
-	private User currentUser;
-	private static final String TAG = "UserController";
+	//private final Gson gson = new Gson();
+	private User currentUser = null;
+	//private static final String USER_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/user/";
+	//private static final String TAG = "UserController";
 	
-	private static UserController instance = null;
+	//private static Context context;
 	
-	private UserController() {
-	}
-		public static UserController getInstance() {
+	private static UserController instance;
+	
+	private UserController(){
+    }
+	public static UserController getInstance() {
 		if(instance == null) {
-			instance = new UserController();
-		}
-		return instance;
+		instance = new UserController();
+	}
+	return instance;
 	}
 	
 	public User getCurrentUser() {
@@ -36,62 +30,125 @@ public class UserController {
 	public void setCurrentUser(User user) {
 		this.currentUser = user;
 	}
-	  /**
-		 * GetUser accepts a User user object
-		 * and sets up framework for future file managements
-		 * 
-		 *
-		 */
-	public void getUser(User user) {
-		//TODO: Server controls for Logging In...
+	
+	
+	
+	/*
+	private User getUser(String name) {
+		SearchHit<User> sr = null;
 		HttpClient httpClient = new DefaultHttpClient();
-		try {
-			HttpGet getRequest = new HttpGet(user.getResourceUrl() + user.getName());
-			getRequest.setHeader("Accept", "application/json");
-			
-			HttpResponse response = httpClient.execute(getRequest);
-			String status = response.getStatusLine().toString();
-			Log.i(TAG, status);
+		HttpGet httpGet = new HttpGet(USER_URL + name);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		HttpResponse response = null;
+
+		try {
+			response = httpClient.execute(httpGet);
+		} catch (ClientProtocolException e1) {
+			throw new RuntimeException(e1);
+		} catch (IOException e1) {
+			throw new RuntimeException(e1);
 		}
-		// Always attempt to getUser first, then add if not returned...
 		
+		Type searchHitType = new TypeToken<SearchHit<User>>() {}.getType();
+
+		try {
+			sr = gson.fromJson(
+					new InputStreamReader(response.getEntity().getContent()),
+					searchHitType);
+		} catch (JsonIOException e) {
+			throw new RuntimeException(e);
+		} catch (JsonSyntaxException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalStateException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		return sr.getSource();
 	}
 	
-	  /**
-		 * AddUser receives a new unique User username, and 
-		 * creates a new folder for them to be saved in.
-		 * 
-		 *
-		 */
-	public void addUser(User user) {
-		//TODO: Server controls for Logging In...
+	public boolean addUser(User user) {
+		boolean value = false;
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
-			HttpPost addRequest = new HttpPost(user.getResourceUrl() + user.getName());
-			this.currentUser = user;
+			HttpPost addRequest = new HttpPost(USER_URL + user.getName());
+	
 			StringEntity stringEntity = new StringEntity(gson.toJson(user));
 			addRequest.setEntity(stringEntity);
 			addRequest.setHeader("Accept", "application/json");
-
+	
 			HttpResponse response = httpClient.execute(addRequest);
 			String status = response.getStatusLine().toString();
 			Log.i(TAG, status);
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			value = true;
+	
+		} catch (JsonIOException e) {
+			throw new RuntimeException(e);
+		} catch (JsonSyntaxException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalStateException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
+		return value;
 	}
-	  /**
-		 * 
-		 * RemoveUser recieves a User user and removes them from the file system
-		 * 
-		 *
-		 */
+	
+	
+	private class GetUserSync extends AsyncTask<String, Void, User> {
+		
+		@Override
+		protected User doInBackground(String ...params) {
+			return getUser(params[0]);
+		}
+		
+		protected void onPostExecute(User result) {
+			if(result == null) {
+				UserController.getInstance().setCurrentUser(null);
+				Toast.makeText(context, "Login Fail", Toast.LENGTH_SHORT).show();
+			} else {
+				UserController.getInstance().setCurrentUser(result);
+				Toast.makeText(context, "Login Success", Toast.LENGTH_SHORT).show();
+			}
+		}
+		
+	}
+	
+	private class AddUserSync extends AsyncTask<Void, Void, Boolean> {
+		User user;
+		
+		private AddUserSync(User user) {
+			this.user = user;
+		}
+		@Override
+		protected Boolean doInBackground(Void ...params) {
+			return addUser(user);
+		}
+		
+		protected void onPostExecute(Boolean result) {
+			if(result == true) {
+				UserController.getInstance().setCurrentUser(null);
+				Toast.makeText(context, "Create Account Fail", Toast.LENGTH_SHORT).show();
+			} else {
+				UserController.getInstance().setCurrentUser(user);
+				Toast.makeText(context, "Create Account Success", Toast.LENGTH_SHORT).show();
+			}
+		}
+		
+	}
+	
+	public void logIn(String name) {
+		GetUserSync task = new GetUserSync();
+		task.execute(name);
+	}
+	
+	public void createAccount(User user) {
+		AddUserSync task = new AddUserSync(user);
+		task.execute();
+	}
+	
 	public void removeUser(User user) {
-		//TODO: Server controls for Logging In...
 		HttpClient httpClient = new DefaultHttpClient();
 
 		try {
@@ -105,5 +162,5 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

@@ -37,7 +37,6 @@ public class TestDataSaved extends ActivityInstrumentationTestCase2<ClaimListAct
 		User user = new User("Bob");
 		Mode.set(1);
 		claim.setName("Bob");
-		UserController.getInstance().addUser(user);
 		UserController.getInstance().setCurrentUser(user);
 		ClaimController.getInstance().addClaim(claim);
 		ArrayList<Claim> claims = LocalFileHelper.getInstance().loadClaims().getClaims();

@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 
+import team14.expenseexpress.controller.UserController;
+
 /**
  * @author  Team 14
  * @version 0.1
@@ -47,6 +49,8 @@ public class Claim implements Comparable{
 	    this.tags = new ArrayList<ClaimTag>();
 	    this.status = Status.IN_PROGRESS;
 	    this.totalAmount = new ArrayList<String>();
+	    this.claimant = UserController.getInstance().getCurrentUser();
+	    this.setApprover(null);
     }
 
     public void setLastSave() {
@@ -360,6 +364,14 @@ public class Claim implements Comparable{
 		Claim otherClaim = (Claim) another;
 		
 		return this.startDate.compareTo(otherClaim.startDate);
+	}
+
+	public User getApprover() {
+		return approver;
+	}
+
+	public void setApprover(User approver) {
+		this.approver = approver;
 	}
 	
 }
