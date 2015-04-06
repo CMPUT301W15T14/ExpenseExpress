@@ -17,7 +17,7 @@ public class Expense implements Cloneable {
     private String description;
     private Receipt receipt;
     private String name;
-    private boolean complete; 
+    private boolean incomplete; 
 
 
     private long expenseId;
@@ -34,8 +34,8 @@ public class Expense implements Cloneable {
      * returns the completeness of the expense, as indicated by user
      * @return  Boolean complete
      */
-    public boolean getComplete(){
-    	return this.complete;
+    public boolean getIncomplete(){
+    	return this.incomplete;
     }
     /**
      * Setter for the complete boolean associated with this Expense.
@@ -43,8 +43,8 @@ public class Expense implements Cloneable {
      * 
      * @param Boolean
      */
-    public void setComplete(boolean complete){
-    	this.complete = complete;
+    public void setIncomplete(boolean incomplete){
+    	this.incomplete = incomplete;
     }
     /**
      * Getter for the Amount object associated with this Expense.

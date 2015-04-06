@@ -63,6 +63,7 @@ public class LocalFileHelper {
 			gson.toJson(data, osw);
 			osw.flush();
 			fos.close();
+			osw.close();
 
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
@@ -97,6 +98,7 @@ public class LocalFileHelper {
 				Type dataType = new TypeToken<ClaimList>() {	}.getType();
 				claims = gson.fromJson(isr, dataType);
 				fis.close();
+				isr.close();
 
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -111,6 +113,7 @@ public class LocalFileHelper {
 				InputStreamReader isr = new InputStreamReader(fis);
 				Type dataType = new TypeToken<ClaimList>() {	}.getType();
 				claims = gson.fromJson(isr, dataType);
+				isr.close();
 				fis.close();
 
 			} catch (FileNotFoundException e) {
@@ -185,6 +188,7 @@ public class LocalFileHelper {
 			Type dataType = new TypeToken<TagList>() {	}.getType();
 			tags = gson.fromJson(isr, dataType);
 			fis.close();
+			isr.close();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

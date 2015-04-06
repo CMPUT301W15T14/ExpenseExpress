@@ -3,6 +3,8 @@ package team14.expenseexpress.receipt;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ExpenseController;
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,12 +29,11 @@ public class ViewReceiptActivity extends Activity {
 		Button submitButton = (Button) findViewById(R.id.receiptSubmitButton);
 		submitButton.setVisibility(View.INVISIBLE);
 		imageButton.refreshDrawableState();
-		Uri receiptUri;
+		
 		try{
-			receiptUri = ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri();
-			Drawable drawable = Drawable.createFromPath(receiptUri.getPath());
+			Uri  uri = ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri();
+			Drawable drawable = Drawable.createFromPath(uri.getPath());
 			imageButton.setImageDrawable(drawable);
-			Toast.makeText(this, receiptUri.toString(), Toast.LENGTH_LONG).show();
 			
 		}
 		catch (Exception e){

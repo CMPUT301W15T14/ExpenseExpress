@@ -113,7 +113,6 @@ public class ExpenseListActivity extends Activity {
 	
     public void onClick_NewExpense(View v) {
     	ExpenseController.getInstance().makeSelectedExpense();
-    	Toast.makeText(this,String.valueOf(ExpenseController.getInstance().getSelectedExpense().getId()), Toast.LENGTH_LONG).show();
     	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
     	
     }

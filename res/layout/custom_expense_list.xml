@@ -108,21 +108,11 @@
         android:id="@+id/incomplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/complete"
-        android:layout_alignBottom="@+id/complete"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/expenseCurrency"
         android:text="Incomplete"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FF0000" />
-
-    <TextView
-        android:id="@+id/complete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/expenseCurrency"
-        android:text="Complete"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/noReceipt"

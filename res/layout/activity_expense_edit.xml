@@ -90,9 +90,9 @@
         android:id="@+id/completeCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_above="@+id/addReceipt"
-        android:text="Expense Complete?"
+        android:layout_centerHorizontal="true"
+        android:text="Expense Incomplete?"
         android:textColor="@color/mainYellow" />
 
     <Button
