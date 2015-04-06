@@ -4,7 +4,7 @@ package team14.expenseexpress.model;
  * @version 0.1
  * @since   2015-02-19
  */
-public final class Status {
+public class Status {
     public static final String APPROVED = "Approved";
     public static final String IN_PROGRESS = "In progress";
     public static final String SUBMITTED = "Submitted";

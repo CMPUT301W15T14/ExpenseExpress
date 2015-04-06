@@ -50,7 +50,7 @@ public class TagListAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.custom_tag_list, null);
 			holder = new ViewHolder();
-			holder.tag = (TextView) convertView.findViewById(R.id.textView1);
+			holder.tag = (TextView) convertView.findViewById(R.id.AddDestLatitude);
 			holder.box = (CheckBox) convertView.findViewById(R.id.checkBox1);
 			convertView.setTag(holder);
 		} else {
