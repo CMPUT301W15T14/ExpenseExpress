@@ -126,19 +126,23 @@ public class ElasticSearchHelper {
 	
 	public void addClaim(Claim claim) {
 		if(isNetworkAvailable() && isConnectedToServer()) {
+			//TODO: Update claim Status here! That way it's updated only when added.
 			AddClaimSync task = new AddClaimSync();
 			task.execute(claim);
 		} else {
-			
+			//TODO: If fails... do something,
+			// Maybe make this return a boolean???
 		}
 	}
 
 	public void deleteClaim(Claim claim) {
 		if(isNetworkAvailable() && isConnectedToServer()) {
+			//TODO: Update claim Status here! That way it's updated only when deleted.
 			DeleteClaimSync task = new DeleteClaimSync();
 			task.execute(claim);
 		} else {
-			
+			//TODO: If fails... do something,
+			// Maybe make this return a boolean???
 		}
 	}
 	
