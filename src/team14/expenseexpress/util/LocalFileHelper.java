@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.util.concurrent.TimeUnit;
 
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.UserController;
@@ -31,17 +32,15 @@ public class LocalFileHelper {
 	private static final String CLAIMANT_FILENAME = "ee.claimant_";
 	private static final String APPROVER_FILENAME = "ee.approver_"; 
 	private static final String TAGS_FILENAME = "ee.tags_";
-	private static final String OFFLINE_FILENAME = "ee.offline_";
+	private static final String OFFLINE_FILENAME = "ee.offline";
 	
 	private static Context context;
 	
 	// Singleton
 	private static LocalFileHelper fileHelper;
-	private ElasticSearchHelper elasticHelper;
 	
 	private LocalFileHelper(Context context){
 		this.context = context;
-		this.elasticHelper = ElasticSearchHelper.getInstance(context);
 	}
 	
 	public static LocalFileHelper getInstance(Context context){
@@ -81,18 +80,15 @@ public class LocalFileHelper {
 
 	
 	public void saveClaims(ClaimList claims){
-		SaveSyncRunner runner = new SaveSyncRunner();
 		switch(Mode.get()) {
 		case Mode.CLAIMANT:
 			save(claims,CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
-			runner.execute(claims);
 			break;
 		case Mode.APPROVER:
 			save(claims, APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName());
-			runner.execute(claims);
 			break;
 		case Mode.OFFLINE:
-			save(claims, OFFLINE_FILENAME +  UserController.getInstance().getCurrentUser().getName());
+			save(claims, OFFLINE_FILENAME);
 		}
 	}
 
@@ -163,38 +159,7 @@ public class LocalFileHelper {
 		return claims;
 	}
 	
-	private class SaveSyncRunner extends AsyncTask<ClaimList, Void, Void> {
 
-		@Override
-		protected Void doInBackground(ClaimList... params) {
-			ClaimList claims = params[0];
-			elasticHelper.saveRemoteClaimList(claims);
-			try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                Thread.interrupted();
-            } catch (Exception e) {
-            	e.printStackTrace();
-            }
-			return null;
-		}	
-	}
-	/*
-	private class LoadSyncRunner extends AsyncTask<Params, Progress, Result> {
-
-		@Override
-		protected Result doInBackground(Params... params) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-	}
-	
-	private void merge() {
-		
-	}
-	*/
-	
 	public TagList getTags() {
 		Gson gson = new Gson();
 		TagList tags = new TagList();
