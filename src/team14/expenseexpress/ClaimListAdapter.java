@@ -95,16 +95,21 @@ public class ClaimListAdapter extends BaseAdapter {
 		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
 		holder.enddate.setText(filteredClaimList.get(position).getEndDateString());
 		holder.status.setText(filteredClaimList.get(position).getStatus());
-		
+		int i = 0;
+		String text =  new String();
 		if (filteredClaimList.get(position).getTotalAmounts().size() != 0) {
-			if (filteredClaimList.get(position).getTotalAmounts().size() == 1) {
-				String text = filteredClaimList.get(position).getTotalAmounts().get(0);
-				holder.costs.setText(text);
-			} else {
-				String text = filteredClaimList.get(position).getTotalAmounts().get(0) + "," + "...etc";
-				holder.costs.setText(text);
+			while (i < filteredClaimList.get(position).getTotalAmounts().size()){
+				if (i == 0)
+					text += filteredClaimList.get(position).getTotalAmounts().get(i);
+				else{
+					text += " ," + filteredClaimList.get(position).getTotalAmounts().get(i);
 			}
-		} else {
+				i++;
+			}
+			holder.costs.setText(text);
+			
+		}
+		else {
 			holder.costs.setText("No Costs");
 		}
 		String tags = new String("");
