@@ -8,6 +8,9 @@ package team14.expenseexpress.model;
 public class Destination {
     private String destination;
     private String reason;
+    private float latitude;
+    private float longtitude;
+    
 
     @Override
 	public String toString() {
@@ -59,4 +62,19 @@ public class Destination {
     public void setReason(String reason) {
         this.reason = reason;
     }
+
+	public float getLongtitude() {
+		return longtitude;
+	}
+
+	public void setLongtitude(float longtitude) {
+		this.longtitude = longtitude;
+	}
+	public float getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
+	}
 }
