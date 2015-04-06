@@ -13,12 +13,16 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Status;
+import team14.expenseexpress.util.ElasticSearchHelper;
+import team14.expenseexpress.util.LocalFileHelper;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -47,6 +51,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	private TagsListAdapter tagsListAdapter;
 	private ClaimListAdapter claimsListAdapter;
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +63,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		setSubtitle();
 		displayUiBasedOnMode();
 	}
-
+	
 	/**
 	 * Hides UI that's irrelevant to the mode chosen by the user
 	 */
