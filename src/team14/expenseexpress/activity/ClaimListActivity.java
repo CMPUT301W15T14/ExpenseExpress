@@ -14,6 +14,8 @@ import team14.expenseexpress.controller.TagListController;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
+import team14.expenseexpress.model.Expense;
+import team14.expenseexpress.model.Receipt;
 import team14.expenseexpress.model.Status;
 import team14.expenseexpress.util.ElasticSearchHelper;
 import team14.expenseexpress.util.LocalFileHelper;
@@ -267,6 +269,11 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			} else {
 				claim.setStatus("Submitted");
 				ElasticSearchHelper.getInstance().addClaim(claim);
+				for (Expense expense : claim.getExpenseList().getExpenses()){
+					Receipt receipt = expense.getReceipt();
+					if (receipt != null)
+						ElasticSearchHelper.getInstance().addReceiptToElastic(receipt);
+				}
 				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 				LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 			}
@@ -372,7 +379,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	}
 
 
-	public void onItemClick(int Position) {
+	public void onItemClick(Claim claim) {
+		ClaimController.getInstance().setSelectedClaim(claim);
 		startActivity(new Intent(this, ExpenseListActivity.class));
 		
 	}

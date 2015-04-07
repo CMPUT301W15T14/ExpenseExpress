@@ -48,8 +48,8 @@ public class ReceiptController {
 		return this.selectedReceipt = receipt;
 	}
 	/**
-	 * Stores picture of receipt
-	 * @param receipt to be stored????
+	 * Gets the Bitmap picture of receipt
+	 * @param receipt
 	 * @param context
 	 * @return
 	 * @throws FileNotFoundException

@@ -178,7 +178,7 @@ public class ApproverAdapter extends BaseAdapter {
 
          /****  Call  onItemClick Method inside CustomListViewAndroidExample Class ( See Below )****/
 
-            sct.onItemClick(mPosition);
+            sct.onItemClick(claimList.get(mPosition));
         }              
     }   
 	

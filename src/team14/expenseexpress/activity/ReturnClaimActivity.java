@@ -36,6 +36,7 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 	 * changes boolean if checkbox A is clicked
 	 * @param v View
 	 */
+	//nice method name ya lazy fuck
 	public void onCick_checkBoxA(View v) {
 		approved = (CheckBox) v;
 		if (approved.isChecked()) {
@@ -80,6 +81,7 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 			claim.setApproverComments(commentList);
 			claim.setApprover(UserController.getInstance().getCurrentUser());
 			claim.addApproverToList(UserController.getInstance().getCurrentUser().getName());
+			ElasticSearchHelper.getInstance().deleteClaim(claim);
 			ElasticSearchHelper.getInstance().addClaim(claim);
 			finish();
 		}

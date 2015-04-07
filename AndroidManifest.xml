@@ -125,6 +125,10 @@
             android:name="team14.expenseexpress.maps.MapActivity"
              >
         </activity>
+               <activity
+            android:name="team14.expenseexpress.activity.ReturnClaimActivity"
+             >
+        </activity>
     </application>
 
 </manifest>
