@@ -255,15 +255,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				if (allcomplete){
 					claim.setStatus(Status.SUBMITTED);
 					ElasticSearchHelper.getInstance().addClaim(claim);
-					for (Expense expense : claim.getExpenseList().getExpenses()){
-						Receipt receipt = expense.getReceipt();
-						if (receipt != null) {
-							if(!receipt.getUri().toString().isEmpty()) {
-								Toast.makeText(this, receipt.getUri().toString(), Toast.LENGTH_LONG).show();
-								ElasticSearchHelper.getInstance().addReceiptToElastic(expense);
-							}
-						}
-					}
+							
+					
 				} else { 
 					Toast.makeText(this, "Can not submit incomplete expenses", Toast.LENGTH_LONG).show();
 				}

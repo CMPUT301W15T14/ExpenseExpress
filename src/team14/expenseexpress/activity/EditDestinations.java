@@ -33,6 +33,13 @@ import android.widget.Toast;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 
+/**
+ * Activity for editing/entering the destinations, their geo-coordinates, and reasons, of an individual expense claim.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */
 public class EditDestinations extends Activity{
 	private NewDestinationDialogFragment fragment;
 
@@ -51,6 +58,9 @@ public class EditDestinations extends Activity{
 		registerForContextMenu(destinationListView);
 	}
 
+	/**
+	 * Dialog Fragment for entering new destination. Will add it, its reason and its geo-coordinates.
+	 */ 
 	@SuppressLint("ValidFragment")
 	private class NewDestinationDialogFragment extends DialogFragment {
 
@@ -65,6 +75,9 @@ public class EditDestinations extends Activity{
 			return dialog;
 		}
 
+        /**
+         * This is called to notify the View (activity) to update.
+         */
 		public void update(){
 			final TextView latText = (TextView) view.findViewById(R.id.AddDestLatitude);
 			final TextView lngText = (TextView) view.findViewById(R.id.addDestLongitude);
@@ -91,7 +104,7 @@ public class EditDestinations extends Activity{
 			v.findViewById(R.id.addDestGPSButton).setOnClickListener(
 					
 					new OnClickListener() {
-						
+						// Starts activity for obtaining location (geo-coordinates) based on GPS;
 						@Override
 						public void onClick(View v) {
 							 Intent intent = new Intent(getActivity(), LocationActivity.class);
@@ -102,6 +115,7 @@ public class EditDestinations extends Activity{
 			v.findViewById(R.id.addDestMap).setOnClickListener(
 					new OnClickListener() {
 						
+						// Starts activity for choosing geo-coordinates based on Google static maps
 						@Override
 						public void onClick(View v) {
 							 Intent intent = new Intent(getActivity(), MapActivity.class); 

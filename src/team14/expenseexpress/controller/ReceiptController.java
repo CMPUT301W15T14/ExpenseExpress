@@ -48,18 +48,6 @@ public class ReceiptController {
 	public Receipt setSelectedReceipt(Receipt receipt){
 		return this.selectedReceipt = receipt;
 	}
-	/**
-	 * Gets the Bitmap picture of receipt
-	 * @param receipt
-	 * @param context
-	 * @return
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 */
-	public Bitmap getBitmap(Receipt receipt, Context context) throws FileNotFoundException, IOException{
-		Uri uri = receipt.getUri();
-		return MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
-	}
 	
 	
 	public void setBitmap(Bitmap bitmap){
