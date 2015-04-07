@@ -4,12 +4,6 @@ import java.util.ArrayList;
 
 import team14.expenseexpress.activity.ClaimDetailsActivity;
 import team14.expenseexpress.activity.ClaimListActivity;
-import team14.expenseexpress.activity.ExpenseDetailsActivity;
-import team14.expenseexpress.activity.ExpenseEditActivity;
-import team14.expenseexpress.activity.ExpenseListActivity;
-import team14.expenseexpress.activity.ReturnClaimActivity;
-import team14.expenseexpress.controller.ExpenseController;
-import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.util.BooleanListener;
 import team14.expenseexpress.util.ElasticSearchHelper;
@@ -17,46 +11,49 @@ import team14.expenseexpress.util.ElasticSearchHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Toast;
 
 public class ApproverAdapter extends BaseAdapter implements team14.expenseexpress.util.BooleanListener.Listener {
 	
 	private Activity activity;
 	private static ArrayList<Claim> claimList;
+	private ArrayList<Claim> tempList;
 	private LayoutInflater inflater;
 	Claim claim;
 	
-	BooleanListener listener;
 	
-	public ApproverAdapter(Activity activity) {
-		this.claimList = new ArrayList<Claim>();
+	BooleanListener myListener;
+	
+	public ApproverAdapter(Activity activity, ArrayList<Claim> claims) {
 		this.activity = activity;
-		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		listener = new BooleanListener();
-		listener.setBooleanListener(listener);
+		claimList = claims;
+		inflater = LayoutInflater.from(activity);
+		myListener = new BooleanListener();
+		myListener.setBooleanListener(this);
 	}
 	
 	public void getSubmittedClaims(){
 		final ProgressDialog ringProgressDialog = ProgressDialog.show(activity, "Please wait ...", "Loading Submitted Claims ...", true);
 		ringProgressDialog.setCancelable(true);
 		new Thread(new Runnable() {
-
+			
 			@Override
-			public void run() { 
-				claimList = ElasticSearchHelper.getInstance().getSubmitted();
+			public void run() {
+				Looper.prepare();
+				tempList = new ArrayList<Claim>();
+				tempList.addAll(ElasticSearchHelper.getInstance().getSubmitted());
+				myListener.execute();
 				ringProgressDialog.dismiss();
 			}
 		}).start();
@@ -181,17 +178,14 @@ public class ApproverAdapter extends BaseAdapter implements team14.expenseexpres
             sct.onItemClick(claimList.get(mPosition));
         }              
     }
-
+	
 	@Override
 	public void onStateChange(boolean state) {
 		if(state) {
-			Toast.makeText(activity, "Data Loaded", Toast.LENGTH_SHORT).show();
+			claimList.addAll(tempList);
 			notifyDataSetChanged();
-		} else {
-			Toast.makeText(activity, "Boolean Off", Toast.LENGTH_SHORT).show();
-		}
+		} 
 	} 
-	
 }
 
 

@@ -26,10 +26,7 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -41,9 +38,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +55,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	private TagsListAdapter tagsListAdapter;
 	private ClaimListAdapter claimsListAdapter;
 	private ApproverAdapter approverAdapter;
+	private ArrayList<Claim> tempList;
 	public static boolean edit = false;
 	
 	@Override
@@ -69,9 +65,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     	ClaimController.getInstance().initialize(this);
     	LayoutInflater.from(this);
     	if(Mode.get() == Mode.APPROVER) {
-    		//Resources resources = getResources();
     		final ListView approverView = (ListView) findViewById(R.id.claimListView);
-    		approverAdapter = new ApproverAdapter(this);
+    		approverAdapter = new ApproverAdapter(this, ClaimController.getInstance().getClaimList().getClaims());
     		approverView.setAdapter(approverAdapter);
     		approverAdapter.getSubmittedClaims();
     	} else {
@@ -151,7 +146,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	protected void onResume(){
 		super.onResume();
 		if(Mode.get() == Mode.APPROVER) {
-			approverAdapter.notifyDataSetChanged();
+			approverUpdate();
 		} else {
 			claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
 		}
@@ -378,11 +373,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		((TextView)findViewById(R.id.textView_chosenTags)).setText(tagsString);
 	}
 
+	public void approverUpdate() {
+		this.approverAdapter.notifyDataSetChanged();
+	}
 
 	public void onItemClick(Claim claim) {
 		ClaimController.getInstance().setSelectedClaim(claim);
 		startActivity(new Intent(this, ExpenseListActivity.class));
 		
 	}
-
 }

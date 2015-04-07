@@ -349,7 +349,7 @@ public class ElasticSearchHelper {
 		}
 		@Override
 		protected Boolean doInBackground(Void ...params) {
-			getReceipt(receipt);
+			//getReceipt(receipt);
 			return true;
 		}
 
