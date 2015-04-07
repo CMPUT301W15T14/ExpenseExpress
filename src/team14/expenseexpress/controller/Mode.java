@@ -3,7 +3,9 @@ package team14.expenseexpress.controller;
 /**
  * Singleton-like entity for holding claimant vs. approver information.
  * 
- * @author hzou
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
  */
 public enum Mode {;
 	public static final int OFFLINE = 0;
