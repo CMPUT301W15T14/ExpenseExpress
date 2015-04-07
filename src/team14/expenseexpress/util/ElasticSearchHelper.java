@@ -71,11 +71,7 @@ public class ElasticSearchHelper {
 		
 		String serverUrl = new String();
 		if(Mode.get() == Mode.CLAIMANT) {
-			if(claim.getApprover() == null) {
-				serverUrl = SUBMITTED_URL + String.valueOf(claim.getId());
-			} else {
-				serverUrl = RESUBMITTED_URL + claim.getApprover() + "/" + String.valueOf(claim.getId());
-			}
+			serverUrl = SUBMITTED_URL + String.valueOf(claim.getId());
 		} else if (Mode.get() == Mode.APPROVER) {
 			serverUrl = RETURNED_URL + claim.getClaimant().getName() + "/" + String.valueOf(claim.getId());
 		}
@@ -185,8 +181,10 @@ public class ElasticSearchHelper {
 		
 	}
 	
-	public ArrayList<Claim> getSubmitted(ArrayList<Claim> claims) {
+	public ArrayList<Claim> getSubmitted() {
 
+		ArrayList<Claim> claims = new ArrayList<Claim>();
+		
 		HttpPost searchRequest = new HttpPost(SUBMITTED_URL + "_search");
 
 		SimpleSearchCommand command = new SimpleSearchCommand("*");

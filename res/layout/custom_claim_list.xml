@@ -91,4 +91,14 @@
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/costs"
+        android:layout_alignBottom="@+id/costs"
+        android:layout_centerHorizontal="true"
+        android:text="text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>

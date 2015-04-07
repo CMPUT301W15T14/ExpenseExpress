@@ -2,15 +2,20 @@ package team14.expenseexpress;
 
 import java.util.ArrayList;
 
+import team14.expenseexpress.activity.ClaimDetailsActivity;
+import team14.expenseexpress.activity.ClaimListActivity;
 import team14.expenseexpress.activity.ExpenseDetailsActivity;
 import team14.expenseexpress.activity.ExpenseEditActivity;
 import team14.expenseexpress.activity.ExpenseListActivity;
+import team14.expenseexpress.activity.ReturnClaimActivity;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.util.ElasticSearchHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,13 +35,31 @@ public class ApproverAdapter extends BaseAdapter {
 	private Activity activity;
 	private static ArrayList<Claim> claimList;
 	private LayoutInflater inflater;
-	public Resources resources;
+	//public Resources resources;
 	Claim claim;
 
-	public ApproverAdapter(Activity activity, ArrayList<Claim> claims) {
-		this.claimList = claims;
+	public ApproverAdapter(Activity activity) {
+		this.claimList = new ArrayList<Claim>();
 		this.activity = activity;
+		//this.resources = resources;
 		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	}
+
+	
+	public void getSubmittedClaims(){
+		final ProgressDialog ringProgressDialog = ProgressDialog.show(activity, "Please wait ...", "Loading Submitted Claims ...", true);
+		ringProgressDialog.setCancelable(true);
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() { 
+
+					claimList = ElasticSearchHelper.getInstance().getSubmitted();
+					//notifyDataSetChanged();
+
+				ringProgressDialog.dismiss();
+		}
+	}).start();
 	}
 
 	@Override
@@ -72,7 +95,7 @@ public class ApproverAdapter extends BaseAdapter {
 		ViewHolder holder;
 
 		if(convertView == null) {
-			view = inflater.inflate(R.layout.custom_claim_list, null);
+			view = inflater.inflate(R.layout.approver_claim_list, null);
 			holder = new ViewHolder();
 			holder.claimantName = (TextView) view.findViewById(R.id.claimantTextView);
 			holder.startDate = (TextView) view.findViewById(R.id.startDateTextView);
@@ -109,29 +132,28 @@ public class ApproverAdapter extends BaseAdapter {
 					AlertDialog.Builder adb = new AlertDialog.Builder(activity);
 					adb.setMessage("Menu of " + claim.getName());
 					adb.setCancelable(true);
-					adb.setPositiveButton("1",new DialogInterface.OnClickListener() {
+					adb.setPositiveButton("Return",new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
+							activity.startActivity(new Intent(activity, ReturnClaimActivity.class));
+						}
+
+					});
+					adb.setNeutralButton("Details",new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							activity.startActivity(new Intent(activity, ClaimDetailsActivity.class)); 
 
 						}
 
 					});
-					adb.setNeutralButton("2",new DialogInterface.OnClickListener() {
+					adb.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-
-						}
-
-					});
-					adb.setNegativeButton("3",new DialogInterface.OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
+							dialog.dismiss();
 
 						}
 
@@ -142,6 +164,7 @@ public class ApproverAdapter extends BaseAdapter {
 		}
 		return view;
 	}
+	
 }
 
 

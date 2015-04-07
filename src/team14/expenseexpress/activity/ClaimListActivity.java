@@ -2,6 +2,7 @@ package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
 
+import team14.expenseexpress.ApproverAdapter;
 import team14.expenseexpress.ClaimListAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
@@ -21,6 +22,7 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -49,6 +51,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	private TagsListAdapter tagsListAdapter;
 	private ClaimListAdapter claimsListAdapter;
+	private ApproverAdapter approverAdapter;
+	public static boolean edit = false;
 	
 	
 	@Override
@@ -57,9 +61,16 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		setContentView(R.layout.activity_claim_list);
     	ClaimController.getInstance().initialize(this);
     	LayoutInflater.from(this);
-    	
-    	TagListController.getInstance().initialize();
-		initializeListViewClaimList();
+    	if(Mode.get() == Mode.APPROVER) {
+    		//Resources resources = getResources();
+    		final ListView approverView = (ListView) findViewById(R.id.claimListView);
+    		approverAdapter = new ApproverAdapter(this);
+    		approverView.setAdapter(approverAdapter);
+    		approverAdapter.getSubmittedClaims();
+    	} else {
+	    	TagListController.getInstance().initialize();
+			initializeListViewClaimList();
+    	}
 		setSubtitle();
 		displayUiBasedOnMode();
 	}
@@ -130,7 +141,11 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	@Override
 	protected void onResume(){
 		super.onResume();
-		claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
+		if(Mode.get() == Mode.APPROVER) {
+			approverAdapter.notifyDataSetChanged();
+		} else {
+			claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
+		}
 	}
 	
 	/**
@@ -189,8 +204,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			menuItems = getResources().getStringArray(R.array.LongClickMenuApprov);
 			break;
 		case(Mode.CLAIMANT) :
-			menuItems = getResources().getStringArray(
-					R.array.LongClickMenu);
+			menuItems = getResources().getStringArray(R.array.LongClickMenu);
 			break;
 		}
 		for (int i = 0; i < menuItems.length; i++) {
@@ -232,6 +246,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT)
 						.show();
 			} else {
+				edit = true;
 				ClaimController.getInstance().setSelectedClaim(claim);
 				startActivity(new Intent(ClaimListActivity.this, ClaimEditActivity.class));
 			}
@@ -259,15 +274,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 				@Override
 				public void run() { 
-					try {
+
 						claimsListAdapter.setApproverClaimList();
-						claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+
 					ringProgressDialog.dismiss();
 			}
 		}).start();
+			
 	}
 	
 	/**

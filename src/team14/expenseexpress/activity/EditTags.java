@@ -89,7 +89,10 @@ public class EditTags extends ExpenseExpressActivity {
 			return view;
 		}
 	}
-	
+	/**
+	 * Allows user to add new tags through FragmentManager
+	 * @param v View
+	 */
 	public void addNewTags(View v) {
 		FragmentManager fm = getFragmentManager();
 		new NewTagDialogFragment().show(fm, "newTagDialogFragment");
@@ -99,10 +102,17 @@ public class EditTags extends ExpenseExpressActivity {
 	public void onBackPressed() {
 		finish();
 	}
+	/**
+	 * Leaves activity for previous activity
+	 * @param v View
+	 */
 	public void acceptTags(View v) {
 		finish();
 	}
-	
+	/**
+	 * A method to set the adapter for tags in order to notifyDataSetChanged() 
+	 * @param adapter The TagsListAdapter used
+	 */
 	private void updateTagsListAdapter(TagListAdapter adapter) {
 		this.adapter = adapter;
 		adapter.notifyDataSetChanged();
