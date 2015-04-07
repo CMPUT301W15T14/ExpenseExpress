@@ -192,9 +192,10 @@ public class ExpenseListActivity extends Activity {
     	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
     	
     }
-    
+
     public void onClick_ReturnApproveClaim(View v) {
     	startActivity(new Intent(ExpenseListActivity.this, ReturnClaimActivity.class));
     }
+
 	
 }
