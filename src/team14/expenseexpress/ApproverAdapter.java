@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import team14.expenseexpress.activity.ClaimDetailsActivity;
 import team14.expenseexpress.activity.ClaimListActivity;
 import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.util.BooleanListener;
 import team14.expenseexpress.util.ElasticSearchHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Looper;
-import android.util.Log;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,9 +19,8 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class ApproverAdapter extends BaseAdapter implements team14.expenseexpress.util.BooleanListener.Listener {
+public class ApproverAdapter extends BaseAdapter {
 	
 	private Activity activity;
 	private static ArrayList<Claim> claimList;
@@ -33,30 +29,11 @@ public class ApproverAdapter extends BaseAdapter implements team14.expenseexpres
 	Claim claim;
 	
 	
-	BooleanListener myListener;
-	
 	public ApproverAdapter(Activity activity, ArrayList<Claim> claims) {
 		this.activity = activity;
 		claimList = claims;
 		inflater = LayoutInflater.from(activity);
-		myListener = new BooleanListener();
-		myListener.setBooleanListener(this);
-	}
-	
-	public void getSubmittedClaims(){
-		final ProgressDialog ringProgressDialog = ProgressDialog.show(activity, "Please wait ...", "Loading Submitted Claims ...", true);
-		ringProgressDialog.setCancelable(true);
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				Looper.prepare();
-				tempList = new ArrayList<Claim>();
-				tempList.addAll(ElasticSearchHelper.getInstance().getSubmitted());
-				myListener.execute();
-				ringProgressDialog.dismiss();
-			}
-		}).start();
+
 	}
 	
 	@Override
@@ -106,7 +83,7 @@ public class ApproverAdapter extends BaseAdapter implements team14.expenseexpres
 			holder=(ViewHolder)view.getTag();
 		}
 
-		if(claimList.size() <=0) {
+		if(claimList.isEmpty()) {
 			//No claims to show.
 		} else {
 			claim = null;
@@ -116,7 +93,11 @@ public class ApproverAdapter extends BaseAdapter implements team14.expenseexpres
 			holder.startDate.setText(claim.startDateToString());
 			holder.destinations.setText(claim.destinationsToString());
 			holder.claimStatus.setText(claim.getStatus());
-			holder.totalAmount.setText(claim.totalAmountToString());
+			try {
+				holder.totalAmount.setText(claim.totalAmountToString());
+			} catch(Exception e) {
+				holder.totalAmount.setText("");
+			}
 			if(claim.getApprover().getName() == null) {
 				holder.approverName.setText("Not Approved Yet");
 			} else {
@@ -160,7 +141,7 @@ public class ApproverAdapter extends BaseAdapter implements team14.expenseexpres
 	
 	
 	@SuppressWarnings("unused")
-	private class OnItemClickListener  implements OnClickListener{          
+	private class OnItemClickListener  implements OnClickListener {          
         private int mPosition;
          
         OnItemClickListener(int position){
@@ -179,13 +160,33 @@ public class ApproverAdapter extends BaseAdapter implements team14.expenseexpres
         }              
     }
 	
-	@Override
-	public void onStateChange(boolean state) {
-		if(state) {
-			claimList.addAll(tempList);
-			notifyDataSetChanged();
-		} 
-	} 
+	
+	private class GetSubmittedSync extends AsyncTask<Void, Void, Void> {
+		private GetSubmittedSync() {
+			tempList = new ArrayList<Claim>();
+		}
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			tempList.addAll(ElasticSearchHelper.getInstance().getSubmitted());;
+			return null;
+		}
+		
+		protected void onPostExecute(Void result) {
+			mergeLists();
+		}
+		
+	}
+	
+	private void mergeLists() {
+		claimList.addAll(tempList);
+		notifyDataSetChanged();
+	}
+	
+	public void getSubmittedClaims() {
+		GetSubmittedSync task = new GetSubmittedSync();
+		task.execute();
+	}
 }
 
 

@@ -17,7 +17,6 @@ import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.model.Receipt;
 import team14.expenseexpress.model.Status;
-import team14.expenseexpress.util.BooleanListener;
 import team14.expenseexpress.util.ElasticSearchHelper;
 import team14.expenseexpress.util.LocalFileHelper;
 import android.annotation.SuppressLint;
@@ -55,7 +54,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	private TagsListAdapter tagsListAdapter;
 	private ClaimListAdapter claimsListAdapter;
 	private ApproverAdapter approverAdapter;
-	private ArrayList<Claim> tempList;
 	public static boolean edit = false;
 	
 	@Override
@@ -146,7 +144,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	protected void onResume(){
 		super.onResume();
 		if(Mode.get() == Mode.APPROVER) {
-			approverUpdate();
+			//approverUpdate();
 		} else {
 			claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
 		}
@@ -277,21 +275,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		return true;
 	}
 	
-	public void loadSubmittedClaims() {
-		final ProgressDialog ringProgressDialog = ProgressDialog.show(ClaimListActivity.this, "Please wait ...", "Loading Submitted Claims ...", true);
-			ringProgressDialog.setCancelable(true);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() { 
-
-						claimsListAdapter.setApproverClaimList();
-
-					ringProgressDialog.dismiss();
-			}
-		}).start();
-			
-	}
 	
 	/**
 	 * A method to set the adapter for tags in order to notifyDataSetChanged() 

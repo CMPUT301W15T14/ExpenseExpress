@@ -25,6 +25,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -32,6 +33,7 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -298,11 +300,42 @@ public class ElasticSearchHelper {
 	    return false;
 	}
 	
+	/*
+	private User getUser(String name) {
+		SearchHit<User> sr = null;
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpGet httpGet = new HttpGet(USER_URL + name);
+
+		HttpResponse response = null;
+
+		try {
+			response = httpClient.execute(httpGet);
+		} catch (ClientProtocolException e1) {
+			throw new RuntimeException(e1);
+		} catch (IOException e1) {
+			throw new RuntimeException(e1);
+		}
+		
+		Type searchHitType = new TypeToken<SearchHit<User>>() {}.getType();
+
+		try {
+			sr = gson.fromJson(
+					new InputStreamReader(response.getEntity().getContent()),
+					searchHitType);
+		} catch (JsonIOException e) {
+			throw new RuntimeException(e);
+		} catch (JsonSyntaxException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalStateException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		return sr.getSource();
+	}
 	
-	
-	
-	
-	private void getReceipt(String uri) {
+	private void getReceipt(Expense expense) {
 		
 		Bitmap bitmap = null;
 		HttpPost searchRequest = new HttpPost(RECEIPT_URL + "_search");
@@ -336,7 +369,7 @@ public class ElasticSearchHelper {
 		
 		 // Parses the response of a search
 		 
-		Type searchResponseType = new TypeToken<SearchResponse<byte[]>>() {}.getType();
+		Type searchResponseType = new TypeToken<SearchResponse<T>>() {}.getType();
 		
 		try {
 			SearchResponse<byte[]> esResponse = gson.fromJson(
@@ -360,68 +393,59 @@ public class ElasticSearchHelper {
 			throw new RuntimeException(e);
 		}
 		
-		//ReceiptController.getInstance().setBitmap(bitmap);
+		ReceiptController.getInstance().setBitmap(bitmap);
 	}
 
 	
-	public void getReceiptFromElastic(Receipt receipt){
-		getReceiptSync task = new getReceiptSync(receipt);
+	public void getReceiptFromElastic(Expense expense){
+		getReceiptSync task = new getReceiptSync(expense);
 		task.execute();
 		
 	}
 	
-	private class getReceiptSync extends AsyncTask<Void, Void, Boolean> {
-		Receipt receipt;
-		private getReceiptSync(Receipt receipt) {
-			this.receipt = receipt;
+	private class getReceiptSync extends AsyncTask<Void, Void, Void> {
+		Expense expense;
+		private getReceiptSync(Expense expense) {
+			this.expense = expense;
 		}
 		@Override
-		protected Boolean doInBackground(Void ...params) {
-			getReceipt(receipt.getUri().toString());
+		protected Void doInBackground(Void ...params) {
+			getReceipt(expense);
 
-			return true;
+			return null;
 		}
 
 		
 	}
+	*/
 	private void addReceipt(Expense expense) {
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
-			HttpPost addRequest = new HttpPost(RECEIPT_URL + String.valueOf(expense.getId()));
+			HttpPut addRequest = new HttpPut(RECEIPT_URL + String.valueOf(expense.getId()));
 		
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			Bitmap photo = ReceiptController.getInstance().getBitmap(expense.getReceipt(), context);
 			photo.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 			byte[] imageBytes = baos.toByteArray();
-			Log.i("HTML", RECEIPT_URL + String.valueOf(expense.getId()));
-			Log.i("Length", String.valueOf(imageBytes.length));
-			String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-			Log.i("Length", encodedImage);
+			//String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 			
-			StringEntity stringEntity = new StringEntity(gson.toJson(encodedImage));
-			addRequest.setEntity(stringEntity);
+			ByteArrayEntity entity = new ByteArrayEntity(imageBytes);
+			addRequest.setEntity(entity);
 			addRequest.setHeader("Accept", "application/json");
-			Log.i("gson",stringEntity.toString());
+			
 			HttpResponse response = httpClient.execute(addRequest);
-			Log.i("good","response");
 			String status = response.getStatusLine().toString();
-			Log.i("bad","status");
 			Log.i(TAG, status);
-	
+
 		} catch (JsonIOException e) {
-			Log.i("bad","e");
 			throw new RuntimeException(e);
 		} catch (JsonSyntaxException e) {
-			Log.i("bad",e.getLocalizedMessage());
 			throw new RuntimeException(e);
 		} catch (IllegalStateException e) {
-			Log.i("bad",e.getLocalizedMessage());
 			throw new RuntimeException(e);
 		} catch (IOException e) {
-			Log.i("bad",e.getLocalizedMessage());
 			throw new RuntimeException(e);
 		}
-
 	}
 	
 	public void addReceiptToElastic(Expense expense){
@@ -429,16 +453,16 @@ public class ElasticSearchHelper {
 		task.execute();
 	}
 	
-	private class AddReceiptSync extends AsyncTask<Void, Void, Boolean> {
+	private class AddReceiptSync extends AsyncTask<Void, Void, Void> {
 		Expense expense;
 		
 		private AddReceiptSync(Expense expense) {
 			this.expense = expense;
 		}
 		@Override
-		protected Boolean doInBackground(Void ...params) {
+		protected Void doInBackground(Void ...params) {
 			addReceipt(expense);
-			return true;
+			return null;
 		}
 
 		

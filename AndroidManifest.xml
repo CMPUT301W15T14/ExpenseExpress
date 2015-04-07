@@ -12,6 +12,12 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
     </uses-permission>
 
+    <!-- Add permission for camera (android.permission.CAMERA) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Add permission for writing to external storage (android.permission.WRITE_EXTERNAL_STORAGE) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="18" />

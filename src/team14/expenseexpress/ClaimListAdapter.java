@@ -182,11 +182,6 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView name;
 	}
 
-	public void setApproverClaimList() {
-		//ElasticSearchHelper.getInstance().getSubmitted(claimList);
-		//filteredClaimList.addAll(claimList);
-	}
-	
 	
     public  double haversine(double lat1, double lon1, double lat2, double lon2) {
 	    	double R = 6372.8; // In kilometers
