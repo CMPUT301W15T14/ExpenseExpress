@@ -56,7 +56,7 @@ public final class R {
         public static final int TakeAPhoto=0x7f0a0069;
         public static final int acceptClaimDestinations=0x7f0a0046;
         public static final int acceptClaimTags=0x7f0a0049;
-        public static final int action_settings=0x7f0a0093;
+        public static final int action_settings=0x7f0a0092;
         public static final int addDestGPSButton=0x7f0a0011;
         public static final int addDestLongitude=0x7f0a000e;
         public static final int addDestMap=0x7f0a0012;
@@ -75,9 +75,9 @@ public final class R {
         public static final int addTagTitle=0x7f0a0016;
         public static final int amountText=0x7f0a0064;
         public static final int approveExpenseListTitle=0x7f0a0021;
-        public static final int approveRadio=0x7f0a001b;
-        public static final int approveReturnCommentField=0x7f0a001d;
+        public static final int approveReturnCommentField=0x7f0a001b;
         public static final int approveReturnTitle=0x7f0a001a;
+        public static final int approvedBox=0x7f0a001d;
         public static final int approvedRadio=0x7f0a0073;
         public static final int approverButton=0x7f0a0023;
         public static final int approverClaimTitle=0x7f0a0020;
@@ -85,7 +85,6 @@ public final class R {
         public static final int button_confirm=0x7f0a0072;
         public static final int categorySpinner=0x7f0a0063;
         public static final int categoryTitle=0x7f0a0066;
-        public static final int checkBox1=0x7f0a008e;
         public static final int claimDetailsCurrencyTitle=0x7f0a002a;
         public static final int claimDetailsDestinationsTitle=0x7f0a002b;
         public static final int claimDetailsEndDateTitle=0x7f0a0026;
@@ -111,8 +110,8 @@ public final class R {
         public static final int customDescriptionTitle=0x7f0a0088;
         public static final int destination=0x7f0a0080;
         public static final int destinationList=0x7f0a0039;
-        public static final int destinationName=0x7f0a008f;
-        public static final int destinationReason=0x7f0a0090;
+        public static final int destinationName=0x7f0a008e;
+        public static final int destinationReason=0x7f0a008f;
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a0025;
         public static final int detailsName=0x7f0a002e;
@@ -130,7 +129,7 @@ public final class R {
         public static final int enddate=0x7f0a007e;
         public static final int expenseAmount=0x7f0a0065;
         public static final int expenseCategory=0x7f0a008a;
-        public static final int expenseCost=0x7f0a0092;
+        public static final int expenseCost=0x7f0a0091;
         public static final int expenseCurrency=0x7f0a0089;
         public static final int expenseDateButton=0x7f0a005b;
         public static final int expenseDateView=0x7f0a005c;
@@ -149,10 +148,10 @@ public final class R {
         public static final int expenseDetailsReceiptButton=0x7f0a004b;
         public static final int expenseDetailsTitle=0x7f0a004a;
         public static final int expenseDetialsCategoryTitle=0x7f0a0054;
-        public static final int expenseItem=0x7f0a0091;
+        public static final int expenseItem=0x7f0a0090;
         public static final int expenseListApproveReturnButton=0x7f0a0022;
         public static final int expenseName=0x7f0a0059;
-        public static final int expenseSubmitButton=0x7f0a001e;
+        public static final int expenseSubmitButton=0x7f0a001c;
         public static final int expensename=0x7f0a0084;
         public static final int getCoordinates=0x7f0a006e;
         public static final int getTagListButton=0x7f0a0040;
@@ -169,7 +168,7 @@ public final class R {
         public static final int possibleTagsTitle=0x7f0a0017;
         public static final int receiptSubmitButton=0x7f0a0068;
         public static final int receiptTitle=0x7f0a0067;
-        public static final int returnButton=0x7f0a001c;
+        public static final int returnBox=0x7f0a001e;
         public static final int returnedRadio=0x7f0a0076;
         public static final int signInButton=0x7f0a006f;
         public static final int startDateButton=0x7f0a0037;
