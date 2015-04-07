@@ -125,45 +125,31 @@ public class ApproverAdapter extends BaseAdapter {
 			} else {
 				holder.approverName.setText(claim.getApprover().getName());
 			}
-			view.setOnLongClickListener(new OnLongClickListener() {
-
-				@Override
-				public boolean onLongClick(View arg0) {
-					AlertDialog.Builder adb = new AlertDialog.Builder(activity);
-					adb.setMessage("Menu of " + claim.getName());
-					adb.setCancelable(true);
-					adb.setPositiveButton("Return",new DialogInterface.OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							activity.startActivity(new Intent(activity, ReturnClaimActivity.class));
-						}
-
-					});
-					adb.setNeutralButton("Details",new DialogInterface.OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							activity.startActivity(new Intent(activity, ClaimDetailsActivity.class)); 
-
-						}
-
-					});
-					adb.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-
-						}
-
-					});
-					return false;
-				}
-			});
+			view.setOnClickListener(new OnItemClickListener( position ));
 		}
 		return view;
 	}
+	
+	
+	@SuppressWarnings("unused")
+	private class OnItemClickListener  implements OnClickListener{          
+        private int mPosition;
+         
+        OnItemClickListener(int position){
+             mPosition = position;
+        }
+         
+        @Override
+        public void onClick(View arg0) {
+
+   
+          ClaimListActivity sct = (ClaimListActivity)activity;
+
+         /****  Call  onItemClick Method inside CustomListViewAndroidExample Class ( See Below )****/
+
+            sct.onItemClick(mPosition);
+        }              
+    }   
 	
 }
 
