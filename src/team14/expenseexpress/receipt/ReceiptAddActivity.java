@@ -8,9 +8,13 @@ import java.io.InputStream;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ExpenseController;
+import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.ReceiptController;
 import team14.expenseexpress.model.Receipt;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +30,7 @@ import android.provider.MediaStore.Images.Media;
 import android.util.Config;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -35,7 +40,6 @@ public class ReceiptAddActivity extends Activity {
 	
 	private Bitmap bitmap;
 	private Uri uri;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,8 @@ public class ReceiptAddActivity extends Activity {
 			}
 		};
 		button.setOnClickListener(listener);
+		
+
 	}
 
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -151,4 +157,6 @@ public class ReceiptAddActivity extends Activity {
 		finish();
 	}
 
+
 }
+

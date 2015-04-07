@@ -10,6 +10,7 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.ApproverComment;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.util.ElasticSearchHelper;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -72,7 +73,10 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 			toast("You must pick an option");
 		} else if (checkedA && checkedR) {
 			toast("Only one option allowed");
-		}	else {
+		} else if (comment.getText().toString().isEmpty()){
+			toast("You must leave a comment");
+		}
+			else {
 			ApproverComment approvercomment = new ApproverComment();
 			approvercomment.setApproverName(UserController.getInstance().getCurrentUser().getName());
 			approvercomment.setComment(comment.getText().toString());
@@ -83,7 +87,7 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 			claim.addApproverToList(UserController.getInstance().getCurrentUser().getName());
 			ElasticSearchHelper.getInstance().deleteClaim(claim);
 			ElasticSearchHelper.getInstance().addClaim(claim);
-			finish();
+			startActivity(new Intent(ReturnClaimActivity.this,ClaimListActivity.class));
 		}
 	} 
 }

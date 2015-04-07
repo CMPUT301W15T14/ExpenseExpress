@@ -227,9 +227,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		Claim claim = (Claim) lv1.getItemAtPosition(info.position);
 
 		if (menuItemName.equals("Delete")) {
-			toast(String.valueOf(claim.getId()));
-			ClaimController.getInstance().removeClaim(claim);
-			claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
+			if (claim.getStatus().equals(Status.SUBMITTED)
+					|| (claim.getStatus().equals(Status.APPROVED))) {
+				Toast.makeText(this, "Cannot Delete Claim", Toast.LENGTH_SHORT).show();
+			}
+			else{
+				ClaimController.getInstance().removeClaim(claim);
+				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());}
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals(Status.SUBMITTED)
 					|| (claim.getStatus().equals(Status.APPROVED))) {
@@ -245,7 +249,11 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		} else if (menuItemName.equals("Submit")) {
 			if (claim.getStatus().equals(Status.SUBMITTED)) {
 				toast("Claim already Submitted");
-			} else {
+				
+			} else if (claim.getExpenseList().size() == 0){
+				Toast.makeText(this, "You can not submit a claim w/o an expense", Toast.LENGTH_LONG).show();
+			}
+			else {
 				boolean allcomplete = true;
 				for (Expense expense : claim.getExpenseList().getExpenses()){
 					if (expense.getIncomplete()){

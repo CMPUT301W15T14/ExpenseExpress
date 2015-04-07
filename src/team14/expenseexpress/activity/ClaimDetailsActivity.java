@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.model.ApproverComment;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +41,14 @@ public class ClaimDetailsActivity extends Activity {
 		TextView claimStatusField = (TextView) findViewById(R.id.claimDetailsStatus);
 		claimStatusField.setText(ClaimController.getInstance().getSelectedClaim().getStatus());
 		
+		TextView Approver = (TextView) findViewById(R.id.claimListApproversTitle);
+		if (ClaimController.getInstance().getSelectedClaim().getApprover().getName() != null){
+			Approver.setText(ClaimController.getInstance().getSelectedClaim().getApprover().getName());
+		}
+		else{
+			Approver.setVisibility(View.INVISIBLE);
+		}
+		
 		ListView destinationsList = (ListView) findViewById(R.id.claimListofDestinations);
 		ArrayAdapter<String> destinationsAdapter = 
 			    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ClaimController.getInstance().getSelectedClaim().getDestinationsNames());
@@ -49,11 +59,12 @@ public class ClaimDetailsActivity extends Activity {
 		ArrayAdapter<String> totalCostAdapter = 
 			    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, amountlist);
 		totalAmountList.setAdapter(totalCostAdapter);
+	
 		
 		ListView approverList = (ListView) findViewById(R.id.claimListofApprovers);
-		ArrayList<String> approvers = ClaimController.getInstance().getSelectedClaim().getApproverList();
-		ArrayAdapter<String> approverAdapter = 
-			    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, approvers);
+		ArrayList<ApproverComment> approvers = ClaimController.getInstance().getSelectedClaim().getApproverComments();
+		ArrayAdapter<ApproverComment> approverAdapter = 
+			    new ArrayAdapter<ApproverComment>(this, android.R.layout.simple_list_item_1, approvers);
 		approverList.setAdapter(approverAdapter);
 	}
 }

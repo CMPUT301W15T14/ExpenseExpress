@@ -39,6 +39,7 @@
         android:layout_alignLeft="@+id/receiptTitle"
         android:layout_below="@+id/receiptTitle"
         android:layout_weight="0.82"
+        android:longClickable="true"
         android:src="@drawable/ic_action_search" />
 
     <Space
