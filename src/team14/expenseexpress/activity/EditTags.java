@@ -30,7 +30,13 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-
+/**
+ * Model data class for claim tags so that a claimant's claims can be filtered by tag.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */ 
 public class EditTags extends ExpenseExpressActivity {
 	private EditTags activity;
 
