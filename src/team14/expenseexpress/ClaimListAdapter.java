@@ -96,10 +96,16 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.tags = (TextView) convertView.findViewById(R.id.tags);
 			holder.destination = (TextView) convertView.findViewById(R.id.destination);
 			holder.costs = (TextView) convertView.findViewById(R.id.costs);
+			holder.approver = (TextView) convertView.findViewById(R.id.approverName);
 
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
+		}
+		if(Mode.get() == Mode.APPROVER) {
+			//holder.claim.setText(filteredClaimList.get(0).getApprover().getName());
+		} else {
+			holder.approver.setVisibility(View.INVISIBLE);
 		}
 		holder.claim.setText(filteredClaimList.get(position).getName());
 		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
@@ -152,6 +158,7 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView tags;
 		TextView destination;
 		TextView costs;
+		TextView approver;
 	}
 
 	public void setApproverClaimList() {

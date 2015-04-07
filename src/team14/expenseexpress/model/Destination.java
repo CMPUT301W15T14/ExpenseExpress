@@ -8,8 +8,8 @@ package team14.expenseexpress.model;
 public class Destination {
     private String destination;
     private String reason;
-    private float latitude;
-    private float longtitude;
+    private double latitude;
+    private double longitude;
     
 
     @Override
@@ -20,10 +20,10 @@ public class Destination {
     /**
      * Constructor that initializes the destination String.
      *
-     * @param destination   The destination as a String.
+     * 
      */
-    public Destination(String destination){
-        this.destination = destination;
+    public Destination(){
+       
     }
 
     /**
@@ -63,18 +63,18 @@ public class Destination {
         this.reason = reason;
     }
 
-	public float getLongtitude() {
-		return longtitude;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setLongtitude(float longtitude) {
-		this.longtitude = longtitude;
+	public void setLongitude(double longtitude) {
+		this.longitude = longtitude;
 	}
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 }

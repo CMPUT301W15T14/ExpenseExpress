@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainGreen"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/mainGreen"
     tools:context=".ApproveReturnActivity" >
 
     <TextView
@@ -16,48 +16,50 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Approve/Return"
-        android:textSize="6mm"
-        android:textColor="@color/mainYellow" />
-
-    <RadioButton
-        android:id="@+id/approveRadio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/approveReturnTitle"
-        android:layout_below="@+id/approveReturnTitle"
-        android:layout_marginTop="48dp"
-        android:text="Approve" />
-
-    <RadioButton
-        android:id="@+id/returnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/approveRadio"
-        android:layout_below="@+id/approveRadio"
-        android:text="Return" />
+        android:textColor="@color/mainYellow"
+        android:textSize="6mm" />
 
     <EditText
         android:id="@+id/approveReturnCommentField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/returnButton"
-        android:layout_below="@+id/returnButton"
+        android:layout_alignLeft="@+id/approveReturnTitle"
+        android:layout_below="@+id/approveReturnTitle"
+        android:layout_marginTop="112dp"
         android:ems="10"
         android:hint="Comment Here" >
 
+        <requestFocus />
     </EditText>
 
     <Button
         android:id="@+id/expenseSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="8mm"
-        android:layout_alignLeft="@+id/approveReturnCommentField"
-        android:layout_alignRight="@+id/approveReturnCommentField"
+        android:layout_alignLeft="@+id/approveReturnTitle"
         android:layout_below="@+id/approveReturnCommentField"
-        android:layout_marginTop="16dp"
         android:background="@color/mainYellow"
         android:onClick="onClick_returnClaim"
         android:text="Submit"
         android:textColor="@color/mainGreen" />
+
+    <CheckBox
+        android:id="@+id/approvedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/approveReturnCommentField"
+        android:layout_below="@+id/approveReturnTitle"
+        android:layout_marginTop="42dp"
+        android:onClick="onCick_checkBoxA"
+        android:text="Approve" />
+
+    <CheckBox
+        android:id="@+id/returnBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/approvedBox"
+        android:layout_below="@+id/approvedBox"
+        android:onClick="onCick_checkBoxR"
+        android:text="Return" />
 
 </RelativeLayout>

@@ -74,5 +74,6 @@
     </string-array>
 
     <string name="title_activity_return_claim">ReturnClaimActivity</string>
+    <string name="title_activity_location">LocationActivity</string>
 
 </resources>
