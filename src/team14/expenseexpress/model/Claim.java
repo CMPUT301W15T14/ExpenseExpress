@@ -61,26 +61,28 @@ public class Claim implements Comparable{
     public void setLastSave() {
     	this.lastSave = generateCurrentTime();
     }
-    /**
-     * Adds given approver to the approvers list
-     * @param approver that the user wants to add
-     */
-    public void addApproverToList(String approver) {
-    	this.approvers.add(approver);
-    }
-    /**
-     * 
-     * @return list of approvers
-     */
-    public ArrayList<String> getApproverList() {
-    	return approvers;
-    }
+    
     /**
      * returns instance of lastSave
      * @return the time of the last save
      */
     public long getLastSave() {
     	return this.lastSave;
+    }
+    
+    /**
+    * Adds given approver to the approvers list
+    * @param approver that the user wants to add
+    */
+    public void addApproverToList(String approver) {
+    this.approvers.add(approver);
+    }
+    /**
+    *
+    * @return list of approvers
+    */
+    public ArrayList<String> getApproverList() {
+    return approvers;
     }
     
     /**
@@ -360,7 +362,21 @@ public class Claim implements Comparable{
 				}
 		}
 	
-
+	
+	@Override
+    public boolean equals(Object object)
+    {
+        if(!(object instanceof Claim)) {
+        	throw new ClassCastException();
+        }
+        Claim comparable = (Claim)object;
+        if(this.getId() == comparable.getId()) {
+        	return true;
+        } else {
+        	return false;
+        }
+    }
+	
 	
 	/**
 	 * date To string used to get formatted date objects
