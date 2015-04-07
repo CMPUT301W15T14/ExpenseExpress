@@ -37,5 +37,11 @@ public class TestReceiptModel extends
 		 * Edit a receipt
 		 * Related Use Case: UC19
 		 */
+		Receipt receipt1 = new Receipt();
+		receipt1 = null;
+		expense = new Expense();
+		ReceiptController.getInstance().setSelectedReceipt(receipt1);
+		expense.setReceipt(ReceiptController.getInstance().getSelectedReceipt());
+		assertNull("ReceiptController get and set receipt does not work", expense.getReceipt());
 	}
 }

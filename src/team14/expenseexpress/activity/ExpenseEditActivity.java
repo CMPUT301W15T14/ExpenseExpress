@@ -27,6 +27,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Activity for adding an expense to a claim and editing an expense's information.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */ 
 public class ExpenseEditActivity extends Activity {
 	
 	private GregorianCalendar date;
@@ -44,6 +51,9 @@ public class ExpenseEditActivity extends Activity {
 	
 	private int expenseYear, expenseMonth, expenseDay;
 	
+	/**
+	 * Initializes Views for user interface. 
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +69,7 @@ public class ExpenseEditActivity extends Activity {
 		receiptButton = (Button) findViewById(R.id.addReceipt);
 		expLat = (TextView) findViewById(R.id.expenseLat);
 		expLong = (TextView) findViewById(R.id.expenseLong);
-		
+
 		ArrayAdapter<CharSequence> ctgryAdapter = ArrayAdapter.createFromResource(this,
 		        R.array.Categories, android.R.layout.simple_spinner_item);
 		ctgryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -165,7 +175,11 @@ public class ExpenseEditActivity extends Activity {
 			finish();}
 	}
 
-	
+	/**
+	 * Builds dialog where user chooses the method of inputting geo-coordinates.
+	 * 
+	 * @param v the button clicked
+	 */
 	public void onClick_GPS(View v){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Which Geolocation Device?")

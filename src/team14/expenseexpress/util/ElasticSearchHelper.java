@@ -1,22 +1,16 @@
 package team14.expenseexpress.util;
 
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,31 +19,22 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import org.apache.http.HttpEntity;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-
-import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.controller.Mode;
-import team14.expenseexpress.controller.ReceiptController;
 import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.Expense;
-import team14.expenseexpress.model.Receipt;
 
 public class ElasticSearchHelper {
 	private static final String SUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/submitted/";
-	private static final String RESUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/resubmitted/";
 	private static final String RETURNED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/returned/";
-	private static final String RECEIPT_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/receipts/";
 	private static final String TAG = "ElasticSearchHelper";
 	private Gson gson = new Gson();
     
@@ -219,10 +204,15 @@ public class ElasticSearchHelper {
 	 */
 	public ArrayList<Claim> getSubmitted() {
 
-
 		ArrayList<Claim> claims = new ArrayList<Claim>();
+		String string;
+		if(Mode.get() == Mode.APPROVER) {
+			string = new String(SUBMITTED_URL + "_search");
+		} else {
+			string = new String(RETURNED_URL + "_search");
+		}
 		
-		HttpPost searchRequest = new HttpPost(SUBMITTED_URL + "_search");
+		HttpPost searchRequest = new HttpPost(string);
 
 		SimpleSearchCommand command = new SimpleSearchCommand("*");
 
@@ -278,6 +268,15 @@ public class ElasticSearchHelper {
 		}
 		
 		return claims;
+	}
+	
+	/**
+	 * Gets previously returned claims from server and adds them to current list of claims
+	 * 
+	 * @return updated list of Claims
+	 */
+	public ArrayList<Claim> getReturned() {
+		return getSubmitted();
 	}
 	
 	//http://pulse7.net/android/check-internet-connection-android/     Accessed April.6th, 2015

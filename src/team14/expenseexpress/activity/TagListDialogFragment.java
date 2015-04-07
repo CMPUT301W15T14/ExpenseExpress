@@ -1,5 +1,5 @@
 package team14.expenseexpress.activity;
-//no javadoc here yet!!!
+
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.TagListController;
 import android.annotation.SuppressLint;
@@ -15,7 +15,14 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
-
+/**
+ * Dialog Fragment for the claimant when accessing tags. The user can add new tags and choose which tags to use to filter
+ * the list of expense claims in ClaimListActivity.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */ 
 @SuppressLint("ValidFragment")
 public class TagListDialogFragment extends android.app.DialogFragment {
 	private final ClaimListActivity activity;
@@ -71,6 +78,9 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 		return v;
 	}
 
+	/**
+	 * BaseAdapter implementation for the list of tags.
+	 */
 	public class TagsListAdapter extends BaseAdapter {
 
 		@Override

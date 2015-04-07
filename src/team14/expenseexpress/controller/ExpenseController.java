@@ -13,6 +13,13 @@ import team14.expenseexpress.model.Receipt;
 import team14.expenseexpress.util.LocalFileHelper;
 
 
+/**
+ * Singleton controller for modifying the Expense data model class.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */
 public class ExpenseController {
 	
 	private static ExpenseList expenseList;

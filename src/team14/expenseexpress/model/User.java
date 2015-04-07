@@ -61,8 +61,13 @@ public class User {
      * @return boolean instanceof
      */
 	@Override
-	public boolean equals(Object o){
-		return o instanceof User && name.equals(((User) o).getName());
+	public boolean equals(Object object){
+		if(!(object instanceof User)) {
+        	throw new ClassCastException();
+        }
+		User u = (User)object;
+		return this.getName().equals(u.getName());
+		
 	}
     /** Override
      * method hat gives a hashcode of the username .

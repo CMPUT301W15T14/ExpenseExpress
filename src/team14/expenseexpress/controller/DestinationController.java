@@ -3,8 +3,16 @@ package team14.expenseexpress.controller;
 import team14.expenseexpress.model.Destination;
 import team14.expenseexpress.model.Expense;
 
+/**
+ * Singleton controller class for managing geo-coordinate and destination data models.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */
 public class DestinationController {
 	
+	// singleton
 	private static DestinationController instance = null;
 	private Destination selectedDestination = null;
 	

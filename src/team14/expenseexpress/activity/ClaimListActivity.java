@@ -15,7 +15,6 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Expense;
-import team14.expenseexpress.model.Receipt;
 import team14.expenseexpress.model.Status;
 import team14.expenseexpress.util.ElasticSearchHelper;
 import team14.expenseexpress.util.LocalFileHelper;
@@ -245,9 +244,12 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			}
 		} else if (menuItemName.equals("Details")) {
 			ClaimController.getInstance().setSelectedClaim(claim);
-			startActivity(new Intent(ClaimListActivity.this, ClaimDetailsActivity.class));
+			startActivity(new Intent(ClaimListActivity.this,
+					ClaimDetailsActivity.class));
 		} else if (menuItemName.equals("Submit")) {
-			if (claim.getStatus().equals(Status.SUBMITTED)) {
+			if (Mode.get() == Mode.OFFLINE) {
+				toast("Cannot submit claim in offline mode");
+			} else if (claim.getStatus().equals(Status.SUBMITTED)) {
 				toast("Claim already Submitted");
 				
 			} else if (claim.getExpenseList().size() == 0){

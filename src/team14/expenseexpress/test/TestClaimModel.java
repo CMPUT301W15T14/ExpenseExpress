@@ -4,13 +4,16 @@ package team14.expenseexpress.test;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-import team14.expenseexpress.activity.ClaimEditActivity;
+import team14.expenseexpress.activity.ClaimListActivity;
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.TagListController;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
 import team14.expenseexpress.model.TagList;
+import team14.expenseexpress.model.User;
 import android.test.ActivityInstrumentationTestCase2;
 /**
  * Tests to check Claim and ClaimList model and its methods. Also test the ClaimController and 
@@ -18,14 +21,11 @@ import android.test.ActivityInstrumentationTestCase2;
  * <p>Related Use Cases: UC1, UC3, UC4, UC7, UC9
  */
 public class TestClaimModel extends
-		ActivityInstrumentationTestCase2<ClaimEditActivity> {
-	
-	private final ClaimController claimcontroller = ClaimController.getInstance();
-	private Claim claim = claimcontroller.getNewClaim();
-	
+		ActivityInstrumentationTestCase2<ClaimListActivity> {
+
 	
 	public TestClaimModel() {
-		super(ClaimEditActivity.class);
+		super(ClaimListActivity.class);
 	}
 	
 	/**
@@ -49,27 +49,32 @@ public class TestClaimModel extends
 		GregorianCalendar startdate = new GregorianCalendar(15, 3, 16);
 		GregorianCalendar enddate = new GregorianCalendar(15, 3, 17);
 		
-	//	Destination destination1 = new Destination("Canada");
-	//	Destination destination2 = new Destination("USA");
-		
-		claimcontroller.initialize(getActivity());
-		
+		Destination destination1 = new Destination();
+		Destination destination2 = new Destination();
+		destination1.setDestination("Canada");
+		destination2.setDestination("USA");
+
+		User user = new User("Cheung");
+		Mode.set(Mode.CLAIMANT);
+		UserController.getInstance().setCurrentUser(user);
+		ClaimController.getInstance().initialize(getActivity());
+		Claim claim = ClaimController.getInstance().getNewClaim();
 		/*
 		 * Test add Claim
 		 * Related Use Cases: UC1, UC7
 		 */
 		claim.setName("First Claim");
-	//	claim.addDestination(destination1);
-	//	claim.addDestination(destination2);
+		claim.addDestination(destination1);
+		claim.addDestination(destination2);
 		claim.setStartDate(startdate);
 		claim.setEndDate(enddate);
 		claim.addTag(new ClaimTag("tag1"));
 		
-		claimcontroller.setSelectedClaim(claim);
-		claimcontroller.addClaim(claim);
+		ClaimController.getInstance().setSelectedClaim(claim);
+		ClaimController.getInstance().addClaim(claim);
 		
 		assertEquals("claim get name does not work", "First Claim", claim.getName());
-		assertFalse("claim controller and claimlist works adding a claim does not work", claimcontroller.getClaimList().size() == 0);
+		assertFalse("claim controller and claimlist works adding a claim does not work", ClaimController.getInstance().getClaimList().size() == 0);
 		assertEquals("claim get startdate does not work", startdate, claim.getStartDate());
 		assertEquals("claim get enddate does not work", enddate, claim.getEndDate());
 		assertFalse("claim get destination list dos not work", claim.getDestinations().size() == 0);
@@ -87,7 +92,7 @@ public class TestClaimModel extends
 		enddate = new GregorianCalendar(15, 4, 17);
 		
 		
-		claim = claimcontroller.getSelectedClaim();
+		claim = ClaimController.getInstance().getSelectedClaim();
 		assertEquals("claimcontroller getSelectedClaim does not work", "First Claim", claim.getName());
 		
 		claim.setName("edited Claim");
@@ -107,8 +112,8 @@ public class TestClaimModel extends
 		 * Test delete Claim
 		 * Related Use Cases: UC4
 		 */
-		claimcontroller.removeClaim(claim);
-		assertTrue("claim controller and claimlist deleting a claim does not work", claimcontroller.getClaimList().size() == 0);
+		ClaimController.getInstance().removeClaim(claim);
+		assertTrue("claim controller and claimlist deleting a claim does not work", ClaimController.getInstance().getClaimList().size() == 0);
 	}
 	
 	public void testFilterClaimByTag() {
@@ -136,6 +141,9 @@ public class TestClaimModel extends
 		secondclaim.setName("second Claim");
 		secondclaim.addTag(tag2);
 		
+		User user = new User("Brandon");
+		Mode.set(Mode.CLAIMANT);
+		UserController.getInstance().setCurrentUser(user);
 		ClaimController.getInstance().initialize(getActivity());
 		ClaimController.getInstance().addClaim(firstclaim);
 		ClaimController.getInstance().addClaim(secondclaim);

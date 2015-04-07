@@ -4,7 +4,12 @@ import java.util.ArrayList;
 
 import team14.expenseexpress.activity.ClaimDetailsActivity;
 import team14.expenseexpress.activity.ClaimListActivity;
+import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.ClaimList;
+import team14.expenseexpress.model.Status;
+import team14.expenseexpress.model.User;
 import team14.expenseexpress.util.ElasticSearchHelper;
 
 import android.app.Activity;
@@ -177,7 +182,17 @@ public class ApproverAdapter extends BaseAdapter {
 	}
 	
 	private void mergeLists() {
-		claimList.addAll(tempList);
+		//claimList.addAll(tempList);
+		for(Claim c:tempList) {
+			if(ClaimController.getInstance().getClaimList().getClaims().contains(c)) {
+				if(c.getApprover().equals(UserController.getInstance().getCurrentUser())) {
+				ClaimController.getInstance().addClaim(c);
+				claimList.add(c);
+				}
+			} else if(c.getApprover().equals(new User(""))){
+				claimList.add(c);
+			}
+		}
 		notifyDataSetChanged();
 	}
 	
