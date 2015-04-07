@@ -117,6 +117,10 @@
             android:name="team14.expenseexpress.LocationActivity"
             android:label="@string/title_activity_location" >
         </activity>
+        <activity
+            android:name="team14.expenseexpress.HomeGeo"
+            android:label="@string/title_activity_home_geo" >
+        </activity>
     </application>
 
 </manifest>

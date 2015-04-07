@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import team14.expenseexpress.ClaimListAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
+import team14.expenseexpress.HomeGeo;
 import team14.expenseexpress.R;
 import team14.expenseexpress.activity.TagListDialogFragment.TagsListAdapter;
 import team14.expenseexpress.controller.ClaimController;
@@ -22,7 +23,9 @@ import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -34,7 +37,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +69,11 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		displayUiBasedOnMode();
 	}
 	
+	public void addHomeGeo(){
+		Intent intent = new Intent(ClaimListActivity.this,
+				HomeGeo.class);
+		startActivity(intent);
+	}
 	/**
 	 * Hides UI that's irrelevant to the mode chosen by the user
 	 */

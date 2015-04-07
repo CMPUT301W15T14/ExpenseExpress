@@ -5,6 +5,5 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
-    <item android:id="@+id/homeGeoMenu" android:title="Set Home Geolocation" android:menuCategory="secondary"></item>
 
 </menu>
