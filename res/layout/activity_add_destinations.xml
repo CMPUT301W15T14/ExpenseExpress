@@ -36,13 +36,13 @@
     </EditText>
 
     <TextView
-        android:id="@+id/addDestLongtitude"
+        android:id="@+id/addDestLongitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/AddDestLatitude"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/AddDestLatitude"
-        android:text="Longtitude:"
+        android:text="Longitude:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
@@ -58,9 +58,9 @@
         android:id="@+id/addDestGPSButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addDestLongtitude"
+        android:layout_alignLeft="@+id/addDestLongitude"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/addDestLongtitude"
+        android:layout_below="@+id/addDestLongitude"
         android:text="Add By GPS" />
 
     <Button
