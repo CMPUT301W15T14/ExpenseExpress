@@ -360,7 +360,7 @@ public class ElasticSearchHelper {
 			throw new RuntimeException(e);
 		}
 		
-		//ReceiptController.getInstance().setBitmap(bitmap);
+		ReceiptController.getInstance().setBitmap(bitmap);
 	}
 
 	
@@ -378,7 +378,6 @@ public class ElasticSearchHelper {
 		@Override
 		protected Boolean doInBackground(Void ...params) {
 			getReceipt(receipt.getUri().toString());
-
 			return true;
 		}
 
@@ -397,7 +396,7 @@ public class ElasticSearchHelper {
 			Log.i("Length", String.valueOf(imageBytes.length));
 			String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 			Log.i("Length", encodedImage);
-			
+			gson = new Gson();
 			StringEntity stringEntity = new StringEntity(gson.toJson(encodedImage));
 			addRequest.setEntity(stringEntity);
 			addRequest.setHeader("Accept", "application/json");
