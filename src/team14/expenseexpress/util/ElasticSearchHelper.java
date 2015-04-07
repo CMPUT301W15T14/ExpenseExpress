@@ -64,7 +64,11 @@ public class ElasticSearchHelper {
     	}
     	return instance;
     }
-    
+	/**
+	 * Attempts to add given claim to Server
+	 * @param claim being added
+	 * @return boolean, True if is successful
+	 */
 	private boolean add(Claim claim) {
 		boolean value = false;
 		HttpClient httpClient = new DefaultHttpClient();
@@ -99,7 +103,11 @@ public class ElasticSearchHelper {
 		}
 		return value;
 	}
-	
+	/**
+	 * Attempts to Delete given claim from Server
+	 * @param claim being deleted
+	 * @return boolean, True if is successful
+	 */
 	private boolean delete(Claim claim) {
 		boolean value = false;
 		HttpClient httpClient = new DefaultHttpClient();
@@ -131,17 +139,26 @@ public class ElasticSearchHelper {
 		}
 		return value;
 	}
-	
+	/**
+	 * Adds claim to AddClaimSync to be synchronized with rest of Server 
+	 * @param claim to be added
+	 */
 	public void addClaim(Claim claim) {
 		AddClaimSync task = new AddClaimSync(claim);
 		task.execute();
 	}
-
+	/**
+	 * Adds claim to DeleteClaimSync to be synchronized with rest of Server 
+	 * @param claim to be deleted
+	 */
 	public void deleteClaim(Claim claim) {
 		DeleteClaimSync task = new DeleteClaimSync();
 		task.execute(claim);
 	}
-	
+	/**
+	 * 
+	 *Synchronizes the added claims with the Server
+	 */
 	private class AddClaimSync extends AsyncTask<Void, Void, Boolean> {
 		
 		Claim claim;
@@ -167,7 +184,10 @@ public class ElasticSearchHelper {
 		}
 		
 	}
-	
+	/**
+	 * Synchronizes the deleted claims from the server
+	 *
+	 */
 	private class DeleteClaimSync extends AsyncTask<Claim, Void, Boolean> {
 
 		@Override
@@ -180,8 +200,17 @@ public class ElasticSearchHelper {
 		}
 		
 	}
+<<<<<<< HEAD
+	/**
+	 * Gets previously submitted claims from server and adds them to current list of claims
+	 * @param claims local list of Claims
+	 * @return updated list of Claims
+	 */
+	public ArrayList<Claim> getSubmitted(ArrayList<Claim> claims) {
+=======
 	
 	public ArrayList<Claim> getSubmitted() {
+>>>>>>> 34a5f30ded65968c255b24051a969b69c3881a93
 
 		ArrayList<Claim> claims = new ArrayList<Claim>();
 		
@@ -213,9 +242,9 @@ public class ElasticSearchHelper {
 			throw new RuntimeException(e);
 		}
 		
-		/**
-		 * Parses the response of a search
-		 */
+		
+		 // Parses the response of a search
+		 
 		Type searchResponseType = new TypeToken<SearchResponse<Claim>>() {}.getType();
 		
 		try {
@@ -244,6 +273,10 @@ public class ElasticSearchHelper {
 	}
 	
 	//http://pulse7.net/android/check-internet-connection-android/     Accessed April.6th, 2015
+	/**
+	 * checks to see if can connect to Server
+	 * @return True if can connect, false if cannot
+	 */
 	public static boolean isNetworkAvailable() {
 		// Get Connectivity Manager class object from Systems Service
 		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);

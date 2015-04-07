@@ -62,7 +62,9 @@ public class ReceiptAddActivity extends Activity {
 	}
 
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-
+	/**
+	 * Takes a picture using the phone's camera and saves it
+	 */
 	public void takeAPhoto() {
 	// TODO: Create an intent with the action
 	// MediaStore.ACTION_IMAGE_CAPTURE
@@ -122,7 +124,10 @@ public class ReceiptAddActivity extends Activity {
 			}
 		}
 	}
-		
+		/**
+		 * Submits receipt and returns user to previous screen
+		 * @param v of type View
+		 */
 	public void OnClick_SubmitReceipt(View v){
 		
 		ReceiptController.getInstance().getSelectedReceipt().setUri(uri);

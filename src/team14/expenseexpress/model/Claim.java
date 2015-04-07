@@ -55,19 +55,30 @@ public class Claim implements Comparable{
 	    this.setApprover(new User(""));
 	    this.approvers = new ArrayList<String>();
     }
-
+    /**
+     * Setter, saves time of last save to current time
+     */
     public void setLastSave() {
     	this.lastSave = generateCurrentTime();
     }
-    
+    /**
+     * Adds given approver to the approvers list
+     * @param approver that the user wants to add
+     */
     public void addApproverToList(String approver) {
     	this.approvers.add(approver);
     }
-    
+    /**
+     * 
+     * @return list of approvers
+     */
     public ArrayList<String> getApproverList() {
     	return approvers;
     }
-    
+    /**
+     * returns instance of lastSave
+     * @return the time of the last save
+     */
     public long getLastSave() {
     	return this.lastSave;
     }
@@ -137,7 +148,10 @@ public class Claim implements Comparable{
             tags.add(tag);
         }
     }
-    
+    /**
+     * Removes the given tag from tags list
+     * @param tag the tag being removed
+     */
     public void removeTag(ClaimTag tag) {
             tags.remove(tag);
     }
@@ -159,6 +173,10 @@ public class Claim implements Comparable{
     public ArrayList<Destination> getDestinations() {
         return destinations;
     }
+    /**
+     * For each destinations in des, a destination is added to list
+     * @return list of destinations of type ArrayList String
+     */
     public ArrayList<String> getDestinationsNames(){
     	ArrayList <String> list = new ArrayList<String>();
     	ArrayList <Destination> des = getDestinations();
@@ -304,14 +322,19 @@ public class Claim implements Comparable{
 
 
 
-
+    /**
+     * Setter for the approverComments
+     * @param approverComments 
+     */
     public void setApproverComments(ArrayList<ApproverComment> approverComments) {
         this.approverComments = approverComments;
     }
 
-
+    /**
+     * returns the claimant
+     * @return claimant of type User
+     */
 	public User getClaimant() {
-		// TODO Auto-generated method stub
 		return claimant;
 	}
 	
@@ -364,11 +387,18 @@ public class Claim implements Comparable{
 		}
 		return (String) android.text.format.DateFormat.format("yyyy-MM-dd",this.endDate);
 	}
-	
+	/**
+	 * Sets current instance of totalAmount to the given amount
+	 * Amount is total of all expenses
+	 * @param amount is a String ArrayList
+	 */
 	public void setTotalAmounts(ArrayList<String> amount) {
 		this.totalAmount = amount;
 	}
-	
+	/**
+	 * Returns the totaled ammount of expenses
+	 * @return String ArrayList of the total Amount of expenses
+	 */
 	public ArrayList<String> getTotalAmounts() {
 		return totalAmount;
 	}
@@ -379,11 +409,17 @@ public class Claim implements Comparable{
 		
 		return this.startDate.compareTo(otherClaim.startDate);
 	}
-
+	/**
+	 * Gets current approver
+	 * @return current approver of type User
+	 */
 	public User getApprover() {
 		return approver;
 	}
-
+	/**
+	 * Sets the given approver as the current User
+	 * @param approver is the given approver
+	 */
 	public void setApprover(User approver) {
 		this.approver = approver;
 	}

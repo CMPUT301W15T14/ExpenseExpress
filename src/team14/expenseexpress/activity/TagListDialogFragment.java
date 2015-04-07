@@ -28,7 +28,10 @@ public class TagListDialogFragment extends android.app.DialogFragment {
 		super.onStop();
 		activity.filterClaimsByTags(TagListController.getInstance().getChosenTags().getTags());		
 	}
-
+/**
+ * Constructor
+ * @param activity
+ */
 	public TagListDialogFragment(ClaimListActivity activity) {
 		this.activity = activity;
 	}
