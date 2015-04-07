@@ -185,8 +185,7 @@ public class ElasticSearchHelper {
 		
 	}
 	
-	public ArrayList<Claim> getClaims() {
-		ArrayList<Claim> claims = new ArrayList<Claim>();
+	public ArrayList<Claim> getSubmitted(ArrayList<Claim> claims) {
 
 		HttpPost searchRequest = new HttpPost(SUBMITTED_URL + "_search");
 
@@ -245,7 +244,6 @@ public class ElasticSearchHelper {
 		
 		return claims;
 	}
-	
 	
 	//http://pulse7.net/android/check-internet-connection-android/     Accessed April.6th, 2015
 	public static boolean isNetworkAvailable() {

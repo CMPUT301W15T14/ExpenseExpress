@@ -19,6 +19,8 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -48,7 +50,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	private TagsListAdapter tagsListAdapter;
 	private ClaimListAdapter claimsListAdapter;
-
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		case Mode.CLAIMANT:
 			subtitle += " - Claimant";
 			break;
+		case Mode.OFFLINE:
+			subtitle += " - Offline";
 		}
 		textView_usernameAndMode.setText(subtitle);
 	}
@@ -100,6 +104,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	private void initializeListViewClaimList() {
 		final ListView listView_claimList = (ListView) findViewById(R.id.claimListView);
 		claimsListAdapter = new ClaimListAdapter(this);
+		if(Mode.get() == Mode.APPROVER) {
+			loadSubmittedClaims();
+		}
 		setClaimListAdapter(claimsListAdapter);
 		listView_claimList.setAdapter(claimsListAdapter);
 		registerForContextMenu(listView_claimList);
@@ -222,8 +229,26 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 					ClaimDetailsActivity.class));
 		} else if (menuItemName.equals("Submit")) {
 			ElasticSearchHelper.getInstance().addClaim(claim);
+			toast(String.valueOf(claim.getId()));
 		}
 		return true;
+	}
+	
+	public void loadSubmittedClaims() {
+		final ProgressDialog ringProgressDialog = ProgressDialog.show(ClaimListActivity.this, "Please wait ...", "Loading Submitted Claims ...", true);
+			ringProgressDialog.setCancelable(true);
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() { 
+					try {
+						claimsListAdapter.setApproverClaimList();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ringProgressDialog.dismiss();
+			}
+		}).start();
 	}
 	
 	/**
