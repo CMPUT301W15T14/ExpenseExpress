@@ -11,6 +11,7 @@ import team14.expenseexpress.activity.ReturnClaimActivity;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.util.BooleanListener;
 import team14.expenseexpress.util.ElasticSearchHelper;
 
 import android.app.Activity;
@@ -29,22 +30,24 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Toast;
 
-public class ApproverAdapter extends BaseAdapter {
-
+public class ApproverAdapter extends BaseAdapter implements team14.expenseexpress.util.BooleanListener.Listener {
+	
 	private Activity activity;
 	private static ArrayList<Claim> claimList;
 	private LayoutInflater inflater;
-	//public Resources resources;
 	Claim claim;
-
+	
+	BooleanListener listener;
+	
 	public ApproverAdapter(Activity activity) {
 		this.claimList = new ArrayList<Claim>();
 		this.activity = activity;
-		//this.resources = resources;
 		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		listener = new BooleanListener();
+		listener.setBooleanListener(listener);
 	}
-
 	
 	public void getSubmittedClaims(){
 		final ProgressDialog ringProgressDialog = ProgressDialog.show(activity, "Please wait ...", "Loading Submitted Claims ...", true);
@@ -53,15 +56,12 @@ public class ApproverAdapter extends BaseAdapter {
 
 			@Override
 			public void run() { 
-
-					claimList = ElasticSearchHelper.getInstance().getSubmitted();
-					//notifyDataSetChanged();
-
+				claimList = ElasticSearchHelper.getInstance().getSubmitted();
 				ringProgressDialog.dismiss();
-		}
-	}).start();
+			}
+		}).start();
 	}
-
+	
 	@Override
 	public int getCount() {
 		if(claimList.size() <=0) {
@@ -180,7 +180,17 @@ public class ApproverAdapter extends BaseAdapter {
 
             sct.onItemClick(claimList.get(mPosition));
         }              
-    }   
+    }
+
+	@Override
+	public void onStateChange(boolean state) {
+		if(state) {
+			Toast.makeText(activity, "Data Loaded", Toast.LENGTH_SHORT).show();
+			notifyDataSetChanged();
+		} else {
+			Toast.makeText(activity, "Boolean Off", Toast.LENGTH_SHORT).show();
+		}
+	} 
 	
 }
 

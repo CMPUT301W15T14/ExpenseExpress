@@ -21,6 +21,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Using Google static maps web API, load maps based on coordinates and calculate geo-coordinates from
+ * clicked position on said map. Also allows manipulation of map via movement and zoom controls.
+ * 
+ * @date April 7, 2015
+ * @author Team 14
+ * @version 1.5
+ */
 public class MapActivity extends Activity {
 	
 	private String latitude, longitude;
@@ -36,6 +44,8 @@ public class MapActivity extends Activity {
 	private final double scrollSpeed = 75;
 	private boolean user;
 	private boolean expense;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,6 +80,7 @@ public class MapActivity extends Activity {
 		showMap();
 	}
 	
+	// Not used in final release
 	private void generateTestMarkers() {
 		markers.add("&markers=color:blue%7Clabel:S%7C0,10");
 		markers.add("%7C5,10");
@@ -92,6 +103,14 @@ public class MapActivity extends Activity {
 		markers.add("%7C90,10");		
 	}
 
+
+	/**
+	 * Implementation of OnTouchListener that translates the pixel position into
+	 * geo-coordinates.
+	 * 
+	 * Mathematical approximations are used rather than haversine.
+	 * 
+	 */
 	public class MapOnTouchListener implements View.OnTouchListener{
 
 		@Override
@@ -105,6 +124,11 @@ public class MapActivity extends Activity {
 			double latitudeDoubleAbs = Math.abs(latitudeDouble);
 			double latitudeFactor = 0.0;
 			
+			// Explanation of the math: the pixels per degree latitude changes depending on the absolute
+			// value of the latitude (due to the Google map image being a mercator projection.
+			// This is accounted for (approximately) below with the switch-case.
+			// The latitudeFactor below is based on pixel difference in 1 degree latitude at a zoom level of 8.
+			// Longitude does not need correction.
 			int latitudeTensDigit = (int) (latitudeDoubleAbs+5)/10;
 			switch (latitudeTensDigit){
 			case 0:
@@ -136,10 +160,11 @@ public class MapActivity extends Activity {
 				break;
 			}
 			
+			// The pixel difference ("delta px" in other words) is a function of the zoom level:
 			double pixelDifferencePerDegreeLatitude = latitudeFactor/(Math.pow(2,8-zoom));
 			double pixelDifferencePerDegreeLongitude = 320.0/(Math.pow(2,8-zoom));
-			
-			
+
+                        // Finally, the paramter MotionEvent's x and y pixel coordinates are converted to geo-coordinates.
 			int pixelClickedRelativeToCenterY = (maxY/2)-pixelY;
 			double latitudeClicked = Double.valueOf(latitude) + pixelClickedRelativeToCenterY / pixelDifferencePerDegreeLatitude;
 			
@@ -150,6 +175,8 @@ public class MapActivity extends Activity {
 			// addMarker(latitudeClicked, longitudeClicked);
 			DecimalFormat df = new DecimalFormat("#.#####");
 			df.format(0.912385);
+			
+		// The block below sets either the Home geo-coordinates, that of an expense, or one of the ones of a claim.
 	    	if (user){
 	    		UserController.getInstance().setLatitude(Double.valueOf(df.format(latitudeClicked)));
 	    		UserController.getInstance().setLongitude(Double.valueOf(df.format(longitudeClicked)));
@@ -167,6 +194,9 @@ public class MapActivity extends Activity {
 			return false;
 		}
 
+                /**
+                 * Adds a marker to the Google static map. Not used in final delivery.
+                 */
 		private void addMarker(double latitude, double longitude) {
 			String label = "J";
 			String markerString = "&markers=color:red%7Clabel:"+label+"%7C" + latitude + "," + longitude;
@@ -175,17 +205,25 @@ public class MapActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Shows the map using Google static maps web API.
+	 */ 
 	private void showMap(){
 		textView_zoom.setText("Zoom: "+zoom);
-		
 		new DownloadMapTask().execute(latitude, longitude);
 	}
 	
+	/**
+	 * Updates the Google static map with one zoomed in by a factor of 2.
+	 */ 
 	public void onClick_zoomIn(View v){
 		zoom++;
 		showMap();
 	}
 	
+	/**
+	 *  Updates the Google static map with one zoomed out by a factor of 2.
+	 */
 	public void onClick_zoomOut(View v){
 		if (zoom > 0){
 			zoom--;
@@ -193,6 +231,9 @@ public class MapActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Toggles between roadmap and satellite views of the google static map.
+	 */ 
 	public void onClick_toggleView(View v){
 		if (mapType.equals("roadmap")){
 			mapType = "satellite";
@@ -202,13 +243,29 @@ public class MapActivity extends Activity {
 		showMap();
 	}
 	
+	/**
+	 * Implemention of AsyncTask that downloads a Google static map based on latitude, longitude, zoom and map type.
+	 * 
+	 * The String... params takes a latitude and longitude as Strings.
+	 */ 
 	public class DownloadMapTask extends AsyncTask<String, Void, Bitmap>{
 
+		/**
+		 * Updates the map ImageView on the UI thread.
+		 */
 		@Override
 		protected void onPostExecute(Bitmap result) {
 	        map.setImageBitmap(result);
 	    }
 		
+		/**
+		 * Queries the Google static maps API for a specifc map image and returns it for onPostExecute.
+		 * 
+		 * Manages a background thread for this automatically.
+		 * 
+		 */
+		 
+		 // Some of the code used from http://stackoverflow.com/questions/8992964/android-load-from-url-to-bitmap (silentduke's answer), April 6, 2015
 		@Override
 		protected Bitmap doInBackground(String... coordinates) {
 			String latitude = coordinates[0];
@@ -219,7 +276,6 @@ public class MapActivity extends Activity {
 			for (int i = 0; i < markers.size(); i++){
 				url += markers.get(i);
 			}
-			
 			Bitmap googleMap = null;
 			try {
 	            InputStream in = new java.net.URL(url).openStream();
@@ -232,30 +288,51 @@ public class MapActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Increases the center point's latitude (moves the map north) and updates with a new map image.
+	 * 
+	 * The latitude increase is proportional to the zoom level, so a consistent "movement" of the map is achieved
+	 * regardless of zoom level.
+	 */ 
 	public void onClick_up(View v){
-	
 		double latitudeDouble = Double.valueOf(latitude);
 		latitudeDouble += scrollSpeed/Math.pow(2,zoom);
 		latitude = "" + latitudeDouble;
 		showMap();
 	}
 	
+	/**
+	 * Decreases the center point's latitude (moves the map south) and updates with a new map image.
+	 * 
+	 * The latitude decrease is proportional to the zoom level, so a consistent "movement" of the map is achieved
+	 * regardless of zoom level.
+	 */ 
 	public void onClick_down(View v){
-		
 		double latitudeDouble = Double.valueOf(latitude);
 		latitudeDouble -= scrollSpeed/Math.pow(2,zoom);
 		latitude = "" + latitudeDouble;
 		showMap();
 	}
 	
+	/**
+	 * Decreases the center point's longitude (moves the map west) and updates with a new map image.
+	 * 
+	 * The longitude decrease is proportional to the zoom level, so a consistent "movement" of the map is achieved
+	 * regardless of zoom level.
+	 */ 
 	public void onClick_left(View v){
-		
 		double longitudeDouble = Double.valueOf(longitude);
 		longitudeDouble -= scrollSpeed/Math.pow(2,zoom);
 		longitude = "" + longitudeDouble;
 		showMap();
 	}
 	
+	/**
+	 * Increases the center point's longitude (moves the map east) and updates with a new map image.
+	 * 
+	 * The longitude increase is proportional to the zoom level, so a consistent "movement" of the map is achieved
+	 * regardless of zoom level.
+	 */ 
 public void onClick_right(View v){
 		
 		double longitudeDouble = Double.valueOf(longitude);
