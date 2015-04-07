@@ -54,12 +54,8 @@ public class ExpenseListActivity extends Activity {
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList);
 		Button ApproveButton = (Button) findViewById(R.id.ApproveButton);
 		Button ExpenseButton = (Button) findViewById(R.id.addExpenseButton);
-<<<<<<< HEAD
 		context = this.getBaseContext();
-=======
-		
-		// Show appropriate button to the role the user chose.
->>>>>>> 1e69d77a01986196704254dd0311a5e7cefad0bc
+
 		if (Mode.get() == Mode.APPROVER) {
 			ApproveButton.setVisibility(View.VISIBLE);
 			ExpenseButton.setVisibility(View.INVISIBLE);
