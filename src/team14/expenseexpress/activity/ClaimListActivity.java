@@ -63,7 +63,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     	LayoutInflater.from(this);
     	if(Mode.get() == Mode.APPROVER) {
     		final ListView approverView = (ListView) findViewById(R.id.claimListView);
-    		approverAdapter = new ApproverAdapter(this, ClaimController.getInstance().getClaimList().getClaims());
+    		approverAdapter = new ApproverAdapter(this, ClaimController.getInstance().getSubmittedList().getClaims());
     		approverView.setAdapter(approverAdapter);
     		approverAdapter.getSubmittedClaims();
     	} else {

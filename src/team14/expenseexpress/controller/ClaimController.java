@@ -22,6 +22,7 @@ import android.content.Context;
 public class ClaimController {
 	private Context context;
 	private ClaimList claimList;
+	private ClaimList submittedList;
 	private Claim selectedClaim;
 	
 	// singleton
@@ -67,6 +68,9 @@ public class ClaimController {
 	 */
 	public void initialize(Context context){
 		this.context = context;
+		if(Mode.get() == Mode.APPROVER) {
+			this.submittedList = new ClaimList();
+		}
 		loadLocalClaims();
 	}
 	/**
@@ -105,6 +109,11 @@ public class ClaimController {
 	private void loadLocalClaims() {
 		this.claimList = LocalFileHelper.getInstance(context).loadClaims();
 	}
-
+	public ClaimList getSubmittedList() {
+		return submittedList;
+	}
+	public void setSubmittedList(ClaimList submittedList) {
+		this.submittedList = submittedList;
+	}
 }
 
