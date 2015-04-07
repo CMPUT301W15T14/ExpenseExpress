@@ -96,7 +96,7 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.tags = (TextView) convertView.findViewById(R.id.tags);
 			holder.destination = (TextView) convertView.findViewById(R.id.destination);
 			holder.costs = (TextView) convertView.findViewById(R.id.costs);
-			holder.approver = (TextView) convertView.findViewById(R.id.approverName);
+			holder.approver = (TextView) convertView.findViewById(R.id.approverNameText);
 
 			convertView.setTag(holder);
 		} else {
@@ -162,7 +162,7 @@ public class ClaimListAdapter extends BaseAdapter {
 	}
 
 	public void setApproverClaimList() {
-		ElasticSearchHelper.getInstance().getSubmitted(claimList);
+		claimList = ElasticSearchHelper.getInstance().getSubmitted(claimList);
 		filteredClaimList.addAll(claimList);
 	}
 }

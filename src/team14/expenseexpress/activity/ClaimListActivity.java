@@ -56,8 +56,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_list);
     	ClaimController.getInstance().initialize(this);
+    	LayoutInflater.from(this);
+    	
     	TagListController.getInstance().initialize();
-		LayoutInflater.from(this);
 		initializeListViewClaimList();
 		setSubtitle();
 		displayUiBasedOnMode();
@@ -260,7 +261,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				public void run() { 
 					try {
 						claimsListAdapter.setApproverClaimList();
-						claimsListAdapter.notifyDataSetChanged();
+						claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
