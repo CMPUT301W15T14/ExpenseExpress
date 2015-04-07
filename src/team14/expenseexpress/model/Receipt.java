@@ -19,7 +19,9 @@ public class Receipt {
     	
     }
 
-
+    public String getImage(){
+    	return this.image;
+    }
 
 	public void BitmapToString(Bitmap bitmap){
 	     ByteArrayOutputStream baos=new  ByteArrayOutputStream();
