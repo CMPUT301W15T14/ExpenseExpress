@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import team14.expenseexpress.model.Receipt;
 
+
 public class ReceiptController {
 	
 	private Receipt selectedReceipt;

@@ -6,6 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+/**
+ * The Main Activity that runs on Application start.
+ * 
+ * @author Team 14
+ * 
+ */
+
 public abstract class ExpenseExpressActivity extends Activity {
 	
 	

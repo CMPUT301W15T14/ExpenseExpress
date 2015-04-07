@@ -3,16 +3,13 @@ package team14.expenseexpress;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
-import team14.expenseexpress.util.ElasticSearchHelper;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;

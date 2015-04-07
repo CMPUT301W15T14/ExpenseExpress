@@ -3,9 +3,7 @@ package team14.expenseexpress;
 
 import java.util.ArrayList;
 
-import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.Expense;
-import team14.expenseexpress.model.ExpenseList;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+/**
+ * An ExpenseListAdapter which extends the BaseAdapter. Shows information related to each claim shown within the 
+ * ExpenseListView for both the Approver and Claimant.
+ * 
+ * @author Team 14
+ * 
+ */
 
 public class ExpenseListAdapter extends BaseAdapter {
 	

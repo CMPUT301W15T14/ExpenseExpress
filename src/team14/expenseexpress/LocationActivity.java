@@ -1,23 +1,23 @@
 package team14.expenseexpress;
 
+/**
+ * Activity used to obtain current user coordinates by GPS.
+ * 
+ * @author Team 14
+ * 
+ */
 
-import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.DestinationController;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.controller.UserController;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class LocationActivity extends Activity implements LocationListener {
 	

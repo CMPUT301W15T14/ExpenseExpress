@@ -30,6 +30,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * In lab code: https://github.com/joshua2ua/BogoPicLab    Accessed: April.6th, 2015
+ * 
+ * Activity used for adding a Receipt attached to an Expense.
+ * 
+ * 
+ * @author Team 14
+ *
+ */
 
 public class ReceiptAddActivity extends Activity {
 	

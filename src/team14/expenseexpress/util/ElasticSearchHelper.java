@@ -32,6 +32,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.Claim;
 
+/**
+ * In Lab Code:  https://github.com/joshua2ua/AndroidElasticSearch  Accessed  April. 6, 2015
+ * 
+ * Allows the use of ElasticSearch for submitting/returning Claims.
+ * 
+ * @author Team 14
+ *
+ */
+
 public class ElasticSearchHelper {
 	private static final String SUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/submitted/";
 	private static final String RETURNED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/returned/";
