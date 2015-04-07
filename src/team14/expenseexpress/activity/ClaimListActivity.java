@@ -23,7 +23,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -221,32 +220,20 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
 		int menuItemIndex = item.getItemId();
-		switch(Mode.get()) {
-		case(Mode.APPROVER) :
-			menuItems = getResources().getStringArray(R.array.LongClickMenuApprov);
-			break;
-		case(Mode.CLAIMANT) :
-			menuItems = getResources().getStringArray(
-					R.array.LongClickMenu);
-			break;
-		}
+		menuItems = getResources().getStringArray(R.array.LongClickMenu);
+
 		String menuItemName = menuItems[menuItemIndex];
 
 		Claim claim = (Claim) lv1.getItemAtPosition(info.position);
 
 		if (menuItemName.equals("Delete")) {
-			if(Mode.get() == Mode.APPROVER) {
-				ElasticSearchHelper.getInstance().deleteClaim(claim);
-			} else {
-				toast(String.valueOf(claim.getId()));
-				ClaimController.getInstance().removeClaim(claim);
-				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
-			}
+			toast(String.valueOf(claim.getId()));
+			ClaimController.getInstance().removeClaim(claim);
+			claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals(Status.SUBMITTED)
-					|| (claim.getStatus().equals("approved"))) {
-				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT)
-						.show();
+					|| (claim.getStatus().equals(Status.APPROVED))) {
+				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT).show();
 			} else {
 				edit = true;
 				ClaimController.getInstance().setSelectedClaim(claim);
@@ -254,10 +241,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			}
 		} else if (menuItemName.equals("Details")) {
 			ClaimController.getInstance().setSelectedClaim(claim);
-			startActivity(new Intent(ClaimListActivity.this,
-					ClaimDetailsActivity.class));
+			startActivity(new Intent(ClaimListActivity.this, ClaimDetailsActivity.class));
 		} else if (menuItemName.equals("Submit")) {
-			if (claim.getStatus().equals("Submitted")) {
+			if (claim.getStatus().equals(Status.SUBMITTED)) {
 				toast("Claim already Submitted");
 			} else {
 				boolean allcomplete = true;
@@ -267,15 +253,18 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 					}
 				}
 				if (allcomplete){
-				claim.setStatus("Submitted");
-				ElasticSearchHelper.getInstance().addClaim(claim);
-				for (Expense expense : claim.getExpenseList().getExpenses()){
-					Receipt receipt = expense.getReceipt();
-					if (!receipt.getUri().toString().isEmpty())
-						Toast.makeText(this, receipt.getUri().toString(), Toast.LENGTH_LONG).show();
-						ElasticSearchHelper.getInstance().addReceiptToElastic(expense);
-				}}
-				else{
+					claim.setStatus(Status.SUBMITTED);
+					ElasticSearchHelper.getInstance().addClaim(claim);
+					for (Expense expense : claim.getExpenseList().getExpenses()){
+						Receipt receipt = expense.getReceipt();
+						if (receipt != null) {
+							if(!receipt.getUri().toString().isEmpty()) {
+								Toast.makeText(this, receipt.getUri().toString(), Toast.LENGTH_LONG).show();
+								ElasticSearchHelper.getInstance().addReceiptToElastic(expense);
+							}
+						}
+					}
+				} else { 
 					Toast.makeText(this, "Can not submit incomplete expenses", Toast.LENGTH_LONG).show();
 				}
 				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());

@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Claimant:  "
+        android:text="Claimant:    "
         android:textColor="@color/mainYellow" 
         android:textAppearance="?android:attr/textAppearanceSmall"/>
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/claimantName"
-        android:text="Approver:  "
+        android:text="Approver:    "
         android:textColor="@color/mainYellow" 
         android:textAppearance="?android:attr/textAppearanceSmall"/>
 
@@ -46,24 +46,6 @@
         android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <TextView
-        android:id="@+id/claimantTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/claimantName"
-        android:text="...name..." 
-        android:textAppearance="?android:attr/textAppearanceSmall"/>
-
-    <TextView
-        android:id="@+id/approverTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/claimantName"
-        android:layout_toRightOf="@+id/claimantName"
-        android:text="...name..." 
-        android:textAppearance="?android:attr/textAppearanceSmall"/>
-
-    <TextView
         android:id="@+id/destinationTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,27 +61,46 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/destinationTxt"
-        android:text="Total Amounts:" 
+        android:text="Total Amounts:    "  
         android:textColor="@color/mainYellow" 
         android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <TextView
-        android:id="@+id/totalAmountTextView"
+        android:id="@+id/approverTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/totalAmountTxt"
-        android:layout_alignBottom="@+id/totalAmountTxt"
-        android:layout_toRightOf="@+id/totalAmountTxt"
-        android:text="totalAmounts......"
+        android:layout_toRightOf="@+id/approverNameText"
+        android:layout_alignTop="@+id/approverNameText"
+        android:text="...name..."
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/destinationsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/approverTextView"
+        android:layout_above="@+id/totalAmountTxt"
         android:layout_toRightOf="@+id/destinationTxt"
+        android:layout_alignTop="@+id/destinationTxt"
         android:text="Destinations......"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/totalAmountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/totalAmountTxt"
+        android:layout_alignTop="@+id/totalAmountTxt"
+        android:text="totalAmounts......"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/claimantTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/claimantName"
+        android:layout_alignTop="@+id/claimantName"
+        android:text="...name..."
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

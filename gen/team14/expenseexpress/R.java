@@ -84,7 +84,7 @@ public final class R {
         public static final int approverButton=0x7f0a0023;
         public static final int approverClaimTitle=0x7f0a0020;
         public static final int approverNameText=0x7f0a0090;
-        public static final int approverTextView=0x7f0a0094;
+        public static final int approverTextView=0x7f0a0095;
         public static final int button1=0x7f0a007e;
         public static final int button2=0x7f0a007f;
         public static final int button3=0x7f0a0080;
@@ -111,7 +111,7 @@ public final class R {
         public static final int claimStatusTextView=0x7f0a0092;
         public static final int claimantButton=0x7f0a0024;
         public static final int claimantName=0x7f0a008f;
-        public static final int claimantTextView=0x7f0a0093;
+        public static final int claimantTextView=0x7f0a0098;
         public static final int claimname=0x7f0a009c;
         public static final int claimsDetailTitle=0x7f0a0027;
         public static final int completeCheck=0x7f0a0066;
@@ -125,8 +125,8 @@ public final class R {
         public static final int destinationList=0x7f0a0039;
         public static final int destinationName=0x7f0a00b0;
         public static final int destinationReason=0x7f0a00b1;
-        public static final int destinationTxt=0x7f0a0095;
-        public static final int destinationsTextView=0x7f0a0098;
+        public static final int destinationTxt=0x7f0a0093;
+        public static final int destinationsTextView=0x7f0a0096;
         public static final int destinationsTitle=0x7f0a0001;
         public static final int detailsEndDate=0x7f0a0025;
         public static final int detailsName=0x7f0a002e;
@@ -222,7 +222,7 @@ public final class R {
         public static final int textView_usernameAndMode=0x7f0a003b;
         public static final int textView_zoom=0x7f0a0085;
         public static final int totalAmountTextView=0x7f0a0097;
-        public static final int totalAmountTxt=0x7f0a0096;
+        public static final int totalAmountTxt=0x7f0a0094;
         public static final int viewStatusButton=0x7f0a0043;
         public static final int yesReceipt=0x7f0a00ac;
     }
