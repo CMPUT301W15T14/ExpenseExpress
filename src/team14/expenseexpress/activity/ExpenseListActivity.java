@@ -26,6 +26,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * Activity for display an expense claim's list of expenses.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */ 
 public class ExpenseListActivity extends Activity {
 	
 	double CAD = 0, USD = 0, EUR = 0, GBP = 0, CHF = 0, JPY = 0, CNY = 0;
@@ -44,14 +51,17 @@ public class ExpenseListActivity extends Activity {
 		Button ApproveButton = (Button) findViewById(R.id.ApproveButton);
 		Button ExpenseButton = (Button) findViewById(R.id.addExpenseButton);
 		
+		// Show appropriate button to the role the user chose.
 		if (Mode.get() == Mode.APPROVER) {
 			ApproveButton.setVisibility(View.VISIBLE);
 			ExpenseButton.setVisibility(View.INVISIBLE);
 		}
 
+
 		claimNameView.setText(ClaimController.getInstance().getSelectedClaim().getName());
 		expenseListAdapter = new ExpenseListAdapter(this, ExpenseController.getInstance().getExpenseList().getExpenses());
 		expenseListView.setAdapter(expenseListAdapter);
+		// Show a dialog on long click.
 		expenseListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapterView, View view,
