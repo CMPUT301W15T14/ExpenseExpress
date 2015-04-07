@@ -1,25 +1,28 @@
 package team14.expenseexpress.util;
 
+import team14.expenseexpress.ApproverAdapter;
+
+
 //stackoverflow.com/questions/9879780/android-how-to-make-listener-to-a-custom-variable       Accessed:  April.7th, 2015
 
 public class BooleanListener {
-	private boolean booleanCheck = false;
-	// all the listener stuff below
-    public interface Listener {
-        public void onStateChange(boolean state);
+	private boolean boolCheck = false;
+	private Listener listener = null;
+	
+	
+	public interface Listener{
+        public void onStateChange(boolean bool);
+    }
+	
+	public void setBooleanListener(BooleanListener listener){
+        listener = listener;
     }
 
-    private Listener boolListener = null;
-    public void registerListener (Listener listener) {
-        boolListener = listener;
+    public void execute(){
+    	boolCheck = true;
+        if(listener != null){
+            listener.onStateChange(boolCheck);
+        }
     }
-
-    public void doYourWork() {
-        // do things here
-        // at some point
-        booleanCheck = true;
-        // now notify if someone is interested.
-        if (boolListener != null)
-            boolListener.onStateChange(booleanCheck);
-    }
+	
 }

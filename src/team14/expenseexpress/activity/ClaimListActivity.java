@@ -15,6 +15,7 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Status;
+import team14.expenseexpress.util.BooleanListener;
 import team14.expenseexpress.util.ElasticSearchHelper;
 import team14.expenseexpress.util.LocalFileHelper;
 import android.annotation.SuppressLint;
@@ -58,7 +59,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	private ClaimListAdapter claimsListAdapter;
 	private ApproverAdapter approverAdapter;
 	public static boolean edit = false;
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
