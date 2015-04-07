@@ -45,7 +45,7 @@ public class EditDestinations extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_destinations);
 		
-		destinationListView = (ListView) findViewById(R.id.editTagList);
+		destinationListView = (ListView) findViewById(R.id.editDestList);
 		destinationAdapter = new ArrayAdapter<Destination>(this, R.layout.listtextview, ClaimController.getInstance().getSelectedClaim().getDestinations());
 		destinationListView.setAdapter(destinationAdapter);
 		registerForContextMenu(destinationListView);
@@ -140,20 +140,15 @@ public class EditDestinations extends Activity{
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
-		final ListView lv1 = (ListView) findViewById(R.id.editTagList);
+		final ListView lv1 = (ListView) findViewById(R.id.editDestList);
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
-		int menuItemIndex = item.getItemId();
-		String[] menuItems = getResources().getStringArray(
-				R.array.LongClickMenu);
-		String menuItemName = menuItems[menuItemIndex];
+
 		
 		Destination destination = (Destination) lv1.getItemAtPosition(info.position);
-
-		if (menuItemName.equals("Delete")) {
-			ClaimController.getInstance().getSelectedClaim().getDestinations().remove(info.position);
-			destinationAdapter.notifyDataSetChanged();
-		}
+		ClaimController.getInstance().getSelectedClaim().getDestinations().remove(destination);
+		destinationAdapter.notifyDataSetChanged();
+		
 		return true;
 	}
 	/**

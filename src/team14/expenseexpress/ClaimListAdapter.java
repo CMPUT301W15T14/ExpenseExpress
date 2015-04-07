@@ -112,7 +112,9 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.approver.setText(filteredClaimList.get(position).getApprover().getName());
 			holder.name.setText("made by " + filteredClaimList.get(position).getClaimant().getName());
 		} 
-		
+		else{
+			holder.approver.setVisibility(View.INVISIBLE);
+		}
 		holder.claim.setText(filteredClaimList.get(position).getName());
 		double userlat = UserController.getInstance().getLatitude();
 		double userlng = UserController.getInstance().getLongitude();
