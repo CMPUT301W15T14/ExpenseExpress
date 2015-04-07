@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"     
+    android:background="@color/mainGreen" >
+
+    <TextView
+        android:id="@+id/claimantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Claimant:  "
+        android:textColor="@color/mainYellow" 
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/approverNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/claimantName"
+        android:text="Approver:  "
+        android:textColor="@color/mainYellow" 
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/startDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Start Date" 
+        android:textColor="@android:color/holo_red_dark"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/claimStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/approverNameText"
+        android:layout_alignBottom="@+id/approverNameText"
+        android:layout_alignParentRight="true"
+        android:text="Status" 
+        android:textColor="@android:color/holo_red_light"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/claimantTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/claimantName"
+        android:text="...name..." 
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/approverTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/claimantName"
+        android:layout_toRightOf="@+id/claimantName"
+        android:text="...name..." 
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/destinationTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/approverNameText"
+        android:text="Destinations:   " 
+        android:textColor="@color/mainYellow" 
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/totalAmountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/destinationTxt"
+        android:text="Total Amounts:" 
+        android:textColor="@color/mainYellow" 
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/totalAmountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/totalAmountTxt"
+        android:layout_alignBottom="@+id/totalAmountTxt"
+        android:layout_toRightOf="@+id/totalAmountTxt"
+        android:text="totalAmounts......"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/destinationsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/approverTextView"
+        android:layout_toRightOf="@+id/destinationTxt"
+        android:text="Destinations......"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

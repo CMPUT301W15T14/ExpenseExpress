@@ -75,11 +75,7 @@ public class ElasticSearchHelper {
 		
 		String serverUrl = new String();
 		if(Mode.get() == Mode.CLAIMANT) {
-			if(claim.getApprover() == null) {
-				serverUrl = SUBMITTED_URL + String.valueOf(claim.getId());
-			} else {
-				serverUrl = RESUBMITTED_URL + claim.getApprover() + "/" + String.valueOf(claim.getId());
-			}
+			serverUrl = SUBMITTED_URL + String.valueOf(claim.getId());
 		} else if (Mode.get() == Mode.APPROVER) {
 			serverUrl = RETURNED_URL + claim.getClaimant().getName() + "/" + String.valueOf(claim.getId());
 		}
@@ -204,13 +200,20 @@ public class ElasticSearchHelper {
 		}
 		
 	}
+<<<<<<< HEAD
 	/**
 	 * Gets previously submitted claims from server and adds them to current list of claims
 	 * @param claims local list of Claims
 	 * @return updated list of Claims
 	 */
 	public ArrayList<Claim> getSubmitted(ArrayList<Claim> claims) {
+=======
+	
+	public ArrayList<Claim> getSubmitted() {
+>>>>>>> 34a5f30ded65968c255b24051a969b69c3881a93
 
+		ArrayList<Claim> claims = new ArrayList<Claim>();
+		
 		HttpPost searchRequest = new HttpPost(SUBMITTED_URL + "_search");
 
 		SimpleSearchCommand command = new SimpleSearchCommand("*");

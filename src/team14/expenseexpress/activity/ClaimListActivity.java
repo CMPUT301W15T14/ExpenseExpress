@@ -2,6 +2,7 @@ package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
 
+import team14.expenseexpress.ApproverAdapter;
 import team14.expenseexpress.ClaimListAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.HomeGeo;
@@ -22,6 +23,7 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -54,6 +56,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	private TagsListAdapter tagsListAdapter;
 	private ClaimListAdapter claimsListAdapter;
+	private ApproverAdapter approverAdapter;
 	public static boolean edit = false;
 	
 	
@@ -62,9 +65,17 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_list);
     	ClaimController.getInstance().initialize(this);
-    	TagListController.getInstance().initialize();
-		LayoutInflater.from(this);
-		initializeListViewClaimList();
+    	LayoutInflater.from(this);
+    	if(Mode.get() == Mode.APPROVER) {
+    		//Resources resources = getResources();
+    		final ListView approverView = (ListView) findViewById(R.id.claimListView);
+    		approverAdapter = new ApproverAdapter(this);
+    		approverView.setAdapter(approverAdapter);
+    		approverAdapter.getSubmittedClaims();
+    	} else {
+	    	TagListController.getInstance().initialize();
+			initializeListViewClaimList();
+    	}
 		setSubtitle();
 		displayUiBasedOnMode();
 	}
@@ -140,7 +151,11 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	@Override
 	protected void onResume(){
 		super.onResume();
-		claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
+		if(Mode.get() == Mode.APPROVER) {
+			approverAdapter.notifyDataSetChanged();
+		} else {
+			claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
+		}
 	}
 	
 	/**
@@ -199,8 +214,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			menuItems = getResources().getStringArray(R.array.LongClickMenuApprov);
 			break;
 		case(Mode.CLAIMANT) :
-			menuItems = getResources().getStringArray(
-					R.array.LongClickMenu);
+			menuItems = getResources().getStringArray(R.array.LongClickMenu);
 			break;
 		}
 		for (int i = 0; i < menuItems.length; i++) {
@@ -270,15 +284,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 				@Override
 				public void run() { 
-					try {
+
 						claimsListAdapter.setApproverClaimList();
-						claimsListAdapter.notifyDataSetChanged();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+
 					ringProgressDialog.dismiss();
 			}
 		}).start();
+			
 	}
 	
 	/**
@@ -360,5 +372,10 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			tagsString = "(Showing all Claims)";
 		}
 		((TextView)findViewById(R.id.textView_chosenTags)).setText(tagsString);
+	}
+
+	public void onItemClick(int Position) {
+		startActivity(new Intent(this, ExpenseListActivity.class));
+		
 	}
 }

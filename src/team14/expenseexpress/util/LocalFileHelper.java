@@ -32,7 +32,6 @@ public class LocalFileHelper {
 	private static final String CLAIMANT_FILENAME = "ee.claimant_";
 	private static final String APPROVER_FILENAME = "ee.approver_"; 
 	private static final String TAGS_FILENAME = "ee.tags_";
-	private static final String OFFLINE_FILENAME = "ee.offline";
 	
 	private static Context context;
 	
@@ -107,7 +106,7 @@ public class LocalFileHelper {
 			save(claims, APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName());
 			break;
 		case Mode.OFFLINE:
-			save(claims, OFFLINE_FILENAME);
+			save(claims,CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
 		}
 	}
 	/**
@@ -120,54 +119,19 @@ public class LocalFileHelper {
 		ClaimList claims = new ClaimList();
 		
 		String FileUrl = new String("");
-		if(Mode.get() == Mode.CLAIMANT) {
-
-			try {
-				FileInputStream fis = context.openFileInput(CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
-				InputStreamReader isr = new InputStreamReader(fis);
-				Type dataType = new TypeToken<ClaimList>() {	}.getType();
-				claims = gson.fromJson(isr, dataType);
-				fis.close();
-				isr.close();
-
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		} else if(Mode.get() == Mode.APPROVER) {
-			try {
-				FileInputStream fis = context.openFileInput(APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName());
-				InputStreamReader isr = new InputStreamReader(fis);
-				Type dataType = new TypeToken<ClaimList>() {	}.getType();
-				claims = gson.fromJson(isr, dataType);
-				isr.close();
-				fis.close();
-
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		if (claims == null) {
-			claims = new ClaimList();
-
+		if((Mode.get() == Mode.CLAIMANT)||(Mode.get() == Mode.OFFLINE)) {
 			FileUrl = CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName();
 		} else if(Mode.get() == Mode.APPROVER) {
 			FileUrl = APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName();
-
 		}
+		
 		try {
 			FileInputStream fis = context.openFileInput(FileUrl);
 			InputStreamReader isr = new InputStreamReader(fis);
 			Type dataType = new TypeToken<ClaimList>() {	}.getType();
 			claims = gson.fromJson(isr, dataType);
 			fis.close();
+			isr.close();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -179,6 +143,7 @@ public class LocalFileHelper {
 		if (claims == null) {
 			claims = new ClaimList();
 		}
+		
 		return claims;
 	}
 	

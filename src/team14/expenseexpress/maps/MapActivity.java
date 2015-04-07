@@ -1,6 +1,7 @@
 package team14.expenseexpress.maps;
 
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import team14.expenseexpress.R;
@@ -45,14 +46,16 @@ public class MapActivity extends Activity {
 		latitude = String.valueOf(UserController.getInstance().getLatitude());
 	    longitude = String.valueOf(UserController.getInstance().getLongitude());
 	    Bundle extras = getIntent().getExtras();
+	    user = false;
+	    expense = false;
 		  if (extras != null) {
-			   if (extras.get("ID") == "USER"){
+			   if (extras.get("ID").equals("USER")){
 				   user = true;
 				   expense =false;
 			   }
 			   else{
 				   expense = true;
-				   user = true;
+				   user = false;
 			   }
 			  }else{
 				  user = false;
@@ -145,19 +148,20 @@ public class MapActivity extends Activity {
 			
 			textView_coordinatesClicked.setText("Coordinates clicked: "+ String.format("%1$,.4f", latitudeClicked) + ", " + String.format("%1$,.4f", longitudeClicked));
 			// addMarker(latitudeClicked, longitudeClicked);
-			
+			DecimalFormat df = new DecimalFormat("#.#####");
+			df.format(0.912385);
 	    	if (user){
-	    		UserController.getInstance().setLatitude(latitudeClicked);
-	    		UserController.getInstance().setLongitude(longitudeClicked);
+	    		UserController.getInstance().setLatitude(Double.valueOf(df.format(latitudeClicked)));
+	    		UserController.getInstance().setLongitude(Double.valueOf(df.format(longitudeClicked)));
 	    	}
 	    	else if (expense){
-	    		ExpenseController.getInstance().getSelectedExpense().setLatitude(latitudeClicked);
-	    		ExpenseController.getInstance().getSelectedExpense().setLongitude(longitudeClicked);
+	    		ExpenseController.getInstance().getSelectedExpense().setLatitude(Double.valueOf(df.format(latitudeClicked)));
+	    		ExpenseController.getInstance().getSelectedExpense().setLongitude(Double.valueOf(df.format(longitudeClicked)));
 	    	}
 	    	else{
 	    
-	    		DestinationController.getInstance().setDestLatitude(latitudeClicked);
-	    		DestinationController.getInstance().setDestLongitude(longitudeClicked);
+	    		DestinationController.getInstance().setDestLatitude(Double.valueOf(df.format(latitudeClicked)));
+	    		DestinationController.getInstance().setDestLongitude(Double.valueOf(df.format(longitudeClicked)));
 	    	}
 	    	finish();
 			return false;

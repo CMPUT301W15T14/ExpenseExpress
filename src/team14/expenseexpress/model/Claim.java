@@ -423,6 +423,23 @@ public class Claim implements Comparable{
 	public void setApprover(User approver) {
 		this.approver = approver;
 	}
-
-
+	
+	public String destinationsToString() {
+		String string = new String("");
+		for(Destination d: this.destinations) {
+			string+= d.getDestination() + "\n";
+		}
+		return string;
+	}
+	
+	public String totalAmountToString(){
+		String string = new String("");
+		for(Amount a:getAmounts()) {
+			if(a.getNumber() > 0) {
+				string += (a.getCurrency().name() + ":  " +String.valueOf(a.getNumber()) + "\n");
+			}
+		}
+		return string;
+	}
+	
 }

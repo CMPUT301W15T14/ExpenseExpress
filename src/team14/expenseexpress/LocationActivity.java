@@ -25,8 +25,10 @@ public class LocationActivity extends Activity implements LocationListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
 		 Bundle extras = getIntent().getExtras();
+		 user = false;
+		 expense = false;
 		  if (extras != null) {
-		   if (extras.get("ID") == "USER"){
+		   if (extras.get("ID").equals("USER")){
 			   user = true;
 			   expense =false;
 		   }
