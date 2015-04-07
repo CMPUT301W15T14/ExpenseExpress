@@ -36,9 +36,11 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 
+import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.ReceiptController;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.model.Receipt;
 
 public class ElasticSearchHelper {
@@ -301,26 +303,51 @@ public class ElasticSearchHelper {
 	
 	
 	private void getReceipt(String uri) {
-		SearchHit<Byte[]> sr = null;
+		
+		Bitmap bitmap = null;
+		HttpPost searchRequest = new HttpPost(RECEIPT_URL + "_search");
+
+		SimpleSearchCommand command = new SimpleSearchCommand(uri);
+
+		String query = gson.toJson(command);
+		Log.i(TAG, "Json command: " + query);
+
+		StringEntity stringEntity = null;
+		try {
+			stringEntity = new StringEntity(query);
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+
+		searchRequest.setHeader("Accept", "application/json");
+		searchRequest.setEntity(stringEntity);
+		
 		HttpClient httpClient = new DefaultHttpClient();
-		HttpGet httpGet = new HttpGet(RECEIPT_URL + uri);
 		
 		HttpResponse response = null;
-
 		try {
-			response = httpClient.execute(httpGet);
-		} catch (ClientProtocolException e1) {
-			throw new RuntimeException(e1);
-		} catch (IOException e1) {
-			throw new RuntimeException(e1);
+			response = httpClient.execute(searchRequest);
+		} catch (ClientProtocolException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 		
-		Type searchHitType = new TypeToken<SearchHit<Byte[]>>() {}.getType();
-
+		
+		 // Parses the response of a search
+		 
+		Type searchResponseType = new TypeToken<SearchResponse<byte[]>>() {}.getType();
+		
 		try {
-			sr = gson.fromJson(
+			SearchResponse<byte[]> esResponse = gson.fromJson(
 					new InputStreamReader(response.getEntity().getContent()),
-					searchHitType);
+					searchResponseType);
+			Hits<byte[]> hits = esResponse.getHits();
+			for(int i = 0;i < hits.getHits().size(); i++) {
+				byte[] byteArray = hits.getHits().get(i).getSource();
+				bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+			}
+			
 		} catch (JsonIOException e) {
 			throw new RuntimeException(e);
 		} catch (JsonSyntaxException e) {
@@ -329,74 +356,87 @@ public class ElasticSearchHelper {
 			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (NullPointerException e) {
+			throw new RuntimeException(e);
 		}
-		ByteArrayOutputStream blob = new ByteArrayOutputStream();
-		byte[] bitmapdata = blob.toByteArray();
-		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
-
+		
+		ReceiptController.getInstance().setBitmap(bitmap);
 	}
+
 	
 	public void getReceiptFromElastic(Receipt receipt){
 		getReceiptSync task = new getReceiptSync(receipt);
 		task.execute();
+		
 	}
 	
 	private class getReceiptSync extends AsyncTask<Void, Void, Boolean> {
 		Receipt receipt;
-		
 		private getReceiptSync(Receipt receipt) {
 			this.receipt = receipt;
 		}
 		@Override
 		protected Boolean doInBackground(Void ...params) {
-			getReceipt(receipt);
+			getReceipt(receipt.getUri().toString());
 			return true;
 		}
 
 		
 	}
-	private void addReceipt(Receipt receipt) {
+	private void addReceipt(Expense expense) {
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
-			HttpPost addRequest = new HttpPost(RECEIPT_URL + receipt.getUri().toString());
+			HttpPost addRequest = new HttpPost(RECEIPT_URL + String.valueOf(expense.getId()));
+		
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			Bitmap photo = ReceiptController.getInstance().getBitmap(receipt, context);
+			Bitmap photo = ReceiptController.getInstance().getBitmap(expense.getReceipt(), context);
 			photo.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 			byte[] imageBytes = baos.toByteArray();
+			Log.i("HTML", RECEIPT_URL + String.valueOf(expense.getId()));
+			Log.i("Length", String.valueOf(imageBytes.length));
 			String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+			Log.i("Length", encodedImage);
+			
 			StringEntity stringEntity = new StringEntity(gson.toJson(encodedImage));
 			addRequest.setEntity(stringEntity);
 			addRequest.setHeader("Accept", "application/json");
+			Log.i("gson",stringEntity.toString());
 			HttpResponse response = httpClient.execute(addRequest);
+			Log.i("good","response");
 			String status = response.getStatusLine().toString();
+			Log.i("bad","status");
 			Log.i(TAG, status);
 	
 		} catch (JsonIOException e) {
+			Log.i("bad","e");
 			throw new RuntimeException(e);
 		} catch (JsonSyntaxException e) {
+			Log.i("bad",e.getLocalizedMessage());
 			throw new RuntimeException(e);
 		} catch (IllegalStateException e) {
+			Log.i("bad",e.getLocalizedMessage());
 			throw new RuntimeException(e);
 		} catch (IOException e) {
+			Log.i("bad",e.getLocalizedMessage());
 			throw new RuntimeException(e);
 		}
 
 	}
 	
-	public void addReceiptToElastic(Receipt receipt){
-		AddReceiptSync task = new AddReceiptSync(receipt);
+	public void addReceiptToElastic(Expense expense){
+		AddReceiptSync task = new AddReceiptSync(expense);
 		task.execute();
 	}
 	
 	private class AddReceiptSync extends AsyncTask<Void, Void, Boolean> {
-		Receipt receipt;
+		Expense expense;
 		
-		private AddReceiptSync(Receipt receipt) {
-			this.receipt = receipt;
+		private AddReceiptSync(Expense expense) {
+			this.expense = expense;
 		}
 		@Override
 		protected Boolean doInBackground(Void ...params) {
-			addReceipt(receipt);
+			addReceipt(expense);
 			return true;
 		}
 

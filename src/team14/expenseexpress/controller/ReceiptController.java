@@ -14,6 +14,7 @@ import team14.expenseexpress.model.Receipt;
 public class ReceiptController {
 	
 	private Receipt selectedReceipt;
+	private Bitmap currentBitmap;
 	//singleton
 	private static ReceiptController instance = null;
 	
@@ -58,5 +59,13 @@ public class ReceiptController {
 	public Bitmap getBitmap(Receipt receipt, Context context) throws FileNotFoundException, IOException{
 		Uri uri = receipt.getUri();
 		return MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
+	}
+	
+	
+	public void setBitmap(Bitmap bitmap){
+		this.currentBitmap = bitmap;
+	}
+	public Bitmap getBitmap(){
+		return this.currentBitmap;
 	}
 }

@@ -272,7 +272,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				for (Expense expense : claim.getExpenseList().getExpenses()){
 					Receipt receipt = expense.getReceipt();
 					if (receipt != null)
-						ElasticSearchHelper.getInstance().addReceiptToElastic(receipt);
+						Toast.makeText(this, receipt.getUri().toString(), Toast.LENGTH_LONG).show();
+						ElasticSearchHelper.getInstance().addReceiptToElastic(expense);
 				}
 				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 				LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
