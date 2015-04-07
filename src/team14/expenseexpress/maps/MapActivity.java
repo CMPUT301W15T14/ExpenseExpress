@@ -80,6 +80,7 @@ public class MapActivity extends Activity {
 		showMap();
 	}
 	
+	// Not used in final release
 	private void generateTestMarkers() {
 		markers.add("&markers=color:blue%7Clabel:S%7C0,10");
 		markers.add("%7C5,10");
