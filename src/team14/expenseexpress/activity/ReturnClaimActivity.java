@@ -35,10 +35,8 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 		approved = (CheckBox) v;
 		if (approved.isChecked()) {
 			claim.setStatus("Approved");
-			//toast("hello");
 			checkedA = true;
 		} else {
-			claim.setStatus("Submitted");
 			checkedA = false;
 		}
 	}
@@ -48,7 +46,6 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 			claim.setStatus("Returned");
 			checkedR = true;
 		} else {
-			claim.setStatus("Submitted");
 			checkedR = false;
 		}
 	}
