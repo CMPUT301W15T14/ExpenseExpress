@@ -193,8 +193,8 @@ public class ExpenseListActivity extends Activity {
     	
     }
     
-   // public void onClick_ReturnApproveClaim(View v) {
-    //	startActivity(new Intent(ExpenseListActivity.this, ReturnClaimActivity.class));
-   // }
+    public void onClick_ReturnApproveClaim(View v) {
+    	startActivity(new Intent(ExpenseListActivity.this, ReturnClaimActivity.class));
+    }
 	
 }
