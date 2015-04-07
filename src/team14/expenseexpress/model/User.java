@@ -97,15 +97,31 @@ public class User {
 	public void setUserMode(Mode mode) {
 		//TODO pp5 after server is setup to save user info.
 	}
+	/**
+	 * Gets current Latitude
+	 * @return latitude of type Double
+	 */
     public double getLatitude() {
 		return latitude;
 	}
+    /**
+     * sets the current latitude
+     * @param latitude 
+     */
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
+	/**
+	 * Gets current Longitude
+	 * @return longitude of type Double
+	 */
 	public double getLongitude() {
 		return longitude;
 	}
+    /**
+     * sets the current longitude
+     * @param longitude 
+     */
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}

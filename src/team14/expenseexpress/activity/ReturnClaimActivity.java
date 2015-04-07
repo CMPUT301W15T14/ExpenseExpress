@@ -33,6 +33,10 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 		claim = ClaimController.getInstance().getSelectedClaim();
 		toast(claim.getName());
 	}
+	/**
+	 * changes boolean if checkbox A is clicked
+	 * @param v View
+	 */
 	public void onCick_checkBoxA(View v) {
 		approved = (CheckBox) v;
 		if (approved.isChecked()) {
@@ -42,6 +46,10 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 			checkedA = false;
 		}
 	}
+	/**
+	 * changes boolean if checkbox A is clicked
+	 * @param v View
+	 */
 	public void onCick_checkBoxR(View v) {
 		returned = (CheckBox) v;
 		if (returned.isChecked()) {
@@ -51,6 +59,11 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 			checkedR = false;
 		}
 	}
+	/**
+	 * tells user what is left to fill out before pressing button again
+	 * Submits claim otherwise, before leaving activity for previous activity
+	 * @param v View
+	 */
 	public void onClick_returnClaim(View v) {
 
 		if (comment.getText().toString().equals("")) {

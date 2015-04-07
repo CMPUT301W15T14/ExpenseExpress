@@ -1,5 +1,5 @@
 package team14.expenseexpress.activity;
-//no javadoc here yet!!!!!!!
+
 
 import java.util.ArrayList;
 
@@ -93,7 +93,9 @@ public class ExpenseListActivity extends Activity {
 			}			
 		});
 	}
-	
+	/**
+	 * Gets the total cost of all expenses for a claim to be printed
+	 */
 	public void totalCost() {
 		amountListString = new ArrayList<String>();
 		ArrayList<Expense> amountlist = ClaimController.getInstance().getSelectedClaim().getExpenseList().getExpenses();
@@ -122,6 +124,10 @@ public class ExpenseListActivity extends Activity {
 		ClaimController.getInstance().getSelectedClaim().setTotalAmounts(amountListString);
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
+	/**
+	 * Determines exact cost of expense when compared to alternate currencies
+	 * 
+	 */
 	public void determineCosts() {
 		if(CAD != 0) {
 			String line = "CAD" + " " + CAD;
@@ -186,13 +192,19 @@ public class ExpenseListActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+	/**
+	 * changes current activity to ExpenseEditActivity
+	 * @param v View
+	 */
     public void onClick_NewExpense(View v) {
     	ExpenseController.getInstance().makeSelectedExpense();
     	startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
     	
     }
-
+/**
+ * leaves current activity for ReturnClaimActivity
+ * @param v View
+ */
     public void onClick_ReturnApproveClaim(View v) {
     	startActivity(new Intent(ExpenseListActivity.this, ReturnClaimActivity.class));
     }

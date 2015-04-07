@@ -77,7 +77,6 @@ public class Expense implements Cloneable {
      * returns the completeness of the expense, as indicated by user
      * @param GregorianCalendar calendar
      */
-    
     public void setExpenseDate(GregorianCalendar calendar) {
     	this.expenseDate = calendar;
     }
@@ -219,20 +218,43 @@ public class Expense implements Cloneable {
 		this.name = name;
 		
 	}
+	/**
+	 * Gets longitude of current Destination
+	 * @return longitude of type Double
+	 */
 	public double getLongitude() {
 		return longitude;
 	}
+	/**
+	 * Sets longitude of current Destination
+	 * Also sets Geographical location to True
+	 * @param longtitude of current Destination
+	 */
 	public void setLongitude(double longitude) {
 		this.Geo = true;
 		this.longitude = longitude;
 	}
+	/**
+	 * Gets latitude of current Destination
+	 * @return latitude of type Double
+	 */
 	public double getLatitude() {
 		return latitude;
 	}
+	/**
+	 * Sets longitude of current Destination
+	 * Also sets Geographical location to True
+	 * @param longtitude of current Destination
+	 */
 	public void setLatitude(double latitude) {
 		this.Geo = true;
 		this.latitude = latitude;
 	}
+	/**
+	 * Returns True if Geographical location input is attached to Expense
+	 * Else it returns false
+	 * @return Boolean, True or False
+	 */
 	public boolean geo(){
 		if (Geo)
 		return true;

@@ -1,5 +1,5 @@
 package team14.expenseexpress.activity;
-//no javadoc here yet!!!
+
 import team14.expenseexpress.ExpenseExpressActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.Mode;

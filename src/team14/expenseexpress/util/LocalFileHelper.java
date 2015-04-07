@@ -38,25 +38,41 @@ public class LocalFileHelper {
 	
 	// Singleton
 	private static LocalFileHelper fileHelper;
-	
+	/**
+	 * Constructor, sets given context to context of LocalFileHelper
+	 * @param context of type Context
+	 */
 	private LocalFileHelper(Context context){
 		this.context = context;
 	}
-	
+	/**
+	 * Returns current fileHelper
+	 * If no current flieHelper, returns empty fileHelper of using given context
+	 * @param context new context
+	 * @return current fileHelper
+	 */
 	public static LocalFileHelper getInstance(Context context){
 		if (fileHelper == null){
 			fileHelper = new LocalFileHelper(context);
 		}
 		return fileHelper;
 	}
-	
+	/**
+	 * Returns current fileHelper
+	 * If no current flieHelper, returns empty fileHelper of using given context
+	 * @return current fileHelper
+	 */
 	public static LocalFileHelper getInstance(){
 		if (fileHelper == null){
 			fileHelper = new LocalFileHelper(context);
 		}
 		return fileHelper;
 	}
-	
+	/**
+	 * saves data, making app persistent
+	 * @param data to be saved
+	 * @param filename of file for data to be saved to
+	 */
 	private void save(Object data, String filename) {
 		Gson gson = new Gson();
 		try {
@@ -78,7 +94,10 @@ public class LocalFileHelper {
 		}
 	}
 
-
+	/**
+	 * Depending on mode(CLAIMANT,APPROVER or OFFLINE), saves claims to appropriate fileName
+	 * @param claims to be saved to appropriate location
+	 */
 	public void saveClaims(ClaimList claims){
 		switch(Mode.get()) {
 		case Mode.CLAIMANT:
@@ -91,7 +110,11 @@ public class LocalFileHelper {
 			save(claims, OFFLINE_FILENAME);
 		}
 	}
-
+	/**
+	 * Loads the previously saved data from the appropriate location based upon Mode
+	 * Modes for data to be loaded from: CLAIMANT,APPROVER or OFFLINE
+	 * @return claimList of tpe Claim ArrayList
+	 */
 	public ClaimList loadClaims() {
 		Gson gson = new Gson();
 		ClaimList claims = new ClaimList();
@@ -159,7 +182,10 @@ public class LocalFileHelper {
 		return claims;
 	}
 	
-
+	/**
+	 * Loads tags from saved location
+	 * @return list of tags
+	 */
 	public TagList getTags() {
 		Gson gson = new Gson();
 		TagList tags = new TagList();
@@ -185,7 +211,10 @@ public class LocalFileHelper {
 		}
 		return tags; 
 	}
-
+	/**
+	 * saves tags to file
+	 * @param tags to be saved to file
+	 */
 	public void saveTags(TagList tags) {
 		save(tags, TAGS_FILENAME + UserController.getInstance().getCurrentUser().getName());
 	}
