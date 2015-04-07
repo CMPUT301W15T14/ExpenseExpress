@@ -147,7 +147,10 @@ public class EditDestinations extends Activity{
 		}
 		return true;
 	}
-	
+	/**
+	 * Allows user to add new destination through Fragment Manager
+	 * @param v View
+	 */
 	public void addNewDestinations(View v) {
 		FragmentManager fm = getFragmentManager();
 		fragment = new NewDestinationDialogFragment();
@@ -158,6 +161,7 @@ public class EditDestinations extends Activity{
 	public void onBackPressed() {
 		finish();
 	}
+<<<<<<< Updated upstream
 	
 	
 	
@@ -172,6 +176,12 @@ public class EditDestinations extends Activity{
 		}
 	}
 
+=======
+	/**
+	 * Leaves activity for previous activity
+	 * @param v View
+	 */
+>>>>>>> Stashed changes
 	public void acceptDestinations(View v) {
 		finish();
 	}

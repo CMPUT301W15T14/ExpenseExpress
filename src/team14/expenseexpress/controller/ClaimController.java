@@ -29,51 +29,79 @@ public class ClaimController {
 	private ClaimController(){
 		this.selectedClaim = new Claim();
 	}
-	
+	/**
+	 * Returns the current Claim instance
+	 * @return Instance of ClaimController
+	 */
 	public static ClaimController getInstance(){
 		if (instance == null){
 			instance = new ClaimController();
 		}
 		return instance;
 	}
-	
+	/**
+	 * returns the ClaimList
+	 * @return instance of ClaimList
+	 */
 	public ClaimList getClaimList() {
 		return this.claimList;
 	}
 	
-
+	/**
+	 * Sets given Claim as current Claim
+	 * @param claim is the given claim
+	 */
 	public void setSelectedClaim (Claim claim){
 			this.selectedClaim = claim;
 	}
-	
+	/**
+	 * Returns given Claim
+	 * @return Instance of given Claim
+	 */
 	public Claim getSelectedClaim(){
 		return this.selectedClaim;
 	}
-
+	/**
+	 * Sets given context to current instance
+	 * @param context Context
+	 */
 	public void initialize(Context context){
 		this.context = context;
 		loadLocalClaims();
 	}
-	
+	/**
+	 * Adds given claim to ClaimList
+	 * @param claim is the given claim
+	 */
 	public void addClaim(Claim claim){
 		claimList.add(claim);
 		LocalFileHelper.getInstance().saveClaims(claimList);
 	}
-	
+	/**
+	 * Removes given claim from ClaimList
+	 * @param claim is the given claim
+	 */
 	public void removeClaim(Claim claim){
 		claimList.remove(claim);
 		LocalFileHelper.getInstance().saveClaims(claimList);
 	}
-	
+	/**
+	 * Sorts and saves ClaimList
+	 */
 	public void saveClaims() {
 		LocalFileHelper.getInstance().saveClaims(claimList);
 	}
-	
+	/**
+	 * Creates new claim and returns it
+	 * @return The new claim
+	 */
 	public Claim getNewClaim(){
 		Claim claim = new Claim();
 		return claim;
 	}
-
+	/**
+	 * Gets instance of ClaimList from last save
+	 */
 	private void loadLocalClaims() {
 		this.claimList = LocalFileHelper.getInstance(context).loadClaims();
 	}
