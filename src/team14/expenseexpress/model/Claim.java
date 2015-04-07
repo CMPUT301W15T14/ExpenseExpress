@@ -31,7 +31,7 @@ public class Claim implements Comparable{
     private String status;
     private String name;
     private User approver; // the approver responsible for the most recent change in status
-    private User claimant;
+    private final User claimant;
     private ArrayList<ApproverComment> approverComments;
     private ArrayList<String> totalAmount;
     
@@ -49,6 +49,7 @@ public class Claim implements Comparable{
 	    this.tags = new ArrayList<ClaimTag>();
 	    this.status = Status.IN_PROGRESS;
 	    this.totalAmount = new ArrayList<String>();
+	    this.approverComments = new ArrayList<ApproverComment>();
 	    this.claimant = UserController.getInstance().getCurrentUser();
 	    this.setApprover(null);
     }

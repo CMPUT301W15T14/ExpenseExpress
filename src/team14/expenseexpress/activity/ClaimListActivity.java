@@ -1,7 +1,6 @@
 package team14.expenseexpress.activity;
 
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
 
 import team14.expenseexpress.ClaimListAdapter;
 import team14.expenseexpress.ExpenseExpressActivity;
@@ -15,6 +14,7 @@ import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Status;
 import team14.expenseexpress.util.ElasticSearchHelper;
+import team14.expenseexpress.util.LocalFileHelper;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -228,8 +228,14 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			startActivity(new Intent(ClaimListActivity.this,
 					ClaimDetailsActivity.class));
 		} else if (menuItemName.equals("Submit")) {
-			ElasticSearchHelper.getInstance().addClaim(claim);
-			toast(String.valueOf(claim.getId()));
+			if (claim.getStatus().equals("Submitted")) {
+				toast("Claim already Submitted");
+			} else {
+				ElasticSearchHelper.getInstance().addClaim(claim);
+				claim.setStatus("Submitted");
+				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
+				LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
+			}
 		}
 		return true;
 	}
