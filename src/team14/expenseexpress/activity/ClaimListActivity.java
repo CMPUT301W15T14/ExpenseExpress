@@ -176,8 +176,16 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-		String[] menuItems = getResources().getStringArray(
-				R.array.LongClickMenu);
+		String[] menuItems = null;
+		switch(Mode.get()) {
+		case(Mode.APPROVER) :
+			menuItems = getResources().getStringArray(R.array.LongClickMenuApprov);
+			break;
+		case(Mode.CLAIMANT) :
+			menuItems = getResources().getStringArray(
+					R.array.LongClickMenu);
+			break;
+		}
 		for (int i = 0; i < menuItems.length; i++) {
 			menu.add(Menu.NONE, i, i, menuItems[i]);
 		}
