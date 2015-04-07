@@ -82,12 +82,19 @@ public class ExpenseEditActivity extends Activity {
 	//http://www.tutorialspoint.com/android/android_datepicker_control.htm   
 	//All DatePicker code was implemented from this source, accessed Feb.1,2015
 	@SuppressWarnings("deprecation")
+	/**
+	 * Sets starting date by assigning appropriate id
+	 * @param view View
+	 */
 	public void setExpenseDate(View view) {
 		showDialog(777);
 		Toast.makeText(getApplicationContext(), "Expense Date", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
+	/**
+	 * Uses given id from setExpenseDate
+	 */
 	protected Dialog onCreateDialog(int id) {
 		if (id == 777) {
 			return new DatePickerDialog(this, expenseDateListener, expenseYear, expenseMonth, expenseDay);
@@ -107,12 +114,17 @@ public class ExpenseEditActivity extends Activity {
 			showDate();
 		}
 	};
-
+/**
+ * Puts the stored date into the appropriate outputting format
+ */
 	private void showDate() {
 		expenseDateView.setText(new StringBuilder().append(expenseMonth+1).append("-").append(expenseDay).append("-").append(expenseYear));
    }
 	//*******************************************************************************
-	
+	/**
+	 * Saves expense information if submitted information is correct
+	 * @param v View
+	 */
 	public void onClick_AddExpense(View v){
 		String name = expenseName.getText().toString();
 		Toast.makeText(this, name, Toast.LENGTH_LONG).show();
@@ -138,7 +150,10 @@ public class ExpenseEditActivity extends Activity {
 		else{
 			finish();}
 	}
-	
+	/**
+	 * Changes current activity to ReceiptAddActivity
+	 * @param view View
+	 */
 	public void modifyReceipt(View view) {
 		startActivity(new Intent(ExpenseEditActivity.this, ReceiptAddActivity.class));
 	}

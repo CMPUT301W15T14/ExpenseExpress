@@ -1,8 +1,12 @@
 package team14.expenseexpress.activity;
+<<<<<<< Updated upstream
 
 import java.util.ArrayList;
 
 import team14.expenseexpress.ExpenseExpressActivity;
+=======
+//no javadoc here yet!!!
+>>>>>>> Stashed changes
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.UserController;

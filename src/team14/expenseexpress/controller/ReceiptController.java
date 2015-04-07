@@ -22,21 +22,39 @@ public class ReceiptController {
 			selectedReceipt = new Receipt();
 		}
 	}
-	
+	/**
+	 * If there is no current instance, returns empty Receipt instance
+	 * @return The current instance
+	 */
 	public static ReceiptController getInstance(){
 		if (instance == null){
 			instance = new ReceiptController();
 		}
 		return instance;
 	}
-	
+	/**
+	 * Returns selected receipt
+	 * @return instance of selected receipt
+	 */
 	public Receipt getSelectedReceipt(){
 		return this.selectedReceipt;
 	}
+	/**
+	 * 
+	 * @param receipt to become selected receipt
+	 * @return instance of given receipt
+	 */
 	public Receipt setSelectedReceipt(Receipt receipt){
 		return this.selectedReceipt = receipt;
 	}
-	
+	/**
+	 * Stores picture of receipt
+	 * @param receipt to be stored????
+	 * @param context
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public Bitmap getBitmap(Receipt receipt, Context context) throws FileNotFoundException, IOException{
 		Uri uri = receipt.getUri();
 		return MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
