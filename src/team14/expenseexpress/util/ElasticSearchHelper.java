@@ -178,13 +178,14 @@ public class ElasticSearchHelper {
 		}
 		
 		protected void onPostExecute(Boolean result) {
-			if((result == false) && (Mode.get() == Mode.CLAIMANT)) {
-				claim.setStatus(team14.expenseexpress.model.Status.IN_PROGRESS);
-				Toast.makeText(context, "Failed to Submit", Toast.LENGTH_SHORT).show();
-			}
-			if((result == false) && (Mode.get() == Mode.APPROVER)) {
-				claim.setStatus(team14.expenseexpress.model.Status.SUBMITTED);
-				Toast.makeText(context, "Failed to Return", Toast.LENGTH_SHORT).show();
+			if(result == false ){
+				if(Mode.get() == Mode.CLAIMANT) {
+					claim.setStatus(team14.expenseexpress.model.Status.IN_PROGRESS);
+					Toast.makeText(context, "Failed to Submit", Toast.LENGTH_SHORT).show();
+				} else if(Mode.get() == Mode.APPROVER) {
+					claim.setStatus(team14.expenseexpress.model.Status.SUBMITTED);
+					Toast.makeText(context, "Failed to Return", Toast.LENGTH_SHORT).show();
+				}
 			}
 		}
 		
