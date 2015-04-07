@@ -32,7 +32,7 @@ public class LoginActivity extends ExpenseExpressActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         editText_name = (EditText) findViewById(R.id.loginEditText);
-        ElasticSearchHelper.getInstance(this); //Initialize the context.
+        ElasticSearchHelper.getInstance(this);
         buildModeDialog();
         buildConfirmNameDialog();
     }
@@ -48,8 +48,13 @@ public class LoginActivity extends ExpenseExpressActivity {
     	.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				modeDialog.show();
-				dialog.dismiss();
+				if(team14.expenseexpress.util.ElasticSearchHelper.isNetworkAvailable()) {
+					modeDialog.show();
+					dialog.dismiss();
+				} else {
+					Mode.set(Mode.OFFLINE);
+					startClaimsListActivity();
+				}
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			
