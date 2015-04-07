@@ -31,7 +31,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 /**
- * Model data class for claim tags so that a claimant's claims can be filtered by tag.
+ * Activity for modifying a claimant's tags which are used to filter his/her claims to his/her liking.
  * 
  * @author Team 14
  * @date April 6, 2015
