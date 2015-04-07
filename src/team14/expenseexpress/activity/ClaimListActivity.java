@@ -218,9 +218,13 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		Claim claim = (Claim) lv1.getItemAtPosition(info.position);
 
 		if (menuItemName.equals("Delete")) {
-			toast(String.valueOf(claim.getId()));
-			ClaimController.getInstance().removeClaim(claim);
-			claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
+			if(Mode.get() == Mode.APPROVER) {
+				ElasticSearchHelper.getInstance().deleteClaim(claim);
+			} else {
+				toast(String.valueOf(claim.getId()));
+				ClaimController.getInstance().removeClaim(claim);
+				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
+			}
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals(Status.SUBMITTED)
 					|| (claim.getStatus().equals("approved"))) {
@@ -256,6 +260,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				public void run() { 
 					try {
 						claimsListAdapter.setApproverClaimList();
+						claimsListAdapter.notifyDataSetChanged();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
