@@ -6,11 +6,12 @@ import java.util.GregorianCalendar;
 import team14.expenseexpress.activity.ExpenseListActivity;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Amount;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.Currency;
 import team14.expenseexpress.model.Expense;
-import team14.expenseexpress.model.Receipt;
+import team14.expenseexpress.model.User;
 import android.test.ActivityInstrumentationTestCase2;
 /**
  * Tests to check Expense and ExpenseList model and its methods. Also test the ExpenseController and
@@ -53,16 +54,18 @@ public class TestExpenseModel extends
 	public void testNewExpense() {
 		GregorianCalendar date = new GregorianCalendar(15, 3, 16);
 		double amount = 3.00;
-		Receipt receipt = new Receipt();
 		
 		Claim claim = new Claim();
+		UserController.getInstance().setCurrentUser(new User("Bob"));
+		ClaimController.getInstance().initialize(getActivity());
+		ClaimController.getInstance().addClaim(claim);
 		ClaimController.getInstance().setSelectedClaim(claim);
 		ExpenseController.initialize();
-		ExpenseController.getInstance().setSelectedExpense(null);
-		
+	
 		/* Test adding a Expense Item
 		 * Related Use cases: UC10, UC11. UC12, UC13
 		 */
+		ExpenseController.getInstance().makeSelectedExpense();
 		ExpenseController.getInstance().setExpense("Food", date, amount, "CAD", "I like food", "poutine", false);
 		
 		

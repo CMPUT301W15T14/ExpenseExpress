@@ -1,19 +1,20 @@
 package team14.expenseexpress.test;
 
 import team14.expenseexpress.R;
-import team14.expenseexpress.activity.ClaimListActivity;
+import team14.expenseexpress.activity.ExpenseListActivity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ListView;
 /**
- * Test to check if we can see the claim list on both the claimant side and approver side
- * Related Use Case: UC6, UC23
+ * Test to check if we can see the Expense list on both the claimant side and approver side
+ * Related Use Case: UC16, UC25
+ *
  *
  */
-public class ViewClaimListTest extends
-		ActivityInstrumentationTestCase2<ClaimListActivity> {
+public class ViewExpenseItemListTest extends
+		ActivityInstrumentationTestCase2<ExpenseListActivity> {
 
-	public ViewClaimListTest() {
-		super(ClaimListActivity.class);
+	public ViewExpenseItemListTest() {
+		super(ExpenseListActivity.class);
 	}
 
 	@Override
@@ -26,7 +27,7 @@ public class ViewClaimListTest extends
 	public void testItemsOnList() {
 		
 		ListView listview = (ListView) getActivity()
-				.findViewById(R.id.claimListView);
+				.findViewById(R.id.ExpenseList);
 
 		assertNotNull("Item not created for question view", listview);
 

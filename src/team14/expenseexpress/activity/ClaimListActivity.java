@@ -23,7 +23,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -257,7 +256,9 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			startActivity(new Intent(ClaimListActivity.this,
 					ClaimDetailsActivity.class));
 		} else if (menuItemName.equals("Submit")) {
-			if (claim.getStatus().equals("Submitted")) {
+			if (Mode.get() == Mode.OFFLINE) {
+				toast("Cannot submit claim in offline mode");
+			} else if (claim.getStatus().equals("Submitted")) {
 				toast("Claim already Submitted");
 			} else {
 				boolean allcomplete = true;
