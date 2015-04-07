@@ -3,7 +3,7 @@ package team14.expenseexpress.model;
 import android.net.Uri;
 
 public class Receipt {
-	private Uri	 uri;
+	private String	uri;
     
     /**
      * Constructor
@@ -15,12 +15,12 @@ public class Receipt {
     }
     
     public void setUri(Uri uri){
-
-    this.uri = uri;
+    
+    this.uri = uri.toString();
 
     }
     public Uri getUri(){
-    	return this.uri;
+    	return Uri.parse(this.uri);
     }
 
 }

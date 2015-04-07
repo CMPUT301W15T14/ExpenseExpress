@@ -239,7 +239,7 @@ public class ClaimEditActivity extends Activity {
 				return;
 			} else {
 				LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
-				Toast.makeText(this, "Claim editted.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Claim edited.", Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		}

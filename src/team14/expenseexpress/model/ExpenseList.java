@@ -63,7 +63,9 @@ public class ExpenseList {
 	public void sort() {
 		Collections.sort(expenseList,new Expense.ExpenseComparator());
 	}
-	
+	/**
+	 * empties the expenseList
+	 */
 	public void clear() {
 		expenseList.clear();
 	}

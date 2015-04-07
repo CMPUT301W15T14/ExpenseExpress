@@ -125,7 +125,38 @@ public class ApproverAdapter extends BaseAdapter implements team14.expenseexpres
 			} else {
 				holder.approverName.setText(claim.getApprover().getName());
 			}
+
+			view.setOnLongClickListener(new OnLongClickListener() {
+
+				@Override
+				public boolean onLongClick(View arg0) {
+					AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+					adb.setMessage("Menu of " + claim.getName());
+					adb.setCancelable(true);
+					adb.setNeutralButton("Details",new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							activity.startActivity(new Intent(activity, ClaimDetailsActivity.class)); 
+
+						}
+
+					});
+					adb.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+
+						}
+
+					});
+					return false;
+				}
+			});
+
 			view.setOnClickListener(new OnItemClickListener( position ));
+
 		}
 		return view;
 	}
@@ -147,7 +178,7 @@ public class ApproverAdapter extends BaseAdapter implements team14.expenseexpres
 
          /****  Call  onItemClick Method inside CustomListViewAndroidExample Class ( See Below )****/
 
-            sct.onItemClick(mPosition);
+            sct.onItemClick(claimList.get(mPosition));
         }              
     }
 

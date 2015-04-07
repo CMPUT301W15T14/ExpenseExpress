@@ -1,6 +1,6 @@
 
 package team14.expenseexpress.activity;
-//no javadoc here yet!!!!!
+
 import java.util.ArrayList;
 
 import team14.expenseexpress.R;
@@ -26,20 +26,32 @@ public class TagListAdapter extends BaseAdapter {
 	
 	private static ArrayList<ClaimTag> taglist;
 	private LayoutInflater mInflater;
-
+	/**
+	 * constructor
+	 * @param context 
+	 */
 	public TagListAdapter(Context context) {
 		taglist = TagListController.getInstance().getTagList().getTags();
 		mInflater = LayoutInflater.from(context);
 	}
-
+	/**
+	 * @return the size of taglist
+	 */
 	public int getCount() {
 		return taglist.size();
 	}
-
+	/**
+	 * @param position the position of the wanted tag
+	 * @return the tag of the given position
+	 */
 	public Object getItem(int position) {
 		return taglist.get(position);
 	}
-
+	/**
+	 * @param position of tagList
+	 * @return position of type long
+	 * 
+	 */
 	public long getItemId(int position) {
 		return position;
 	}

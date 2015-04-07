@@ -62,18 +62,31 @@ public class Destination {
     public void setReason(String reason) {
         this.reason = reason;
     }
-
+/**
+ * Gets Longitude of current Destination
+ * @return Double of longitude
+ */
 	public double getLongitude() {
 		return longitude;
 	}
-
+	/**
+	 * Sets longitude of current Destination
+	 * @param longtitude of current Destination
+	 */
 	public void setLongitude(double longtitude) {
 		this.longitude = longtitude;
 	}
+	/**
+	 * Gets latitude of current Destination
+	 * @return Double of latitude
+	 */
 	public double getLatitude() {
 		return latitude;
 	}
-
+	/**
+	 * Sets latitude of current Destination
+	 * @param latitude of current Destination
+	 */
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
