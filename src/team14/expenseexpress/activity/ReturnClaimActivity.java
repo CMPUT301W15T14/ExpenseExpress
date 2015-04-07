@@ -15,6 +15,14 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+/**
+ * Activity for the approver returning an expense claim.
+ * 
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */ 
 public class ReturnClaimActivity extends ExpenseExpressActivity {
 	CheckBox approved;
 	CheckBox returned;
