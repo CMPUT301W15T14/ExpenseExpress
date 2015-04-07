@@ -38,7 +38,7 @@ public class EditDestinations extends Activity{
 
 	private ListView destinationListView;
 	private ArrayAdapter<Destination> destinationAdapter;
-
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +84,8 @@ public class EditDestinations extends Activity{
 			final EditText reasonText = (EditText) v.findViewById(R.id.addReasonTextField);
 			final TextView latText = (TextView) v.findViewById(R.id.AddDestLatitude);
 			final TextView lngText = (TextView) v.findViewById(R.id.addDestLongitude);
+			latText.setText("Latitude: 0");
+			lngText.setText("Longitude: 0");
 			DestinationController.getInstance().makeSelectedDestination();
 			
 			v.findViewById(R.id.addDestGPSButton).setOnClickListener(
@@ -114,7 +116,11 @@ public class EditDestinations extends Activity{
 							String name = nameText.getText().toString();
 							String reason = reasonText.getText().toString();
 							if (name.length() == 0 || reason.length() == 0) {
+								return;}
+							else if( (DestinationController.getInstance().getDestLatitude() == 0.0) 
+									&& (DestinationController.getInstance().getDestLongitude() == 0.0)){
 								return;
+							
 							} else {
 								
 								DestinationController.getInstance().setDestReason(reason);

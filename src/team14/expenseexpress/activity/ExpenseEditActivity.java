@@ -139,7 +139,6 @@ public class ExpenseEditActivity extends Activity {
 	 */
 	public void onClick_AddExpense(View v){
 		String name = expenseName.getText().toString();
-		Toast.makeText(this, name, Toast.LENGTH_LONG).show();
 		String description = expenseDescription.getText().toString(); 
 		double amount;
 
@@ -155,6 +154,9 @@ public class ExpenseEditActivity extends Activity {
 		ExpenseController.getInstance().setExpense(category, date, amount,currency, description,name, incomplete);
 		if (name.isEmpty()){
 			Toast.makeText(this, "Name is a Mandatory Field", Toast.LENGTH_LONG).show();
+		}
+		else if (description.isEmpty()){
+			Toast.makeText(this, "Description is a Mandatory Field", Toast.LENGTH_LONG).show();
 		}
 		else if ((ExpenseController.getInstance().containsByName(name))){
 			Toast.makeText(this, "An Expense With This Name Already Exists", Toast.LENGTH_LONG).show();

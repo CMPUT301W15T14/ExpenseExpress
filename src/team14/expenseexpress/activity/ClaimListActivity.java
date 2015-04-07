@@ -267,13 +267,23 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			if (claim.getStatus().equals("Submitted")) {
 				toast("Claim already Submitted");
 			} else {
+				boolean allcomplete = true;
+				for (Expense expense : claim.getExpenseList().getExpenses()){
+					if (expense.getIncomplete()){
+						allcomplete = false;
+					}
+				}
+				if (allcomplete){
 				claim.setStatus("Submitted");
 				ElasticSearchHelper.getInstance().addClaim(claim);
 				for (Expense expense : claim.getExpenseList().getExpenses()){
 					Receipt receipt = expense.getReceipt();
-					if (receipt != null)
+					if (!receipt.getUri().toString().isEmpty())
 						Toast.makeText(this, receipt.getUri().toString(), Toast.LENGTH_LONG).show();
 						ElasticSearchHelper.getInstance().addReceiptToElastic(expense);
+				}}
+				else{
+					Toast.makeText(this, "Can not submit incomplete expenses", Toast.LENGTH_LONG).show();
 				}
 				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 				LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());

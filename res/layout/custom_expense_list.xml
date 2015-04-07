@@ -115,42 +115,44 @@
         android:textColor="#FF0000" />
 
     <TextView
+        android:id="@+id/yesReceipt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/customCurrencyTitle"
+        android:text="Receipt"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
         android:id="@+id/noReceipt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/expenseCurrency"
-        android:layout_toRightOf="@+id/customCategoryTitle"
+        android:layout_alignBaseline="@+id/yesReceipt"
+        android:layout_alignBottom="@+id/yesReceipt"
+        android:layout_alignParentLeft="true"
         android:text="No Receipt"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FF0000" />
 
     <TextView
-        android:id="@+id/yesReceipt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/noReceipt"
-        android:layout_alignBottom="@+id/noReceipt"
-        android:layout_alignLeft="@+id/noReceipt"
-        android:layout_alignRight="@+id/noReceipt"
-        android:text="Receipt"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
         android:id="@+id/expAdaptLatitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/noReceipt"
+        android:layout_above="@+id/expenseDescript"
+        android:layout_alignParentRight="true"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/expAdaptLongitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/expAdaptLatitude"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/expenseDescript"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+
+        android:textColor="@color/white" />
 
 </RelativeLayout>
