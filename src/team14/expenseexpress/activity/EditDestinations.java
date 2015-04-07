@@ -4,6 +4,7 @@ import team14.expenseexpress.LocationActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.DestinationController;
+import team14.expenseexpress.maps.MapActivity;
 import team14.expenseexpress.model.Destination;
 import android.location.Criteria;
 import android.location.Location;
@@ -44,7 +45,7 @@ public class EditDestinations extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_destinations);
 		
-		destinationListView = (ListView) findViewById(R.id.editTagList);
+		destinationListView = (ListView) findViewById(R.id.editDestList);
 		destinationAdapter = new ArrayAdapter<Destination>(this, R.layout.listtextview, ClaimController.getInstance().getSelectedClaim().getDestinations());
 		destinationListView.setAdapter(destinationAdapter);
 		registerForContextMenu(destinationListView);
@@ -96,8 +97,15 @@ public class EditDestinations extends Activity{
 
 					}});
 	
-			
-			
+			v.findViewById(R.id.addDestMap).setOnClickListener(
+					new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							 Intent intent = new Intent(getActivity(), MapActivity.class); 
+				             startActivity(intent);
+
+					}});
 			v.findViewById(R.id.addDestinationButton2).setOnClickListener(
 					new OnClickListener() {
 
@@ -126,25 +134,21 @@ public class EditDestinations extends Activity{
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		menu.add("Delete");
+		
 	}
 	
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
-		final ListView lv1 = (ListView) findViewById(R.id.editTagList);
+		final ListView lv1 = (ListView) findViewById(R.id.editDestList);
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
-		int menuItemIndex = item.getItemId();
-		String[] menuItems = getResources().getStringArray(
-				R.array.LongClickMenu);
-		String menuItemName = menuItems[menuItemIndex];
 
+		
 		Destination destination = (Destination) lv1.getItemAtPosition(info.position);
-
-		if (menuItemName.equals("Delete")) {
-			ClaimController.getInstance().getSelectedClaim().getDestinations().remove(destination);
-			destinationAdapter.notifyDataSetChanged();
-		}
+		ClaimController.getInstance().getSelectedClaim().getDestinations().remove(destination);
+		destinationAdapter.notifyDataSetChanged();
+		
 		return true;
 	}
 	/**
@@ -161,7 +165,7 @@ public class EditDestinations extends Activity{
 	public void onBackPressed() {
 		finish();
 	}
-	
+
 	
 	@Override
 	protected void onResume() {

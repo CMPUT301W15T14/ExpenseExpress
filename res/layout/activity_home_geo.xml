@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainGreen"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".HomeGeo" >
+
+    <TextView
+        android:id="@+id/homeGeoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Home Geolocation"
+        android:textSize="6mm"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/homeLat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/homeGeoTitle"
+        android:layout_below="@+id/homeGeoTitle"
+        android:text="Latitude:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/homeAddByMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/homeAddbyGPS"
+        android:layout_alignRight="@+id/homeGeoTitle"
+        android:layout_below="@+id/homeAddbyGPS"
+        android:layout_marginTop="16dp"
+        android:onClick="onClick_ByMap"
+        android:text="Add By Map" />
+
+    <Button
+        android:id="@+id/homeAddbyGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/homeLat"
+        android:layout_alignRight="@+id/homeGeoTitle"
+        android:layout_centerVertical="true"
+        android:onClick="onClick_ByGPS"
+        android:text="Add By GPS" />
+
+    <TextView
+        android:id="@+id/homeLong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/homeAddbyGPS"
+        android:layout_alignLeft="@+id/homeLat"
+        android:layout_marginBottom="32dp"
+        android:text="Longitude:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/homeSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/homeAddByMap"
+        android:layout_alignRight="@+id/homeAddByMap"
+        android:layout_below="@+id/homeAddByMap"
+        android:layout_marginTop="21dp"
+        android:onClick="onClick_Submit"
+        android:text="Submit" />
+
+</RelativeLayout>

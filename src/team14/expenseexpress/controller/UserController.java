@@ -7,6 +7,8 @@ import team14.expenseexpress.model.User;
 public class UserController {
 	//private final Gson gson = new Gson();
 	private User currentUser = null;
+	private double latitude;
+	private double longitude;
 	//private static final String USER_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/user/";
 	//private static final String TAG = "UserController";
 	
@@ -29,6 +31,21 @@ public class UserController {
 	
 	public void setCurrentUser(User user) {
 		this.currentUser = user;
+	}
+	public double getLatitude() {
+		return currentUser.getLatitude();
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+		currentUser.setLatitude(latitude);
+	}
+	public double getLongitude() {
+		return currentUser.getLongitude();
+	}
+	public void setLongitude(double longitude) {
+		
+		this.longitude = longitude;
+		currentUser.setLongitude(longitude);
 	}
 	
 	

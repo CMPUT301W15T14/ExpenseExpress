@@ -185,4 +185,16 @@ public class ExpenseController {
 		expenseList.sort();
 
 	}
+	public void setLatitude(double latitude){
+		this.selectedExpense.setLatitude(latitude);
+	}
+	public double getLatitude(){
+		return this.selectedExpense.getLatitude();
+	}
+	public void setLongitude(double longitude){
+		this.selectedExpense.setLongitude(longitude);
+	}
+	public double getLongitude(){
+		return this.selectedExpense.getLatitude();
+	}
 }

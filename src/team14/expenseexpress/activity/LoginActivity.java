@@ -9,6 +9,7 @@ import team14.expenseexpress.util.ElasticSearchHelper;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -110,6 +111,9 @@ public class LoginActivity extends ExpenseExpressActivity {
 			return;
 		}
     	UserController.getInstance().setCurrentUser(new User(name));
+		SharedPreferences prefs = getSharedPreferences("home", 0);
+		UserController.getInstance().setLatitude((double) prefs.getFloat("HomeLat",0));
+		UserController.getInstance().setLongitude((double) prefs.getFloat("HomeLong",0));
     	confirmNameDialog.setTitle(editText_name.getText().toString());
     	confirmNameDialog.show();
     }

@@ -19,6 +19,8 @@ public class User {
     
 	private final String name;
     private String password = null;
+	private double latitude;
+	private double longitude;
     //private Mode userMode; TODO pp5 after server is setup to save user info.
     /**
      * Constructor that initializes the User with a usernameString.
@@ -95,7 +97,19 @@ public class User {
 	public void setUserMode(Mode mode) {
 		//TODO pp5 after server is setup to save user info.
 	}
-    /**
+    public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	/**
      * enum that retrieves the mode.
      *	
      * @return password

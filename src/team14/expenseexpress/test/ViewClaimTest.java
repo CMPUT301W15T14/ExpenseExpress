@@ -37,7 +37,6 @@ public class ViewClaimTest extends
 		claim.setName("First Claim");
 
 
-
 		Destination destination1 = new Destination();
 		Destination destination2 = new Destination();
 		destination1.setDestination("USA");

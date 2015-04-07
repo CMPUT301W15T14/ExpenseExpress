@@ -51,15 +51,22 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
+
         <TextView
             android:id="@+id/textView_chosenTags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(Showing all Claims)"
-            android:textSize="18sp"
-            android:textColor="@color/white"
             android:layout_marginBottom="10dp"
-            />
+            android:text="(Showing all Claims)"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/homeGeoButton"
+            android:layout_width="68dp"
+            android:layout_height="52dp"
+            android:background="@drawable/home_button"
+            android:onClick="addHomeGeo" />
 
         <LinearLayout
             android:layout_width="match_parent"

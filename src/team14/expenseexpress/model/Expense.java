@@ -18,8 +18,9 @@ public class Expense implements Cloneable {
     private Receipt receipt;
     private String name;
     private boolean incomplete; 
-
-
+    private double latitude;
+    private double longitude;
+    private boolean Geo;
     private long expenseId;
     /**
      * Getter for the Unique ID associated with this Expense.
@@ -218,7 +219,27 @@ public class Expense implements Cloneable {
 		this.name = name;
 		
 	}
-	
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.Geo = true;
+		this.longitude = longitude;
+	}
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.Geo = true;
+		this.latitude = latitude;
+	}
+	public boolean geo(){
+		if (Geo)
+		return true;
+		else
+			return false;			
+				
+	}
 	
     
 }

@@ -2,13 +2,19 @@ package team14.expenseexpress.activity;
 
 import java.util.GregorianCalendar;
 
+import team14.expenseexpress.HomeGeo;
+import team14.expenseexpress.LocationActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ExpenseController;
+import team14.expenseexpress.controller.Mode;
+import team14.expenseexpress.maps.MapActivity;
 import team14.expenseexpress.model.Expense;
 import team14.expenseexpress.receipt.ReceiptAddActivity;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +39,8 @@ public class ExpenseEditActivity extends Activity {
 	private Spinner crncySpinner ;
 	private CheckBox incompleteCheck;
 	private Button receiptButton;
+	private TextView expLat;
+	private TextView expLong;
 	
 	private int expenseYear, expenseMonth, expenseDay;
 	
@@ -49,6 +57,8 @@ public class ExpenseEditActivity extends Activity {
 		crncySpinner = (Spinner) findViewById(R.id.currencySpinner);
 		incompleteCheck = (CheckBox) findViewById(R.id.completeCheck);
 		receiptButton = (Button) findViewById(R.id.addReceipt);
+		expLat = (TextView) findViewById(R.id.expenseLat);
+		expLong = (TextView) findViewById(R.id.expenseLong);
 		
 		ArrayAdapter<CharSequence> ctgryAdapter = ArrayAdapter.createFromResource(this,
 		        R.array.Categories, android.R.layout.simple_spinner_item);
@@ -66,6 +76,8 @@ public class ExpenseEditActivity extends Activity {
 			ctgrySpinner.setSelection(crncyAdapter.getPosition(expense.getCategory()));
 			expenseAmount.setText(Double.toString(expense.getAmount().getNumber()));
 			incompleteCheck.setChecked(expense.getIncomplete());
+			expLat.setText("Latitude: " + String.valueOf(expense.getLatitude()));
+			expLong.setText("Longitude : " + String.valueOf(expense.getLongitude()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -150,10 +162,52 @@ public class ExpenseEditActivity extends Activity {
 		else{
 			finish();}
 	}
+
+	
+	public void onClick_GPS(View v){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Which Geolocation Device?")
+        .setNegativeButton("GPS", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(ExpenseEditActivity.this,
+						LocationActivity.class);
+				intent.putExtra("ID", "EXPENSE");
+				startActivity(intent);
+				
+			}
+		})
+		.setPositiveButton("Map", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(ExpenseEditActivity.this,
+						MapActivity.class);
+				intent.putExtra("ID", "EXPENSE");
+				startActivity(intent);
+				
+			}
+		});
+        builder.show(); 
+
+	}
+	
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		expLat.setText("Latitude: " + String.valueOf(ExpenseController.getInstance().getSelectedExpense().getLatitude()));
+		expLong.setText("Longitude : " + String.valueOf(ExpenseController.getInstance().getSelectedExpense().getLongitude()));
+		
+	}
+	
+	
+	
+
 	/**
 	 * Changes current activity to ReceiptAddActivity
 	 * @param view View
 	 */
+
 	public void modifyReceipt(View view) {
 		startActivity(new Intent(ExpenseEditActivity.this, ReceiptAddActivity.class));
 	}

@@ -3,15 +3,19 @@ package team14.expenseexpress;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.Mode;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
 import team14.expenseexpress.util.ElasticSearchHelper;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +45,7 @@ public class ClaimListAdapter extends BaseAdapter {
 		}
 		filteredClaimList = new ArrayList<Claim>();
 		filteredClaimList.addAll(claimList);
+
 	}
 
 	/**
@@ -84,7 +89,6 @@ public class ClaimListAdapter extends BaseAdapter {
 	@SuppressLint("InflateParams")
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
-		
 		// claimList = ClaimController.getInstance().getClaimList().getClaims();
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.custom_claim_list, null);
@@ -106,8 +110,19 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.approver.setText(filteredClaimList.get(position).getApprover().getName());
 			holder.name.setText("made by " + filteredClaimList.get(position).getClaimant().getName());
 		} 
-		
+		else{
+			holder.approver.setVisibility(View.INVISIBLE);
+		}
 		holder.claim.setText(filteredClaimList.get(position).getName());
+		double userlat = UserController.getInstance().getLatitude();
+		double userlng = UserController.getInstance().getLongitude();
+		double claimlat = filteredClaimList.get(position).getDestinations().get(0).getLatitude();
+		double claimlng = filteredClaimList.get(position).getDestinations().get(0).getLongitude();
+		double distance = haversine(claimlat,claimlng,userlat,userlng);
+		double ratio = 0;
+		ratio = 255 * distance/20000;
+		int color = (int) ratio;
+		holder.claim.setTextColor(Color.rgb(color,0,color));
 		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
 		holder.enddate.setText(filteredClaimList.get(position).getEndDateString());
 		holder.status.setText(filteredClaimList.get(position).getStatus());
@@ -166,4 +181,20 @@ public class ClaimListAdapter extends BaseAdapter {
 		//ElasticSearchHelper.getInstance().getSubmitted(claimList);
 		//filteredClaimList.addAll(claimList);
 	}
-}
+	
+	
+    public  double haversine(double lat1, double lon1, double lat2, double lon2) {
+	    	double R = 6372.8; // In kilometers
+	        double dLat = Math.toRadians(lat2 - lat1);
+	        double dLon = Math.toRadians(lon2 - lon1);
+	        lat1 = Math.toRadians(lat1);
+	        lat2 = Math.toRadians(lat2);
+	 
+	        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+	        double c = 2 * Math.asin(Math.sqrt(a));
+	        return R * c;
+	    }
+
+	}
+	
+
