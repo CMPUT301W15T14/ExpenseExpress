@@ -15,7 +15,6 @@ import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Expense;
-import team14.expenseexpress.model.Receipt;
 import team14.expenseexpress.model.Status;
 import team14.expenseexpress.util.ElasticSearchHelper;
 import team14.expenseexpress.util.LocalFileHelper;
@@ -63,7 +62,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
     	LayoutInflater.from(this);
     	if(Mode.get() == Mode.APPROVER) {
     		final ListView approverView = (ListView) findViewById(R.id.claimListView);
-    		approverAdapter = new ApproverAdapter(this, ClaimController.getInstance().getClaimList().getClaims());
+    		approverAdapter = new ApproverAdapter(this, ClaimController.getInstance().getSubmittedList().getClaims());
     		approverView.setAdapter(approverAdapter);
     		approverAdapter.getSubmittedClaims();
     	} else {
@@ -220,32 +219,20 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
 		int menuItemIndex = item.getItemId();
-		switch(Mode.get()) {
-		case(Mode.APPROVER) :
-			menuItems = getResources().getStringArray(R.array.LongClickMenuApprov);
-			break;
-		case(Mode.CLAIMANT) :
-			menuItems = getResources().getStringArray(
-					R.array.LongClickMenu);
-			break;
-		}
+		menuItems = getResources().getStringArray(R.array.LongClickMenu);
+
 		String menuItemName = menuItems[menuItemIndex];
 
 		Claim claim = (Claim) lv1.getItemAtPosition(info.position);
 
 		if (menuItemName.equals("Delete")) {
-			if(Mode.get() == Mode.APPROVER) {
-				ElasticSearchHelper.getInstance().deleteClaim(claim);
-			} else {
-				toast(String.valueOf(claim.getId()));
-				ClaimController.getInstance().removeClaim(claim);
-				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
-			}
+			toast(String.valueOf(claim.getId()));
+			ClaimController.getInstance().removeClaim(claim);
+			claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 		} else if (menuItemName.equals("Edit")) {
 			if (claim.getStatus().equals(Status.SUBMITTED)
-					|| (claim.getStatus().equals("approved"))) {
-				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT)
-						.show();
+					|| (claim.getStatus().equals(Status.APPROVED))) {
+				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT).show();
 			} else {
 				edit = true;
 				ClaimController.getInstance().setSelectedClaim(claim);
@@ -258,7 +245,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		} else if (menuItemName.equals("Submit")) {
 			if (Mode.get() == Mode.OFFLINE) {
 				toast("Cannot submit claim in offline mode");
-			} else if (claim.getStatus().equals("Submitted")) {
+			} else if (claim.getStatus().equals(Status.SUBMITTED)) {
 				toast("Claim already Submitted");
 			} else {
 				boolean allcomplete = true;
@@ -268,15 +255,11 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 					}
 				}
 				if (allcomplete){
-				claim.setStatus("Submitted");
-				ElasticSearchHelper.getInstance().addClaim(claim);
-				for (Expense expense : claim.getExpenseList().getExpenses()){
-					Receipt receipt = expense.getReceipt();
-					if (!receipt.getUri().toString().isEmpty())
-						Toast.makeText(this, receipt.getUri().toString(), Toast.LENGTH_LONG).show();
-						ElasticSearchHelper.getInstance().addReceiptToElastic(expense);
-				}}
-				else{
+					claim.setStatus(Status.SUBMITTED);
+					ElasticSearchHelper.getInstance().addClaim(claim);
+							
+					
+				} else { 
 					Toast.makeText(this, "Can not submit incomplete expenses", Toast.LENGTH_LONG).show();
 				}
 				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());

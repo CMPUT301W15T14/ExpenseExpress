@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -46,9 +47,13 @@ public class ReceiptAddActivity extends Activity {
 		bitmap = null;
 		
 		try{
-			uri = ExpenseController.getInstance().getSelectedExpense().getReceipt().getUri();
-			Drawable drawable = Drawable.createFromPath(uri.getPath());
-			button.setImageDrawable(drawable);
+			Bitmap bitmap = ExpenseController.getInstance().getSelectedExpense().getReceipt().StringToBitMap();
+			Matrix matrix = new Matrix();
+			matrix.postRotate(90);
+			Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+			Drawable d = new BitmapDrawable(getResources(),newBitmap);
+			button.setImageDrawable(null);
+			button.setBackground(d);
 		}
 		catch (Exception e){
 			
@@ -99,14 +104,15 @@ public class ReceiptAddActivity extends Activity {
 			if (resultCode == RESULT_OK){
 		        try {
 					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+					
 					if (bitmap != null){
-						
+						//image size less than 65 kb
+						while (bitmap.getByteCount() < 65536){
+							bitmap = Bitmap.createScaledBitmap(bitmap,(int) (bitmap.getWidth()*2),(int) (bitmap.getHeight()*2), true);
+						}
 				    	while (bitmap.getByteCount() > 65536){
 							   bitmap = Bitmap.createScaledBitmap(bitmap,(int) (bitmap.getWidth()*0.2),(int) (bitmap.getHeight()*0.2), true);
 						    }
-
-
-				    
 				    File imageFile = new File(uri.getPath());
 				    FileOutputStream out = new FileOutputStream(imageFile);
 				    bitmap.compress(Bitmap.CompressFormat.JPEG,100, out);
@@ -122,9 +128,14 @@ public class ReceiptAddActivity extends Activity {
 					e.printStackTrace();
 				}
 		        
-				ImageView ib = (ImageButton) findViewById(R.id.TakeAPhoto);
-				Drawable drawable = Drawable.createFromPath(uri.getPath());
-				ib.setImageDrawable(drawable);
+				ImageView button = (ImageButton) findViewById(R.id.TakeAPhoto);
+				Matrix matrix = new Matrix();
+				matrix.postRotate(90);
+				Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+				Drawable d = new BitmapDrawable(getResources(),newBitmap);
+				button.setImageDrawable(null);
+				button.setBackground(d);
+				
 			}
 		}
 	}
@@ -134,7 +145,7 @@ public class ReceiptAddActivity extends Activity {
 		 */
 	public void OnClick_SubmitReceipt(View v){
 		
-		ReceiptController.getInstance().getSelectedReceipt().setUri(uri);
+		ReceiptController.getInstance().getSelectedReceipt().BitmapToString(bitmap);
 		ExpenseController.getInstance().getSelectedExpense().setReceipt(ReceiptController.getInstance().getSelectedReceipt());
 		
 		finish();

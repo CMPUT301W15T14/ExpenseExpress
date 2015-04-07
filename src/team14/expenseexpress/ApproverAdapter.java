@@ -93,11 +93,8 @@ public class ApproverAdapter extends BaseAdapter {
 			holder.startDate.setText(claim.startDateToString());
 			holder.destinations.setText(claim.destinationsToString());
 			holder.claimStatus.setText(claim.getStatus());
-			try {
-				holder.totalAmount.setText(claim.totalAmountToString());
-			} catch(Exception e) {
-				holder.totalAmount.setText("");
-			}
+			holder.totalAmount.setText(claim.totalAmountToString());
+
 			if(claim.getApprover().getName() == null) {
 				holder.approverName.setText("Not Approved Yet");
 			} else {

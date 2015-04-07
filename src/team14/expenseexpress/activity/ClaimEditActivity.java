@@ -25,6 +25,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Activity holding user interface for editing the misc. details of an expense claim.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */
 public class ClaimEditActivity extends Activity {
 
 	private TextView startDateView;

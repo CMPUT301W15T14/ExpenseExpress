@@ -13,6 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * Activity for editing individual expenses' misc. deteails.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @version 1.5
+ */
 public class ExpenseDetailsActivity extends Activity {
 
 	@Override

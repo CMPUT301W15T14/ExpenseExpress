@@ -434,20 +434,14 @@ public class Claim implements Comparable{
 	
 	public String totalAmountToString(){
 		String string = new String("");
-		try {
-			for(Amount a:getAmounts()) {
-				if(a.getNumber() > 0) {
-					string += (a.getCurrency().name() + ":  " +String.valueOf(a.getNumber()) + "\n");
+		for(Expense e : expenseList.getExpenses()) {
+			if(e.getAmount() != null) {
+				if(e.getAmount().getNumber() > 0) {
+					string += (e.getAmount().getCurrency().toString() + " : " + Double.toString(e.getAmount().getNumber())) + "\n";
 				}
 			}
-			return string;
-		} catch (NullPointerException e) {
-			throw new NullPointerException();
-		} catch(Exception e) {
-			e.printStackTrace();
 		}
-		
-		return new String("");
+		return string;
 	}
 	
 }
