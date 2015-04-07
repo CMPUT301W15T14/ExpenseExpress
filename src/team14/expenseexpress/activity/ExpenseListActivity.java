@@ -9,9 +9,11 @@ import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.ExpenseController;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.Expense;
+import team14.expenseexpress.model.Status;
 import team14.expenseexpress.util.LocalFileHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -25,6 +27,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Activity for display an expense claim's list of expenses.
@@ -39,6 +42,7 @@ public class ExpenseListActivity extends Activity {
 	double number;
 	private ArrayList<String> amountListString;
 	private ExpenseListAdapter expenseListAdapter;
+	private Context context;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,8 +54,12 @@ public class ExpenseListActivity extends Activity {
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList);
 		Button ApproveButton = (Button) findViewById(R.id.ApproveButton);
 		Button ExpenseButton = (Button) findViewById(R.id.addExpenseButton);
+<<<<<<< HEAD
+		context = this.getBaseContext();
+=======
 		
 		// Show appropriate button to the role the user chose.
+>>>>>>> 1e69d77a01986196704254dd0311a5e7cefad0bc
 		if (Mode.get() == Mode.APPROVER) {
 			ApproveButton.setVisibility(View.VISIBLE);
 			ExpenseButton.setVisibility(View.INVISIBLE);
@@ -74,18 +82,32 @@ public class ExpenseListActivity extends Activity {
 					adb.setPositiveButton("Delete", new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							
+							if (ClaimController.getInstance().getSelectedClaim().getStatus().equals(Status.SUBMITTED)){
+								Toast.makeText(context, "You can not delete from a submitted claim", Toast.LENGTH_LONG).show();
+							}
+							else if (ClaimController.getInstance().getSelectedClaim().getStatus().equals(Status.APPROVED)){
+								Toast.makeText(context, "You can not delete from a approved claim", Toast.LENGTH_LONG).show();
+							}
+							else{
 							ExpenseController.getInstance().removeExpense
 							(ExpenseController.getInstance().getExpenseList().get(finalPosition));
-							expenseListAdapter.notifyDataSetChanged();
+							expenseListAdapter.notifyDataSetChanged();}
 							
 						}										
 					});
 					adb.setNeutralButton("Edit", new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							ExpenseController.getInstance().setSelectedExpense(finalPosition);
-							startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
+							if (ClaimController.getInstance().getSelectedClaim().getStatus().equals(Status.SUBMITTED)){
+								Toast.makeText(context, "You can not edit a submitted claim", Toast.LENGTH_LONG).show();
+							}
+							else if (ClaimController.getInstance().getSelectedClaim().getStatus().equals(Status.APPROVED)){
+								Toast.makeText(context, "You can not edit an approved claim", Toast.LENGTH_LONG).show();
+							}
+							else{
+								ExpenseController.getInstance().setSelectedExpense(finalPosition);
+								startActivity(new Intent(ExpenseListActivity.this, ExpenseEditActivity.class));
+							}
 							
 						}										
 					});

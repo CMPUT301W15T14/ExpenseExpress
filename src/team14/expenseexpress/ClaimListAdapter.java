@@ -97,19 +97,17 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.tags = (TextView) convertView.findViewById(R.id.tags);
 			holder.destination = (TextView) convertView.findViewById(R.id.destination);
 			holder.costs = (TextView) convertView.findViewById(R.id.costs);
-			holder.name = (TextView) convertView.findViewById(R.id.name);
 			holder.approver = (TextView) convertView.findViewById(R.id.approverNameText);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		
-		if(Mode.get() == Mode.APPROVER) {
-			holder.approver.setText(filteredClaimList.get(position).getApprover().getName());
-			holder.name.setText("made by " + filteredClaimList.get(position).getClaimant().getName());
-		} 
-		else{
+		if (filteredClaimList.get(position).getApprover().getName() == ""){
 			holder.approver.setVisibility(View.INVISIBLE);
+		}
+		else{
+			holder.approver.setVisibility(View.VISIBLE);
+			holder.approver.setText(filteredClaimList.get(position).getApprover().getName());
 		}
 		holder.claim.setText(filteredClaimList.get(position).getName());
 		double userlat = UserController.getInstance().getLatitude();
@@ -119,7 +117,8 @@ public class ClaimListAdapter extends BaseAdapter {
 		double claimlng = filteredClaimList.get(position).getDestinations().get(0).getLongitude();
 		double distance = haversine(claimlat,claimlng,userlat,userlng);
 		double ratio = 0;
-		ratio = 255 * distance/20000;
+		ratio = 255 * (1-(distance/20000));
+
 		int color = (int) ratio;
 		holder.claim.setTextColor(Color.rgb(color,0,color));}
 		catch (Exception e){
@@ -176,7 +175,6 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView destination;
 		TextView costs;
 		TextView approver;
-		TextView name;
 	}
 
 	

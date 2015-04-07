@@ -96,8 +96,9 @@ public class ApproverAdapter extends BaseAdapter {
 		}
 
 		if(claimList.isEmpty()) {
-			//No claims to show.
+			view.setVisibility(View.INVISIBLE);
 		} else {
+			view.setVisibility(View.VISIBLE);
 			claim = null;
 			claim = (Claim) claimList.get(position);
 
