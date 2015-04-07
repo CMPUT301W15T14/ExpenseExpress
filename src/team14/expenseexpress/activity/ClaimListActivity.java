@@ -371,4 +371,10 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		((TextView)findViewById(R.id.textView_chosenTags)).setText(tagsString);
 	}
 
+
+	public void onItemClick(int Position) {
+		startActivity(new Intent(this, ExpenseListActivity.class));
+		
+	}
+
 }
