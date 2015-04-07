@@ -100,11 +100,19 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.tags = (TextView) convertView.findViewById(R.id.tags);
 			holder.destination = (TextView) convertView.findViewById(R.id.destination);
 			holder.costs = (TextView) convertView.findViewById(R.id.costs);
-
+			holder.approver = (TextView) convertView.findViewById(R.id.approverName);
+			holder.name = (TextView) convertView.findViewById(R.id.name);
+				
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
+		
+		if(Mode.get() == Mode.APPROVER) {
+			holder.approver.setText(filteredClaimList.get(position).getApprover().getName());
+			holder.name.setText("made by " + filteredClaimList.get(position).getClaimant().getName());
+		} 
+		
 		holder.claim.setText(filteredClaimList.get(position).getName());
 		double userlat = UserController.getInstance().getLatitude();
 		double userlng = UserController.getInstance().getLongitude();
@@ -165,11 +173,12 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView tags;
 		TextView destination;
 		TextView costs;
+		TextView approver;
+		TextView name;
 	}
 
 	public void setApproverClaimList() {
 		ElasticSearchHelper.getInstance().getSubmitted(claimList);
-		filteredClaimList = new ArrayList<Claim>();
 		filteredClaimList.addAll(claimList);
 	}
 	

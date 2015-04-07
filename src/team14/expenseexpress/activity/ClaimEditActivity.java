@@ -80,18 +80,29 @@ public class ClaimEditActivity extends Activity {
 		//http://www.tutorialspoint.com/android/android_datepicker_control.htm   
 		//All DatePicker code was implemented from this source, accessed Feb.1,2015
 		@SuppressWarnings("deprecation")
+		/**
+		 * Sets starting date by assigning appropriate id
+		 * @param view View
+		 */
 		public void setStartDate(View view) {
 			showDialog(777);
 			Toast.makeText(getApplicationContext(), "Start Date", Toast.LENGTH_SHORT).show();
 		}
 		
 		@SuppressWarnings("deprecation")
+		/**
+		 * Sets ending date by assigning appropriate id
+		 * @param view View
+		 */
 		public void setEndDate(View view) {
 			showDialog(999);
 			Toast.makeText(getApplicationContext(), "End Date", Toast.LENGTH_SHORT).show();
 		}
 		
 		@Override
+		/**
+		 * Uses given id from either setStartDate or setEndDate
+		 */
 		protected Dialog onCreateDialog(int id) {
 			if (id == 777) {
 				return new DatePickerDialog(this, startDateListener, startYear, startMonth, startDay);
@@ -131,7 +142,9 @@ public class ClaimEditActivity extends Activity {
 				showDate();
 			}
 		};
-
+		/**
+		 * Sets the shown date for DatePicker
+		 */
 		private void showDate() {
 			startDateView.setText(new StringBuilder().append(startMonth+1).append("-").append(startDay).append("-").append(startYear));
 			endDateView.setText(new StringBuilder().append(endMonth+1).append("-").append(endDay).append("-").append(endYear));
@@ -150,11 +163,17 @@ public class ClaimEditActivity extends Activity {
 			destinationAdapter.notifyDataSetChanged();
 			ClaimController.getInstance().saveClaims();
 		}
-		
+		/**
+		 * Changes the user's view to the EditTags activity
+		 * @param v View
+		 */
 		public void editTags(View v) {
 			startActivity(new Intent(ClaimEditActivity.this,EditTags.class));
 		}
-		
+		/**
+		 * Changes the user's view to the EditTags activity
+		 * @param v View
+		 */
 		public void editDestinations(View v) {
 			startActivity(new Intent(ClaimEditActivity.this,EditDestinations.class));
 		}
@@ -164,7 +183,10 @@ public class ClaimEditActivity extends Activity {
 			//finishEdit();
 			confirmDialog.show();
 		}
-		
+		/**
+		 * Presents the user with 'Yes' and 'No' buttons when asked if
+		 * they want to discard their changes
+		 */
 		private void ConfirmDialog() {
 		    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		    	builder.setMessage("Discard any Changes?")
@@ -172,9 +194,14 @@ public class ClaimEditActivity extends Activity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
-						Claim claim = ClaimController.getInstance().getSelectedClaim();
-						ClaimController.getInstance().getClaimList().remove(claim);
-						finish();
+						if (ClaimListActivity.edit == false) {
+							Claim claim = ClaimController.getInstance().getSelectedClaim();
+							ClaimController.getInstance().getClaimList().remove(claim);
+							ClaimListActivity.edit = true;
+							finish();
+						} else {
+							finish();
+						}
 					}
 				}).setNegativeButton("No", new DialogInterface.OnClickListener() {
 					
@@ -185,11 +212,16 @@ public class ClaimEditActivity extends Activity {
 				});
 		    	confirmDialog = builder.create();
 		}
-		
+		/**
+		 * Allows user to edit a claim's information
+		 * @param v View
+		 */
 		public void editClaim(View v) {
 			finishEdit();
 		}
-		
+		/**
+		 * Displays text to user depending on completion of information inputs
+		 */
 		private void finishEdit() {
 			Claim claim = ClaimController.getInstance().getSelectedClaim();
 			try {

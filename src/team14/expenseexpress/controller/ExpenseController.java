@@ -20,20 +20,26 @@ public class ExpenseController {
 	
 	//singleton
 	private static ExpenseController instance = null;
-	
+
 	private ExpenseController(){
 		if(selectedExpense == null) {
 			selectedExpense = new Expense();
 		}
 	}
-	
+	/**
+	 * if instance is null, makes instance equal to a new Expense
+	 * @return instance of ExpenseController
+	 */
 	public static ExpenseController getInstance(){
 		if (instance == null){
 			instance = new ExpenseController();
 		}
 		return instance;
 	}
-	
+	/**
+	 * if instance is null, makes instance equal to a new Expense
+	 * updates expenseList
+	 */
 	public static void initialize() {
 		if (instance == null){
 			instance = new ExpenseController();
@@ -42,7 +48,7 @@ public class ExpenseController {
 	}
 	
 	  /**
-		 * Set Expense recieves fields for a new or edited expense and modifies the Expense object
+		 * Set Expense receives fields for a new or edited expense and modifies the Expense object
 		 * This ensures a MVC framework.
 		 * @param String category,
 						    GregorianCalendar expenseDate,
@@ -88,47 +94,75 @@ public class ExpenseController {
 		this.selectedExpense = expenseList.get(position);
 	
 	}
-	
+	/**
+	 * Makes selected Expense the given Expense
+	 */
 	public void makeSelectedExpense(){
 		this.selectedExpense = new Expense();
 		addExpense(selectedExpense);
 	}
 	
-	
+	/**
+	 * Returns the expense list
+	 * @return instance of expenseList
+	 */
 	public ExpenseList getExpenseList() {
 		return this.expenseList;
 	}
-	
+	/**
+	 * Returns selected Expense
+	 * @return instance of selected Expense
+	 */
 	public Expense getSelectedExpense(){
 		return this.selectedExpense;
 	}
 	
-	
+	/**
+	 * Make's the current claim's expenseList the selected expenseList
+	 * @param claim that is in current use by UI
+	 */
 	private ExpenseController(Claim claim){
 		this.expenseList = claim.getExpenseList();
 	
 	}
-	
+	/**
+	 * adds expense to current expenseList
+	 * @param expense added to expenseList
+	 */
 	public void addExpense(Expense expense){
 		this.expenseList.add(expense);
 	}
-	
+	/**
+	 * removes expense from expenseList
+	 * @param expense the expense to be removed
+	 */
 	public void removeExpense(Expense expense){
 		this.expenseList.remove(expense);
 		sortExpenseList();
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
-	
+	/**
+	 * If no selected expense returns empty GregorianCalendar
+	 * @return The the date of the selected Expense
+	 */
 	public GregorianCalendar getExpenseDate() {
 		if (selectedExpense == null)
 			return new GregorianCalendar();
 		else
 			return this.selectedExpense.getExpenseDate();
 	}
-	
+	/**
+	 * Sets expense date to calendar
+	 * @param calendar the date that the expense is to be set to
+	 */
 	public void setExpenseDate(GregorianCalendar calendar) {
 		this.selectedExpense.setExpenseDate(calendar);
 	}
+	/**
+	 * Searches through expenses to see if expense is contained in expenseList
+	 * @param name name of expense searching for
+	 * @return True if name contained in list, False if not
+	 */
 	public boolean containsByName(String name){
 		if (selectedExpense != null){
 			for (Expense expense : expenseList.getExpenses()){
@@ -144,6 +178,9 @@ public class ExpenseController {
 		}
 		return false;
 	}
+	/**
+	 * sorts expenseList
+	 */
 	public void sortExpenseList(){
 		expenseList.sort();
 

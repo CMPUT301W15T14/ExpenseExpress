@@ -42,5 +42,11 @@ public class ClaimDetailsActivity extends Activity {
 		ArrayAdapter<String> totalCostAdapter = 
 			    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, amountlist);
 		totalAmountList.setAdapter(totalCostAdapter);
+		
+		ListView approverList = (ListView) findViewById(R.id.claimListofApprovers);
+		ArrayList<String> approvers = ClaimController.getInstance().getSelectedClaim().getApproverList();
+		ArrayAdapter<String> approverAdapter = 
+			    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, approvers);
+		approverList.setAdapter(approverAdapter);
 	}
 }

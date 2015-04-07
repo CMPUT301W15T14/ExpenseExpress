@@ -68,7 +68,10 @@ public class ExpenseDetailsActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+	/**
+	 * Changes the current activity to ViewReceiptActivity
+	 * @param v View
+	 */
 	public void OnClick_ViewReceipt(View v){
 		startActivity(new Intent(ExpenseDetailsActivity.this, ViewReceiptActivity.class));
 	}

@@ -33,10 +33,11 @@ public class TestClaimModel extends
 	 * a claim should also pass
 	 */
 	public void testDestinaionModel() {
-		//Destination destination = new Destination("Canada");
-		//destination.setReason("Cuz its cold");
-	//	assertEquals("Destination model works", "Canada", destination.getDestination());
-	//	assertEquals("Destination reason works", "Cuz its cold", destination.getReason());
+		Destination destination = new Destination();
+		destination.setDestination("Canada");
+		destination.setReason("Cuz its cold");
+		assertEquals("Destination model works", "Canada", destination.getDestination());
+		assertEquals("Destination reason works", "Cuz its cold", destination.getReason());
 	}
 	/**
 	 * Test the Claim and ClaimList model and its controller to see if we can add a new 

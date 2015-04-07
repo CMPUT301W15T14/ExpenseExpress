@@ -1,6 +1,6 @@
 
 package team14.expenseexpress.activity;
-
+//no javadoc here yet!!!!!
 import java.util.ArrayList;
 
 import team14.expenseexpress.R;
@@ -51,7 +51,7 @@ public class TagListAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.custom_tag_list, null);
 			holder = new ViewHolder();
 			holder.tag = (TextView) convertView.findViewById(R.id.AddDestLatitude);
-			holder.box = (CheckBox) convertView.findViewById(R.id.checkBox1);
+			holder.box = (CheckBox) convertView.findViewById(R.id.approvedBox);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();

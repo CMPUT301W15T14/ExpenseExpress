@@ -64,7 +64,7 @@
         android:layout_alignBottom="@+id/viewStatusButton"
         android:layout_alignLeft="@+id/viewStatusButton"
         android:background="@color/mainYellow"
-        android:onClick="onClick_NewExpense"
+        android:onClick="onClick_ReturnApproveClaim"
         android:text="Return/Approve"
         android:textColor="@color/mainGreen"
         android:visibility="invisible" />
