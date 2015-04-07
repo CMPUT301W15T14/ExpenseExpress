@@ -360,7 +360,7 @@ public class ElasticSearchHelper {
 			throw new RuntimeException(e);
 		}
 		
-		ReceiptController.getInstance().setBitmap(bitmap);
+		//ReceiptController.getInstance().setBitmap(bitmap);
 	}
 
 	
@@ -378,6 +378,7 @@ public class ElasticSearchHelper {
 		@Override
 		protected Boolean doInBackground(Void ...params) {
 			getReceipt(receipt.getUri().toString());
+
 			return true;
 		}
 
