@@ -20,7 +20,6 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -239,8 +238,8 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			if (claim.getStatus().equals("Submitted")) {
 				toast("Claim already Submitted");
 			} else {
-				ElasticSearchHelper.getInstance().addClaim(claim);
 				claim.setStatus("Submitted");
+				ElasticSearchHelper.getInstance().addClaim(claim);
 				claimsListAdapter.updateFilteredClaimList(TagListController.getInstance().getChosenTags().getTags());
 				LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 			}

@@ -35,8 +35,11 @@ public class ViewClaimTest extends
 		
 		Claim claim = ClaimController.getInstance().getNewClaim();
 		claim.setName("First Claim");
-		Destination destination1 = new Destination("Canada");
-		Destination destination2 = new Destination("USA");
+		Destination destination1 = new Destination();
+		Destination destination2 = new Destination();
+		destination1.setDestination("USA");
+		destination2.setDestination("Canada");
+		
 		claim.addDestination(destination1);
 		claim.addDestination(destination2);
 		claim.setStartDate(startdate);

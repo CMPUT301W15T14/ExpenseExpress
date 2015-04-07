@@ -67,8 +67,9 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 			ArrayList<ApproverComment> commentList = claim.getApproverComments();
 			commentList.add(approvercomment);
 			claim.setApproverComments(commentList);
+			claim.setApprover(UserController.getInstance().getCurrentUser());
+			ElasticSearchHelper.getInstance().addClaim(claim);
+			finish();
 		}
-		ElasticSearchHelper.getInstance().addClaim(claim);
-		finish();
 	} 
 }
