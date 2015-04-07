@@ -132,14 +132,6 @@ public class ApproverAdapter extends BaseAdapter {
 					AlertDialog.Builder adb = new AlertDialog.Builder(activity);
 					adb.setMessage("Menu of " + claim.getName());
 					adb.setCancelable(true);
-					adb.setPositiveButton("Return",new DialogInterface.OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							activity.startActivity(new Intent(activity, ReturnClaimActivity.class));
-						}
-
-					});
 					adb.setNeutralButton("Details",new DialogInterface.OnClickListener() {
 
 						@Override

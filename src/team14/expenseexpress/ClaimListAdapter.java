@@ -67,7 +67,7 @@ public class ClaimListAdapter extends BaseAdapter {
 			}
 		}
 		Collections.sort(filteredClaimList, new Claim.ClaimComparator());
-		//notifyDataSetChanged();
+		notifyDataSetChanged();
 	}
 	
 	@Override
@@ -101,6 +101,7 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.destination = (TextView) convertView.findViewById(R.id.destination);
 			holder.costs = (TextView) convertView.findViewById(R.id.costs);
 			holder.name = (TextView) convertView.findViewById(R.id.name);
+			holder.approver = (TextView) convertView.findViewById(R.id.approverNameText);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -116,13 +117,17 @@ public class ClaimListAdapter extends BaseAdapter {
 		holder.claim.setText(filteredClaimList.get(position).getName());
 		double userlat = UserController.getInstance().getLatitude();
 		double userlng = UserController.getInstance().getLongitude();
+		try{
 		double claimlat = filteredClaimList.get(position).getDestinations().get(0).getLatitude();
 		double claimlng = filteredClaimList.get(position).getDestinations().get(0).getLongitude();
 		double distance = haversine(claimlat,claimlng,userlat,userlng);
 		double ratio = 0;
 		ratio = 255 * distance/20000;
 		int color = (int) ratio;
-		holder.claim.setTextColor(Color.rgb(color,0,color));
+		holder.claim.setTextColor(Color.rgb(color,0,color));}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
 		holder.enddate.setText(filteredClaimList.get(position).getEndDateString());
 		holder.status.setText(filteredClaimList.get(position).getStatus());

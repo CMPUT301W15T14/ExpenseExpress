@@ -125,9 +125,6 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	private void initializeListViewClaimList() {
 		final ListView listView_claimList = (ListView) findViewById(R.id.claimListView);
 		claimsListAdapter = new ClaimListAdapter(this);
-		if(Mode.get() == Mode.APPROVER) {
-			loadSubmittedClaims();
-		}
 		setClaimListAdapter(claimsListAdapter);
 		listView_claimList.setAdapter(claimsListAdapter);
 		registerForContextMenu(listView_claimList);
@@ -373,4 +370,5 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		}
 		((TextView)findViewById(R.id.textView_chosenTags)).setText(tagsString);
 	}
+
 }
