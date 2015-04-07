@@ -52,6 +52,7 @@ public class LoginActivity extends ExpenseExpressActivity {
 					modeDialog.show();
 					dialog.dismiss();
 				} else {
+					toast("No Network Access - Offline");
 					Mode.set(Mode.OFFLINE);
 					startClaimsListActivity();
 				}

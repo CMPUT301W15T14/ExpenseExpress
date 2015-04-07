@@ -33,7 +33,7 @@ public class ClaimListAdapter extends BaseAdapter {
 		mInflater = LayoutInflater.from(context);
 		switch(Mode.get()) {
 		case Mode.APPROVER :
-			claimList = ElasticSearchHelper.getInstance(context).getClaims();
+			claimList = new ArrayList<Claim>();
 			break;
 		case Mode.CLAIMANT :
 			claimList = ClaimController.getInstance().getClaimList().getClaims();
@@ -159,5 +159,11 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView destination;
 		TextView costs;
 		TextView approver;
+	}
+
+	public void setApproverClaimList() {
+		ElasticSearchHelper.getInstance().getSubmitted(claimList);
+		filteredClaimList = new ArrayList<Claim>();
+		filteredClaimList.addAll(claimList);
 	}
 }
