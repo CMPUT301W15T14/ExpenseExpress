@@ -156,7 +156,6 @@ public class ClaimListAdapter extends BaseAdapter {
 
 	public void setApproverClaimList() {
 		ElasticSearchHelper.getInstance().getSubmitted(claimList);
-		filteredClaimList = new ArrayList<Claim>();
 		filteredClaimList.addAll(claimList);
 	}
 }
