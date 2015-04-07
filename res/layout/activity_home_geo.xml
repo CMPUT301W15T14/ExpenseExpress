@@ -38,6 +38,7 @@
         android:layout_alignRight="@+id/homeGeoTitle"
         android:layout_below="@+id/homeAddbyGPS"
         android:layout_marginTop="16dp"
+        android:onClick="onClick_ByMap"
         android:text="Add By Map" />
 
     <Button
@@ -47,10 +48,11 @@
         android:layout_alignLeft="@+id/homeLat"
         android:layout_alignRight="@+id/homeGeoTitle"
         android:layout_centerVertical="true"
+        android:onClick="onClick_ByGPS"
         android:text="Add By GPS" />
 
     <TextView
-        android:id="@+id/homeLat"
+        android:id="@+id/homeLong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/homeAddbyGPS"
@@ -67,6 +69,7 @@
         android:layout_alignRight="@+id/homeAddByMap"
         android:layout_below="@+id/homeAddByMap"
         android:layout_marginTop="21dp"
+        android:onClick="onClick_Submit"
         android:text="Submit" />
 
 </RelativeLayout>

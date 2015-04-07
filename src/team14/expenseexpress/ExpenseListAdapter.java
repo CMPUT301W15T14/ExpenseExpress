@@ -52,8 +52,12 @@ public class ExpenseListAdapter extends BaseAdapter {
 			holder.incomplete = (TextView) convertView.findViewById(R.id.incomplete);
 			holder.yesreceipt = (TextView) convertView.findViewById(R.id.yesReceipt);
 			holder.noreceipt = (TextView) convertView.findViewById(R.id.noReceipt);
-			
-
+			holder.latitude = (TextView) convertView.findViewById(R.id.expAdaptLatitude);
+			holder.longitude = (TextView) convertView.findViewById(R.id.expAdaptLongitude);
+			if (!expenseList.get(position).geo()){
+				holder.latitude.setVisibility(View.INVISIBLE);
+				holder.longitude.setVisibility(View.INVISIBLE);
+			}
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -65,6 +69,8 @@ public class ExpenseListAdapter extends BaseAdapter {
 		holder.amount.setText(Double.toString(expenseList.get(position).getAmount().getNumber()));
 		holder.currency.setText(expenseList.get(position).getAmount().getCurrency().getName());
 		holder.description.setText(expenseList.get(position).getDescription());
+		holder.latitude.setText("Latitude : " + String.valueOf(expenseList.get(position).getLatitude()));
+		holder.longitude.setText("Longitude : " + String.valueOf(expenseList.get(position).getLongitude()));
 		if (expenseList.get(position).getIncomplete()){
 
 			holder.incomplete.setVisibility(View.VISIBLE);
@@ -95,5 +101,7 @@ public class ExpenseListAdapter extends BaseAdapter {
 		TextView incomplete;
 		TextView yesreceipt;
 		TextView noreceipt;
+		TextView latitude;
+		TextView longitude;
 	}
 }

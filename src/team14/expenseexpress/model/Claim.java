@@ -326,6 +326,9 @@ public class Claim implements Comparable{
 			return c1.getStartDate().compareTo(c2.getStartDate());
 				}
 		}
+	
+
+	
 	/**
 	 * date To string used to get formatted date objects
 	 * 
@@ -374,5 +377,6 @@ public class Claim implements Comparable{
 	public void setApprover(User approver) {
 		this.approver = approver;
 	}
-	
+
+
 }

@@ -33,16 +33,19 @@ public class UserController {
 		this.currentUser = user;
 	}
 	public double getLatitude() {
-		return latitude;
+		return currentUser.getLatitude();
 	}
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
+		currentUser.setLatitude(latitude);
 	}
 	public double getLongitude() {
-		return longitude;
+		return currentUser.getLongitude();
 	}
 	public void setLongitude(double longitude) {
+		
 		this.longitude = longitude;
+		currentUser.setLongitude(longitude);
 	}
 	
 	

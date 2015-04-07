@@ -78,7 +78,7 @@ public class LocalFileHelper {
 		}
 	}
 
-	
+
 	public void saveClaims(ClaimList claims){
 		switch(Mode.get()) {
 		case Mode.CLAIMANT:

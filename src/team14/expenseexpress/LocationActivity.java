@@ -1,7 +1,10 @@
 package team14.expenseexpress;
 
 
+import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.DestinationController;
+import team14.expenseexpress.controller.ExpenseController;
+import team14.expenseexpress.controller.UserController;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -21,11 +24,26 @@ public class LocationActivity extends Activity implements LocationListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
+		 Bundle extras = getIntent().getExtras();
+		  if (extras != null) {
+		   if (extras.get("ID") == "USER"){
+			   user = true;
+			   expense =false;
+		   }
+		   else{
+			   expense = true;
+			   user = false;
+		   }
+		  }else{
+			  user = false;
+			  expense = false;
+		  }
 	}
 
 	public TextView latView;
 	public TextView lngView;
-	
+	public boolean user;
+	public boolean expense;
 	    // flag for GPS status
 	    boolean isGPSEnabled = false;
 	    Location location; // location
@@ -112,8 +130,19 @@ public class LocationActivity extends Activity implements LocationListener {
     	lngView.setText("Longitude: ");
     	latView.setText(latView.getText() + String.valueOf(latitude));
     	lngView.setText(lngView.getText() + String.valueOf(longitude));
+    	if (user){
+    		UserController.getInstance().setLatitude(latitude);
+    		UserController.getInstance().setLongitude(longitude);
+    	}
+    	else if (expense){
+    		ExpenseController.getInstance().getSelectedExpense().setLatitude(latitude);
+    		ExpenseController.getInstance().getSelectedExpense().setLongitude(longitude);
+
+    	}
+    	else{
+    
     	DestinationController.getInstance().setDestLatitude(latitude);
-    	DestinationController.getInstance().setDestLongitude(longitude);
+    	DestinationController.getInstance().setDestLongitude(longitude);}
     	
     	
     }

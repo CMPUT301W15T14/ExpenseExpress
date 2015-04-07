@@ -8,6 +8,7 @@ import java.util.Collections;
 	 * 
 	 *
 	 */
+
 public class ClaimList {
 	
 	private ArrayList<Claim> claimList;
@@ -60,4 +61,6 @@ public class ClaimList {
 	public void sort() {
 		Collections.sort(claimList, new Claim.ClaimComparator());
 	}
+	double latitude;
+	double longitude;
 }

@@ -69,7 +69,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		displayUiBasedOnMode();
 	}
 	
-	public void addHomeGeo(){
+	public void addHomeGeo(View v){
 		Intent intent = new Intent(ClaimListActivity.this,
 				HomeGeo.class);
 		startActivity(intent);

@@ -4,6 +4,7 @@ import team14.expenseexpress.LocationActivity;
 import team14.expenseexpress.R;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.DestinationController;
+import team14.expenseexpress.maps.MapActivity;
 import team14.expenseexpress.model.Destination;
 import android.location.Criteria;
 import android.location.Location;
@@ -96,8 +97,15 @@ public class EditDestinations extends Activity{
 
 					}});
 	
-			
-			
+			v.findViewById(R.id.addDestMap).setOnClickListener(
+					new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							 Intent intent = new Intent(getActivity(), MapActivity.class); 
+				             startActivity(intent);
+
+					}});
 			v.findViewById(R.id.addDestinationButton2).setOnClickListener(
 					new OnClickListener() {
 
@@ -126,6 +134,7 @@ public class EditDestinations extends Activity{
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		menu.add("Delete");
+		
 	}
 	
 	@Override
@@ -138,11 +147,11 @@ public class EditDestinations extends Activity{
 		String[] menuItems = getResources().getStringArray(
 				R.array.LongClickMenu);
 		String menuItemName = menuItems[menuItemIndex];
-
+		
 		Destination destination = (Destination) lv1.getItemAtPosition(info.position);
 
 		if (menuItemName.equals("Delete")) {
-			ClaimController.getInstance().getSelectedClaim().getDestinations().remove(destination);
+			ClaimController.getInstance().getSelectedClaim().getDestinations().remove(info.position);
 			destinationAdapter.notifyDataSetChanged();
 		}
 		return true;

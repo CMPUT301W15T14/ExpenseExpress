@@ -86,15 +86,6 @@
         android:text="Description :"
         android:textColor="@color/mainYellow" />
 
-    <CheckBox
-        android:id="@+id/completeCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/addReceipt"
-        android:layout_centerHorizontal="true"
-        android:text="Expense Incomplete?"
-        android:textColor="@color/mainYellow" />
-
     <Button
         android:id="@+id/addReceipt"
         style="?android:attr/buttonStyleSmall"
@@ -112,7 +103,7 @@
         android:id="@+id/editDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/currencySpinner"
+        android:layout_alignBottom="@+id/space1"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/expenseDescript"
         android:layout_below="@+id/expenseDescript"
@@ -124,21 +115,9 @@
         android:id="@+id/currencySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/categorySpinner"
+        android:layout_alignBottom="@+id/amountText"
         android:layout_alignTop="@+id/amountText"
         android:layout_toRightOf="@+id/completeCheck" />
-
-    <EditText
-        android:id="@+id/amountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/categorySpinner"
-        android:layout_toLeftOf="@+id/currencySpinner"
-
-        android:layout_toRightOf="@+id/expenseAmount"
-
-        android:ems="10"
-        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/addExpense"
@@ -153,41 +132,80 @@
         android:text="Add Expense"
         android:textColor="@color/mainGreen" />
 
-    <TextView
-
-        android:id="@+id/expenseAmount"
-
-
+    <CheckBox
+        android:id="@+id/completeCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/amountText"
-        android:layout_alignBottom="@+id/amountText"
-        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/addReceipt"
+        android:layout_toRightOf="@+id/expenseAmount"
+        android:text="Expense Incomplete?"
+        android:textColor="@color/mainYellow" />
+
+    <Button
+        android:id="@+id/expenseGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/addReceipt"
+        android:layout_alignLeft="@+id/categoryTitle"
+        android:layout_alignTop="@+id/expenseLat"
+        android:onClick="onClick_GPS"
+        android:text="GPS" />
+
+    <TextView
+        android:id="@+id/expenseAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editDescription"
+        android:layout_below="@+id/editDescription"
         android:text="Amount :"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/mainYellow" />
+
+    <EditText
+        android:id="@+id/amountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/expenseAmount"
+        android:layout_toLeftOf="@+id/currencySpinner"
+        android:layout_toRightOf="@+id/categoryTitle"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/categoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_alignLeft="@+id/expenseAmount"
-
-
         android:layout_alignRight="@+id/expenseDateButton"
-        android:layout_alignTop="@+id/categorySpinner"
-        android:layout_marginTop="14dp"
+        android:layout_centerVertical="true"
         android:text="Category:"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/mainYellow"
-	 />
+        android:textColor="@color/mainYellow" />
+
+    <TextView
+        android:id="@+id/expenseLat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/completeCheck"
+        android:layout_alignLeft="@+id/expenseLong"
+        android:layout_marginBottom="22dp"
+        android:text="Latitude:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/expenseLong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/completeCheck"
+        android:layout_alignLeft="@+id/completeCheck"
+        android:text="Longitude:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Spinner
         android:id="@+id/categorySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/completeCheck"
-        android:layout_toRightOf="@+id/categoryTitle" />
+        android:layout_alignLeft="@+id/amountText"
+        android:layout_below="@+id/currencySpinner" />
 
 </RelativeLayout>
