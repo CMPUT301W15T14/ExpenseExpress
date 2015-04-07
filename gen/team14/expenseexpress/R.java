@@ -195,7 +195,7 @@ public final class R {
         public static final int newClaimTitle=0x7f0a0002;
         public static final int newTagNameField=0x7f0a0015;
         public static final int newTagTitle=0x7f0a0013;
-        public static final int noReceipt=0x7f0a00ac;
+        public static final int noReceipt=0x7f0a00ad;
         public static final int possibleTagsTitle=0x7f0a0017;
         public static final int receiptSubmitButton=0x7f0a006e;
         public static final int receiptTitle=0x7f0a006d;
@@ -224,7 +224,7 @@ public final class R {
         public static final int totalAmountTextView=0x7f0a0097;
         public static final int totalAmountTxt=0x7f0a0096;
         public static final int viewStatusButton=0x7f0a0043;
-        public static final int yesReceipt=0x7f0a00ad;
+        public static final int yesReceipt=0x7f0a00ac;
     }
     public static final class layout {
         public static final int activity_add_claim=0x7f030000;

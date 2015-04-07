@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -99,14 +100,16 @@ public class ReceiptAddActivity extends Activity {
 		        try {
 					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
 					if (bitmap != null){
-						Toast.makeText(this,Integer.toString(bitmap.getByteCount()), Toast.LENGTH_LONG).show();
+						
 				    	while (bitmap.getByteCount() > 65536){
 							   bitmap = Bitmap.createScaledBitmap(bitmap,(int) (bitmap.getWidth()*0.2),(int) (bitmap.getHeight()*0.2), true);
 						    }
-				    	Toast.makeText(this,Integer.toString(bitmap.getByteCount()) + "new", Toast.LENGTH_LONG).show();
+
+
+				    
 				    File imageFile = new File(uri.getPath());
 				    FileOutputStream out = new FileOutputStream(imageFile);
-				    bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+				    bitmap.compress(Bitmap.CompressFormat.JPEG,100, out);
 				    out.flush();
 				    out.close();
 				    
@@ -120,7 +123,8 @@ public class ReceiptAddActivity extends Activity {
 				}
 		        
 				ImageView ib = (ImageButton) findViewById(R.id.TakeAPhoto);
-				ib.setImageBitmap(bitmap);
+				Drawable drawable = Drawable.createFromPath(uri.getPath());
+				ib.setImageDrawable(drawable);
 			}
 		}
 	}

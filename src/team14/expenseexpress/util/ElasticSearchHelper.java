@@ -409,10 +409,16 @@ public class ElasticSearchHelper {
 			this.expense = expense;
 		}
 		@Override
+
 		protected Void doInBackground(Void ...params) {
 			getReceipt(expense);
 
 			return null;
+
+		protected Boolean doInBackground(Void ...params) {
+			getReceipt(receipt.getUri().toString());
+			return true;
+
 		}
 
 		
@@ -427,10 +433,20 @@ public class ElasticSearchHelper {
 			Bitmap photo = ReceiptController.getInstance().getBitmap(expense.getReceipt(), context);
 			photo.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 			byte[] imageBytes = baos.toByteArray();
+
 			//String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 			
 			ByteArrayEntity entity = new ByteArrayEntity(imageBytes);
 			addRequest.setEntity(entity);
+
+			Log.i("HTML", RECEIPT_URL + String.valueOf(expense.getId()));
+			Log.i("Length", String.valueOf(imageBytes.length));
+			String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+			Log.i("Length", encodedImage);
+			gson = new Gson();
+			StringEntity stringEntity = new StringEntity(gson.toJson(encodedImage));
+			addRequest.setEntity(stringEntity);
+
 			addRequest.setHeader("Accept", "application/json");
 			
 			HttpResponse response = httpClient.execute(addRequest);

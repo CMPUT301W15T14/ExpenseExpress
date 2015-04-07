@@ -228,15 +228,19 @@ public class ClaimEditActivity extends Activity {
 				claim.setName(claimNameText.getEditableText().toString());
 			} catch (NullPointerException e) {
 				e.printStackTrace();
-				Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Name Required", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if(claimNameText.getEditableText().toString().isEmpty()) {
-				Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Name Required", Toast.LENGTH_SHORT).show();
 				return;
 			} else if(claim.getEndDate().compareTo(claim.getStartDate()) < 0) {
-				Toast.makeText(this, "End date can't come before start date.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "End date Can't Come Before Start Date.", Toast.LENGTH_SHORT).show();
 				return;
+			} else if(claim.getDestinations().isEmpty()){
+				Toast.makeText(this, "Claim Must Have At Least One Destination", Toast.LENGTH_SHORT).show();
+				return;	
+				
 			} else {
 				LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 				Toast.makeText(this, "Claim edited.", Toast.LENGTH_SHORT).show();
