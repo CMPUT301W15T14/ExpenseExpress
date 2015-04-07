@@ -41,7 +41,7 @@ public class TestClaimTagModel extends
 	 * Test the TagList model and the TagListController to see if we can list, add, rename and delete tags
 	 */
 	public void testManageTags() {
-		UserController.getInstance().addUser(new User("zach"));
+		UserController.getInstance().setCurrentUser(new User("zach"));
 		TagListController.getInstance().initialize();
 		ClaimTag tag = new ClaimTag("1st tag");
 		TagListController.getInstance().addTag(tag);

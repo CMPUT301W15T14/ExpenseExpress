@@ -11,8 +11,10 @@ import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
 import team14.expenseexpress.util.LocalFileHelper;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +32,7 @@ public class ClaimEditActivity extends Activity {
 	private EditText claimNameText;
 	private ListView tagListView;
 	private ListView destinationListView;
+	private AlertDialog confirmDialog;
 	
 	private ArrayAdapter<ClaimTag> tagAdapter;
 	private ArrayAdapter<Destination> destinationAdapter;
@@ -41,6 +44,7 @@ public class ClaimEditActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_claim_edit);
+		ConfirmDialog();
 
 		startDateView = (TextView) findViewById(R.id.startDateText);
 		endDateView = (TextView) findViewById(R.id.endDateText);
@@ -158,7 +162,28 @@ public class ClaimEditActivity extends Activity {
 		@Override
 		public void onBackPressed() {
 			//finishEdit();
-	
+			confirmDialog.show();
+		}
+		
+		private void ConfirmDialog() {
+		    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		    	builder.setMessage("Discard any Changes?")
+		    	.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						Claim claim = ClaimController.getInstance().getSelectedClaim();
+						ClaimController.getInstance().getClaimList().remove(claim);
+						finish();
+					}
+				}).setNegativeButton("No", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+		    	confirmDialog = builder.create();
 		}
 		
 		public void editClaim(View v) {

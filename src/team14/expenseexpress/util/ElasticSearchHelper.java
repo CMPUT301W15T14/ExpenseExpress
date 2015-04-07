@@ -36,6 +36,7 @@ import team14.expenseexpress.model.Claim;
 
 public class ElasticSearchHelper {
 	private static final String SUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/submitted/";
+	private static final String RESUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/resubmitted/";
 	private static final String RETURNED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/returned/";
 	private static final String RECEIPT_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/receipts";
 	private static final String TAG = "ElasticSearchHelper";
@@ -70,7 +71,11 @@ public class ElasticSearchHelper {
 		
 		String serverUrl = new String();
 		if(Mode.get() == Mode.CLAIMANT) {
-			serverUrl = SUBMITTED_URL + String.valueOf(claim.getId());
+			if(claim.getApprover() == null) {
+				serverUrl = SUBMITTED_URL + String.valueOf(claim.getId());
+			} else {
+				serverUrl = RESUBMITTED_URL + claim.getApprover() + "/" + String.valueOf(claim.getId());
+			}
 		} else if (Mode.get() == Mode.APPROVER) {
 			serverUrl = RETURNED_URL + claim.getClaimant().getName() + "/" + String.valueOf(claim.getId());
 		}
@@ -141,7 +146,7 @@ public class ElasticSearchHelper {
 		task.execute(claim);
 	}
 	
-	public class AddClaimSync extends AsyncTask<Void, Void, Boolean> {
+	private class AddClaimSync extends AsyncTask<Void, Void, Boolean> {
 		
 		Claim claim;
 		
@@ -167,7 +172,7 @@ public class ElasticSearchHelper {
 		
 	}
 	
-	public class DeleteClaimSync extends AsyncTask<Claim, Void, Boolean> {
+	private class DeleteClaimSync extends AsyncTask<Claim, Void, Boolean> {
 
 		@Override
 		protected Boolean doInBackground(Claim... params) {
@@ -180,8 +185,7 @@ public class ElasticSearchHelper {
 		
 	}
 	
-	public ArrayList<Claim> getClaims() {
-		ArrayList<Claim> claims = new ArrayList<Claim>();
+	public ArrayList<Claim> getSubmitted(ArrayList<Claim> claims) {
 
 		HttpPost searchRequest = new HttpPost(SUBMITTED_URL + "_search");
 
@@ -240,7 +244,6 @@ public class ElasticSearchHelper {
 		
 		return claims;
 	}
-	
 	
 	//http://pulse7.net/android/check-internet-connection-android/     Accessed April.6th, 2015
 	public static boolean isNetworkAvailable() {

@@ -13,7 +13,7 @@ public enum Mode {;
 	private static int mode;
 	
 	public static void set(int mode){
-		if (mode == CLAIMANT || mode == APPROVER){
+		if (mode == CLAIMANT || mode == APPROVER || mode == OFFLINE){
 			Mode.mode = mode;
 		}
 	}

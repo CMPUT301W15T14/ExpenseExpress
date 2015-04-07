@@ -116,7 +116,7 @@ public class LocalFileHelper {
 			
 		} else if(Mode.get() == Mode.APPROVER) {
 			try {
-				FileInputStream fis = context.openFileInput(APPROVER_FILENAME);
+				FileInputStream fis = context.openFileInput(APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName());
 				InputStreamReader isr = new InputStreamReader(fis);
 				Type dataType = new TypeToken<ClaimList>() {	}.getType();
 				claims = gson.fromJson(isr, dataType);

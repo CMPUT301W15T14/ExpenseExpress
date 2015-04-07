@@ -2,11 +2,14 @@
 package team14.expenseexpress;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import team14.expenseexpress.controller.ClaimController;
+import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
+import team14.expenseexpress.util.ElasticSearchHelper;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -28,7 +31,14 @@ public class ClaimListAdapter extends BaseAdapter {
 
 	public ClaimListAdapter(Context context) {
 		mInflater = LayoutInflater.from(context);
-		claimList = ClaimController.getInstance().getClaimList().getClaims();
+		switch(Mode.get()) {
+		case Mode.APPROVER :
+			claimList = new ArrayList<Claim>();
+			break;
+		case Mode.CLAIMANT :
+			claimList = ClaimController.getInstance().getClaimList().getClaims();
+			break;
+		}
 		filteredClaimList = new ArrayList<Claim>();
 		filteredClaimList.addAll(claimList);
 	}
@@ -51,6 +61,7 @@ public class ClaimListAdapter extends BaseAdapter {
 				}
 			}
 		}
+		Collections.sort(filteredClaimList, new Claim.ClaimComparator());
 		notifyDataSetChanged();
 	}
 	
@@ -90,7 +101,6 @@ public class ClaimListAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		
 		holder.claim.setText(filteredClaimList.get(position).getName());
 		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
 		holder.enddate.setText(filteredClaimList.get(position).getEndDateString());
@@ -142,5 +152,11 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView tags;
 		TextView destination;
 		TextView costs;
+	}
+
+	public void setApproverClaimList() {
+		ElasticSearchHelper.getInstance().getSubmitted(claimList);
+		filteredClaimList = new ArrayList<Claim>();
+		filteredClaimList.addAll(claimList);
 	}
 }

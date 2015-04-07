@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
  * @since   2015-02-19
  */
 public class ApproverComment implements Comparable<ApproverComment> {
-    private final long id;
+	private String approvername;
     private String comment;
     private GregorianCalendar timestamp;
 
@@ -18,21 +18,14 @@ public class ApproverComment implements Comparable<ApproverComment> {
      *
      * @param id    The Approver's unique ID, managed by the web server.
      */
-    public ApproverComment(long id){
-        this.id = id;
+    public ApproverComment(){
         timestamp = new GregorianCalendar();
     }
-
-
-
-    /**
-     * Getter for the ID of the Approver who wrote the comment.
-     *
-     * @return  The unique ID of the Approver who wrote the comment.
-     */
-    public long getId() {
-        return id;
+    
+    public void setApproverName(String name) {
+    	this.approvername = name;
     }
+
 
     /**
      * Getter for the comment.
