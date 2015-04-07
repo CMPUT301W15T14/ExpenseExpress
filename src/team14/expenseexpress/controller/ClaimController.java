@@ -1,7 +1,5 @@
 package team14.expenseexpress.controller;
 
-import java.util.Collections;
-
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimList;
 import team14.expenseexpress.util.LocalFileHelper;
@@ -68,7 +66,6 @@ public class ClaimController {
 	}
 	
 	public void saveClaims() {
-		Collections.sort(claimList.getClaims());
 		LocalFileHelper.getInstance().saveClaims(claimList);
 	}
 	

@@ -97,16 +97,18 @@ public class ClaimListAdapter extends BaseAdapter {
 			holder.destination = (TextView) convertView.findViewById(R.id.destination);
 			holder.costs = (TextView) convertView.findViewById(R.id.costs);
 			holder.approver = (TextView) convertView.findViewById(R.id.approverName);
-
+			holder.name = (TextView) convertView.findViewById(R.id.name);
+				
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
+		
 		if(Mode.get() == Mode.APPROVER) {
-			//holder.claim.setText(filteredClaimList.get(0).getApprover().getName());
-		} else {
-			holder.approver.setVisibility(View.INVISIBLE);
-		}
+			holder.approver.setText(filteredClaimList.get(position).getApprover().getName());
+			holder.name.setText("made by " + filteredClaimList.get(position).getClaimant().getName());
+		} 
+		
 		holder.claim.setText(filteredClaimList.get(position).getName());
 		holder.startdate.setText(filteredClaimList.get(position).getStartDateString());
 		holder.enddate.setText(filteredClaimList.get(position).getEndDateString());
@@ -159,6 +161,7 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView destination;
 		TextView costs;
 		TextView approver;
+		TextView name;
 	}
 
 	public void setApproverClaimList() {

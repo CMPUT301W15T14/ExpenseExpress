@@ -49,6 +49,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 
 	private TagsListAdapter tagsListAdapter;
 	private ClaimListAdapter claimsListAdapter;
+	public static boolean edit = false;
 	
 	
 	@Override
@@ -231,6 +232,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 				Toast.makeText(this, "Cannot Edit Claim", Toast.LENGTH_SHORT)
 						.show();
 			} else {
+				edit = true;
 				ClaimController.getInstance().setSelectedClaim(claim);
 				startActivity(new Intent(ClaimListActivity.this, ClaimEditActivity.class));
 			}

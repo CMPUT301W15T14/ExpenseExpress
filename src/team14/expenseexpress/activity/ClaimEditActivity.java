@@ -172,9 +172,14 @@ public class ClaimEditActivity extends Activity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
-						Claim claim = ClaimController.getInstance().getSelectedClaim();
-						ClaimController.getInstance().getClaimList().remove(claim);
-						finish();
+						if (ClaimListActivity.edit == false) {
+							Claim claim = ClaimController.getInstance().getSelectedClaim();
+							ClaimController.getInstance().getClaimList().remove(claim);
+							ClaimListActivity.edit = true;
+							finish();
+						} else {
+							finish();
+						}
 					}
 				}).setNegativeButton("No", new DialogInterface.OnClickListener() {
 					

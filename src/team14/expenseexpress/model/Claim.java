@@ -34,6 +34,7 @@ public class Claim implements Comparable{
     private final User claimant;
     private ArrayList<ApproverComment> approverComments;
     private ArrayList<String> totalAmount;
+    private final ArrayList<String> approvers;
     
     private final long claimId;
     private long lastSave;
@@ -51,11 +52,20 @@ public class Claim implements Comparable{
 	    this.totalAmount = new ArrayList<String>();
 	    this.approverComments = new ArrayList<ApproverComment>();
 	    this.claimant = UserController.getInstance().getCurrentUser();
-	    this.setApprover(null);
+	    this.setApprover(new User(""));
+	    this.approvers = new ArrayList<String>();
     }
 
     public void setLastSave() {
     	this.lastSave = generateCurrentTime();
+    }
+    
+    public void addApproverToList(String approver) {
+    	this.approvers.add(approver);
+    }
+    
+    public ArrayList<String> getApproverList() {
+    	return approvers;
     }
     
     public long getLastSave() {
