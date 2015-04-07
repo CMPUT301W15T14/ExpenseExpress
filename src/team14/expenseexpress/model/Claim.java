@@ -47,6 +47,7 @@ public class Claim implements Comparable{
 	    this.tags = new ArrayList<ClaimTag>();
 	    this.status = Status.IN_PROGRESS;
 	    this.totalAmount = new ArrayList<String>();
+	    this.approverComments = new ArrayList<ApproverComment>();
     }
 
     public void setLastSave() {

@@ -16,9 +16,8 @@ public class TestApproverModel extends ActivityInstrumentationTestCase2<ClaimLis
 	}
 	
 	public void testApproverCommentModel() {
-		ApproverComment approvComment = new ApproverComment(1);
+		ApproverComment approvComment = new ApproverComment();
 		approvComment.setComment("First Approver Comment");
-		assertEquals("ApproverComment model get id does not work", 1, approvComment.getId());
 		assertEquals("ApproverComment model get comment does not work", "First Approver Comment", approvComment.getComment());
 		assertNotNull("ApproverComment model get timestamp does not work", approvComment.getTimestamp());
 	}

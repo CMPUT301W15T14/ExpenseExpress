@@ -39,6 +39,7 @@ public class ClaimListAdapter extends BaseAdapter {
 			claimList = ClaimController.getInstance().getClaimList().getClaims();
 			break;
 		}
+		//claimList = ClaimController.getInstance().getClaimList().getClaims();
 		filteredClaimList = new ArrayList<Claim>();
 		filteredClaimList.addAll(claimList);
 	}

@@ -56,6 +56,7 @@
         android:layout_below="@+id/approveReturnCommentField"
         android:layout_marginTop="16dp"
         android:background="@color/mainYellow"
+        android:onClick="onClick_returnClaim"
         android:text="Submit"
         android:textColor="@color/mainGreen" />
 
