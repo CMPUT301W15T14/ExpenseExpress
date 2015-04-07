@@ -10,6 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * Shows the misc. details of an expense claim.
+ * 
+ * @author Team 14
+ * @date April 6, 2015
+ * @Vversion 1.5
+ */
 public class ClaimDetailsActivity extends Activity {
 	double CAD = 0, USD = 0, EUR = 0, GBP = 0, CHF = 0, JPY = 0, CNY = 0;
 	double number;
