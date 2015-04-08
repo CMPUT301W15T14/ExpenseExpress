@@ -65,8 +65,10 @@ public class ExpenseListActivity extends Activity {
 
 
 		if (Mode.get() == Mode.APPROVER) {
-			ApproveButton.setVisibility(View.VISIBLE);
 			ExpenseButton.setVisibility(View.INVISIBLE);
+			if(ClaimController.getInstance().getSelectedClaim().getStatus().equals(Status.SUBMITTED)) {
+				ApproveButton.setVisibility(View.VISIBLE);
+			}
 		}
 
 
@@ -123,7 +125,6 @@ public class ExpenseListActivity extends Activity {
 						startActivity(new Intent(ExpenseListActivity.this, ExpenseDetailsActivity.class));
 					}
 				});
-				//Toast.makeText(ListStudentsActivity.this, "Is the on click working?", Toast.LENGTH_SHORT).show();
 				adb.show();
 				return false;
 			}			

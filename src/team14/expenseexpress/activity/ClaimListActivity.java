@@ -44,14 +44,8 @@ import android.widget.Toast;
  */
 public class ClaimListActivity extends ExpenseExpressActivity {
 
-	/**
-	 */
 	private TagsListAdapter tagsListAdapter;
-	/**
-	 */
 	private ClaimListAdapter claimsListAdapter;
-	/**
-	 */
 	private ApproverAdapter approverAdapter;
 	public static boolean edit = false;
 	
@@ -121,6 +115,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 		claimsListAdapter = new ClaimListAdapter(this);
 		setClaimListAdapter(claimsListAdapter);
 		listView_claimList.setAdapter(claimsListAdapter);
+		this.claimsListAdapter.getReturnedClaims();
 		registerForContextMenu(listView_claimList);
 		listView_claimList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -143,7 +138,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	protected void onResume(){
 		super.onResume();
 		if(Mode.get() == Mode.APPROVER) {
-			//approverUpdate();
+			approverUpdate();
 		} else {
 			claimsListAdapter.updateFilteredClaimList(new ArrayList<ClaimTag>());
 		}

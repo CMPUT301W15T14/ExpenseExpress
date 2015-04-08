@@ -29,7 +29,9 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.Mode;
+import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 
 /**
@@ -45,8 +47,7 @@ import team14.expenseexpress.model.Claim;
 
 
 public class ElasticSearchHelper {
-	private static final String SUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/submitted/";
-	private static final String RETURNED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/returned/";
+	private static final String SERVER_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/claim/";
 	private static final String TAG = "ElasticSearchHelper";
 	private Gson gson = new Gson();
     
@@ -82,19 +83,11 @@ public class ElasticSearchHelper {
 	 * @param claim being added
 	 * @return boolean, True if is successful
 	 */
-	private boolean add(Claim claim) {
-		boolean value = false;
+	private void add(Claim claim) {
 		HttpClient httpClient = new DefaultHttpClient();
-		
-		String serverUrl = new String();
-		if(Mode.get() == Mode.CLAIMANT) {
-			serverUrl = SUBMITTED_URL + String.valueOf(claim.getId());
-		} else if (Mode.get() == Mode.APPROVER) {
-			serverUrl = RETURNED_URL + claim.getClaimant().getName() + "/" + String.valueOf(claim.getId());
-		}
 
 		try {
-			HttpPut addRequest = new HttpPut(serverUrl);
+			HttpPut addRequest = new HttpPut(SERVER_URL + claim.getId());
 
 			StringEntity stringEntity = new StringEntity(gson.toJson(claim));
 			addRequest.setEntity(stringEntity);
@@ -103,7 +96,6 @@ public class ElasticSearchHelper {
 			HttpResponse response = httpClient.execute(addRequest);
 			String status = response.getStatusLine().toString();
 			Log.i(TAG, status);
-			value = true;
 
 		} catch (JsonIOException e) {
 			throw new RuntimeException(e);
@@ -114,32 +106,22 @@ public class ElasticSearchHelper {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		return value;
 	}
 	/**
 	 * Attempts to Delete given claim from Server
 	 * @param claim being deleted
 	 * @return boolean, True if is successful
 	 */
-	private boolean delete(Claim claim) {
-		boolean value = false;
+	private void delete(Claim claim) {
 		HttpClient httpClient = new DefaultHttpClient();
 
-		String serverUrl = new String();
-		if(Mode.get() == Mode.CLAIMANT) {
-			serverUrl = RETURNED_URL + claim.getClaimant().getName() + "/" + String.valueOf(claim.getId());
-		} else if (Mode.get() == Mode.APPROVER) {
-			serverUrl = SUBMITTED_URL + String.valueOf(claim.getId());
-		}
-		
 		try {
-			HttpDelete deleteRequest = new HttpDelete(serverUrl);
+			HttpDelete deleteRequest = new HttpDelete(SERVER_URL + claim.getId());
 			deleteRequest.setHeader("Accept", "application/json");
 
 			HttpResponse response = httpClient.execute(deleteRequest);
 			String status = response.getStatusLine().toString();
 			Log.i(TAG, status);
-			value = true;
 
 		} catch (JsonIOException e) {
 			throw new RuntimeException(e);
@@ -149,8 +131,7 @@ public class ElasticSearchHelper {
 			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
-		}
-		return value;
+		};
 	}
 	/**
 	 * Adds claim to AddClaimSync to be synchronized with rest of Server 
@@ -165,55 +146,43 @@ public class ElasticSearchHelper {
 	 * @param claim to be deleted
 	 */
 	public void deleteClaim(Claim claim) {
-		DeleteClaimSync task = new DeleteClaimSync();
-		task.execute(claim);
+		DeleteClaimSync task = new DeleteClaimSync(claim);
+		task.execute();
 	}
 	/**
 	 * Synchronizes the added claims with the Server
 	 */
-	private class AddClaimSync extends AsyncTask<Void, Void, Boolean> {
-		
+	private class AddClaimSync extends AsyncTask<Void, Void, Void> {
 		/**
 		 */
-		Claim claim;
+		private Claim claim;
 		
 		private AddClaimSync(Claim claim) {
 			this.claim = claim;
 		}
 		
 		@Override
-		protected Boolean doInBackground(Void... params) {
-			return add(claim);
+		protected Void doInBackground(Void... params) {
+			add(claim);
+			return null;
 		}
-		
-		protected void onPostExecute(Boolean result) {
-			if(result == false ){
-				if(Mode.get() == Mode.CLAIMANT) {
-					claim.setStatus(team14.expenseexpress.model.Status.IN_PROGRESS);
-					Toast.makeText(context, "Failed to Submit", Toast.LENGTH_SHORT).show();
-				} else if(Mode.get() == Mode.APPROVER) {
-					claim.setStatus(team14.expenseexpress.model.Status.SUBMITTED);
-					Toast.makeText(context, "Failed to Return", Toast.LENGTH_SHORT).show();
-				}
-			}
-		}
-		
 	}
 	/**
 	 * Synchronizes the deleted claims from the server
 	 *
 	 */
-	private class DeleteClaimSync extends AsyncTask<Claim, Void, Boolean> {
+	private class DeleteClaimSync extends AsyncTask<Void, Void, Void> {
 
+		private Claim claim;
+		
+		private DeleteClaimSync(Claim claim) {
+			this.claim = claim;
+		}
 		@Override
-		protected Boolean doInBackground(Claim... params) {
-			return delete(params[0]);
+		protected Void doInBackground(Void... params) {
+			delete(claim);
+			return null;
 		}
-		
-		protected void onPostExecute(Boolean result) {
-			
-		}
-		
 	}
 
 	/**
@@ -224,14 +193,9 @@ public class ElasticSearchHelper {
 	public ArrayList<Claim> getSubmitted() {
 
 		ArrayList<Claim> claims = new ArrayList<Claim>();
-		String string;
-		if(Mode.get() == Mode.APPROVER) {
-			string = new String(SUBMITTED_URL + "_search");
-		} else {
-			string = new String(RETURNED_URL + "_search");
-		}
+
 		
-		HttpPost searchRequest = new HttpPost(string);
+		HttpPost searchRequest = new HttpPost(SERVER_URL + "_search");
 
 		SimpleSearchCommand command = new SimpleSearchCommand("*");
 

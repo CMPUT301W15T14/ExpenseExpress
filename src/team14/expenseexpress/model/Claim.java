@@ -25,15 +25,10 @@ public class Claim implements Comparable{
     private ArrayList<Amount> amounts;
     private String status;
     private String name;
-    /**
-	 */
     private User approver; // the approver responsible for the most recent change in status
-    /**
-	 */
     private final User claimant;
     private ArrayList<ApproverComment> approverComments;
     private ArrayList<String> totalAmount;
-    private final ArrayList<String> approvers;
     
     private final long claimId;
     private long lastSave;
@@ -52,7 +47,6 @@ public class Claim implements Comparable{
 	    this.approverComments = new ArrayList<ApproverComment>();
 	    this.claimant = UserController.getInstance().getCurrentUser();
 	    this.setApprover(new User(""));
-	    this.approvers = new ArrayList<String>();
     }
     /**
      * Setter, saves time of last save to current time
@@ -67,21 +61,6 @@ public class Claim implements Comparable{
 	 */
     public long getLastSave() {
     	return this.lastSave;
-    }
-    
-    /**
-    * Adds given approver to the approvers list
-    * @param approver that the user wants to add
-    */
-    public void addApproverToList(String approver) {
-    this.approvers.add(approver);
-    }
-    /**
-    *
-    * @return list of approvers
-    */
-    public ArrayList<String> getApproverList() {
-    return approvers;
     }
     
     /**

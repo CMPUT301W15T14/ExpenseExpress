@@ -9,6 +9,7 @@ import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.ApproverComment;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.Status;
 import team14.expenseexpress.util.ElasticSearchHelper;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,9 +29,9 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 	TextView comment;
 	/**
 	 */
-	Claim claim;
-	boolean checkedA;
-	boolean checkedR;
+	//Claim claim;
+	boolean isApproved;
+	boolean isReturned;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,34 +39,29 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 		approved = (CheckBox) findViewById(R.id.approvedRadio);
 		returned = (CheckBox) findViewById(R.id.returnedRadio);
 		comment =  (TextView) findViewById(R.id.approveReturnCommentField);
-		claim = ClaimController.getInstance().getSelectedClaim();
-		toast(claim.getName());
 	}
 	/**
-	 * changes boolean if checkbox A is clicked
+	 * changes boolean if isReturned is clicked
 	 * @param v View
 	 */
-	//nice method name ya lazy fuck
 	public void onCick_checkBoxA(View v) {
 		approved = (CheckBox) v;
 		if (approved.isChecked()) {
-			claim.setStatus("Approved");
-			checkedA = true;
+			isApproved = true;
 		} else {
-			checkedA = false;
+			isApproved = false;
 		}
 	}
 	/**
-	 * changes boolean if checkbox A is clicked
+	 * changes boolean if isRetuned is clicked
 	 * @param v View
 	 */
 	public void onCick_checkBoxR(View v) {
 		returned = (CheckBox) v;
 		if (returned.isChecked()) {
-			claim.setStatus("Returned");
-			checkedR = true;
+			isReturned = true;
 		} else {
-			checkedR = false;
+			isReturned = false;
 		}
 	}
 	/**
@@ -77,22 +73,26 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 
 		if (comment.getText().toString().equals("")) {
 			toast("You must add a comment");
-		} else if (!checkedA && !checkedR) {
+		} else if (!isApproved && !isReturned) {
 			toast("You must pick an option");
-		} else if (checkedA && checkedR) {
+		} else if (isApproved && isReturned) {
 			toast("Only one option allowed");
 		} else if (comment.getText().toString().isEmpty()){
 			toast("You must leave a comment");
 		}
-			else {
+		else {
+			Claim claim = ClaimController.getInstance().getSelectedClaim();
+			
 			ApproverComment approvercomment = new ApproverComment();
 			approvercomment.setApproverName(UserController.getInstance().getCurrentUser().getName());
 			approvercomment.setComment(comment.getText().toString());
-			ArrayList<ApproverComment> commentList = claim.getApproverComments();
-			commentList.add(approvercomment);
-			claim.setApproverComments(commentList);
+			claim.getApproverComments().add(approvercomment);
 			claim.setApprover(UserController.getInstance().getCurrentUser());
-			claim.addApproverToList(UserController.getInstance().getCurrentUser().getName());
+			if(isApproved) {
+				claim.setStatus(Status.APPROVED);
+			} else if(isReturned) {
+				claim.setStatus(Status.RETURNED);
+			}
 			ElasticSearchHelper.getInstance().deleteClaim(claim);
 			ElasticSearchHelper.getInstance().addClaim(claim);
 			startActivity(new Intent(ReturnClaimActivity.this,ClaimListActivity.class));

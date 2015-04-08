@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import team14.expenseexpress.controller.ClaimController;
-import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
 import team14.expenseexpress.model.ClaimTag;
 import team14.expenseexpress.model.Destination;
+import team14.expenseexpress.util.ElasticSearchHelper;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,18 +29,12 @@ public class ClaimListAdapter extends BaseAdapter {
 	
 	private static ArrayList<Claim> claimList;
 	private static ArrayList<Claim> filteredClaimList;
+	private ArrayList<Claim> tempList;
 	private final LayoutInflater mInflater;
 
 	public ClaimListAdapter(Context context) {
 		mInflater = LayoutInflater.from(context);
-		switch(Mode.get()) {
-		case Mode.APPROVER :
-			claimList = new ArrayList<Claim>();
-			break;
-		case Mode.CLAIMANT :
-			claimList = ClaimController.getInstance().getClaimList().getClaims();
-			break;
-		}
+		claimList = ClaimController.getInstance().getClaimList().getClaims();
 		filteredClaimList = new ArrayList<Claim>();
 		filteredClaimList.addAll(claimList);
 
@@ -52,16 +47,21 @@ public class ClaimListAdapter extends BaseAdapter {
 	 */
 	public void updateFilteredClaimList(ArrayList<ClaimTag> tags){
 		filteredClaimList.clear();
-		if (tags.size() == 0){
-			filteredClaimList.addAll(claimList);
-		}
-		for (int i = 0; i < claimList.size(); i ++ ){
-			for (int j = 0; j < tags.size(); j ++ ){
-				if (claimList.get(i).getTags().contains(tags.get(j)) &&
-						!filteredClaimList.contains(claimList.get(i))){
-					filteredClaimList.add(claimList.get(i));
+		if(tags != null){
+			if (tags.isEmpty()){
+				filteredClaimList.addAll(claimList);
+			} else {
+				for (int i = 0; i < claimList.size(); i ++ ){
+					for (int j = 0; j < tags.size(); j ++ ){
+						if (claimList.get(i).getTags().contains(tags.get(j)) &&
+								!filteredClaimList.contains(claimList.get(i))){
+							filteredClaimList.add(claimList.get(i));
+						}
+					}
 				}
 			}
+		} else {
+			filteredClaimList.addAll(claimList);
 		}
 		Collections.sort(filteredClaimList, new Claim.ClaimComparator());
 		notifyDataSetChanged();
@@ -162,7 +162,7 @@ public class ClaimListAdapter extends BaseAdapter {
 		}
 		holder.tags.setText(tags);
 		holder.destination.setText(destinations);
-		
+
 		return convertView;
 	}
 
@@ -177,19 +177,53 @@ public class ClaimListAdapter extends BaseAdapter {
 		TextView approver;
 	}
 
-	
-    public  double haversine(double lat1, double lon1, double lat2, double lon2) {
-	    	double R = 6372.8; // In kilometers
-	        double dLat = Math.toRadians(lat2 - lat1);
-	        double dLon = Math.toRadians(lon2 - lon1);
-	        lat1 = Math.toRadians(lat1);
-	        lat2 = Math.toRadians(lat2);
-	 
-	        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-	        double c = 2 * Math.asin(Math.sqrt(a));
-	        return R * c;
-	    }
 
+	public  double haversine(double lat1, double lon1, double lat2, double lon2) {
+		double R = 6372.8; // In kilometers
+		double dLat = Math.toRadians(lat2 - lat1);
+		double dLon = Math.toRadians(lon2 - lon1);
+		lat1 = Math.toRadians(lat1);
+		lat2 = Math.toRadians(lat2);
+
+		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+		double c = 2 * Math.asin(Math.sqrt(a));
+		return R * c;
 	}
+	
+	private class GetReturnedSync extends AsyncTask<Void, Void, Void> {
+		private GetReturnedSync() {
+			tempList = new ArrayList<Claim>();
+		}
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			tempList.addAll(ElasticSearchHelper.getInstance().getSubmitted());
+			return null;
+		}
+		
+		protected void onPostExecute(Void result) {
+			mergeLists();
+		}
+		
+	}
+	
+	private void mergeLists() {
+		for(Claim c: tempList) {
+			if(claimList.contains(c)) {
+				claimList.remove(c);
+				claimList.add(c);
+			}
+		}
+		updateFilteredClaimList(null);
+		notifyDataSetChanged();
+	}
+	
+	public void getReturnedClaims() {
+		GetReturnedSync task = new GetReturnedSync();
+		task.execute();
+	}
+	
+
+}
 	
 

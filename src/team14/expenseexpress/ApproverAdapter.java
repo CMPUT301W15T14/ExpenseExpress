@@ -7,6 +7,7 @@ import team14.expenseexpress.activity.ClaimListActivity;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
+import team14.expenseexpress.model.Status;
 import team14.expenseexpress.model.User;
 import team14.expenseexpress.util.ElasticSearchHelper;
 
@@ -194,10 +195,12 @@ public class ApproverAdapter extends BaseAdapter {
 	
 	private void mergeLists() {
 		for(Claim c:tempList) {
-			if(c.getApprover().equals(UserController.getInstance().getCurrentUser())) {
-				claimList.add(c);
-			} else if(c.getApprover().equals(new User(""))){
-				claimList.add(c);
+			if(c.getStatus().equals(Status.SUBMITTED)){
+				if(c.getApprover().equals(UserController.getInstance().getCurrentUser())) {
+					claimList.add(c);
+				} else if(c.getApprover().equals(new User(""))){
+					claimList.add(c);
+				}
 			}
 		}
 		notifyDataSetChanged();

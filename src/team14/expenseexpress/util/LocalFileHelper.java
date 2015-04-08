@@ -26,7 +26,6 @@ import com.google.gson.reflect.TypeToken;
 public class LocalFileHelper {
 	
 	private static final String CLAIMANT_FILENAME = "ee.claimant_";
-	private static final String APPROVER_FILENAME = "ee.approver_"; 
 	private static final String TAGS_FILENAME = "ee.tags_";
 	
 	private static Context context;
@@ -100,11 +99,9 @@ public class LocalFileHelper {
 		case Mode.CLAIMANT:
 			save(claims,CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
 			break;
-		case Mode.APPROVER:
-			save(claims, APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName());
-			break;
 		case Mode.OFFLINE:
 			save(claims,CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
+			break;
 		}
 	}
 	/**
@@ -116,15 +113,8 @@ public class LocalFileHelper {
 		Gson gson = new Gson();
 		ClaimList claims = new ClaimList();
 		
-		String FileUrl = new String("");
-		if((Mode.get() == Mode.CLAIMANT)||(Mode.get() == Mode.OFFLINE)) {
-			FileUrl = CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName();
-		} else if(Mode.get() == Mode.APPROVER) {
-			FileUrl = APPROVER_FILENAME + UserController.getInstance().getCurrentUser().getName();
-		}
-		
 		try {
-			FileInputStream fis = context.openFileInput(FileUrl);
+			FileInputStream fis = context.openFileInput(CLAIMANT_FILENAME + UserController.getInstance().getCurrentUser().getName());
 			InputStreamReader isr = new InputStreamReader(fis);
 			Type dataType = new TypeToken<ClaimList>() {	}.getType();
 			claims = gson.fromJson(isr, dataType);
