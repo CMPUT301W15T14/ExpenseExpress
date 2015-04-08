@@ -193,13 +193,9 @@ public class ApproverAdapter extends BaseAdapter {
 	}
 	
 	private void mergeLists() {
-		//claimList.addAll(tempList);
 		for(Claim c:tempList) {
-			if(ClaimController.getInstance().getClaimList().getClaims().contains(c)) {
-				if(c.getApprover().equals(UserController.getInstance().getCurrentUser())) {
-				ClaimController.getInstance().addClaim(c);
+			if(c.getApprover().equals(UserController.getInstance().getCurrentUser())) {
 				claimList.add(c);
-				}
 			} else if(c.getApprover().equals(new User(""))){
 				claimList.add(c);
 			}
