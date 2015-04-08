@@ -132,6 +132,9 @@ public class ExpenseListActivity extends Activity {
 	/**
 	 * Gets the total cost of all expenses for a claim to be printed
 	 */
+	/*
+	 * why in the world are these methods in this activity, its mind blowing how out of place they are
+	 */
 	public void totalCost() {
 		amountListString = new ArrayList<String>();
 		ArrayList<Expense> amountlist = ClaimController.getInstance().getSelectedClaim().getExpenseList().getExpenses();

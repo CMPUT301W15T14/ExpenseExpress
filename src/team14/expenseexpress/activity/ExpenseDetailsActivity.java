@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
- * Activity for editing individual expenses' misc. deteails.
+ * Activity for editing individual expenses' misc. details.
  * 
  * @author Team 14
  * @date April 6, 2015
