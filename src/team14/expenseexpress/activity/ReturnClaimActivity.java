@@ -96,6 +96,7 @@ public class ReturnClaimActivity extends ExpenseExpressActivity {
 			ElasticSearchHelper.getInstance().deleteClaim(claim);
 			ElasticSearchHelper.getInstance().addClaim(claim);
 			startActivity(new Intent(ReturnClaimActivity.this,ClaimListActivity.class));
+			finish();
 		}
 	} 
 }
