@@ -10,19 +10,14 @@ import java.util.GregorianCalendar;
 import team14.expenseexpress.controller.UserController;
 
 /**
- * @author  Team 14
- * @version 0.1
- * @since   2015-02-19
- * 
- * Claim holds 5 Lists:
- * tags, expenseList, destinations, amount, approverComments
- * It is the key object in the Expense Express framework.
- * 
- * 
- * 
+ * @author   Team 14
+ * @version  0.1
+ * @since    2015-02-19  Claim holds 5 Lists:  tags, expenseList, destinations, amount, approverComments  It is the key object in the Expense Express framework.
  */
 public class Claim implements Comparable{
     private final ArrayList<ClaimTag> tags;
+    /**
+	 */
     private final ExpenseList expenseList;
     private final ArrayList<Destination> destinations;
     private GregorianCalendar startDate;     // use getDateString for String
@@ -30,7 +25,11 @@ public class Claim implements Comparable{
     private ArrayList<Amount> amounts;
     private String status;
     private String name;
+    /**
+	 */
     private User approver; // the approver responsible for the most recent change in status
+    /**
+	 */
     private final User claimant;
     private ArrayList<ApproverComment> approverComments;
     private ArrayList<String> totalAmount;
@@ -63,9 +62,9 @@ public class Claim implements Comparable{
     }
     
     /**
-     * returns instance of lastSave
-     * @return the time of the last save
-     */
+	 * returns instance of lastSave
+	 * @return  the time of the last save
+	 */
     public long getLastSave() {
     	return this.lastSave;
     }
@@ -95,18 +94,14 @@ public class Claim implements Comparable{
     }
 	/**
 	 * Setter, sets Claim name
-	 * 
-	 * @param String name
-	 *
+	 * @param String  name
 	 */
     public void setName(String name) {
     	this.name = name;
     }
     /**
 	 * getter, gets Claim name
-	 * 
-	 * @return String name
-	 *
+	 * @return  String name
 	 */
     public String getName() {
     	return this.name;
@@ -122,20 +117,16 @@ public class Claim implements Comparable{
     }
     /**
 	 * getter, gets ExpenseList
-	 * 
-	 * @return ArrayList<Expense>
-	 *
+	 * @return  ArrayList<Expense>
 	 */
     public ExpenseList getExpenseList() {
         return this.expenseList;
     }
 
     /**
-  	 * getter, gets TagList
-  	 * 
-  	 * @return ArrayList<ClaimTag>
-  	 *
-  	 */
+	 * getter, gets TagList
+	 * @return  ArrayList<ClaimTag>
+	 */
     public ArrayList<ClaimTag> getTags() {
         return tags;
     }
@@ -168,10 +159,9 @@ public class Claim implements Comparable{
     }
 
     /**
-     * Getter for the Destinations associated with this Claim.
-     *
-     * @return  Destinations (locations and reasons) of this Claim as an ArrayList.
-     */
+	 * Getter for the Destinations associated with this Claim.
+	 * @return   Destinations (locations and reasons) of this Claim as an ArrayList.
+	 */
     public ArrayList<Destination> getDestinations() {
         return destinations;
     }
@@ -196,19 +186,17 @@ public class Claim implements Comparable{
     }
     
     /**
-     * Getter for the starting date associated with this Claim.
-     *
-     * @return  The starting date, as a GregorianCalendar object.
-     */
+	 * Getter for the starting date associated with this Claim.
+	 * @return   The starting date, as a GregorianCalendar object.
+	 */
     public GregorianCalendar getStartDate() {
         return this.startDate;
     }
     
     /**
-     * Getter for the end date associated with this Claim.
-     *
-     * @return  The starting date, as a GregorianCalendar object.
-     */
+	 * Getter for the end date associated with this Claim.
+	 * @return   The starting date, as a GregorianCalendar object.
+	 */
     public GregorianCalendar getEndDate() {
         return this.endDate;
     }
@@ -258,32 +246,25 @@ public class Claim implements Comparable{
     
 
     /**
-     * Setter for the starting date.
-     *
-     * @param date  The starting date as a GregorianCalendar object.
-     */
+	 * Setter for the starting date.
+	 * @param date   The starting date as a GregorianCalendar object.
+	 */
     public void setStartDate(GregorianCalendar date) {
         this.startDate = date;
     }
     
     /**
-     * Setter for the end date.
-     *
-     * @param date  The starting date as a GregorianCalendar object.
-     */
+	 * Setter for the end date.
+	 * @param date   The starting date as a GregorianCalendar object.
+	 */
     public void setEndDate(GregorianCalendar date) {
         this.endDate = date;
     }
 
     /**
-     * Instantiates an Amount object for each of the Currency.LIST currencies and returns them
-     * as an ArrayList.
-     *
-     * These represent up-to-date totals calculated by the Amount constructor, based on
-     * the Expenses associated with this Claim.
-     *
-     * @return  The Amount for each Currency.LIST currency in an ArrayList.
-     */
+	 * Instantiates an Amount object for each of the Currency.LIST currencies and returns them as an ArrayList. These represent up-to-date totals calculated by the Amount constructor, based on the Expenses associated with this Claim.
+	 * @return   The Amount for each Currency.LIST currency in an ArrayList.
+	 */
     public ArrayList<Amount> getAmounts() {
         amounts = new ArrayList<Amount>();
         for (Currency currency: Currency.values()){
@@ -293,19 +274,17 @@ public class Claim implements Comparable{
     }
 
     /**
-     * Getter for the status associated with this Claim.
-     *
-     * @return  The status as a String.
-     */
+	 * Getter for the status associated with this Claim.
+	 * @return   The status as a String.
+	 */
     public String getStatus() {
         return status;
     }
 
     /**
-     * Setter for the status associated with this Claim, ensuring it is in Status.LIST.
-     *
-     * @param status    The status as a String.
-     */
+	 * Setter for the status associated with this Claim, ensuring it is in Status.LIST.
+	 * @param status     The status as a String.
+	 */
     public void setStatus(String status) {
         if (Arrays.asList(Status.LIST).contains(status)) {
             this.status = status;
@@ -314,10 +293,9 @@ public class Claim implements Comparable{
 
 
     /**
-     * Getter for the ApproverComments inside of an ArrayList.
-     *
-     * @return  The ApproverComments associated with this Claim, in an ArrayList.
-     */
+	 * Getter for the ApproverComments inside of an ArrayList.
+	 * @return   The ApproverComments associated with this Claim, in an ArrayList.
+	 */
     public ArrayList<ApproverComment> getApproverComments() {
         return approverComments;
     }
@@ -325,17 +303,17 @@ public class Claim implements Comparable{
 
 
     /**
-     * Setter for the approverComments
-     * @param approverComments 
-     */
+	 * Setter for the approverComments
+	 * @param  approverComments
+	 */
     public void setApproverComments(ArrayList<ApproverComment> approverComments) {
         this.approverComments = approverComments;
     }
 
     /**
-     * returns the claimant
-     * @return claimant of type User
-     */
+	 * returns the claimant
+	 * @return  claimant of type User
+	 */
 	public User getClaimant() {
 		return claimant;
 	}
@@ -427,14 +405,14 @@ public class Claim implements Comparable{
 	}
 	/**
 	 * Gets current approver
-	 * @return current approver of type User
+	 * @return  current approver of type User
 	 */
 	public User getApprover() {
 		return approver;
 	}
 	/**
 	 * Sets the given approver as the current User
-	 * @param approver is the given approver
+	 * @param approver  is the given approver
 	 */
 	public void setApprover(User approver) {
 		this.approver = approver;

@@ -31,9 +31,11 @@ import android.widget.TextView;
  */
 public class MapActivity extends Activity {
 	
-	private String latitude, longitude;
+	private String latitude;
+	private String longitude;
 	private ImageView map;
-	private TextView textView_zoom, textView_coordinatesClicked;
+	private TextView textView_zoom;
+	private TextView textView_coordinatesClicked;
 	private final int screenWidth = 400;
 	private final int screenHeight = 640; // in pixels. Google provides a maximum length of 640 pixels for free
 	private int zoom = 10;

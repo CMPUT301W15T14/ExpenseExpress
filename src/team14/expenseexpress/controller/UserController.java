@@ -4,8 +4,13 @@ package team14.expenseexpress.controller;
 import team14.expenseexpress.model.User;
 
 
+/**
+ * @author  zbudinsk
+ */
 public class UserController {
 	//private final Gson gson = new Gson();
+	/**
+	 */
 	private User currentUser = null;
 	private double latitude;
 	private double longitude;
@@ -14,13 +19,15 @@ public class UserController {
 	
 	//private static Context context;
 	
+	/**
+	 */
 	private static UserController instance;
 	
 	private UserController(){
     }
 	/**
 	 * Returns an empty instance if there is no current UserController
-	 * @return Current instance of UserController
+	 * @return  Current instance of UserController
 	 */
 	public static UserController getInstance() {
 		if(instance == null) {
@@ -29,29 +36,28 @@ public class UserController {
 	return instance;
 	}
 	/**
-	 * 
-	 * @return the current instance of currentUser
+	 * @return  the current instance of currentUser
 	 */
 	public User getCurrentUser() {
 		return this.currentUser;
 	}
 	/**
 	 * Sets the current instance of user to the given user
-	 * @param user is set to the current instance
+	 * @param user  is set to the current instance
 	 */
 	public void setCurrentUser(User user) {
 		this.currentUser = user;
 	}
 	/**
 	 * returns the location's latitude
-	 * @return latitude of location
+	 * @return  latitude of location
 	 */
 	public double getLatitude() {
 		return currentUser.getLatitude();
 	}
 	/**
 	 * sets latitude to given parameter
-	 * @param latitude Double
+	 * @param latitude  Double
 	 */
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
@@ -59,14 +65,14 @@ public class UserController {
 	}
 	/**
 	 * returns the location's longitude
-	 * @return longitude of location
+	 * @return  longitude of location
 	 */
 	public double getLongitude() {
 		return currentUser.getLongitude();
 	}
 	/**
 	 * sets latitude to given parameter
-	 * @param latitude Double
+	 * @param latitude  Double
 	 */
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;

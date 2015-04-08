@@ -31,16 +31,23 @@ import android.widget.Toast;
 
 /**
  * Activity for display an expense claim's list of expenses.
- * 
- * @author Team 14
- * @date April 6, 2015
- * @version 1.5
+ * @author  Team 14
+ * @date  April 6, 2015
+ * @version  1.5
  */ 
 public class ExpenseListActivity extends Activity {
 	
-	double CAD = 0, USD = 0, EUR = 0, GBP = 0, CHF = 0, JPY = 0, CNY = 0;
+	double CAD = 0;
+	double USD = 0;
+	double EUR = 0;
+	double GBP = 0;
+	double CHF = 0;
+	double JPY = 0;
+	double CNY = 0;
 	double number;
 	private ArrayList<String> amountListString;
+	/**
+	 */
 	private ExpenseListAdapter expenseListAdapter;
 	private Context context;
 	@Override
@@ -54,12 +61,10 @@ public class ExpenseListActivity extends Activity {
 		ListView expenseListView = (ListView) findViewById(R.id.ExpenseList);
 		Button ApproveButton = (Button) findViewById(R.id.ApproveButton);
 		Button ExpenseButton = (Button) findViewById(R.id.addExpenseButton);
-<<<<<<< HEAD
 		context = this.getBaseContext();
-=======
-		
+
 		// Show appropriate button to the role the user chose.
->>>>>>> 1e69d77a01986196704254dd0311a5e7cefad0bc
+
 		if (Mode.get() == Mode.APPROVER) {
 			ApproveButton.setVisibility(View.VISIBLE);
 			ExpenseButton.setVisibility(View.INVISIBLE);

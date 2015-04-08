@@ -49,7 +49,11 @@ public class ExpenseEditActivity extends Activity {
 	private TextView expLat;
 	private TextView expLong;
 	
-	private int expenseYear, expenseMonth, expenseDay;
+	private int expenseYear;
+
+	private int expenseMonth;
+
+	private int expenseDay;
 	
 	/**
 	 * Initializes Views for user interface. 

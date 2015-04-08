@@ -35,12 +35,13 @@ import android.view.View.OnClickListener;
 
 /**
  * Activity for editing/entering the destinations, their geo-coordinates, and reasons, of an individual expense claim.
- * 
- * @author Team 14
- * @date April 6, 2015
- * @version 1.5
+ * @author  Team 14
+ * @date  April 6, 2015
+ * @version  1.5
  */
 public class EditDestinations extends Activity{
+	/**
+	 */
 	private NewDestinationDialogFragment fragment;
 
 	private ListView destinationListView;

@@ -1,9 +1,9 @@
 package team14.expenseexpress.model;
 
 /**
- * @author  Team 14
- * @version 0.2
- * @since   2015-03-10
+ * @author   Team 14
+ * @version  0.2
+ * @since    2015-03-10
  */
 public class User {
 	/*
@@ -40,18 +40,16 @@ public class User {
         this.password = password;
     }
     /**
-     * getter that retrieves the User name .
-     *	
-     * @return String name
-     */
+	 * getter that retrieves the User name .
+	 * @return  String name
+	 */
 	public String getName() {
 		return name;
 	}
     /**
-     * getter that retrieves the Resource_URL .
-     *	
-     * @return RESOURCE_URL
-     */
+	 * getter that retrieves the Resource_URL .
+	 * @return  RESOURCE_URL
+	 */
 	public String getResourceUrl() {
 		return RESOURCE_URL;
 	}
@@ -79,18 +77,16 @@ public class User {
 		return name.hashCode();
 	}
     /**
-     * getter that retrieves the password .
-     *	
-     * @return password
-     */
+	 * getter that retrieves the password .
+	 * @return  password
+	 */
 	public String getPassword() {
 		return password;
 	}
     /**
-     * setter that sets the password .
-     *	
-     * @param String password
-     */
+	 * setter that sets the password .
+	 * @param String  password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -104,41 +100,48 @@ public class User {
 	}
 	/**
 	 * Gets current Latitude
-	 * @return latitude of type Double
+	 * @return  latitude of type Double
 	 */
     public double getLatitude() {
 		return latitude;
 	}
     /**
-     * sets the current latitude
-     * @param latitude 
-     */
+	 * sets the current latitude
+	 * @param  latitude
+	 */
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 	/**
 	 * Gets current Longitude
-	 * @return longitude of type Double
+	 * @return  longitude of type Double
 	 */
 	public double getLongitude() {
 		return longitude;
 	}
     /**
-     * sets the current longitude
-     * @param longitude 
-     */
+	 * sets the current longitude
+	 * @param  longitude
+	 */
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 	/**
-     * enum that retrieves the mode.
-     *	
-     * @return password
-     */
+	 * enum that retrieves the mode.
+	 * @return  password
+	 */
 	private enum Mode {
+		/**
+		 */
 		CLAIMANT,
+		/**
+		 */
 		APPROVER,
+		/**
+		 */
 		CLAIMANT_APPROVER,
+		/**
+		 */
 		OFFLINE,
 		//TODO implement mode conditions...
 	}	

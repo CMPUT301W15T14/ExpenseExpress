@@ -20,7 +20,13 @@ import android.widget.TextView;
  * @Vversion 1.5
  */
 public class ClaimDetailsActivity extends Activity {
-	double CAD = 0, USD = 0, EUR = 0, GBP = 0, CHF = 0, JPY = 0, CNY = 0;
+	double CAD = 0;
+	double USD = 0;
+	double EUR = 0;
+	double GBP = 0;
+	double CHF = 0;
+	double JPY = 0;
+	double CNY = 0;
 	double number;
 	ArrayList<String> amountListString = new ArrayList<String>();
 	@Override

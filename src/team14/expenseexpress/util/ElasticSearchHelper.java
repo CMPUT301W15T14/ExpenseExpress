@@ -32,6 +32,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import team14.expenseexpress.controller.Mode;
 import team14.expenseexpress.model.Claim;
 
+/**
+ * @author  zbudinsk
+ */
 public class ElasticSearchHelper {
 	private static final String SUBMITTED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/submitted/";
 	private static final String RETURNED_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/returned/";
@@ -40,6 +43,8 @@ public class ElasticSearchHelper {
     
 	private static Context context;
 	
+    /**
+	 */
     private static ElasticSearchHelper instance;
     
     
@@ -47,6 +52,9 @@ public class ElasticSearchHelper {
     	this.context = context;
     }
     
+    /**
+	 * @return
+	 */
     public static ElasticSearchHelper getInstance(){
     	if (instance == null){
     		instance = new ElasticSearchHelper(context);
@@ -152,11 +160,12 @@ public class ElasticSearchHelper {
 		task.execute(claim);
 	}
 	/**
-	 * 
-	 *Synchronizes the added claims with the Server
+	 * Synchronizes the added claims with the Server
 	 */
 	private class AddClaimSync extends AsyncTask<Void, Void, Boolean> {
 		
+		/**
+		 */
 		Claim claim;
 		
 		private AddClaimSync(Claim claim) {

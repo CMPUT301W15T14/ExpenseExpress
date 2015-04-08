@@ -15,17 +15,22 @@ import team14.expenseexpress.util.LocalFileHelper;
 
 /**
  * Singleton controller for modifying the Expense data model class.
- * 
- * @author Team 14
- * @date April 6, 2015
- * @version 1.5
+ * @author  Team 14
+ * @date  April 6, 2015
+ * @version  1.5
  */
 public class ExpenseController {
 	
+	/**
+	 */
 	private static ExpenseList expenseList;
+	/**
+	 */
 	private Expense selectedExpense = null; 
 	
 	//singleton
+	/**
+	 */
 	private static ExpenseController instance = null;
 
 	private ExpenseController(){
@@ -35,7 +40,7 @@ public class ExpenseController {
 	}
 	/**
 	 * if instance is null, makes instance equal to a new Expense
-	 * @return instance of ExpenseController
+	 * @return  instance of ExpenseController
 	 */
 	public static ExpenseController getInstance(){
 		if (instance == null){
@@ -84,10 +89,9 @@ public class ExpenseController {
 		LocalFileHelper.getInstance().saveClaims(ClaimController.getInstance().getClaimList());
 	}
 	  /**
-		 * SetSelecetedExpense(Expense expense) takes an Expense object and sets it as the selectedExpense variable
-		 * 
-		 *@param Expense expense
-		 */
+	 * SetSelecetedExpense(Expense expense) takes an Expense object and sets it as the selectedExpense variable
+	 * @param Expense  expense
+	 */
 	public void setSelectedExpense (Expense expense){
 		this.selectedExpense = expense;
 	
@@ -111,14 +115,14 @@ public class ExpenseController {
 	
 	/**
 	 * Returns the expense list
-	 * @return instance of expenseList
+	 * @return  instance of expenseList
 	 */
 	public ExpenseList getExpenseList() {
 		return this.expenseList;
 	}
 	/**
 	 * Returns selected Expense
-	 * @return instance of selected Expense
+	 * @return  instance of selected Expense
 	 */
 	public Expense getSelectedExpense(){
 		return this.selectedExpense;

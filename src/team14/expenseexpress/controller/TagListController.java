@@ -6,27 +6,32 @@ import team14.expenseexpress.util.LocalFileHelper;
 
 /**
  * Singleton controller for tags.
- * 
  */
 public class TagListController {
 	
+	/**
+	 */
 	private TagList usersTags;
+	/**
+	 */
 	private TagList chosenTags;
 	
 	// singleton
+	/**
+	 */
 	private static TagListController instance = null;
 	private TagListController() {
 	}
 	/**
 	 * sets tags to chosen tags
-	 * @param tags 
+	 * @param  tags
 	 */
 	public void setChosenTags(TagList tags) {
 		this.chosenTags = tags;
 	}
 	/**
 	 * returns the chosen tags
-	 * @return instance of chosen tags
+	 * @return  instance of chosen tags
 	 */
 	public TagList getChosenTags() {
 		return this.chosenTags;
@@ -40,7 +45,7 @@ public class TagListController {
 	}
 	/**
 	 * If no chosen instance of TagListController, returns empty instance
-	 * @return instance of TagListController
+	 * @return  instance of TagListController
 	 */
 	public static TagListController getInstance(){
 		if (instance == null){

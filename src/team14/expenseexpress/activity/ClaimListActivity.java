@@ -40,17 +40,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 /**
- * <p> View
- * <p> ClaimListActivity Class:
- * This view is for showing the list of claims a user has.
- * It allows the user to see a list of claims, go to the add a new claim activity, 
- * see a list of tags and add new tags. The user will also be able to sort claims
- * by tags.
+ * <p> View <p> ClaimListActivity Class: This view is for showing the list of claims a user has. It allows the user to see a list of claims, go to the add a new claim activity,  see a list of tags and add new tags. The user will also be able to sort claims by tags.
  */
 public class ClaimListActivity extends ExpenseExpressActivity {
 
+	/**
+	 */
 	private TagsListAdapter tagsListAdapter;
+	/**
+	 */
 	private ClaimListAdapter claimsListAdapter;
+	/**
+	 */
 	private ApproverAdapter approverAdapter;
 	public static boolean edit = false;
 	
@@ -280,7 +281,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 	
 	/**
 	 * A method to set the adapter for tags in order to notifyDataSetChanged() 
-	 * @param adapter The TagsListAdapter used
+	 * @param adapter  The TagsListAdapter used
 	 */
 	public void setTagsListAdapter(TagsListAdapter adapter) {
 		this.tagsListAdapter = adapter;

@@ -1,6 +1,11 @@
 package team14.expenseexpress.util;
 
+/**
+ * @author  zbudinsk
+ */
 public class SimpleSearchCommand {
+	/**
+	 */
 	private SimpleSearchQuery query;
 		/**
 		 * constructor
@@ -20,21 +25,25 @@ public class SimpleSearchCommand {
 		throw new UnsupportedOperationException("Fields not yet implemented.");
 	}
 	/**
-	 * 
-	 * @return current query
+	 * @return  current query
 	 */
 	public SimpleSearchQuery getQuery() {
 		return query;
 	}
 /**
  * sets current query to given query
- * @param query
+ * @param  query
  */
 	public void setQuery(SimpleSearchQuery query) {
 		this.query = query;
 	}
 
+	/**
+	 * @author  zbudinsk
+	 */
 	static class SimpleSearchQuery {
+		/**
+		 */
 		private SimpleSearchQueryString query_string;
 		/**
 		 * contructor
@@ -59,6 +68,9 @@ public class SimpleSearchCommand {
 			this.query_string = queryString;
 		}
 
+		/**
+		 * @author  zbudinsk
+		 */
 		static class SimpleSearchQueryString {
 			private String query;
 			/**
@@ -71,15 +83,14 @@ public class SimpleSearchCommand {
 				this.query = query;
 			}
 			/**
-			 * 
-			 * @return current query
+			 * @return  current query
 			 */
 			public String getQuery() {
 				return query;
 			}
 			/**
 			 * sets current Query
-			 * @param query
+			 * @param  query
 			 */
 			public void setQuery(String query) {
 				this.query = query;

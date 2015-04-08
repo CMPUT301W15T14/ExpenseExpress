@@ -11,11 +11,18 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import team14.expenseexpress.model.Receipt;
 
+/**
+ * @author  zbudinsk
+ */
 public class ReceiptController {
 	
+	/**
+	 */
 	private Receipt selectedReceipt;
 	private Bitmap currentBitmap;
 	//singleton
+	/**
+	 */
 	private static ReceiptController instance = null;
 	
 	private ReceiptController(){
@@ -25,7 +32,7 @@ public class ReceiptController {
 	}
 	/**
 	 * If there is no current instance, returns empty Receipt instance
-	 * @return The current instance
+	 * @return  The current instance
 	 */
 	public static ReceiptController getInstance(){
 		if (instance == null){
@@ -35,15 +42,14 @@ public class ReceiptController {
 	}
 	/**
 	 * Returns selected receipt
-	 * @return instance of selected receipt
+	 * @return  instance of selected receipt
 	 */
 	public Receipt getSelectedReceipt(){
 		return this.selectedReceipt;
 	}
 	/**
-	 * 
-	 * @param receipt to become selected receipt
-	 * @return instance of given receipt
+	 * @param receipt  to become selected receipt
+	 * @return  instance of given receipt
 	 */
 	public Receipt setSelectedReceipt(Receipt receipt){
 		return this.selectedReceipt = receipt;

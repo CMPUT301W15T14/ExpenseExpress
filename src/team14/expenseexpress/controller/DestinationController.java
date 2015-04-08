@@ -5,15 +5,18 @@ import team14.expenseexpress.model.Expense;
 
 /**
  * Singleton controller class for managing geo-coordinate and destination data models.
- * 
- * @author Team 14
- * @date April 6, 2015
- * @version 1.5
+ * @author  Team 14
+ * @date  April 6, 2015
+ * @version  1.5
  */
 public class DestinationController {
 	
 	// singleton
+	/**
+	 */
 	private static DestinationController instance = null;
+	/**
+	 */
 	private Destination selectedDestination = null;
 	
 	private DestinationController(){
@@ -22,12 +25,18 @@ public class DestinationController {
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	public static DestinationController getInstance(){
 		if (instance == null){
 			instance = new DestinationController();
 		}
 		return instance;
 	}
+	/**
+	 * @return
+	 */
 	public Destination getSelectedDestination(){
 		return this.selectedDestination;
 	}

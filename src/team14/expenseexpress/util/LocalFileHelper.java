@@ -21,11 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * Singleton with these public methods:
- * - Overwrite local claims list with any claims list
- * - Load only local claims made by the user (for claiming)
- * - Load only local claims not made by the user (for approving) 
- * 
+ * Singleton with these public methods: - Overwrite local claims list with any claims list - Load only local claims made by the user (for claiming) - Load only local claims not made by the user (for approving)
  */
 public class LocalFileHelper {
 	
@@ -36,6 +32,8 @@ public class LocalFileHelper {
 	private static Context context;
 	
 	// Singleton
+	/**
+	 */
 	private static LocalFileHelper fileHelper;
 	/**
 	 * Constructor, sets given context to context of LocalFileHelper

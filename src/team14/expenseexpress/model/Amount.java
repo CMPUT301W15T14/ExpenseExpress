@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 
 /**
- * @author  Team 14
- * @version 0.1
- * @since   2015-02-19
+ * @author   Team 14
+ * @version  0.1
+ * @since    2015-02-19
  */
 public class Amount {
     private double number;
+    /**
+	 */
     private Currency currency;
 
     /**
@@ -20,10 +22,9 @@ public class Amount {
     }
 
     /**
-     * Getter for numerical amount.
-     *
-     * @return  Numerical amount.
-     */
+	 * Getter for numerical amount.
+	 * @return   Numerical amount.
+	 */
     public double getNumber() {
         return number;
     }
@@ -52,21 +53,17 @@ public class Amount {
     }
 
     /**
-     * Getter for the currency as a String.
-     *
-     * @return  Either an empty string or belongs to Currency.LIST.
-     */
+	 * Getter for the currency as a String.
+	 * @return   Either an empty string or belongs to Currency.LIST.
+	 */
     public Currency getCurrency() {
         return currency;
     }
     
     /**
-     * Setter for the currency as a String.
-     *
-     * Only sets the currency if it's in Currency.LIST.
-     *
-     * @param currency  Currency as a String.
-     */
+	 * Setter for the currency as a String. Only sets the currency if it's in Currency.LIST.
+	 * @param currency   Currency as a String.
+	 */
     public void setCurrency(Currency currency) {
             this.currency = currency;
     }

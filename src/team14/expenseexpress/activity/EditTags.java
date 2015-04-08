@@ -32,16 +32,19 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 /**
  * Activity for modifying a claimant's tags which are used to filter his/her claims to his/her liking.
- * 
- * @author Team 14
- * @date April 6, 2015
- * @version 1.5
+ * @author  Team 14
+ * @date  April 6, 2015
+ * @version  1.5
  */ 
 public class EditTags extends ExpenseExpressActivity {
+	/**
+	 */
 	private EditTags activity;
 
 	private ListView tagListView;
 	private ArrayAdapter<ClaimTag> tagAdapter;
+	/**
+	 */
 	TagListAdapter adapter;
 	
 	@Override

@@ -7,6 +7,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Base64;
 
+/**
+ * @author  zbudinsk
+ */
 public class Receipt {
 	String image;
     
@@ -19,6 +22,9 @@ public class Receipt {
     	
     }
 
+    /**
+	 * @return
+	 */
     public String getImage(){
     	return this.image;
     }

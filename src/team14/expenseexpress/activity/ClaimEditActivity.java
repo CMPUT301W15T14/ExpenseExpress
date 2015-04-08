@@ -44,8 +44,12 @@ public class ClaimEditActivity extends Activity {
 	private ArrayAdapter<ClaimTag> tagAdapter;
 	private ArrayAdapter<Destination> destinationAdapter;
 	
-	private int startYear, startMonth, startDay;
-	private int endYear, endMonth, endDay;
+	private int startYear;
+	private int startMonth;
+	private int startDay;
+	private int endYear;
+	private int endMonth;
+	private int endDay;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

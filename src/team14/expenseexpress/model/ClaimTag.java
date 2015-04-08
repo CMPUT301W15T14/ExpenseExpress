@@ -1,9 +1,9 @@
 package team14.expenseexpress.model;
 
 /**
- * @author  Team 14
- * @version 0.1
- * @since   2015-02-19
+ * @author   Team 14
+ * @version  0.1
+ * @since    2015-02-19
  */
 public class ClaimTag{
     private String name;
@@ -40,22 +40,17 @@ public class ClaimTag{
     }
 
     /**
-     * Getter for the tag name.
-     *
-     * @return  The tag name as a String.
-     */
+	 * Getter for the tag name.
+	 * @return   The tag name as a String.
+	 */
     public String getName() {
         return name;
     }
 
     /**
-     * Setter for the tag name.
-     *
-     * Allowing the tag name to be set means you can change a tag name without affecting
-     * the Claims it's attached to.
-     *
-     * @param name  The new tag name String to replace the old one.
-     */
+	 * Setter for the tag name. Allowing the tag name to be set means you can change a tag name without affecting the Claims it's attached to.
+	 * @param name   The new tag name String to replace the old one.
+	 */
     public void setName(String name) {
         this.name = name;
     }

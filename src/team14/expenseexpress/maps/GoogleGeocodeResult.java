@@ -1,7 +1,12 @@
 package team14.expenseexpress.maps;
 
 
+/**
+ * @author  zbudinsk
+ */
 public class GoogleGeocodeResult {
+	/**
+	 */
 	public Results[] results;
 	
 	public String getAddress(){

@@ -25,12 +25,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+/**
+ * @author  zbudinsk
+ */
 public class ApproverAdapter extends BaseAdapter {
 	
 	private Activity activity;
 	private static ArrayList<Claim> claimList;
 	private ArrayList<Claim> tempList;
 	private LayoutInflater inflater;
+	/**
+	 */
 	Claim claim;
 	
 	

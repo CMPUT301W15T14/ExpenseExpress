@@ -19,6 +19,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @author  zbudinsk
+ */
 public class LocationActivity extends Activity implements LocationListener {
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,8 @@ public class LocationActivity extends Activity implements LocationListener {
 	    // The minimum time between updates in milliseconds
 	    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
 	    
+    /**
+	 */
     public void getLocation() {
         try {
             locationManager = (LocationManager) this

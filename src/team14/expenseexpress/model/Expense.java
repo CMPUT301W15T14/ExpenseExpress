@@ -6,15 +6,19 @@ import java.util.GregorianCalendar;
 
 
 /**
- * @author  Team 14
- * @version 0.1
- * @since   2015-02-19
+ * @author   Team 14
+ * @version  0.1
+ * @since    2015-02-19
  */
 public class Expense implements Cloneable {
     private String category;
     private GregorianCalendar expenseDate;
+    /**
+	 */
     private Amount amount;
     private String description;
+    /**
+	 */
     private Receipt receipt;
     private String name;
     private boolean incomplete; 
@@ -31,52 +35,45 @@ public class Expense implements Cloneable {
     	return this.expenseId;
     }
     /**
-     * Getter for the complete boolean associated with this Expense.
-     * returns the completeness of the expense, as indicated by user
-     * @return  Boolean complete
-     */
+	 * Getter for the complete boolean associated with this Expense. returns the completeness of the expense, as indicated by user
+	 * @return   Boolean complete
+	 */
     public boolean getIncomplete(){
     	return this.incomplete;
     }
     /**
-     * Setter for the complete boolean associated with this Expense.
-     * Sets the completeness of the expense, as indicated by user
-     * 
-     * @param Boolean
-     */
+	 * Setter for the complete boolean associated with this Expense. Sets the completeness of the expense, as indicated by user
+	 * @param  Boolean
+	 */
     public void setIncomplete(boolean incomplete){
     	this.incomplete = incomplete;
     }
     /**
-     * Getter for the Amount object associated with this Expense.
-     *
-     * @return  The cost of this Expense as an Amount object.
-     */
+	 * Getter for the Amount object associated with this Expense.
+	 * @return   The cost of this Expense as an Amount object.
+	 */
     public Amount getAmount() {
         return amount;
     }
     /**
-     * Setter for the Amount of this Expense
-     *
-     * @param amount The Amount object
-     */
+	 * Setter for the Amount of this Expense
+	 * @param amount  The Amount object
+	 */
     public void setAmount(Amount amount) {
         this.amount = amount;
     }
     /**
-     * Getter for the Expense Date object associated with this Expense.
-     * 
-     * @return This expense date as a GregorianCalendar object.
-     */
+	 * Getter for the Expense Date object associated with this Expense.
+	 * @return  This expense date as a GregorianCalendar object.
+	 */
     public GregorianCalendar getExpenseDate() {
     	return this.expenseDate;
     }
     
     /**
-     * Setter for the Expense Date object associated with this Expense.
-     * returns the completeness of the expense, as indicated by user
-     * @param GregorianCalendar calendar
-     */
+	 * Setter for the Expense Date object associated with this Expense. returns the completeness of the expense, as indicated by user
+	 * @param GregorianCalendar  calendar
+	 */
     public void setExpenseDate(GregorianCalendar calendar) {
     	this.expenseDate = calendar;
     }
@@ -92,64 +89,57 @@ public class Expense implements Cloneable {
     
     
     /**
-     * Obtains a unique expense id based off of real time in milliseconds.
-     * text
-     * @return The expense id as a long.
-     */
+	 * Obtains a unique expense id based off of real time in milliseconds. text
+	 * @return  The expense id as a long.
+	 */
     private long getExpenseId() {
     	return System.currentTimeMillis();
     }
 
     /**
-     * Getter for the category of this Expense.
-     *
-     * @return  The category as a String.
-     */
+	 * Getter for the category of this Expense.
+	 * @return   The category as a String.
+	 */
     public String getCategory() {
         return category;
     }
 
     /**
-     * Setter for the category of this Expense, ensuring it is in Category.LIST.
-     *
-     * @param category  The category as a String (choose from Category constants)
-     */
+	 * Setter for the category of this Expense, ensuring it is in Category.LIST.
+	 * @param category   The category as a String (choose from Category constants)
+	 */
     public void setCategory(String category) {
     	this.category = category;
     }
 
     /**
-     * Getter for the description of this Expense.
-     *
-     * @return  The description as a String.
-     */
+	 * Getter for the description of this Expense.
+	 * @return   The description as a String.
+	 */
     public String getDescription() {
         return description;
     }
 
     /**
-     * Setter for the description of this Expense.
-     *
-     * @param description   The new description String to replace the old one.
-     */
+	 * Setter for the description of this Expense.
+	 * @param description    The new description String to replace the old one.
+	 */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * Getter for the Receipt object associated with this Expense.
-     *
-     * @return  The Receipt object.
-     */
+	 * Getter for the Receipt object associated with this Expense.
+	 * @return   The Receipt object.
+	 */
     public Receipt getReceipt() {
         return receipt;
     }
 
     /**
-     * Setter for the Receipt object associated with this Expense.
-     *
-     * @param receipt   The Receipt object.
-     */
+	 * Setter for the Receipt object associated with this Expense.
+	 * @param receipt    The Receipt object.
+	 */
     public void setReceipt(Receipt receipt) {
         this.receipt = receipt;
     }
@@ -201,34 +191,31 @@ public class Expense implements Cloneable {
 		}
 
     /**
-     * Getter for the Name associated with this Expense.
-     * returns the name of the expense
-     * @return  String name
-     */
+	 * Getter for the Name associated with this Expense. returns the name of the expense
+	 * @return   String name
+	 */
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
 	}
 	  /**
-     * Setter for the name associated with this Expense.
-     * 
-     * @param  String name
-     */
+	 * Setter for the name associated with this Expense.
+	 * @param String  name
+	 */
 	public void setName(String name) {
 		this.name = name;
 		
 	}
 	/**
 	 * Gets longitude of current Destination
-	 * @return longitude of type Double
+	 * @return  longitude of type Double
 	 */
 	public double getLongitude() {
 		return longitude;
 	}
 	/**
-	 * Sets longitude of current Destination
-	 * Also sets Geographical location to True
-	 * @param longtitude of current Destination
+	 * Sets longitude of current Destination Also sets Geographical location to True
+	 * @param longtitude  of current Destination
 	 */
 	public void setLongitude(double longitude) {
 		this.Geo = true;
@@ -236,15 +223,14 @@ public class Expense implements Cloneable {
 	}
 	/**
 	 * Gets latitude of current Destination
-	 * @return latitude of type Double
+	 * @return  latitude of type Double
 	 */
 	public double getLatitude() {
 		return latitude;
 	}
 	/**
-	 * Sets longitude of current Destination
-	 * Also sets Geographical location to True
-	 * @param longtitude of current Destination
+	 * Sets longitude of current Destination Also sets Geographical location to True
+	 * @param longtitude  of current Destination
 	 */
 	public void setLatitude(double latitude) {
 		this.Geo = true;
