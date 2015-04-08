@@ -7,8 +7,6 @@ import team14.expenseexpress.activity.ClaimListActivity;
 import team14.expenseexpress.controller.ClaimController;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.model.Claim;
-import team14.expenseexpress.model.ClaimList;
-import team14.expenseexpress.model.Status;
 import team14.expenseexpress.model.User;
 import team14.expenseexpress.util.ElasticSearchHelper;
 
@@ -27,7 +25,15 @@ import android.widget.TextView;
 
 /**
  * @author  zbudinsk
+ *
+ * An ApproverAdapter which extends the BaseAdapter. Shows the Claimant's name, Approver Name,
+ * Start Date, Claim Status, Destinations, and Total Amount of all claims in the Approver's
+ * ClaimListView.
+ * 
+ * @author Team 14
+ * 
  */
+
 public class ApproverAdapter extends BaseAdapter {
 	
 	private Activity activity;

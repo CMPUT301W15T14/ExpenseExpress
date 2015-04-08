@@ -1,16 +1,22 @@
 package team14.expenseexpress;
 
-import team14.expenseexpress.activity.ClaimListActivity;
 import team14.expenseexpress.controller.UserController;
 import team14.expenseexpress.maps.MapActivity;
-import team14.expenseexpress.util.LocalFileHelper;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+
+/**
+ * An ApproverAdapter which extends the BaseAdapter. Shows the Claimant's name, Approver Name,
+ * Start Date, Claim Status, Destinations, and Total Amount of all claims in the Approver's
+ * ClaimListView.
+ * 
+ * @author Team 14
+ * 
+ */
 
 public class HomeGeo extends Activity {
 

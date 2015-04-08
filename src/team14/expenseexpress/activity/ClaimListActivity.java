@@ -253,7 +253,7 @@ public class ClaimListActivity extends ExpenseExpressActivity {
 			} else if (claim.getStatus().equals(Status.SUBMITTED)) {
 				toast("Claim already Submitted");
 				
-			} else if (claim.getExpenseList().size() == 0){
+			} else if (claim.getExpenseList().getExpenses().isEmpty()){
 				Toast.makeText(this, "You can not submit a claim w/o an expense", Toast.LENGTH_LONG).show();
 			}
 			else {

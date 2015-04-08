@@ -3,21 +3,30 @@ package team14.expenseexpress.controller;
 
 import team14.expenseexpress.model.User;
 
+/**
+ * Singleton controller.
+ * 
+ * Holds information related to the current User.
+ * Used to hold the current longitude/latitude of the User.
+ * 
+ * @author Team 14 
+ *
+ */
 
 /**
  * @author  zbudinsk
  */
 public class UserController {
+<<<<<<< HEAD
 	//private final Gson gson = new Gson();
 	/**
 	 */
+=======
+>>>>>>> 02a7ee43174a3bd42372b192deb048eea595b095
 	private User currentUser = null;
 	private double latitude;
 	private double longitude;
-	//private static final String USER_URL = "http://cmput301.softwareprocess.es:8080/cmput301w15t14/user/";
-	//private static final String TAG = "UserController";
-	
-	//private static Context context;
+
 	
 	/**
 	 */

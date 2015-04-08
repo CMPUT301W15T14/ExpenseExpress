@@ -1,8 +1,17 @@
 package team14.expenseexpress.util;
 
-/**
- * @author  zbudinsk
+
+ /** @author  zbudinsk
+ *
+ * In Lab Code:  https://github.com/joshua2ua/AndroidElasticSearch  Accessed  April. 6, 2015
+ * 
+ * ElasticSearch Helper class.
+ * 
+ * @author Team 14
+ *
  */
+
+
 public class SimpleSearchCommand {
 	/**
 	 */

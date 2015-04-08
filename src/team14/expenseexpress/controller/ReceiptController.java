@@ -11,9 +11,13 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import team14.expenseexpress.model.Receipt;
 
+<<<<<<< HEAD
 /**
  * @author  zbudinsk
  */
+=======
+
+>>>>>>> 02a7ee43174a3bd42372b192deb048eea595b095
 public class ReceiptController {
 	
 	/**

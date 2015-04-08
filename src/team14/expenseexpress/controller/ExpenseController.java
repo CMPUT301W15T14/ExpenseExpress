@@ -12,6 +12,19 @@ import team14.expenseexpress.model.ExpenseList;
 import team14.expenseexpress.model.Receipt;
 import team14.expenseexpress.util.LocalFileHelper;
 
+/**
+ * Singleton controller.
+ * 
+ * Roles:
+ * - Initialize ExpenseList singleton for Activities.
+ * - Modifies the same ExpenseList singleton in response to the following user input:
+ * 		1. Adding a new Expense. 
+ * 		2. Deleting an Expense. 
+ * 		3. Referencing an Expense.
+ * 
+ * - Does NOT modify fields inside Expense (done by ExpenseController).
+ * 
+ */
 
 /**
  * Singleton controller for modifying the Expense data model class.
