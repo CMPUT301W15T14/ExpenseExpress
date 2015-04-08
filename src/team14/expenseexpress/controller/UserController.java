@@ -14,15 +14,11 @@ import team14.expenseexpress.model.User;
  */
 
 /**
- * @author  zbudinsk
+ * @author  Team 14
+ * 
  */
 public class UserController {
-<<<<<<< HEAD
 	//private final Gson gson = new Gson();
-	/**
-	 */
-=======
->>>>>>> 02a7ee43174a3bd42372b192deb048eea595b095
 	private User currentUser = null;
 	private double latitude;
 	private double longitude;
