@@ -210,8 +210,7 @@ public class ExpenseEditActivity extends Activity {
         builder.show(); 
 
 	}
-	
-	
+
 	@Override
 	public void onResume(){
 		super.onResume();
@@ -219,11 +218,7 @@ public class ExpenseEditActivity extends Activity {
 		expLong.setText("Longitude : " + String.valueOf(ExpenseController.getInstance().getSelectedExpense().getLongitude()));
 		
 	}
-	
-	
-	
-
-	/**
+/**
 	 * Changes current activity to ReceiptAddActivity
 	 * @param view View
 	 */
